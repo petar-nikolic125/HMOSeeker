@@ -25,7 +25,6 @@ export default function Home() {
     lastRefreshed: null,
     error: null,
   });
-  const [showResults, setShowResults] = useState(false);
   const [selectedProperty, setSelectedProperty] = useState<PropertyListing | null>(null);
   const [currentFilters, setCurrentFilters] = useState<SearchFilters>({ city: "London" });
   const [lastSearchTime, setLastSearchTime] = useState<number>(0);
@@ -56,7 +55,6 @@ export default function Home() {
         lastRefreshed: new Date(),
         error: null,
       });
-      setShowResults(true);
     },
     onError: (error: Error) => {
       setSearchState(prev => ({
@@ -117,15 +115,17 @@ export default function Home() {
   // Auto-load properties when page loads with London
   useEffect(() => {
     const autoLoadProperties = () => {
-      if (currentFilters.city && !showResults && !searchState.isLoading) {
+      if (currentFilters.city && searchState.properties.length === 0 && !searchState.isLoading) {
+        // Set loading state immediately to show the loading UI
+        setSearchState(prev => ({ ...prev, isLoading: true, error: null }));
         handleSearch(currentFilters);
       }
     };
 
-    // Auto-load after a short delay to ensure the page is fully mounted
-    const timer = setTimeout(autoLoadProperties, 500);
+    // Auto-load immediately when page loads
+    const timer = setTimeout(autoLoadProperties, 100);
     return () => clearTimeout(timer);
-  }, [currentFilters, showResults, searchState.isLoading, handleSearch]);
+  }, []); // Empty dependency array to run only once on mount
 
   const handlePropertyAnalysis = (property: PropertyListing) => {
     setSelectedProperty(property);
@@ -154,17 +154,15 @@ export default function Home() {
         isLoading={searchState.isLoading}
       />
       
-      {showResults && (
-        <PropertyResults 
-          properties={sortedProperties.length > 0 ? sortedProperties : searchState.properties} 
-          filters={currentFilters}
-          onAnalyze={handlePropertyAnalysis}
-          onRefresh={handleRefresh}
-          searchState={searchState}
-          onSortChange={handleSortChange}
-          currentSort={sortBy}
-        />
-      )}
+      <PropertyResults 
+        properties={sortedProperties.length > 0 ? sortedProperties : searchState.properties} 
+        filters={currentFilters}
+        onAnalyze={handlePropertyAnalysis}
+        onRefresh={handleRefresh}
+        searchState={searchState}
+        onSortChange={handleSortChange}
+        currentSort={sortBy}
+      />
       
       <Footer />
       
