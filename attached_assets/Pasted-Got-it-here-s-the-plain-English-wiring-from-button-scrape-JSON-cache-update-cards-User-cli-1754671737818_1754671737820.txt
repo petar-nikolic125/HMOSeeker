@@ -1,0 +1,65 @@
+Got it — here’s the plain-English wiring from button → scrape → JSON cache → update cards:
+
+User clicks “Refresh”
+
+Your React button’s onClick calls a function like runSearch().
+
+That function reads the current form values (city, min beds, max price, keywords, refresh toggle).
+
+It sets a loading=true flag so you can show a spinner and disable the button.
+
+Front end asks the backend to scrape
+
+runSearch() sends a GET request to your API route, e.g. /api/search?city=Leeds&min_bedrooms=3&max_price=350000&keywords=keywords:hmo&refresh=true|false.
+
+If refresh=false, the backend will try to serve cached JSON if it’s still fresh.
+
+If refresh=true, the backend will force a re-scrape, then overwrite the cache before returning the new JSON.
+
+Backend scrapes and caches (no extra work on the front end)
+
+The Python scraper builds the proper PrimeLocation URLs, walks pages, collects detail links, visits each property page, extracts fields, then writes results to ./cache/primelocation/<city-slug>/search_<hash>.json.
+
+That cache file is safe to commit to GitHub and acts as your data failsafe.
+
+The API responds with { meta: { cached: true|false, cache_path }, results: [ ...properties ] }.
+
+Front end receives JSON and updates state
+
+When the fetch resolves, set loading=false.
+
+Store data.results in a React state variable like properties.
+
+Optionally store data.meta to show a badge like “Using cached data” when meta.cached === true.
+
+On error (network or HTTP not OK), show a toast/banner. If you want, automatically retry once without refresh=true to fall back to cache.
+
+Property cards re-render automatically
+
+Your cards should render from the properties state (e.g., properties.map(...)).
+
+Each card reads fields we return:
+
+address, postcode, price, bedrooms, bathrooms, city, image_url, property_url, plus optional gross_yield/monthly_rent.
+
+React will re-render the list the moment you set the new properties state, so the UI updates right after the scrape (or cache load) completes.
+
+Nice UX touches (recommended but optional)
+
+Disable the Refresh button while loading=true.
+
+Show a result count (properties.length) and source indicator (Cached vs Fresh).
+
+If a scrape returns 0 results, show a message like “No new data found — showing cached results if available.”
+
+Debounce the Refresh button so users don’t spam it.
+
+If you support changing filters (city, beds, price), treat any change as a new query; the backend will hit cache first if available.
+
+How the cache helps you
+
+On free hosting, the front end always hits one endpoint. The backend decides: serve cache or scrape.
+
+The cache folder is part of your repo. You can commit it so the site always has data even when the scraper is blocked or sleeping.
+
+That’s it: click → call /api/search → backend returns JSON (fresh or cached) → set React state → cards update.

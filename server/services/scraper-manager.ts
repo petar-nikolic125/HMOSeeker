@@ -2,6 +2,10 @@ import { spawn } from "child_process";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import type { PropertyListing, SearchFilters } from "@shared/schema";
+
+export interface ExtendedSearchFilters extends SearchFilters {
+  refresh?: boolean;
+}
 import { PropertyCache } from "./cache";
 import { PropertyDataAPI } from "./property-data-api";
 import { storage } from "../storage";
@@ -20,6 +24,8 @@ export interface ScrapeResult {
   count: number;
   listings: PropertyListing[];
   scraped_at: string;
+  cached?: boolean;
+  cache_path?: string;
   error?: string;
 }
 
@@ -27,7 +33,11 @@ export class ScraperManager {
   private static readonly PYTHON_SCRIPT_PATH = join(__dirname, "scraper.py");
   private static readonly DEFAULT_TIMEOUT = 120000; // 2 minutes
 
-  static async scrapeProperties(filters: SearchFilters): Promise<ScrapeResult> {
+  static async searchProperties(filters: ExtendedSearchFilters): Promise<ScrapeResult> {
+    return this.runPrimeLocationScraper(filters);
+  }
+
+  static async scrapeProperties(filters: ExtendedSearchFilters): Promise<ScrapeResult> {
     // Check cache first
     const cachedListings = await PropertyCache.get(filters);
     if (cachedListings) {
@@ -130,7 +140,122 @@ export class ScraperManager {
     }
   }
 
-  private static async fallbackToPythonScraper(filters: SearchFilters): Promise<ScrapeResult> {
+  private static async runPrimeLocationScraper(filters: ExtendedSearchFilters): Promise<ScrapeResult> {
+    console.log(`Running PrimeLocation scraper for ${filters.city}...`);
+    
+    return new Promise((resolve, reject) => {
+      const args = [
+        this.PYTHON_SCRIPT_PATH,
+        filters.city,
+        (filters.min_bedrooms || 1).toString(),
+        (filters.max_price || 0).toString(),
+        filters.keywords || ""
+      ];
+
+      // Set environment variables for refresh and other settings
+      const env = { ...process.env };
+      if (filters.refresh) {
+        env.REFRESH = "1";
+      }
+      
+      const pythonProcess = spawn("python3", args, {
+        cwd: __dirname,
+        timeout: this.DEFAULT_TIMEOUT,
+        env,
+      });
+
+      let stdout = "";
+      let stderr = "";
+
+      pythonProcess.stdout.on("data", (data) => {
+        stdout += data.toString();
+      });
+
+      pythonProcess.stderr.on("data", (data) => {
+        stderr += data.toString();
+      });
+
+      pythonProcess.on("close", async (code) => {
+        if (code === 0) {
+          try {
+            const properties = JSON.parse(stdout);
+            
+            if (properties && properties.length > 0) {
+              // Store in database
+              const propertyListings = properties.map((listing: any) => ({
+                source: 'primelocation',
+                title: listing.address || `Property in ${filters.city}`,
+                address: listing.address || `Property in ${filters.city}`,
+                price: listing.price || 0,
+                bedrooms: listing.bedrooms || filters.min_bedrooms || 1,
+                bathrooms: listing.bathrooms || 1,
+                area_sqm: listing.area_sqm,
+                description: listing.description || `Property in ${filters.city}`,
+                property_url: listing.property_url,
+                image_url: listing.image_url,
+                listing_id: listing.property_url ? listing.property_url.split('/').pop() : Math.random().toString(),
+                property_type: 'House',
+                tenure: 'Freehold',
+                postcode: listing.postcode,
+                agent_name: 'Estate Agent',
+                agent_phone: null,
+                agent_url: null,
+                latitude: null,
+                longitude: null,
+                date_listed: null,
+              }));
+
+              const stored = await storage.createPropertyListings(propertyListings);
+              
+              resolve({
+                success: true,
+                city: filters.city,
+                filters: {
+                  min_bedrooms: filters.min_bedrooms,
+                  max_price: filters.max_price,
+                  sources: ["primelocation"],
+                },
+                count: stored.length,
+                listings: stored,
+                scraped_at: new Date().toISOString(),
+                cached: false,
+              });
+            } else {
+              resolve({
+                success: true,
+                city: filters.city,
+                filters: {
+                  min_bedrooms: filters.min_bedrooms,
+                  max_price: filters.max_price,
+                  sources: ["primelocation"],
+                },
+                count: 0,
+                listings: [],
+                scraped_at: new Date().toISOString(),
+                cached: false,
+              });
+            }
+          } catch (parseError) {
+            console.error("Failed to parse scraper output:", parseError);
+            console.error("Stdout:", stdout);
+            console.error("Stderr:", stderr);
+            reject(new Error(`Failed to parse scraper output: ${parseError}`));
+          }
+        } else {
+          console.error("Scraper failed with code:", code);
+          console.error("Stderr:", stderr);
+          reject(new Error(`Scraper failed with exit code ${code}: ${stderr}`));
+        }
+      });
+
+      pythonProcess.on("error", (error) => {
+        console.error("Failed to start Python scraper:", error);
+        reject(new Error(`Failed to start scraper: ${error.message}`));
+      });
+    });
+  }
+
+  private static async fallbackToPythonScraper(filters: ExtendedSearchFilters): Promise<ScrapeResult> {
     console.log("Falling back to Python scraper...");
     
     return new Promise((resolve, reject) => {

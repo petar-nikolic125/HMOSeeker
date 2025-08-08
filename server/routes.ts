@@ -33,6 +33,45 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Search properties with refresh functionality
+  app.get("/api/search", async (req, res) => {
+    try {
+      const { city, min_bedrooms, max_price, keywords, refresh } = req.query;
+      
+      if (!city) {
+        return res.status(400).json({
+          success: false,
+          error: "City parameter is required",
+        });
+      }
+
+      const filters = {
+        city: city as string,
+        min_bedrooms: min_bedrooms ? parseInt(min_bedrooms as string) : undefined,
+        max_price: max_price ? parseInt(max_price as string) : undefined,
+        keywords: keywords as string || undefined,
+        refresh: refresh === 'true',
+      };
+
+      // Use the new scraper with refresh capability
+      const result = await ScraperManager.searchProperties(filters);
+      
+      res.json({
+        meta: {
+          cached: result.cached,
+          cache_path: result.cache_path,
+        },
+        results: result.listings,
+      });
+    } catch (error) {
+      console.error("Search failed:", error);
+      res.status(500).json({
+        success: false,
+        error: "Search failed",
+      });
+    }
+  });
+
   // Start property scraping
   app.post("/api/scrape", async (req, res) => {
     try {
@@ -42,7 +81,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const searchQuery = await storage.createSearchQuery(filters);
       
       // Start scraping (don't await - let it run in background)
-      ScraperManager.scrapeProperties(filters)
+      ScraperManager.scrapeProperties({ ...filters, refresh: false })
         .then(async (result) => {
           await storage.updateSearchQuery(searchQuery.id, {
             status: result.success ? 'completed' : 'failed',
