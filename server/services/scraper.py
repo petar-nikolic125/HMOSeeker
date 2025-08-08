@@ -331,12 +331,16 @@ def parse_details(detail_html):
             address = at
     if not address:
         mt = soup.find("meta", attrs={"property": "og:title"})
-        if mt and mt.get("content"):
-            address = mt["content"]
+        if mt and hasattr(mt, 'get'):
+            content = mt.get("content")
+            if content:
+                address = content
     if not address:
         mt = soup.find("meta", attrs={"name": "twitter:title"})
-        if mt and mt.get("content"):
-            address = mt["content"]
+        if mt and hasattr(mt, 'get'):
+            content = mt.get("content")
+            if content:
+                address = content
 
     # Price
     price = 0
@@ -353,12 +357,16 @@ def parse_details(detail_html):
     # Primary image (best-effort)
     image_url = None
     og_image = soup.find("meta", attrs={"property": "og:image"})
-    if og_image and og_image.get("content"):
-        image_url = og_image["content"]
+    if og_image and hasattr(og_image, 'get'):
+        content = og_image.get("content")
+        if content:
+            image_url = content
     if not image_url:
         img = soup.find("img")
-        if img and img.get("src"):
-            image_url = img["src"]
+        if img and hasattr(img, 'get'):
+            src = img.get("src")
+            if src:
+                image_url = src
 
     # Description (trim to something reasonable)
     desc = None

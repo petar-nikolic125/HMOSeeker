@@ -260,7 +260,7 @@ export class ScraperManager {
                 success: result.success, 
                 count: result.count, 
                 cached: result.cached,
-                listingsPreview: result.listings.slice(0, 2).map(p => ({ address: p.address, price: p.price })) 
+                listingsPreview: result.listings.slice(0, 2).map((p: any) => ({ address: p.address, price: p.price })) 
               });
               
               resolve(result);

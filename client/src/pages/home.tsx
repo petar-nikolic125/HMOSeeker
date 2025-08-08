@@ -2,7 +2,7 @@ import NavigationHeader from "@/components/navigation-header";
 import HeroSection from "@/components/hero-section";
 import PropertyResults from "@/components/property-results";
 import PropertyAnalysisModal from "@/components/property-analysis-modal";
-import Footer from "@/components/footer";
+import { Footer } from "@/components/Footer";
 import { useState, useCallback, useEffect } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";

@@ -1,5 +1,5 @@
 import { Clock, Filter, RefreshCw, CheckCircle, Database } from "lucide-react";
-import { PropertyCard } from "./PropertyCard";
+import PropertyCard from "./property-card";
 import type { PropertyListing } from "@shared/schema";
 import type { SearchFilters, PropertyWithAnalytics } from "@/lib/types";
 
