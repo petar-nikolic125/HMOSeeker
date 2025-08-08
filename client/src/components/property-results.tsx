@@ -17,9 +17,11 @@ interface PropertyResultsProps {
   onAnalyze: (property: PropertyListing) => void;
   onRefresh: () => void;
   searchState: SearchState;
+  onSortChange?: (sortBy: string) => void;
+  currentSort?: string;
 }
 
-export default function PropertyResults({ properties, filters, onAnalyze, onRefresh, searchState }: PropertyResultsProps) {
+export default function PropertyResults({ properties, filters, onAnalyze, onRefresh, searchState, onSortChange, currentSort }: PropertyResultsProps) {
   const { isLoading, isCached, lastRefreshed, error } = searchState;
   
   const formatTime = (date: Date | null) => {
@@ -46,7 +48,7 @@ export default function PropertyResults({ properties, filters, onAnalyze, onRefr
               Found <span className="font-semibold text-blue-600">{properties.length}</span> properties matching your criteria with high investment potential
             </p>
             
-            {/* Search Status and Refresh */}
+            {/* Search Status */}
             <div className="flex items-center justify-center gap-6 text-sm">
               <div className="flex items-center gap-2">
                 {isCached ? (
@@ -66,15 +68,6 @@ export default function PropertyResults({ properties, filters, onAnalyze, onRefr
                 <Clock className="w-4 h-4" />
                 <span>Updated {formatTime(lastRefreshed)}</span>
               </div>
-              
-              <button
-                onClick={onRefresh}
-                disabled={isLoading}
-                className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white rounded-lg font-medium transition-colors"
-              >
-                <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
-                {isLoading ? 'Refreshing...' : 'Refresh'}
-              </button>
             </div>
             
             {error && (
@@ -88,12 +81,20 @@ export default function PropertyResults({ properties, filters, onAnalyze, onRefr
         {/* Filters Bar */}
         <div className="mb-8 flex flex-wrap items-center justify-between gap-4 p-4 bg-gray-50 rounded-2xl">
           <div className="flex items-center gap-4">
-            <select className="border border-gray-300 rounded-lg px-3 py-2 text-sm">
-              <option>Sort by: Yield (High to Low)</option>
-              <option>Sort by: Price (Low to High)</option>
-              <option>Sort by: ROI</option>
+            <select 
+              value={currentSort || "yield_desc"}
+              onChange={(e) => onSortChange?.(e.target.value)}
+              className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              data-testid="select-sort"
+            >
+              <option value="yield_desc">Sort by: Yield (High to Low)</option>
+              <option value="yield_asc">Sort by: Yield (Low to High)</option>
+              <option value="price_asc">Sort by: Price (Low to High)</option>
+              <option value="price_desc">Sort by: Price (High to Low)</option>
+              <option value="roi_desc">Sort by: ROI (High to Low)</option>
+              <option value="bedrooms_desc">Sort by: Bedrooms (Most First)</option>
             </select>
-            <button className="flex items-center gap-2 text-gray-600 hover:text-blue-600 text-sm">
+            <button className="flex items-center gap-2 text-gray-600 hover:text-blue-600 text-sm" data-testid="button-more-filters">
               <Filter className="w-4 h-4" />
               More Filters
             </button>
@@ -107,11 +108,20 @@ export default function PropertyResults({ properties, filters, onAnalyze, onRefr
         {/* Property Grid */}
         {isLoading ? (
           <div className="text-center py-12">
-            <div className="w-16 h-16 mx-auto mb-4 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin"></div>
+            <div className="w-16 h-16 mx-auto mb-4 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin" data-testid="loading-spinner"></div>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">Searching Properties...</h3>
             <p className="text-gray-600">
               {isCached ? 'Loading cached results...' : 'Scraping latest property data from PrimeLocation...'}
             </p>
+            <div className="mt-4 max-w-md mx-auto">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-sm text-blue-700">
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                  <span className="font-medium">Live Search in Progress</span>
+                </div>
+                <p>Fetching the latest HMO opportunities from multiple property portals...</p>
+              </div>
+            </div>
           </div>
         ) : properties.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
@@ -134,32 +144,19 @@ export default function PropertyResults({ properties, filters, onAnalyze, onRefr
             </h3>
             <p className="text-gray-600 mb-6">
               {error 
-                ? 'There was an error searching for properties. Please try again.'
-                : `No HMO-suitable properties found for your search criteria in ${filters.city}. ${isCached ? 'Showing cached results if available.' : 'Try adjusting your filters or searching in a different area.'}`
+                ? 'There was an error searching for properties. Please try a different search or check your connection.'
+                : `No HMO-suitable properties found for your search criteria in ${filters.city}. ${isCached ? 'Try adjusting your filters or search in a different area.' : 'Try adjusting your filters or searching in a different area.'}`
               }
             </p>
-            <button 
-              onClick={onRefresh}
-              className="bg-blue-600 text-white px-6 py-3 rounded-xl font-medium hover:bg-blue-700 transition-colors"
-            >
-              {error ? 'Try Again' : 'Refresh Search'}
-            </button>
           </div>
         )}
 
-        {/* Load More Button */}
+        {/* Results Summary */}
         {properties.length > 0 && (
           <div className="text-center">
             <div className="text-sm text-gray-600 mb-4">
               Showing {properties.length} properties • {isCached ? 'From cache' : 'Fresh from PrimeLocation'}
             </div>
-            <button 
-              onClick={() => onRefresh()}
-              disabled={isLoading}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:from-gray-400 disabled:to-gray-500 text-white px-8 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 disabled:transform-none disabled:scale-100"
-            >
-              {isLoading ? 'Refreshing...' : 'Refresh Results'}
-            </button>
           </div>
         )}
       </div>

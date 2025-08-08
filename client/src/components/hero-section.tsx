@@ -141,15 +141,16 @@ export default function HeroSection({ onSearch, isLoading }: HeroSectionProps) {
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-center gap-4">
+            <div className="flex justify-center">
               <button 
                 onClick={handleSearch}
                 disabled={!city || isLoading}
-                className="w-full sm:flex-1 h-14 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 disabled:from-gray-400 disabled:to-gray-500 text-white text-base sm:text-lg font-semibold shadow-xl hover:shadow-2xl transform hover:scale-105 disabled:transform-none disabled:scale-100 transition-all duration-300 rounded-xl flex items-center justify-center gap-3"
+                className="w-full sm:w-auto h-14 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 disabled:from-gray-400 disabled:to-gray-500 text-white text-base sm:text-lg font-semibold shadow-xl hover:shadow-2xl transform hover:scale-105 disabled:transform-none disabled:scale-100 transition-all duration-300 rounded-xl flex items-center justify-center gap-3 px-8 sm:px-12"
+                data-testid="button-search"
               >
                 {isLoading ? (
                   <>
-                    <RefreshCw className="w-5 h-5 animate-spin" />
+                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
                     Searching...
                   </>
                 ) : (
@@ -158,13 +159,6 @@ export default function HeroSection({ onSearch, isLoading }: HeroSectionProps) {
                     Find HMO Properties
                   </>
                 )}
-              </button>
-              
-              <button 
-                className="w-full sm:w-auto h-14 border-2 border-gray-300 hover:border-blue-400 hover:bg-blue-50 text-gray-700 hover:text-blue-700 transition-all duration-300 rounded-xl px-6 flex items-center justify-center gap-2 bg-white"
-              >
-                <RefreshCw className="w-5 h-5" />
-                <span className="hidden sm:inline">Refresh</span>
               </button>
             </div>
 
