@@ -31,7 +31,7 @@ export interface ScrapeResult {
 
 export class ScraperManager {
   private static readonly PYTHON_SCRIPT_PATH = join(__dirname, "scraper.py");
-  private static readonly DEFAULT_TIMEOUT = 120000; // 2 minutes
+  private static readonly DEFAULT_TIMEOUT = 300000; // 5 minutes
 
   static async searchProperties(filters: ExtendedSearchFilters): Promise<ScrapeResult> {
     return this.runPrimeLocationScraper(filters);
@@ -142,6 +142,7 @@ export class ScraperManager {
 
   private static async runPrimeLocationScraper(filters: ExtendedSearchFilters): Promise<ScrapeResult> {
     console.log(`Running PrimeLocation scraper for ${filters.city}...`);
+    console.log('Filters:', JSON.stringify(filters));
     
     return new Promise((resolve, reject) => {
       const args = [
@@ -156,8 +157,10 @@ export class ScraperManager {
       const env = { ...process.env };
       if (filters.refresh) {
         env.REFRESH = "1";
+        console.log('Refresh flag set - forcing fresh scrape');
       }
       
+      console.log('Spawning Python process with args:', args);
       const pythonProcess = spawn("python3", args, {
         cwd: __dirname,
         timeout: this.DEFAULT_TIMEOUT,
@@ -176,16 +179,69 @@ export class ScraperManager {
       });
 
       pythonProcess.on("close", async (code) => {
+        console.log(`Python process closed with code: ${code}`);
+        console.log('Stdout:', stdout);
+        console.log('Stderr:', stderr);
+        
         if (code === 0) {
           try {
-            const properties = JSON.parse(stdout);
+            let properties;
+            try {
+              properties = JSON.parse(stdout);
+              console.log(`Successfully parsed ${properties?.length || 0} properties from stdout`);
+            } catch (parseError) {
+              console.error('Failed to parse stdout as JSON:', parseError);
+              console.log('Raw stdout:', stdout);
+              properties = [];
+            }
             
             // Check if we have cached results (the scraper returns cached flag from stderr)
             const cached = stderr.includes("Using cached results");
             const cache_path = stderr.match(/cache\/primelocation\/[^\s]+/)?.[0];
+            console.log('Cache status:', { cached, cache_path });
             
             if (properties && properties.length > 0) {
-              resolve({
+              console.log('Transforming properties for frontend...');
+              console.log('Sample property before transform:', JSON.stringify(properties[0], null, 2));
+              
+              // Transform scraper output to match PropertyWithAnalytics interface
+              const transformedProperties = properties.map((prop: any, index: number) => {
+                const transformed = {
+                  id: `pl-${Date.now()}-${index}`,
+                  source: 'primelocation',
+                  title: prop.address || 'Property Listing',
+                  address: prop.address || '',
+                  price: prop.price || 0,
+                  bedrooms: prop.bedrooms || 0,
+                  bathrooms: prop.bathrooms || 0,
+                  description: prop.description || '',
+                  property_url: prop.property_url || '',
+                  image_url: prop.image_url || 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop',
+                  listing_id: `pl-${Date.now()}-${index}`,
+                  postcode: prop.postcode || '',
+                  city: prop.city || filters.city,
+                  // Add analytics data from scraper
+                  roi: Math.round((prop.gross_yield || 0) * 3.2), // Rough ROI estimate
+                  grossYield: prop.gross_yield || 0,
+                  profitabilityScore: (prop.gross_yield || 0) > 8 ? 'High' : (prop.gross_yield || 0) > 6 ? 'Medium' : 'Low',
+                  lhaWeekly: Math.round((prop.monthly_rent || 0) / 4.33),
+                  lhaMonthly: prop.monthly_rent || 0,
+                  // Map scraper fields to UI properties
+                  imageUrl: prop.image_url,
+                  propertyUrl: prop.property_url,
+                  coordinates: [0, 0], // Default coordinates
+                };
+                
+                if (index === 0) {
+                  console.log('Sample transformed property:', JSON.stringify(transformed, null, 2));
+                }
+                
+                return transformed;
+              });
+              
+              console.log(`Successfully transformed ${transformedProperties.length} properties`);
+              
+              const result = {
                 success: true,
                 city: filters.city,
                 filters: {
@@ -193,13 +249,23 @@ export class ScraperManager {
                   max_price: filters.max_price,
                   sources: ["primelocation"],
                 },
-                count: properties.length,
-                listings: properties,
+                count: transformedProperties.length,
+                listings: transformedProperties,
                 scraped_at: new Date().toISOString(),
                 cached,
                 cache_path,
+              };
+              
+              console.log('Final result:', { 
+                success: result.success, 
+                count: result.count, 
+                cached: result.cached,
+                listingsPreview: result.listings.slice(0, 2).map(p => ({ address: p.address, price: p.price })) 
               });
+              
+              resolve(result);
             } else {
+              console.log('No properties found or empty array');
               resolve({
                 success: true,
                 city: filters.city,

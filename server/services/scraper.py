@@ -407,7 +407,7 @@ def scrape_primelocation(city, min_bedrooms, max_price, keywords_blob):
 
     proxies_env = os.getenv("PROXY_LIST", "")
     proxies_list = [p.strip() for p in proxies_env.split(",") if p.strip()]
-    target_min_results = as_int(os.getenv("PL_MIN_RESULTS", 50), 50)
+    target_min_results = as_int(os.getenv("PL_MIN_RESULTS", 25), 25)
 
     session = setup_session()
 
