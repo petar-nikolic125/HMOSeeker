@@ -573,6 +573,18 @@ def scrape_primelocation(city, min_bedrooms, max_price, keywords_blob):
             # Log extracted data
             print(f"    ✏️  Extracted: {rec.get('address', 'No address')} - £{rec.get('price', 0):,} - {rec.get('bedrooms', 0)} beds", file=sys.stderr)
             
+            # Apply price filter - skip properties above max_price
+            property_price = rec.get("price", 0)
+            if max_price_int and property_price > max_price_int:
+                print(f"    ⏭️  Skipped: £{property_price:,} exceeds max price £{max_price_int:,}", file=sys.stderr)
+                continue
+                
+            # Apply minimum bedrooms filter
+            property_beds = rec.get("bedrooms", 0)
+            if min_beds and property_beds < min_beds:
+                print(f"    ⏭️  Skipped: {property_beds} beds less than minimum {min_beds}", file=sys.stderr)
+                continue
+            
             # best-effort infer baths filter: if user required min baths, skip non-matching
             if "baths_min" in filters and rec.get("bathrooms") is not None:
                 if rec["bathrooms"] < int(filters["baths_min"]):

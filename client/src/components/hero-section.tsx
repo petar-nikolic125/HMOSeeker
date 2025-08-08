@@ -117,10 +117,17 @@ export default function HeroSection({ onSearch, isLoading }: HeroSectionProps) {
                   onChange={(e) => setMaxPrice(parseInt(e.target.value))}
                   className="w-full h-12 text-base border-2 border-gray-200 hover:border-green-400 focus:border-green-500 transition-colors rounded-xl px-4 bg-white"
                 >
-                  <option value={500000}>£500k</option>
-                  <option value={400000}>£400k</option>
-                  <option value={300000}>£300k</option>
                   <option value={250000}>£250k</option>
+                  <option value={300000}>£300k</option>
+                  <option value={400000}>£400k</option>
+                  <option value={500000}>£500k</option>
+                  <option value={600000}>£600k</option>
+                  <option value={700000}>£700k</option>
+                  <option value={800000}>£800k</option>
+                  <option value={900000}>£900k</option>
+                  <option value={1000000}>£1m</option>
+                  <option value={1200000}>£1.2m</option>
+                  <option value={1500000}>£1.5m</option>
                 </select>
               </div>
 
