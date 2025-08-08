@@ -4,6 +4,7 @@ export interface SearchFilters {
   city: string;
   minRooms?: number;
   maxPrice?: number;
+  keywords?: string;
 }
 
 export interface PropertyWithAnalytics extends PropertyListing {

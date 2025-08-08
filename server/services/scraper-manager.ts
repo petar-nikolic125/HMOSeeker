@@ -180,33 +180,11 @@ export class ScraperManager {
           try {
             const properties = JSON.parse(stdout);
             
+            // Check if we have cached results (the scraper returns cached flag from stderr)
+            const cached = stderr.includes("Using cached results");
+            const cache_path = stderr.match(/cache\/primelocation\/[^\s]+/)?.[0];
+            
             if (properties && properties.length > 0) {
-              // Store in database
-              const propertyListings = properties.map((listing: any) => ({
-                source: 'primelocation',
-                title: listing.address || `Property in ${filters.city}`,
-                address: listing.address || `Property in ${filters.city}`,
-                price: listing.price || 0,
-                bedrooms: listing.bedrooms || filters.min_bedrooms || 1,
-                bathrooms: listing.bathrooms || 1,
-                area_sqm: listing.area_sqm,
-                description: listing.description || `Property in ${filters.city}`,
-                property_url: listing.property_url,
-                image_url: listing.image_url,
-                listing_id: listing.property_url ? listing.property_url.split('/').pop() : Math.random().toString(),
-                property_type: 'House',
-                tenure: 'Freehold',
-                postcode: listing.postcode,
-                agent_name: 'Estate Agent',
-                agent_phone: null,
-                agent_url: null,
-                latitude: null,
-                longitude: null,
-                date_listed: null,
-              }));
-
-              const stored = await storage.createPropertyListings(propertyListings);
-              
               resolve({
                 success: true,
                 city: filters.city,
@@ -215,10 +193,11 @@ export class ScraperManager {
                   max_price: filters.max_price,
                   sources: ["primelocation"],
                 },
-                count: stored.length,
-                listings: stored,
+                count: properties.length,
+                listings: properties,
                 scraped_at: new Date().toISOString(),
-                cached: false,
+                cached,
+                cache_path,
               });
             } else {
               resolve({
@@ -232,7 +211,7 @@ export class ScraperManager {
                 count: 0,
                 listings: [],
                 scraped_at: new Date().toISOString(),
-                cached: false,
+                cached,
               });
             }
           } catch (parseError) {

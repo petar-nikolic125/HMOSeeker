@@ -4,9 +4,10 @@ import type { SearchFilters } from "@/lib/types";
 
 interface HeroSectionProps {
   onSearch: (filters: SearchFilters) => void;
+  isLoading?: boolean;
 }
 
-export default function HeroSection({ onSearch }: HeroSectionProps) {
+export default function HeroSection({ onSearch, isLoading }: HeroSectionProps) {
   const [city, setCity] = useState("Birmingham");
   const [maxPrice, setMaxPrice] = useState(500000);
   const [minBedrooms, setMinBedrooms] = useState(4);
@@ -14,8 +15,9 @@ export default function HeroSection({ onSearch }: HeroSectionProps) {
   const handleSearch = () => {
     const filters: SearchFilters = {
       city,
-      max_price: maxPrice,
-      min_bedrooms: minBedrooms,
+      maxPrice: maxPrice,
+      minRooms: minBedrooms,
+      keywords: "hmo",
     };
     onSearch(filters);
   };
@@ -142,11 +144,20 @@ export default function HeroSection({ onSearch }: HeroSectionProps) {
             <div className="flex flex-col sm:flex-row items-center gap-4">
               <button 
                 onClick={handleSearch}
-                disabled={!city}
-                className="w-full sm:flex-1 h-14 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 disabled:from-gray-400 disabled:to-gray-500 text-white text-base sm:text-lg font-semibold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 rounded-xl flex items-center justify-center gap-3"
+                disabled={!city || isLoading}
+                className="w-full sm:flex-1 h-14 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 disabled:from-gray-400 disabled:to-gray-500 text-white text-base sm:text-lg font-semibold shadow-xl hover:shadow-2xl transform hover:scale-105 disabled:transform-none disabled:scale-100 transition-all duration-300 rounded-xl flex items-center justify-center gap-3"
               >
-                <Search className="w-5 h-5" />
-                Find HMO Properties
+                {isLoading ? (
+                  <>
+                    <RefreshCw className="w-5 h-5 animate-spin" />
+                    Searching...
+                  </>
+                ) : (
+                  <>
+                    <Search className="w-5 h-5" />
+                    Find HMO Properties
+                  </>
+                )}
               </button>
               
               <button 

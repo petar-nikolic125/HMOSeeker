@@ -2,14 +2,17 @@ import { Star, Percent, TrendingUp, Bath, Bed, Square, ExternalLink, Calculator 
 import type { PropertyListing } from "@shared/schema";
 
 interface PropertyCardProps {
-  property: PropertyListing;
-  onAnalyze: (property: PropertyListing) => void;
+  property: any; // Using any to handle the scraper's data format
+  onAnalyze: (property: any) => void;
+  delay?: number;
 }
 
-export default function PropertyCard({ property, onAnalyze }: PropertyCardProps) {
-  // Calculate estimated yield and ROI based on property data
-  const estimatedYield = property.price > 0 ? ((property.bedrooms || 4) * 400 * 12 / property.price * 100) : 0;
-  const estimatedRoi = estimatedYield * 2.5; // Rough estimate
+export default function PropertyCard({ property, onAnalyze, delay = 0 }: PropertyCardProps) {
+  // Use the investment metrics from the scraper if available, otherwise calculate
+  const grossYield = property.gross_yield || 0;
+  const monthlyRent = property.monthly_rent || (property.bedrooms || 4) * 400;
+  const estimatedYield = grossYield || (property.price > 0 ? (monthlyRent * 12 / property.price * 100) : 0);
+  const estimatedRoi = estimatedYield * 1.5; // Conservative estimate
 
   const getYieldColor = (yieldValue: number) => {
     if (yieldValue >= 8) return "from-emerald-500 to-green-500";
@@ -62,13 +65,13 @@ export default function PropertyCard({ property, onAnalyze }: PropertyCardProps)
         {/* Price overlay */}
         <div className="absolute bottom-6 left-6 right-6">
           <div className="text-4xl font-black text-white drop-shadow-2xl mb-2 tracking-tight">
-            £{property.price.toLocaleString()}
+            £{(property.price || 0).toLocaleString()}
           </div>
           <div className="flex items-center text-white/90 text-sm font-medium">
             <svg className="w-4 h-4 mr-1.5" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
             </svg>
-            {property.address}
+            {property.address || property.title || `Property in ${property.city || 'Unknown'}`}
           </div>
         </div>
       </div>
@@ -83,7 +86,7 @@ export default function PropertyCard({ property, onAnalyze }: PropertyCardProps)
               <div className="p-2 bg-blue-50 rounded-xl">
                 <Bed className="w-5 h-5 text-blue-600" />
               </div>
-              <span className="font-semibold">{property.bedrooms || 'N/A'}</span>
+              <span className="font-semibold">{property.bedrooms || 4}</span>
               <span className="text-sm text-gray-500">bedrooms</span>
             </div>
             
@@ -132,12 +135,38 @@ export default function PropertyCard({ property, onAnalyze }: PropertyCardProps)
           </div>
         </div>
 
+        {/* Investment Metrics Display */}
+        {(monthlyRent || grossYield) && (
+          <div className="space-y-2">
+            <h4 className="font-semibold text-gray-900">Investment Potential</h4>
+            <div className="grid grid-cols-2 gap-3 text-sm">
+              {monthlyRent && (
+                <div className="text-center p-2 bg-blue-50 rounded-lg">
+                  <div className="font-semibold text-blue-800">Monthly Rent</div>
+                  <div className="text-blue-600">£{monthlyRent}</div>
+                </div>
+              )}
+              {grossYield > 0 && (
+                <div className="text-center p-2 bg-green-50 rounded-lg">
+                  <div className="font-semibold text-green-800">Gross Yield</div>
+                  <div className="text-green-600">{grossYield.toFixed(1)}%</div>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+        
         {/* Property Description */}
         <div className="space-y-2">
           <h4 className="font-semibold text-gray-900">Property Details</h4>
           <p className="text-sm text-gray-600 leading-relaxed line-clamp-3">
-            {property.description || `${property.property_type || 'Property'} in ${property.address}. Great potential for HMO conversion with strong rental demand in the area.`}
+            {property.description || `${property.bedrooms || 4}-bed property in ${property.city || 'Unknown'}. Great potential for HMO conversion with strong rental demand in the area.`}
           </p>
+          {property.postcode && (
+            <div className="text-xs text-gray-500">
+              Postcode: {property.postcode}
+            </div>
+          )}
         </div>
 
         {/* Action Buttons */}
