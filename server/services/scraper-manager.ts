@@ -3,6 +3,7 @@ import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import type { PropertyListing, SearchFilters } from "@shared/schema";
 import { PropertyCache } from "./cache";
+import { PropertyDataAPI } from "./property-data-api";
 import { storage } from "../storage";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -37,7 +38,7 @@ export class ScraperManager {
         filters: {
           min_bedrooms: filters.min_bedrooms,
           max_price: filters.max_price,
-          sources: ["zoopla", "primelocation"],
+          sources: ["property_data", "land_registry"],
         },
         count: cachedListings.length,
         listings: cachedListings,
@@ -45,8 +46,81 @@ export class ScraperManager {
       };
     }
 
-    console.log(`Cache miss for ${filters.city}, starting scrape...`);
+    console.log(`Cache miss for ${filters.city}, fetching property data...`);
 
+    try {
+      // Use Property Data API instead of web scraping
+      const listings = await PropertyDataAPI.searchProperties(filters);
+      
+      if (listings && listings.length > 0) {
+        // Store in database
+        const propertyListings = listings.map(listing => ({
+          source: listing.source,
+          title: listing.title,
+          address: listing.address,
+          price: listing.price,
+          bedrooms: listing.bedrooms,
+          bathrooms: listing.bathrooms,
+          area_sqm: listing.area_sqm,
+          description: listing.description,
+          property_url: listing.property_url,
+          image_url: listing.image_url,
+          listing_id: listing.listing_id,
+          property_type: listing.property_type,
+          tenure: listing.tenure,
+          postcode: listing.postcode,
+          agent_name: listing.agent_name,
+          agent_phone: listing.agent_phone,
+          agent_url: listing.agent_url,
+          latitude: listing.latitude,
+          longitude: listing.longitude,
+          date_listed: listing.date_listed,
+        }));
+
+        const stored = await storage.createPropertyListings(propertyListings);
+        
+        // Cache the results
+        await PropertyCache.set(filters, stored);
+        
+        return {
+          success: true,
+          city: filters.city,
+          filters: {
+            min_bedrooms: filters.min_bedrooms,
+            max_price: filters.max_price,
+            sources: ["property_data", "land_registry"],
+          },
+          count: stored.length,
+          listings: stored,
+          scraped_at: new Date().toISOString(),
+        };
+      }
+      
+      // If no properties found, return empty result
+      return {
+        success: true,
+        city: filters.city,
+        filters: {
+          min_bedrooms: filters.min_bedrooms,
+          max_price: filters.max_price,
+          sources: ["property_data", "land_registry"],
+        },
+        count: 0,
+        listings: [],
+        scraped_at: new Date().toISOString(),
+      };
+      
+    } catch (error) {
+      console.error("Property data API error:", error);
+      
+      // Fallback to Python scraper if API fails
+      return this.fallbackToPythonScraper(filters);
+    }
+  }
+
+  private static async fallbackToPythonScraper(filters: SearchFilters): Promise<ScrapeResult> {
+    console.log("Falling back to Python scraper...");
+    
     return new Promise((resolve, reject) => {
       const args = [this.PYTHON_SCRIPT_PATH, filters.city];
       
