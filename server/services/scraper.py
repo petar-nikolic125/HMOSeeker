@@ -386,16 +386,23 @@ def parse_details(detail_html):
 # ---------- Main scrape flow ----------
 
 def scrape_primelocation(city, min_bedrooms, max_price, keywords_blob):
+    print(f"🔍 Starting PrimeLocation scrape for: city={city}, min_beds={min_bedrooms}, max_price={max_price}, keywords={keywords_blob}", file=sys.stderr)
+    
     filters = parse_keywords_blob(keywords_blob)
     min_beds = as_int(min_bedrooms, 1) or 1
     max_price_int = as_int(max_price, None)
+    
+    print(f"📊 Parsed filters: min_beds={min_beds}, max_price_int={max_price_int}, filters={filters}", file=sys.stderr)
 
     city_slug = slug_city(city)
     cache_file = cache_path_for(city_slug, min_beds, max_price_int, filters)
+    print(f"💾 Cache file path: {cache_file}", file=sys.stderr)
 
     if not os.getenv("REFRESH") and cache_fresh(cache_file):
+        print(f"✅ Using fresh cache from {cache_file}", file=sys.stderr)
         with open(cache_file, "r", encoding="utf-8") as f:
             cached = json.load(f)
+        print(f"📋 Loaded {len(cached)} cached properties", file=sys.stderr)
         return cached, {"cached": True, "cache_path": cache_file}
 
     proxies_env = os.getenv("PROXY_LIST", "")
@@ -406,63 +413,99 @@ def scrape_primelocation(city, min_bedrooms, max_price, keywords_blob):
 
     # 1) Build search URLs (pages)
     urls = build_search_urls(city, min_beds, max_price_int, filters)
+    print(f"🌐 Built {len(urls)} search URLs:", file=sys.stderr)
+    for i, url in enumerate(urls, 1):
+        print(f"  {i}. {url}", file=sys.stderr)
 
     # 2) Visit each search page, collect details links
     all_detail_links = []
-    for u in urls:
+    print(f"🔗 Collecting property detail links from search pages...", file=sys.stderr)
+    
+    for i, u in enumerate(urls, 1):
         try:
+            print(f"  📄 Fetching search page {i}/{len(urls)}: {u}", file=sys.stderr)
             html = get_html(session, u, proxies_list)
             links = collect_detail_links(html)
+            print(f"    Found {len(links)} property links on page {i}", file=sys.stderr)
+            
             all_detail_links.extend(links)
             all_detail_links = list(dict.fromkeys(all_detail_links))  # de-dupe, preserve order
+            print(f"    Total unique links so far: {len(all_detail_links)}", file=sys.stderr)
+            
             if len(all_detail_links) >= target_min_results:
+                print(f"✅ Reached target of {target_min_results} properties, stopping search", file=sys.stderr)
                 break
         except Exception as e:
+            print(f"❌ Error on search page {i}: {str(e)}", file=sys.stderr)
             # rotate headers/proxy and continue
             continue
 
     # safety: cap to 250 to avoid hammering
     detail_links = all_detail_links[:max(target_min_results, 50)]
+    print(f"🎯 Processing {len(detail_links)} property detail pages (capped from {len(all_detail_links)} found)", file=sys.stderr)
 
     # 3) Visit each detail page and extract fields
     results = []
+    print(f"🏠 Extracting property details...", file=sys.stderr)
+    
     for i, dlink in enumerate(detail_links):
         try:
+            print(f"  🔍 Processing property {i+1}/{len(detail_links)}: {dlink}", file=sys.stderr)
             html = get_html(session, dlink, proxies_list)
             rec = parse_details(html)
+            
             rec["property_url"] = dlink
             rec["city"] = city
+            
+            # Log extracted data
+            print(f"    ✏️  Extracted: {rec.get('address', 'No address')} - £{rec.get('price', 0):,} - {rec.get('bedrooms', 0)} beds", file=sys.stderr)
+            
             # best-effort infer baths filter: if user required min baths, skip non-matching
             if "baths_min" in filters and rec.get("bathrooms") is not None:
                 if rec["bathrooms"] < int(filters["baths_min"]):
+                    print(f"    ⏭️  Skipped: only {rec['bathrooms']} baths, need {filters['baths_min']}+", file=sys.stderr)
                     continue
+            
             # Add a plain description if none found
             if not rec.get("description"):
                 beds = rec.get("bedrooms") or min_beds
                 rec["description"] = f"{beds}-bed property in {city}."
+                
             # add investment metrics
             add_investment_metrics(rec, city)
+            print(f"    💰 Added metrics: {rec.get('gross_yield', 0):.1f}% yield, £{rec.get('monthly_rent', 0)}/month", file=sys.stderr)
+            
             results.append(rec)
             # polite pacing between details
             rand_delay(0.4, 1.1)
+            
         except Exception as e:
+            print(f"    ❌ Error processing property {i+1}: {str(e)}", file=sys.stderr)
             # skip bad pages and continue
             continue
 
     # 4) De-dup & clean
+    print(f"🧹 Deduplicating {len(results)} properties...", file=sys.stderr)
     seen = set()
     unique = []
+    duplicates = 0
+    
     for r in results:
         sig = (r.get("property_url"), r.get("price"), r.get("bedrooms"))
         if sig in seen:
+            duplicates += 1
             continue
         seen.add(sig)
         unique.append(r)
+    
+    print(f"✨ Final results: {len(unique)} unique properties ({duplicates} duplicates removed)", file=sys.stderr)
 
     # 5) Persist cache
+    print(f"💾 Writing {len(unique)} properties to cache: {cache_file}", file=sys.stderr)
     with open(cache_file, "w", encoding="utf-8") as f:
         json.dump(unique, f, ensure_ascii=False, indent=2)
-
+    
+    print(f"✅ Scraping complete! Found {len(unique)} properties in {city}", file=sys.stderr)
     return unique, {"cached": False, "cache_path": cache_file}
 
 

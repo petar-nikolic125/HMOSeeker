@@ -3,7 +3,6 @@ import HeroSection from "@/components/hero-section";
 import PropertyResults from "@/components/property-results";
 import PropertyAnalysisModal from "@/components/property-analysis-modal";
 import { Footer } from "@/components/Footer";
-import { SamplePropertiesSection } from "@/components/SamplePropertiesSection";
 import { useState, useCallback } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
@@ -104,8 +103,6 @@ export default function Home() {
         />
       )}
       
-      {/* Sample Properties Section - replacing SystemArchitecture */}
-      <SamplePropertiesSection />
       <Footer />
       
       {selectedProperty && (
