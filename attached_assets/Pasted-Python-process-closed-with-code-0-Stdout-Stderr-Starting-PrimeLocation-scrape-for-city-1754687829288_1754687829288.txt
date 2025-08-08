@@ -1,0 +1,35 @@
+Python process closed with code: 0
+Stdout: []
+
+Stderr: 🔍 Starting PrimeLocation scrape for: city=Manchester, min_beds=4, max_price=500000, keywords=hmo
+📊 Parsed filters: min_beds=4, max_price_int=500000, filters={'keywords': 'hmo'}
+💾 Cache file path: cache/primelocation/manchester/search_66be7ac3b141f835.json
+🌐 Built 4 search URLs:
+  1. https://www.primelocation.com/for-sale/property/manchester/?q=Manchester&page_size=50&beds_min=4&price_max=500000
+  2. https://www.primelocation.com/for-sale/property/manchester/?q=Manchester&page_size=50&beds_min=4&price_max=500000&pn=2
+  3. https://www.primelocation.com/for-sale/property/manchester/?q=Manchester&page_size=50&beds_min=4&price_max=500000&pn=3
+  4. https://www.primelocation.com/for-sale/property/manchester/?q=Manchester&page_size=50&beds_min=4&price_max=500000&pn=4
+🔗 Collecting property detail links from search pages...
+  📄 Fetching search page 1/4: https://www.primelocation.com/for-sale/property/manchester/?q=Manchester&page_size=50&beds_min=4&price_max=500000
+❌ Error on search page 1: Failed to fetch https://www.primelocation.com/for-sale/property/manchester/?q=Manchester&page_size=50&beds_min=4&price_max=500000
+  📄 Fetching search page 2/4: https://www.primelocation.com/for-sale/property/manchester/?q=Manchester&page_size=50&beds_min=4&price_max=500000&pn=2
+❌ Error on search page 2: Failed to fetch https://www.primelocation.com/for-sale/property/manchester/?q=Manchester&page_size=50&beds_min=4&price_max=500000&pn=2
+  📄 Fetching search page 3/4: https://www.primelocation.com/for-sale/property/manchester/?q=Manchester&page_size=50&beds_min=4&price_max=500000&pn=3
+❌ Error on search page 3: Failed to fetch https://www.primelocation.com/for-sale/property/manchester/?q=Manchester&page_size=50&beds_min=4&price_max=500000&pn=3
+  📄 Fetching search page 4/4: https://www.primelocation.com/for-sale/property/manchester/?q=Manchester&page_size=50&beds_min=4&price_max=500000&pn=4
+❌ Error on search page 4: Failed to fetch https://www.primelocation.com/for-sale/property/manchester/?q=Manchester&page_size=50&beds_min=4&price_max=500000&pn=4
+🎯 Processing 0 property detail pages (capped from 0 found)
+🏠 Extracting property details...
+🧹 Deduplicating 0 properties...
+✨ Final results: 0 unique properties (0 duplicates removed)
+💾 Writing 0 properties to cache: cache/primelocation/manchester/search_66be7ac3b141f835.json
+✅ Scraping complete! Found 0 properties in Manchester
+💾 Wrote cache: cache/primelocation/manchester/search_66be7ac3b141f835.json
+
+Successfully parsed 0 properties from stdout
+Cache status: {
+  cached: false,
+  cache_path: 'cache/primelocation/manchester/search_66be7ac3b141f835.json'
+}
+No properties found or empty array
+9:16:45 PM [express] GET /api/search 200 in 61151ms :: {"meta":{"cached":false},"results":[]}
