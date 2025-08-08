@@ -3,8 +3,8 @@ import HeroSection from "@/components/hero-section";
 import LoadingScreen from "@/components/loading-screen";
 import PropertyResults from "@/components/property-results";
 import PropertyAnalysisModal from "@/components/property-analysis-modal";
-import SystemArchitecture from "@/components/system-architecture";
 import Footer from "@/components/footer";
+import { SamplePropertiesSection } from "@/components/SamplePropertiesSection";
 import { useState } from "react";
 import type { PropertyListing } from "@shared/schema";
 import type { SearchFilters } from "@/lib/types";
@@ -57,7 +57,8 @@ export default function Home() {
         />
       )}
       
-      <SystemArchitecture />
+      {/* Sample Properties Section - replacing SystemArchitecture */}
+      <SamplePropertiesSection />
       <Footer />
       
       {selectedProperty && (

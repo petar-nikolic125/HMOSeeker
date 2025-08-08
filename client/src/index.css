@@ -4,6 +4,187 @@
 @tailwind components;
 @tailwind utilities;
 
+/* HMO Hunter UI — Extended Frontend Styles */
+
+@layer utilities{
+  .line-clamp-3{
+    display:-webkit-box;
+    -webkit-line-clamp:3;
+    -webkit-box-orient:vertical;
+    overflow:hidden
+  }
+  .line-clamp-2{
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    overflow:hidden
+  }
+  .line-clamp-4{
+    display:-webkit-box;
+    -webkit-line-clamp:4;
+    -webkit-box-orient:vertical;
+    overflow:hidden
+  }
+  .custom-scrollbar{
+    scrollbar-width:thin;
+    scrollbar-color:rgba(59,130,246,.5) transparent
+  }
+  .custom-scrollbar::-webkit-scrollbar{
+    width:6px;
+    height:6px
+  }
+  .custom-scrollbar::-webkit-scrollbar-track{
+    background:transparent
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb{
+    background:rgba(59,130,246,.5);
+    border-radius:10px
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover{
+    background:rgba(59,130,246,.7)
+  }
+  
+  .property-grid-enter{
+    opacity:0;
+    transform:translateY(50px) scale(.95)
+  }
+  .property-grid-enter-active{
+    opacity:1;
+    transform:translateY(0) scale(1);
+    transition:all .6s cubic-bezier(.4,0,.2,1)
+  }
+  
+  .bg-hero-gradient{
+    background:linear-gradient(135deg,#1e3a8a 0%,#3b82f6 25%,#06b6d4 75%,#0891b2 100%);
+    position:relative;
+    overflow:hidden
+  }
+  .bg-hero-gradient::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(45deg,transparent 40%,rgba(255,255,255,.05) 50%,transparent 60%);
+    animation:shimmer 3s infinite
+  }
+  
+  @keyframes shimmer{
+    0%{transform:translateX(-100%)}
+    100%{transform:translateX(100%)}
+  }
+  @keyframes fade-in{
+    0%{opacity:0;transform:translateY(30px)}
+    100%{opacity:1;transform:translateY(0)}
+  }
+  @keyframes slide-up{
+    0%{opacity:0;transform:translateY(50px)}
+    100%{opacity:1;transform:translateY(0)}
+  }
+  @keyframes gradient{
+    0%,100%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+  }
+  
+  .animate-fade-in{animation:fade-in .8s ease-out}
+  .animate-slide-up{animation:slide-up 1s ease-out .2s both}
+  .animate-gradient{background-size:200% 200%;animation:gradient 3s ease infinite}
+  
+  /* Cloud animations */
+  .cloud{position:absolute;background:rgba(255,255,255,.15);border-radius:50px;opacity:.6;backdrop-filter:blur(1px)}
+  .cloud::before,.cloud::after{content:'';position:absolute;background:rgba(255,255,255,.15);border-radius:50px}
+  .cloud-1{width:120px;height:40px;top:15%;left:-120px}
+  .cloud-1::before{width:60px;height:60px;top:-30px;left:10px}
+  .cloud-1::after{width:80px;height:50px;top:-20px;right:10px}
+  .cloud-2{width:80px;height:30px;top:25%;left:-80px}
+  .cloud-2::before{width:40px;height:40px;top:-20px;left:10px}
+  .cloud-2::after{width:60px;height:40px;top:-15px;right:5px}
+  .cloud-3{width:100px;height:35px;top:10%;left:-100px}
+  .cloud-3::before{width:50px;height:50px;top:-25px;left:15px}
+  .cloud-3::after{width:70px;height:45px;top:-18px;right:8px}
+  .cloud-4{width:90px;height:32px;top:30%;left:-90px}
+  .cloud-4::before{width:45px;height:45px;top:-22px;left:12px}
+  .cloud-4::after{width:65px;height:42px;top:-16px;right:7px}
+  .cloud-5{width:110px;height:38px;top:20%;left:-110px}
+  .cloud-5::before{width:55px;height:55px;top:-28px;left:18px}
+  .cloud-5::after{width:75px;height:48px;top:-19px;right:12px}
+  
+  /* City lights */
+  .city-light{position:absolute;width:3px;height:3px;background:#ffd700;border-radius:50%;box-shadow:0 0 6px #ffd700,0 0 12px #ffd700}
+  .city-light-1{top:70%;left:15%}
+  .city-light-2{top:65%;left:25%;background:#00bfff;box-shadow:0 0 6px #00bfff,0 0 12px #00bfff}
+  .city-light-3{top:72%;left:35%}
+  .city-light-4{top:68%;left:45%;background:#ff6b6b;box-shadow:0 0 6px #ff6b6b,0 0 12px #ff6b6b}
+  .city-light-5{top:74%;left:55%}
+  .city-light-6{top:69%;left:65%;background:#00bfff;box-shadow:0 0 6px #00bfff,0 0 12px #00bfff}
+  .city-light-7{top:71%;left:75%}
+  .city-light-8{top:67%;left:85%;background:#ff6b6b;box-shadow:0 0 6px #ff6b6b,0 0 12px #ff6b6b}
+  .city-light-9{top:73%;left:95%}
+  .city-light-10{top:66%;left:5%;background:#00bfff;box-shadow:0 0 6px #00bfff,0 0 12px #00bfff}
+  
+  /* Floating particles */
+  .particle{position:absolute;width:2px;height:2px;background:rgba(255,255,255,.8);border-radius:50%}
+  .particle-1{top:20%;left:10%}
+  .particle-2{top:30%;left:30%}
+  .particle-3{top:15%;left:50%}
+  .particle-4{top:35%;left:70%}
+  .particle-5{top:25%;left:90%}
+  .particle-6{top:40%;left:20%}
+  .particle-7{top:18%;left:60%}
+  .particle-8{top:28%;left:80%}
+  
+  /* Birds */
+  .bird{position:absolute;width:20px;height:2px;top:25%;left:-20px}
+  .bird::before,.bird::after{content:'';position:absolute;width:8px;height:1px;background:rgba(255,255,255,.7);transform-origin:right center}
+  .bird::before{transform:rotate(-15deg);left:0}
+  .bird::after{transform:rotate(15deg);right:0}
+  .bird-1{top:20%}
+  .bird-2{top:30%}
+  .bird-3{top:15%}
+  
+  /* Animation keyframes */
+  @keyframes float-slow{0%{transform:translateX(-120px)}100%{transform:translateX(calc(100vw + 120px))}}
+  @keyframes float-medium{0%{transform:translateX(-100px)}100%{transform:translateX(calc(100vw + 100px))}}
+  @keyframes float-fast{0%{transform:translateX(-80px)}100%{transform:translateX(calc(100vw + 80px))}}
+  @keyframes twinkle-slow{0%,100%{opacity:.3;transform:scale(1)}50%{opacity:1;transform:scale(1.5)}}
+  @keyframes twinkle-medium{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:1;transform:scale(1.3)}}
+  @keyframes twinkle-fast{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.2)}}
+  
+  @keyframes float-particle-1{0%{transform:translateY(0) translateX(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(-100px) translateX(50px);opacity:0}}
+  @keyframes float-particle-2{0%{transform:translateY(0) translateX(0);opacity:0}15%{opacity:1}85%{opacity:1}100%{transform:translateY(-120px) translateX(-30px);opacity:0}}
+  @keyframes float-particle-3{0%{transform:translateY(0) translateX(0);opacity:0}20%{opacity:1}80%{opacity:1}100%{transform:translateY(-80px) translateX(70px);opacity:0}}
+  @keyframes float-particle-4{0%{transform:translateY(0) translateX(0);opacity:0}12%{opacity:1}88%{opacity:1}100%{transform:translateY(-110px) translateX(-50px);opacity:0}}
+  @keyframes float-particle-5{0%{transform:translateY(0) translateX(0);opacity:0}18%{opacity:1}82%{opacity:1}100%{transform:translateY(-90px) translateX(40px);opacity:0}}
+  @keyframes float-particle-6{0%{transform:translateY(0) translateX(0);opacity:0}14%{opacity:1}86%{opacity:1}100%{transform:translateY(-130px) translateX(-20px);opacity:0}}
+  @keyframes float-particle-7{0%{transform:translateY(0) translateX(0);opacity:0}16%{opacity:1}84%{opacity:1}100%{transform:translateY(-70px) translateX(60px);opacity:0}}
+  @keyframes float-particle-8{0%{transform:translateY(0) translateX(0);opacity:0}22%{opacity:1}78%{opacity:1}100%{transform:translateY(-100px) translateX(-40px);opacity:0}}
+  
+  @keyframes fly-across{0%{transform:translateX(-20px)}100%{transform:translateX(calc(100vw + 20px))}}
+  @keyframes fly-across-delayed{0%{transform:translateX(-20px)}100%{transform:translateX(calc(100vw + 20px))}}
+  @keyframes fly-across-slow{0%{transform:translateX(-20px)}100%{transform:translateX(calc(100vw + 20px))}}
+  
+  /* Animation classes */
+  .animate-float-slow{animation:float-slow 45s linear infinite}
+  .animate-float-medium{animation:float-medium 35s linear infinite 5s}
+  .animate-float-fast{animation:float-fast 25s linear infinite 10s}
+  .animate-twinkle-slow{animation:twinkle-slow 4s ease-in-out infinite}
+  .animate-twinkle-medium{animation:twinkle-medium 3s ease-in-out infinite}
+  .animate-twinkle-fast{animation:twinkle-fast 2s ease-in-out infinite}
+  
+  .animate-float-particle-1{animation:float-particle-1 12s ease-in-out infinite 0s}
+  .animate-float-particle-2{animation:float-particle-2 15s ease-in-out infinite 2s}
+  .animate-float-particle-3{animation:float-particle-3 10s ease-in-out infinite 4s}
+  .animate-float-particle-4{animation:float-particle-4 14s ease-in-out infinite 1s}
+  .animate-float-particle-5{animation:float-particle-5 11s ease-in-out infinite 3s}
+  .animate-float-particle-6{animation:float-particle-6 16s ease-in-out infinite 5s}
+  .animate-float-particle-7{animation:float-particle-7 13s ease-in-out infinite 2.5s}
+  .animate-float-particle-8{animation:float-particle-8 17s ease-in-out infinite 4.5s}
+  
+  .animate-fly-across{animation:fly-across 20s linear infinite 8s}
+  .animate-fly-across-delayed{animation:fly-across-delayed 25s linear infinite 15s}
+  .animate-fly-across-slow{animation:fly-across-slow 35s linear infinite 22s}
+  
+  .property-card-gradient{background:linear-gradient(145deg,#fff 0%,#f8fafc 100%)}
+}
+
 :root {
   --background: hsl(0 0% 100%);
   --foreground: hsl(210 25% 7.8431%);

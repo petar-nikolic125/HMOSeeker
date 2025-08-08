@@ -1,40 +1,37 @@
-export interface PropertyAnalysis {
-  property_id: string;
-  purchase_price: number;
-  renovation_cost_per_room: number;
-  total_renovation: number;
-  bridging_loan_fee: number;
-  legal_costs: number;
-  total_investment: number;
-  monthly_rental_income: number;
-  annual_rental_income: number;
-  annual_expenses: number;
-  net_annual_profit: number;
-  gross_yield: number;
-  roi: number;
-  left_in_deal: number;
-  payback_period_years: number;
-  cash_flow_monthly: number;
-}
-
-export interface ScrapeStatus {
-  success: boolean;
-  search_id: string;
-  status: 'pending' | 'running' | 'completed' | 'failed';
-  results_count: number;
-  filters: {
-    city: string;
-    max_price?: number;
-    min_bedrooms?: number;
-    keywords?: string;
-  };
-  created_at: string;
-  updated_at: string;
-}
+import type { PropertyListing } from '@shared/schema';
 
 export interface SearchFilters {
   city: string;
-  max_price?: number;
-  min_bedrooms?: number;
-  keywords?: string;
+  minRooms?: number;
+  maxPrice?: number;
+}
+
+export interface PropertyWithAnalytics extends PropertyListing {
+  // Investment analytics
+  roi?: number;
+  grossYield?: number;
+  profitabilityScore?: string;
+  
+  // LHA and rental data
+  lhaWeekly?: number;
+  lhaMonthly?: number;
+  
+  // Property URLs for different portals
+  rightmoveUrl?: string;
+  zooplaUrl?: string;
+  primeLocationUrl?: string;
+  
+  // UI properties that map to schema fields
+  imageUrl?: string;  // Maps to image_url
+  propertyUrl?: string; // Maps to property_url
+  agentName?: string; // Maps to agent_name
+  agentPhone?: string; // Maps to agent_phone
+  agentEmail?: string; // Not in schema but can be added
+  coordinates?: [number, number]; // Maps to latitude/longitude
+}
+
+export interface CacheEntry {
+  data: PropertyWithAnalytics[];
+  timestamp: number;
+  searchQuery: SearchFilters;
 }

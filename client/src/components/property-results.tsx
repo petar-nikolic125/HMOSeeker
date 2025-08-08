@@ -1,7 +1,7 @@
 import { Clock, Filter } from "lucide-react";
-import PropertyCard from "./property-card";
+import { PropertyCard } from "./PropertyCard";
 import type { PropertyListing } from "@shared/schema";
-import type { SearchFilters } from "@/lib/types";
+import type { SearchFilters, PropertyWithAnalytics } from "@/lib/types";
 
 interface PropertyResultsProps {
   properties: PropertyListing[];
@@ -44,11 +44,11 @@ export default function PropertyResults({ properties, filters, onAnalyze }: Prop
         {/* Property Grid */}
         {properties.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-            {properties.map((property) => (
+            {properties.map((property, index) => (
               <PropertyCard 
                 key={property.id} 
-                property={property} 
-                onAnalyze={onAnalyze}
+                property={property as PropertyWithAnalytics} 
+                delay={index * 100}
               />
             ))}
           </div>
