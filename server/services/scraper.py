@@ -130,22 +130,36 @@ def rand_delay(a=0.6, b=1.8):
 
 def setup_session():
     s = requests.Session()
+    # Enhanced headers to better mimic real browsers
+    ua = random.choice(USER_AGENTS)
     s.headers.update({
-        "User-Agent": random.choice(USER_AGENTS),
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
-        "Accept-Language": "en-GB,en;q=0.9,en-US;q=0.8",
-        "Accept-Encoding": "gzip, deflate, br",
+        "User-Agent": ua,
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+        "Accept-Language": "en-GB,en-US;q=0.9,en;q=0.8",
+        "Accept-Encoding": "gzip, deflate, br, zstd",
         "Upgrade-Insecure-Requests": "1",
         "Sec-Fetch-Dest": "document",
         "Sec-Fetch-Mode": "navigate",
-        "Sec-Fetch-Site": "same-origin",
+        "Sec-Fetch-Site": "none",
         "Sec-Fetch-User": "?1",
-        "Referer": "https://www.google.com/",
+        "Sec-CH-UA": '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
+        "Sec-CH-UA-Mobile": "?0",
+        "Sec-CH-UA-Platform": '"Windows"',
+        "Cache-Control": "max-age=0",
+        "DNT": "1",
+        "Connection": "keep-alive",
     })
-    # lightweight cookie "noise"
-    s.cookies.set("_ga", f"GA1.2.{random.randint(100000000, 999999999)}.{int(time.time())}")
-    s.cookies.set("_gid", f"GA1.2.{random.randint(100000000, 999999999)}.{int(time.time())}")
-    s.cookies.set("session_id", f"sess_{random.randint(1000000, 9999999)}_{int(time.time())}")
+    
+    # Enhanced cookies to appear more realistic
+    timestamp = int(time.time())
+    random_id = random.randint(1000000000, 9999999999)
+    s.cookies.set("_ga", f"GA1.2.{random_id}.{timestamp}")
+    s.cookies.set("_gid", f"GA1.2.{random.randint(100000000, 999999999)}.{timestamp}")
+    s.cookies.set("_gat_gtag_UA_12345_1", "1")
+    s.cookies.set("session_token", f"st_{random.randint(100000, 999999)}_{timestamp}")
+    s.cookies.set("cookieconsent_status", "allow")
+    s.cookies.set("primelocation_session", f"pl_sess_{random.randint(1000000, 9999999)}")
+    
     return s
 
 def with_proxy(session: requests.Session, proxies_list, attempt):
@@ -240,33 +254,70 @@ def add_investment_metrics(rec, city):
 
 def build_search_urls(city, min_beds, max_price, filters):
     """
-    Mirrors PrimeLocation's search URL shape:
+    Mirrors PrimeLocation's search URL shape with fallback patterns:
       https://www.primelocation.com/for-sale/property/<city-slug>/?q=<city or postcode>&beds_min=<n>&price_max=<n>&page_size=50&pn=<page>
-    (see examples/citations in the message above)
     """
     city_slug = slug_city(city)
-    base = f"https://www.primelocation.com/for-sale/property/{city_slug}/"
     q = filters.get("postcode") or city
-    params = {
+    max_pages = as_int(os.getenv("PL_MAX_PAGES", 4), 4)
+    
+    # Primary URL pattern
+    base_params = {
         "q": q,
         "page_size": "50",
     }
     if min_beds:
-        params["beds_min"] = str(min_beds)
+        base_params["beds_min"] = str(min_beds)
     if max_price:
-        params["price_max"] = str(max_price)
-    # NB: site supports pn=2,3... for paging
-    # some instances also accept results_sort=newest but not required
-    qs_base = "&".join([f"{k}={quote_plus(v)}" for k, v in params.items() if v])
-
-    max_pages = as_int(os.getenv("PL_MAX_PAGES", 4), 4)
+        base_params["price_max"] = str(max_price)
+    
+    qs_base = "&".join([f"{k}={quote_plus(v)}" for k, v in base_params.items() if v])
+    
     urls = []
-    for pn in range(1, max_pages + 1):
-        if pn == 1:
-            urls.append(f"{base}?{qs_base}")
-        else:
-            urls.append(f"{base}?{qs_base}&pn={pn}")
+    
+    # Try multiple URL patterns for better compatibility
+    url_patterns = [
+        f"https://www.primelocation.com/for-sale/property/{city_slug}/",
+        f"https://www.primelocation.com/for-sale/property/",  # Generic search
+        f"https://www.primelocation.com/for-sale/",  # Fallback
+    ]
+    
+    for pattern in url_patterns:
+        for pn in range(1, min(max_pages + 1, 3)):  # Limit fallback pages
+            if pn == 1:
+                urls.append(f"{pattern}?{qs_base}")
+            else:
+                urls.append(f"{pattern}?{qs_base}&pn={pn}")
+        
+        # Only try first pattern initially, others are fallbacks
+        if pattern == url_patterns[0]:
+            break
+    
     return urls
+
+
+def build_fallback_urls(city, min_beds, max_price, filters):
+    """Build alternative URL patterns when primary patterns fail"""
+    q = filters.get("postcode") or city
+    
+    base_params = {
+        "q": q,
+    }
+    if min_beds:
+        base_params["beds_min"] = str(min_beds)
+    if max_price:
+        base_params["price_max"] = str(max_price)
+    
+    qs_base = "&".join([f"{k}={quote_plus(v)}" for k, v in base_params.items() if v])
+    
+    # Alternative URL patterns
+    fallback_patterns = [
+        f"https://www.primelocation.com/for-sale/property/?{qs_base}",  # Generic search
+        f"https://www.primelocation.com/for-sale/?{qs_base}",  # Simplified
+        f"https://www.primelocation.com/for-sale/property/{city.lower()}/?{qs_base}",  # Simple city
+    ]
+    
+    return fallback_patterns
 
 
 # ---------- Network fetch with retries/backoff ----------
@@ -274,26 +325,54 @@ def build_search_urls(city, min_beds, max_price, filters):
 def get_html(session, url, proxies_list=None, max_attempts=4):
     timeout = as_int(os.getenv("REQUESTS_TIMEOUT", 25), 25)
     last_exc = None
+    last_status = None
+    
     for attempt in range(max_attempts):
         try:
             with_proxy(session, proxies_list, attempt)
-            rand_delay(0.6, 1.8)
+            
+            # Longer delay between requests to avoid rate limiting
+            rand_delay(2.0, 4.0)
+            
+            # Update headers for each attempt
+            session.headers.update({
+                "User-Agent": random.choice(USER_AGENTS),
+                "Sec-Fetch-Site": "none" if attempt == 0 else "same-origin",
+                "Referer": "https://www.google.com/" if attempt == 0 else url.split('?')[0],
+            })
+            
             r = session.get(url, timeout=timeout, allow_redirects=True)
+            last_status = r.status_code
+            
             if r.status_code == 200 and r.content:
                 return r.text
-            if r.status_code in (403, 429):
-                # "cheese": new UA, short backoff, next proxy
-                time.sleep(1.2 + attempt * 0.8)
+            elif r.status_code in (403, 429):
+                # Anti-bot protection hit - increase backoff significantly
+                backoff_time = 5.0 + (attempt * 3.0)
+                print(f"❌ Error on search page {attempt + 1}: Status {r.status_code}, backing off {backoff_time}s", file=sys.stderr)
+                time.sleep(backoff_time)
+                
+                # Create new session for next attempt
+                if attempt < max_attempts - 1:
+                    session = setup_session()
                 continue
-            # transient?
-            time.sleep(0.6 + attempt * 0.5)
+            else:
+                # Other HTTP errors
+                time.sleep(1.5 + attempt * 1.0)
+                
         except requests.RequestException as e:
             last_exc = e
-            time.sleep(0.8 + attempt * 0.6)
+            print(f"❌ Network error on attempt {attempt + 1}: {str(e)}", file=sys.stderr)
+            time.sleep(2.0 + attempt * 1.5)
             continue
-    if last_exc:
+    
+    # Log final failure
+    if last_status:
+        raise RuntimeError(f"Failed to fetch {url} - final status: {last_status}")
+    elif last_exc:
         raise last_exc
-    raise RuntimeError(f"Failed to fetch {url}")
+    else:
+        raise RuntimeError(f"Failed to fetch {url}")
 
 
 # ---------- Listing page parsing ----------
@@ -331,13 +410,13 @@ def parse_details(detail_html):
             address = at
     if not address:
         mt = soup.find("meta", attrs={"property": "og:title"})
-        if mt and hasattr(mt, 'get'):
+        if mt and mt.name == "meta":
             content = mt.get("content")
             if content:
                 address = content
     if not address:
         mt = soup.find("meta", attrs={"name": "twitter:title"})
-        if mt and hasattr(mt, 'get'):
+        if mt and mt.name == "meta":
             content = mt.get("content")
             if content:
                 address = content
@@ -357,13 +436,13 @@ def parse_details(detail_html):
     # Primary image (best-effort)
     image_url = None
     og_image = soup.find("meta", attrs={"property": "og:image"})
-    if og_image and hasattr(og_image, 'get'):
+    if og_image and og_image.name == "meta":
         content = og_image.get("content")
         if content:
             image_url = content
     if not image_url:
         img = soup.find("img")
-        if img and hasattr(img, 'get'):
+        if img and img.name == "img":
             src = img.get("src")
             if src:
                 image_url = src
@@ -429,6 +508,7 @@ def scrape_primelocation(city, min_bedrooms, max_price, keywords_blob):
     all_detail_links = []
     print(f"🔗 Collecting property detail links from search pages...", file=sys.stderr)
     
+    failed_attempts = 0
     for i, u in enumerate(urls, 1):
         try:
             print(f"  📄 Fetching search page {i}/{len(urls)}: {u}", file=sys.stderr)
@@ -443,9 +523,34 @@ def scrape_primelocation(city, min_bedrooms, max_price, keywords_blob):
             if len(all_detail_links) >= target_min_results:
                 print(f"✅ Reached target of {target_min_results} properties, stopping search", file=sys.stderr)
                 break
+                
+            # Reset failed attempts on success
+            failed_attempts = 0
+            
         except Exception as e:
+            failed_attempts += 1
             print(f"❌ Error on search page {i}: {str(e)}", file=sys.stderr)
-            # rotate headers/proxy and continue
+            
+            # If all primary URLs fail, try fallback patterns
+            if failed_attempts >= 3 and len(all_detail_links) == 0:
+                print(f"🔄 Primary URLs failing, trying fallback patterns...", file=sys.stderr)
+                fallback_urls = build_fallback_urls(city, min_beds, max_price_int, filters)
+                
+                for j, fallback_url in enumerate(fallback_urls):
+                    try:
+                        print(f"  🔄 Trying fallback {j+1}: {fallback_url}", file=sys.stderr)
+                        html = get_html(session, fallback_url, proxies_list)
+                        links = collect_detail_links(html)
+                        if links:
+                            print(f"    ✅ Fallback successful! Found {len(links)} links", file=sys.stderr)
+                            all_detail_links.extend(links)
+                            break
+                    except Exception as fe:
+                        print(f"    ❌ Fallback {j+1} failed: {str(fe)}", file=sys.stderr)
+                        continue
+                        
+                if all_detail_links:
+                    break
             continue
 
     # safety: cap to 250 to avoid hammering
