@@ -30,19 +30,27 @@ export const PropertyCard = ({ property, delay = 0 }: PropertyCardProps) => {
            property.propertyUrl === '#';
   };
 
-  // Get appropriate portal URL
+  // Get appropriate portal URL - always use actual property URLs when available
   const getPortalUrl = () => {
-    // If it's a demo property, use portal search URLs
-    if (isDemoProperty()) {
-      const rand = Math.random();
-      if (rand < 0.70 && property.rightmoveUrl) return property.rightmoveUrl;
-      if (rand < 0.95 && property.zooplaUrl) return property.zooplaUrl;
-      if (property.primeLocationUrl) return property.primeLocationUrl;
-      return '#';
+    // If it's a real scraped property with actual URL, use it
+    if (property.propertyUrl && 
+        property.propertyUrl !== '#' && 
+        !property.propertyUrl.startsWith('#demo-property-') &&
+        (property.propertyUrl.includes('zoopla.co.uk') || 
+         property.propertyUrl.includes('primelocation.com') ||
+         property.propertyUrl.includes('rightmove.co.uk'))) {
+      return property.propertyUrl;
     }
     
-    // Use real scraped property URL
-    return property.propertyUrl;
+    // For demo properties, create search URLs based on property details
+    const city = property.address.split(',').pop()?.trim() || 'Birmingham';
+    const bedrooms = property.bedrooms || 4;
+    const maxPrice = Math.ceil(property.price * 1.1); // Add 10% buffer for similar properties
+    
+    // Create Zoopla search URL for similar properties
+    const zooplaSearchUrl = `https://www.zoopla.co.uk/for-sale/property/${city.toLowerCase().replace(/\s+/g, '-')}/?beds_min=${bedrooms}&price_max=${maxPrice}&property_type=houses&search_source=for-sale`;
+    
+    return zooplaSearchUrl;
   };
 
   const getProfitabilityColor = (score: string | undefined) => {

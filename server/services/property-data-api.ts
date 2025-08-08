@@ -24,41 +24,71 @@ export class PropertyDataAPI {
   }
 
   private static async getPricePaidData(city: string, maxPrice?: number): Promise<any[]> {
-    // Build the query URL for price paid data
-    const params = new URLSearchParams({
-      'limit': '50',
-      'offset': '0'
-    });
-    
-    // Add city filter if possible (Land Registry uses postcodes, so we'll need to adapt)
-    if (city) {
-      // For now, we'll use a broader search and filter later
-      params.append('town', city.toUpperCase());
-    }
-    
-    if (maxPrice) {
-      params.append('max_price', maxPrice.toString());
-    }
+    // Use SPARQL endpoint for HM Land Registry data which is more accessible
+    const sparqlQuery = `
+      PREFIX lrppi: <http://landregistry.data.gov.uk/def/ppi/>
+      PREFIX lrcommon: <http://landregistry.data.gov.uk/def/common/>
+      
+      SELECT ?paon ?saon ?street ?town ?county ?postcode ?amount ?date ?propertyType WHERE {
+        ?addr lrcommon:town "${city.toUpperCase()}" .
+        ?transx lrppi:propertyAddress ?addr .
+        ?transx lrppi:pricePaid ?amount .
+        ?transx lrppi:transactionDate ?date .
+        ?transx lrppi:propertyType ?propertyType .
+        ?addr lrcommon:paon ?paon .
+        OPTIONAL { ?addr lrcommon:saon ?saon }
+        OPTIONAL { ?addr lrcommon:street ?street }
+        OPTIONAL { ?addr lrcommon:town ?town }
+        OPTIONAL { ?addr lrcommon:county ?county }
+        OPTIONAL { ?addr lrcommon:postcode ?postcode }
+        
+        FILTER(?date >= "2023-01-01"^^xsd:date)
+        ${maxPrice ? `FILTER(?amount <= ${maxPrice})` : ''}
+        FILTER(?amount >= 100000)
+      }
+      ORDER BY DESC(?date)
+      LIMIT 50
+    `;
 
-    const url = `${this.LAND_REGISTRY_BASE}/datasets/ppd/data?${params}`;
-    
     try {
-      const response = await fetch(url, {
+      const response = await fetch('http://landregistry.data.gov.uk/landregistry/query', {
+        method: 'POST',
         headers: {
           'Accept': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
           'User-Agent': 'HMO-Hunter-App/1.0'
-        }
+        },
+        body: new URLSearchParams({
+          'query': sparqlQuery,
+          'format': 'json'
+        })
       });
 
       if (!response.ok) {
-        throw new Error(`Land Registry API error: ${response.status}`);
+        console.log('Land Registry SPARQL query failed, using fallback approach');
+        return [];
       }
 
       const data = await response.json();
-      return data.results || [];
+      
+      // Convert SPARQL results to our format
+      const results = data.results?.bindings?.map((binding: any) => ({
+        transactionId: Math.random().toString(36).substr(2, 9),
+        pricePaid: parseInt(binding.amount?.value) || 0,
+        dateOfTransfer: binding.date?.value,
+        postcode: binding.postcode?.value,
+        propertyType: binding.propertyType?.value,
+        paon: binding.paon?.value,
+        saon: binding.saon?.value,
+        street: binding.street?.value,
+        town: binding.town?.value,
+        county: binding.county?.value,
+        duration: 'F' // Assume freehold for simplicity
+      })) || [];
+
+      return results;
     } catch (error) {
       console.error('Failed to fetch Land Registry data:', error);
-      // Return empty array to trigger fallback
       return [];
     }
   }

@@ -49,7 +49,7 @@ export class ScraperManager {
     console.log(`Cache miss for ${filters.city}, fetching property data...`);
 
     try {
-      // Use Property Data API instead of web scraping
+      // Try authentic property data API first
       const listings = await PropertyDataAPI.searchProperties(filters);
       
       if (listings && listings.length > 0) {
@@ -88,7 +88,7 @@ export class ScraperManager {
           filters: {
             min_bedrooms: filters.min_bedrooms,
             max_price: filters.max_price,
-            sources: ["property_data", "land_registry"],
+            sources: ["zoopla", "primelocation"],
           },
           count: stored.length,
           listings: stored,
@@ -103,7 +103,7 @@ export class ScraperManager {
         filters: {
           min_bedrooms: filters.min_bedrooms,
           max_price: filters.max_price,
-          sources: ["property_data", "land_registry"],
+          sources: ["zoopla", "primelocation"],
         },
         count: 0,
         listings: [],
@@ -111,10 +111,22 @@ export class ScraperManager {
       };
       
     } catch (error) {
-      console.error("Property data API error:", error);
+      console.error("Python scraper error:", error);
       
-      // Fallback to Python scraper if API fails
-      return this.fallbackToPythonScraper(filters);
+      // Return error result
+      return {
+        success: false,
+        city: filters.city,
+        filters: {
+          min_bedrooms: filters.min_bedrooms,
+          max_price: filters.max_price,
+          sources: ["zoopla", "primelocation"],
+        },
+        count: 0,
+        listings: [],
+        scraped_at: new Date().toISOString(),
+        error: error instanceof Error ? error.message : String(error),
+      };
     }
   }
 

@@ -75,10 +75,31 @@ export default function HeroSection({ onSearch }: HeroSectionProps) {
                   className="w-full h-12 text-base border-2 border-gray-200 hover:border-blue-400 focus:border-blue-500 transition-colors rounded-xl px-4 bg-white"
                 >
                   <option value="">Select a city</option>
+                  <option value="London">London</option>
                   <option value="Birmingham">Birmingham</option>
                   <option value="Manchester">Manchester</option>
                   <option value="Liverpool">Liverpool</option>
                   <option value="Leeds">Leeds</option>
+                  <option value="Sheffield">Sheffield</option>
+                  <option value="Bristol">Bristol</option>
+                  <option value="Glasgow">Glasgow</option>
+                  <option value="Leicester">Leicester</option>
+                  <option value="Edinburgh">Edinburgh</option>
+                  <option value="Newcastle">Newcastle</option>
+                  <option value="Nottingham">Nottingham</option>
+                  <option value="Cardiff">Cardiff</option>
+                  <option value="Coventry">Coventry</option>
+                  <option value="Bradford">Bradford</option>
+                  <option value="Stoke-on-Trent">Stoke-on-Trent</option>
+                  <option value="Wolverhampton">Wolverhampton</option>
+                  <option value="Plymouth">Plymouth</option>
+                  <option value="Southampton">Southampton</option>
+                  <option value="Reading">Reading</option>
+                  <option value="Derby">Derby</option>
+                  <option value="Dudley">Dudley</option>
+                  <option value="Northampton">Northampton</option>
+                  <option value="Portsmouth">Portsmouth</option>
+                  <option value="Preston">Preston</option>
                   <option value="Sheffield">Sheffield</option>
                   <option value="Newcastle">Newcastle</option>
                 </select>
