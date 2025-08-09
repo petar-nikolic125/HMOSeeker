@@ -1,0 +1,69 @@
+> rest-express@1.0.0 dev
+10:19:38 PM [express] serving on port 5000
+Browserslist: browsers data (caniuse-lite) is 10 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Running PrimeLocation scraper for London...
+Filters: {"city":"London","refresh":false}
+Spawning Python process with args: [
+  '/home/runner/workspace/server/services/scraper.py',
+  'London',
+  '1',
+  '0',
+  ''
+]
+Python process closed with code: 1
+Stdout: 
+Stderr: Traceback (most recent call last):
+  File "/home/runner/workspace/server/services/scraper.py", line 40, in <module>
+    import requests
+ModuleNotFoundError: No module named 'requests'
+
+Scraper failed with code: 1
+Stderr: Traceback (most recent call last):
+  File "/home/runner/workspace/server/services/scraper.py", line 40, in <module>
+    import requests
+ModuleNotFoundError: No module named 'requests'
+
+Search failed: Error: Scraper failed with exit code 1: Traceback (most recent call last):
+  File "/home/runner/workspace/server/services/scraper.py", line 40, in <module>
+    import requests
+ModuleNotFoundError: No module named 'requests'
+
+    at ChildProcess.<anonymous> (/home/runner/workspace/server/services/scraper-manager.ts:293:18)
+    at ChildProcess.emit (node:events:524:28)
+    at maybeClose (node:internal/child_process:1104:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:304:5)
+10:19:41 PM [express] GET /api/search 500 in 86ms :: {"success":false,"error":"Search failed"}
+Running PrimeLocation scraper for London...
+Filters: {"city":"London","refresh":false}
+Spawning Python process with args: [
+  '/home/runner/workspace/server/services/scraper.py',
+  'London',
+  '1',
+  '0',
+  ''
+]
+Python process closed with code: 1
+Stdout: 
+Stderr: Traceback (most recent call last):
+  File "/home/runner/workspace/server/services/scraper.py", line 40, in <module>
+    import requests
+ModuleNotFoundError: No module named 'requests'
+
+Scraper failed with code: 1
+Stderr: Traceback (most recent call last):
+  File "/home/runner/workspace/server/services/scraper.py", line 40, in <module>
+    import requests
+ModuleNotFoundError: No module named 'requests'
+
+Search failed: Error: Scraper failed with exit code 1: Traceback (most recent call last):
+  File "/home/runner/workspace/server/services/scraper.py", line 40, in <module>
+    import requests
+ModuleNotFoundError: No module named 'requests'
+
+    at ChildProcess.<anonymous> (/home/runner/workspace/server/services/scraper-manager.ts:293:18)
+    at ChildProcess.emit (node:events:524:28)
+    at maybeClose (node:internal/child_process:1104:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:304:5)
+10:20:34 PM [express] GET /api/search 500 in 54ms :: {"success":false,"error":"Search failed"}
