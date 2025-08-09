@@ -1,6 +1,7 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import { PythonSetup } from "./services/python-setup";
 
 const app = express();
 app.use(express.json());
@@ -37,6 +38,14 @@ app.use((req, res, next) => {
 });
 
 (async () => {
+  // Automatski setup Python biblioteka na startup
+  console.log("🚀 Pokretam HMO Hunter server...");
+  try {
+    await PythonSetup.ensurePythonDependencies();
+  } catch (error) {
+    console.warn("⚠️ Python setup greška na startup (može se pokušati kasnije):", error);
+  }
+
   const server = await registerRoutes(app);
 
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {

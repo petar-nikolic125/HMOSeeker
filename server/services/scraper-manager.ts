@@ -9,6 +9,7 @@ export interface ExtendedSearchFilters extends SearchFilters {
 import { PropertyCache } from "./cache";
 import { PropertyDataAPI } from "./property-data-api";
 import { storage } from "../storage";
+import { PythonSetup } from "./python-setup";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -142,6 +143,26 @@ export class ScraperManager {
   }
 
   private static async runPrimeLocationScraper(filters: ExtendedSearchFilters): Promise<ScrapeResult> {
+    // Automatski setup Python biblioteka pre pokretanja scrapera
+    try {
+      await PythonSetup.ensurePythonDependencies();
+    } catch (setupError) {
+      console.error("❌ Greška pri Python setup-u:", setupError);
+      return {
+        success: false,
+        city: filters.city,
+        filters: {
+          min_bedrooms: filters.min_bedrooms,
+          max_price: filters.max_price,
+          sources: ["primelocation"],
+        },
+        count: 0,
+        listings: [],
+        scraped_at: new Date().toISOString(),
+        error: `Python setup failed: ${setupError}`,
+      };
+    }
+
     console.log(`Running PrimeLocation scraper for ${filters.city}...`);
     console.log('Filters:', JSON.stringify(filters));
     

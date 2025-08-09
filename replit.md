@@ -8,6 +8,16 @@ The platform features an intelligent AI-powered loading experience that simulate
 
 Preferred communication style: Simple, everyday language.
 
+# Recent Changes (January 2025)
+
+## Automatski Python Setup Sistem
+- **Problem**: Python biblioteke (requests, beautifulsoup4) se nisu automatski instalirale pri importu projekta
+- **Rešenje**: Kreiran automatski setup sistem koji proverava i instalira biblioteke:
+  - Na startup servera (`server/index.ts`)
+  - Pre pokretanja property scrapera (`server/services/scraper-manager.ts`) 
+  - Novi `PythonSetup` servis (`server/services/python-setup.ts`)
+- **Rezultat**: Projekat sada radi odmah nakon importa bez manuelne intervencije
+
 # System Architecture
 
 ## Frontend Architecture
