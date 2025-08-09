@@ -1,0 +1,16 @@
+
+{
+  "$schema": "https://railway.app/railway.schema.json",
+  "build": {
+    "builder": "NIXPACKS",
+    "buildCommand": "npm install && node build.js"
+  },
+  "deploy": {
+    "startCommand": "node dist/index.js",
+    "healthcheckPath": "/api/ping",
+    "healthcheckTimeout": 300,
+    "sleepApplication": false,
+    "restartPolicyType": "ON_FAILURE",
+    "restartPolicyMaxRetries": 10
+  }
+}
