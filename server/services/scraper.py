@@ -254,11 +254,11 @@ def add_investment_metrics(rec, city):
 
 def build_search_urls(city, min_beds, max_price, filters):
     """
-    Mirrors PrimeLocation's search URL shape with fallback patterns:
+    Mirrors PrimeLocation's search URL shape with fallback patterns and regional variations:
       https://www.primelocation.com/for-sale/property/<city-slug>/?q=<city or postcode>&beds_min=<n>&price_max=<n>&page_size=50&pn=<page>
     """
     city_slug = slug_city(city)
-    q = filters.get("postcode") or city
+    q = filters.get("postcode") or get_search_query_for_city(city)
     max_pages = as_int(os.getenv("PL_MAX_PAGES", 4), 4)
     
     # Primary URL pattern
@@ -294,6 +294,45 @@ def build_search_urls(city, min_beds, max_price, filters):
             break
     
     return urls
+
+
+def get_search_query_for_city(city):
+    """Get the proper search query including regional qualifiers for better results"""
+    city_lower = city.lower()
+    
+    # Cities with regional qualifiers that work better on PrimeLocation
+    regional_queries = {
+        "leeds": "Leeds, West Yorkshire",
+        "brighton": "Brighton, East Sussex", 
+        "hull": "Hull, East Yorkshire",
+        "kingston upon hull": "Hull, East Yorkshire",
+        "bradford": "Bradford, West Yorkshire",
+        "sheffield": "Sheffield, South Yorkshire",
+        "manchester": "Manchester, Greater Manchester",
+        "liverpool": "Liverpool, Merseyside",
+        "birmingham": "Birmingham, West Midlands",
+        "nottingham": "Nottingham, Nottinghamshire",
+        "leicester": "Leicester, Leicestershire",
+        "coventry": "Coventry, West Midlands",
+        "wolverhampton": "Wolverhampton, West Midlands",
+        "stockport": "Stockport, Greater Manchester",
+        "preston": "Preston, Lancashire",
+        "plymouth": "Plymouth, Devon",
+        "portsmouth": "Portsmouth, Hampshire",
+        "southampton": "Southampton, Hampshire",
+        "reading": "Reading, Berkshire",
+        "derby": "Derby, Derbyshire",
+        "cardiff": "Cardiff, Wales",
+        "newport": "Newport, Wales",
+        "swansea": "Swansea, Wales",
+        "glasgow": "Glasgow, Scotland",
+        "edinburgh": "Edinburgh, Scotland",
+        "newcastle": "Newcastle upon Tyne, Tyne and Wear",
+        "newcastle upon tyne": "Newcastle upon Tyne, Tyne and Wear",
+        "bristol": "Bristol, England",
+    }
+    
+    return regional_queries.get(city_lower, city)
 
 
 def build_fallback_urls(city, min_beds, max_price, filters):
