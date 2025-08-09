@@ -1,6 +1,51 @@
-import { Home, Mail, Phone, MapPin, Github, Twitter, Linkedin, Calculator } from 'lucide-react';
+import { Home, Mail, Phone, MapPin, Github, Twitter, Linkedin, Calculator, Database, Loader2 } from 'lucide-react';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
+import { Button } from './ui/button';
+import { useToast } from '@/hooks/use-toast';
 
 export const Footer = () => {
+  const { toast } = useToast();
+  const [scrapingStarted, setScrapingStarted] = useState(false);
+
+  // Bulk scraping mutation
+  const bulkScrapeMutation = useMutation({
+    mutationFn: async () => {
+      const response = await fetch('/api/bulk-scrape', { method: 'POST' });
+      if (!response.ok) throw new Error('Failed to start bulk scraping');
+      return response.json();
+    },
+    onSuccess: (data) => {
+      setScrapingStarted(true);
+      toast({
+        title: "Bulk Scraping Started! 🚀",
+        description: `Scraping ${data.cities_count} UK cities. Check progress below.`,
+      });
+    },
+    onError: (error: Error) => {
+      toast({
+        title: "Scraping Failed ❌", 
+        description: error.message,
+        variant: "destructive",
+      });
+    },
+  });
+
+  // Get progress when scraping is active
+  const { data: progress, isLoading: progressLoading } = useQuery({
+    queryKey: ['bulk-scrape-progress'],
+    queryFn: async () => {
+      const response = await fetch('/api/bulk-scrape/progress');
+      return response.json();
+    },
+    enabled: scrapingStarted,
+    refetchInterval: scrapingStarted ? 2000 : false, // Poll every 2 seconds
+  });
+
+  const handleStartScraping = () => {
+    bulkScrapeMutation.mutate();
+  };
+
   return (
     <footer className="bg-gray-900 text-white">
       {/* Main Footer */}
@@ -106,9 +151,37 @@ export const Footer = () => {
               <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
               <a href="#" className="hover:text-white transition-colors">Cookie Policy</a>
             </div>
-            <div className="flex items-center gap-2 text-sm text-gray-400">
-              <Calculator className="w-4 h-4" />
-              <span>Powered by Advanced Property Analytics</span>
+            <div className="flex items-center gap-4">
+              {/* Bulk Scrape Button */}
+              <Button
+                onClick={handleStartScraping}
+                disabled={bulkScrapeMutation.isPending || (progress?.progress?.isRunning)}
+                size="sm"
+                className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white"
+                data-testid="button-bulk-scrape"
+              >
+                {bulkScrapeMutation.isPending ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin mr-2" />
+                    Starting...
+                  </>
+                ) : progress?.progress?.isRunning ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin mr-2" />
+                    Scraping {progress.progress.current}/{progress.progress.total}
+                  </>
+                ) : (
+                  <>
+                    <Database className="w-4 h-4 mr-2" />
+                    Scrape All UK Cities
+                  </>
+                )}
+              </Button>
+              
+              <div className="flex items-center gap-2 text-sm text-gray-400">
+                <Calculator className="w-4 h-4" />
+                <span>Powered by Advanced Property Analytics</span>
+              </div>
             </div>
           </div>
         </div>

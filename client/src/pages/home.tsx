@@ -32,16 +32,16 @@ export default function Home() {
   const [sortedProperties, setSortedProperties] = useState<any[]>([]);
 
   const searchMutation = useMutation({
-    mutationFn: async ({ filters, refresh }: { filters: SearchFilters; refresh?: boolean }) => {
+    mutationFn: async ({ filters }: { filters: SearchFilters }) => {
       const params = new URLSearchParams();
       if (filters.city) params.append('city', filters.city);
       if (filters.minRooms) params.append('min_bedrooms', filters.minRooms.toString());
       if (filters.maxPrice) params.append('max_price', filters.maxPrice.toString());
       if (filters.keywords) params.append('keywords', filters.keywords);
-      if (refresh) params.append('refresh', 'true');
       
-      const response = await fetch(`/api/search?${params.toString()}`);
-      if (!response.ok) throw new Error('Search failed');
+      // Use cache endpoint instead of search (no scraping)
+      const response = await fetch(`/api/properties?${params.toString()}`);
+      if (!response.ok) throw new Error('Cache search failed');
       return response.json();
     },
     onMutate: () => {
@@ -49,9 +49,9 @@ export default function Home() {
     },
     onSuccess: (data) => {
       setSearchState({
-        properties: data.results || [],
+        properties: data.listings || [],
         isLoading: false,
-        isCached: data.meta?.cached || false,
+        isCached: data.cached || true,
         lastRefreshed: new Date(),
         error: null,
       });
@@ -65,19 +65,19 @@ export default function Home() {
     },
   });
 
-  const handleSearch = useCallback((filters: SearchFilters, refresh = false) => {
+  const handleSearch = useCallback((filters: SearchFilters) => {
     // Debounce search - prevent spam clicking
     const now = Date.now();
     if (now - lastSearchTime < 1000) return; // 1 second debounce
     
     setLastSearchTime(now);
     setCurrentFilters(filters);
-    searchMutation.mutate({ filters, refresh });
+    searchMutation.mutate({ filters });
   }, [searchMutation, lastSearchTime]);
 
   const handleRefresh = useCallback(() => {
     if (currentFilters.city) {
-      handleSearch(currentFilters, true);
+      handleSearch(currentFilters);
     }
   }, [currentFilters, handleSearch]);
 
