@@ -6,6 +6,15 @@ import { searchFiltersSchema } from "@shared/schema";
 import { z } from "zod";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Health check endpoint for Railway deployment
+  app.get("/health", (req, res) => {
+    res.json({ 
+      status: "healthy", 
+      timestamp: new Date().toISOString(),
+      service: "HMO Hunter API"
+    });
+  });
+
   // Get cached property listings
   app.get("/api/properties", async (req, res) => {
     try {

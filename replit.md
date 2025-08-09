@@ -84,4 +84,4 @@ Currently implements a basic user system with username/password authentication. 
 - **tsx**: TypeScript execution for development
 - **drizzle-kit**: Database schema management and migrations
 
-The application is designed to run on Replit with specific plugins for development mode cartography and runtime error overlays.
+The application is designed to run on Replit with specific plugins for development mode cartography and runtime error overlays. The project has been optimized for Railway deployment with proper Nixpacks configuration, health check endpoints, and production-ready Python dependency management.

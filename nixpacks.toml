@@ -1,0 +1,8 @@
+[phases.install]
+nixPkgs = ["nodejs-20_x", "python311", "python311Packages.pip", "python311Packages.requests", "python311Packages.beautifulsoup4", "python311Packages.lxml"]
+
+[phases.build]
+cmds = ["npm install", "npm run build"]
+
+[start]
+cmd = "npm run start"
