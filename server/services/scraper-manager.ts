@@ -33,7 +33,7 @@ export interface ScrapeResult {
 export class ScraperManager {
   private static readonly PYTHON_SCRIPT_PATH = join(__dirname, "scraper.py");
   private static readonly PYTHON_CMD = process.env.NODE_ENV === 'production' ? 'python3' : 'python3';
-  private static readonly DEFAULT_TIMEOUT = 300000; // 5 minutes
+  private static readonly DEFAULT_TIMEOUT = 120000; // 2 minutes
 
   static async searchProperties(filters: ExtendedSearchFilters): Promise<ScrapeResult> {
     return this.runPrimeLocationScraper(filters);

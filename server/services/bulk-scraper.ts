@@ -6,16 +6,13 @@ import { CacheDatabase } from "./cache-database";
  */
 export class BulkScraper {
   
-  // Lista glavnih UK gradova za scraping - uključujući regionalne varijante
+  // Lista glavnih UK gradova za scraping - uključujući regionalne varijante (optimizovano za brzinu)
   private static readonly UK_CITIES = [
     "London", "Birmingham", "Greater Manchester", "Liverpool", "Leeds", "Sheffield", 
     "Bristol", "Newcastle", "Nottingham", "Leicester", "Portsmouth", "Southampton",
-    "Brighton", "Hull", "Plymouth", "Stoke", "Wolverhampton", "Derby",
-    "Swansea", "Cardiff", "Belfast", "Glasgow", "Edinburgh", "Aberdeen",
-    "Coventry", "Bradford", "Sunderland", "Bournemouth", "Norwich", "Middlesbrough",
-    "Swindon", "Crawley", "Ipswich", "Wigan", "Croydon", "Walsall",
-    "Mansfield", "Oxford", "Warrington", "Slough", "Peterborough", "Cambridge",
-    "Manchester", "Stockport", "Oldham", "Bolton", "Rochdale", "Salford"
+    "Brighton", "Hull", "Plymouth", "Wolverhampton", "Derby", "Coventry", "Bradford",
+    "Manchester", "Stockport", "Oldham", "Bolton", "Rochdale", "Salford",
+    "Cardiff", "Glasgow", "Edinburgh", "Oxford", "Cambridge", "Reading"
   ];
 
   private static isRunning = false;
@@ -86,7 +83,7 @@ export class BulkScraper {
           console.log(`✅ ${city} completed successfully (${result.count} properties)`);
           
           // Kratka pauza između gradova
-          await new Promise(resolve => setTimeout(resolve, 2000));
+          await new Promise(resolve => setTimeout(resolve, 500));
           
         } catch (cityError) {
           console.error(`❌ Failed to scrape ${city}:`, cityError);
