@@ -1,0 +1,30 @@
+[
+  {
+    "address": "4 bed property for sale North Circular Road, London NW10",
+    "price": 650000,
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "description": "4-bed property in London.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70334202/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/babbb2385450bfbf8929c67e9845d54bf2b06b2a.jpg",
+    "postcode": "",
+    "city": "London",
+    "monthly_rent": 900,
+    "annual_rent": 10800,
+    "gross_yield": 1.66
+  },
+  {
+    "address": "5 bed semi-detached house for sale Nibthwaite Road, Harrow HA1",
+    "price": 800000,
+    "bedrooms": 5,
+    "bathrooms": 2,
+    "description": "5-bed property in London.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71006183/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/18c08ee1a1bd9a4415da01e82e9f6b909351303e.jpg",
+    "postcode": "",
+    "city": "London",
+    "monthly_rent": 1125,
+    "annual_rent": 13500,
+    "gross_yield": 1.69
+  }
+]

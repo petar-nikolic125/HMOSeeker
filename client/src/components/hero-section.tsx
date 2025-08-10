@@ -12,7 +12,7 @@ interface HeroSectionProps {
 export default function HeroSection({ onSearch, isLoading, searchResults }: HeroSectionProps) {
   const [city, setCity] = useState("Birmingham");
   const [maxPrice, setMaxPrice] = useState(500000);
-  const [minBedrooms, setMinBedrooms] = useState(4);
+  const [minBedrooms, setMinBedrooms] = useState(1);
   const { toast } = useToast();
   const [lastSearchFilters, setLastSearchFilters] = useState<SearchFilters | null>(null);
 
