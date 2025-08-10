@@ -16,7 +16,7 @@ export default function PropertyAnalysisModal({ property, onClose }: PropertyAna
 
   const analysisMutation = useMutation({
     mutationFn: async () => {
-      const response = await apiRequest("GET", `/api/properties/${property.id}/analysis`);
+      const response = await apiRequest("GET", `/api/properties/${property.id}/analysis?renovation_cost=${renovationCostPerRoom}`);
       return response.json();
     },
     onSuccess: (data) => {
@@ -28,28 +28,13 @@ export default function PropertyAnalysisModal({ property, onClose }: PropertyAna
 
   useEffect(() => {
     analysisMutation.mutate();
-  }, [property.id]);
+  }, [property.id, renovationCostPerRoom]);
 
-  // Update analysis when renovation cost changes
-  useEffect(() => {
-    if (analysis) {
-      const bedrooms = property.bedrooms || 4;
-      const totalRenovation = renovationCostPerRoom * bedrooms;
-      const totalInvestment = property.price + totalRenovation + 30000 + 15000; // bridging + legal
-      const leftInDeal = totalInvestment * 0.25; // 25% down
-      const netAnnualProfit = 21600; // Fixed for simplicity
-      const paybackYears = leftInDeal / netAnnualProfit;
-
-      setAnalysis({
-        ...analysis,
-        renovation_cost_per_room: renovationCostPerRoom,
-        total_renovation: totalRenovation,
-        total_investment: totalInvestment,
-        left_in_deal: leftInDeal,
-        payback_period_years: paybackYears,
-      });
-    }
-  }, [renovationCostPerRoom, analysis?.purchase_price]);
+  // Auto-refetch analysis when renovation cost changes
+  const handleRenovationCostChange = (newCost: number) => {
+    setRenovationCostPerRoom(newCost);
+    analysisMutation.mutate();
+  };
 
   const handleBackdropClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
@@ -109,7 +94,7 @@ export default function PropertyAnalysisModal({ property, onClose }: PropertyAna
                         max="30000" 
                         value={renovationCostPerRoom}
                         step="1000"
-                        onChange={(e) => setRenovationCostPerRoom(parseInt(e.target.value))}
+                        onChange={(e) => handleRenovationCostChange(parseInt(e.target.value))}
                         className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
                       />
                     </div>
@@ -140,19 +125,23 @@ export default function PropertyAnalysisModal({ property, onClose }: PropertyAna
                       </div>
                       <div className="flex justify-between">
                         <span>Total Renovation:</span>
-                        <span className="font-semibold">£{analysis.total_renovation.toLocaleString()}</span>
+                        <span className="font-semibold">£{analysis.total_renovation_cost?.toLocaleString() || 'N/A'}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span>Bridging Loan Fee:</span>
-                        <span className="font-semibold">£{analysis.bridging_loan_fee.toLocaleString()}</span>
+                        <span>Transaction Costs:</span>
+                        <span className="font-semibold">£{analysis.transaction_costs?.toLocaleString() || 'N/A'}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span>Legal Costs:</span>
-                        <span className="font-semibold">£{analysis.legal_costs.toLocaleString()}</span>
+                        <span>Down Payment (25%):</span>
+                        <span className="font-semibold">£{analysis.downpayment?.toLocaleString() || 'N/A'}</span>
                       </div>
                       <div className="border-t pt-2 flex justify-between font-bold">
                         <span>Total Investment:</span>
-                        <span>£{analysis.total_investment.toLocaleString()}</span>
+                        <span>£{analysis.total_investment?.toLocaleString() || 'N/A'}</span>
+                      </div>
+                      <div className="flex justify-between text-sm text-gray-600">
+                        <span>Cash Invested:</span>
+                        <span>£{analysis.cash_invested?.toLocaleString() || 'N/A'}</span>
                       </div>
                     </div>
                   </div>
@@ -165,24 +154,28 @@ export default function PropertyAnalysisModal({ property, onClose }: PropertyAna
                     </div>
                     <div className="space-y-3 text-sm">
                       <div className="flex justify-between">
-                        <span>Local LHA Rate:</span>
-                        <span className="font-semibold">£400/month</span>
+                        <span>Monthly Rent:</span>
+                        <span className="font-semibold">£{analysis.estimated_monthly_rent?.toLocaleString() || 'N/A'}</span>
                       </div>
                       <div className="flex justify-between">
                         <span>Total Income (PA):</span>
-                        <span className="font-semibold">£{analysis.annual_rental_income.toLocaleString()}</span>
+                        <span className="font-semibold">£{analysis.annual_gross_rent?.toLocaleString() || 'N/A'}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span>Net Profit (PA):</span>
-                        <span className="font-semibold">£{analysis.net_annual_profit.toLocaleString()}</span>
+                        <span>Operating Expenses:</span>
+                        <span className="font-semibold">£{analysis.annual_operating_expenses?.toLocaleString() || 'N/A'}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span>Left in Deal:</span>
-                        <span className="font-semibold">£{Math.round(analysis.left_in_deal).toLocaleString()}</span>
+                        <span>Net Operating Income:</span>
+                        <span className="font-semibold">£{analysis.NOI?.toLocaleString() || 'N/A'}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>After Tax Cash Flow:</span>
+                        <span className="font-semibold">£{analysis.after_tax_cash_flow?.toLocaleString() || 'N/A'}</span>
                       </div>
                       <div className="border-t pt-2 flex justify-between font-bold">
-                        <span>Money Out Within:</span>
-                        <span className="text-green-600">{getPaybackPeriodText(analysis.payback_period_years)}</span>
+                        <span>Cash on Cash Return:</span>
+                        <span className="text-green-600">{analysis.cash_on_cash_pct?.toFixed(1) || 'N/A'}%</span>
                       </div>
                     </div>
                   </div>
@@ -195,7 +188,7 @@ export default function PropertyAnalysisModal({ property, onClose }: PropertyAna
                       <Percent className="text-blue-600" />
                       <span className="text-sm font-semibold text-blue-900">ROI</span>
                     </div>
-                    <div className="text-3xl font-bold text-blue-800">{analysis.roi.toFixed(1)}%</div>
+                    <div className="text-3xl font-bold text-blue-800">{analysis.cash_on_cash_pct?.toFixed(1) || 'N/A'}%</div>
                     <p className="text-xs text-blue-600 mt-1">Annual return on investment</p>
                   </div>
                   
@@ -204,7 +197,7 @@ export default function PropertyAnalysisModal({ property, onClose }: PropertyAna
                       <TrendingUp className="text-green-600" />
                       <span className="text-sm font-semibold text-green-900">Yield</span>
                     </div>
-                    <div className="text-3xl font-bold text-green-800">{analysis.gross_yield.toFixed(1)}%</div>
+                    <div className="text-3xl font-bold text-green-800">{analysis.gross_yield_pct?.toFixed(1) || 'N/A'}%</div>
                     <p className="text-xs text-green-600 mt-1">Gross rental yield</p>
                   </div>
                   
@@ -213,7 +206,7 @@ export default function PropertyAnalysisModal({ property, onClose }: PropertyAna
                       <Coins className="text-purple-600" />
                       <span className="text-sm font-semibold text-purple-900">Cash Flow</span>
                     </div>
-                    <div className="text-3xl font-bold text-purple-800">£{analysis.cash_flow_monthly}</div>
+                    <div className="text-3xl font-bold text-purple-800">£{Math.round((analysis.after_tax_cash_flow || 0) / 12).toLocaleString()}</div>
                     <p className="text-xs text-purple-600 mt-1">Monthly net income</p>
                   </div>
                 </div>
