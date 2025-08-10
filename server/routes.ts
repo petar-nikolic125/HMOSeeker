@@ -3,6 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { ScraperManager } from "./services/scraper-manager";
 import { BulkScraper } from "./services/bulk-scraper";
+import { SyncScraper } from "./services/sync-scraper";
 import { CacheDatabase } from "./services/cache-database";
 import { searchFiltersSchema } from "@shared/schema";
 import { z } from "zod";
@@ -145,33 +146,90 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Start property scraping
+  // Sync properties - replaces old with current PrimeLocation listings
   app.post("/api/scrape", async (req, res) => {
     try {
-      const filters = searchFiltersSchema.parse(req.body);
+      const { city } = req.body;
       
-      // Create search query record
-      const searchQuery = await storage.createSearchQuery(filters);
-      
-      // Start scraping (don't await - let it run in background)
-      ScraperManager.scrapeProperties({ ...filters, refresh: false })
-        .then(async (result) => {
-          await storage.updateSearchQuery(searchQuery.id, {
-            status: result.success ? 'completed' : 'failed',
-            results_count: result.count,
-            cache_expires_at: new Date(Date.now() + 2 * 60 * 60 * 1000), // 2 hours
-          });
+      if (!city) {
+        return res.status(400).json({
+          success: false,
+          error: "City parameter is required",
+        });
+      }
+
+      // Check if sync is already running
+      if (SyncScraper.isSyncRunning()) {
+        return res.status(409).json({
+          success: false,
+          error: "Sync is already running",
+        });
+      }
+
+      // Start sync for specific city (don't await - let it run in background)
+      SyncScraper.syncCity(city)
+        .then((result) => {
+          console.log(`✅ Sync completed for ${city}:`, result);
         })
-        .catch(async (error) => {
-          console.error("Scraping failed:", error);
-          await storage.updateSearchQuery(searchQuery.id, {
-            status: 'failed',
-            results_count: 0,
-          });
+        .catch((error) => {
+          console.error(`❌ Sync failed for ${city}:`, error);
         });
 
-      // Update status to running
-      await storage.updateSearchQuery(searchQuery.id, { status: 'running' });
+      res.json({
+        success: true,
+        message: `Sync started for ${city}`,
+        action: "sync_started",
+      });
+    } catch (error) {
+      console.error("Sync failed:", error);
+      res.status(500).json({
+        success: false,
+        error: "Failed to start sync",
+      });
+    }
+  });
+
+  // Bulk sync all cities
+  app.post("/api/sync-all", async (req, res) => {
+    try {
+      // Check if sync is already running
+      if (SyncScraper.isSyncRunning()) {
+        return res.status(409).json({
+          success: false,
+          error: "Sync is already running",
+        });
+      }
+
+      // Start bulk sync (don't await - let it run in background)
+      SyncScraper.syncAllCities()
+        .then(() => {
+          console.log(`✅ Bulk sync completed`);
+        })
+        .catch((error) => {
+          console.error(`❌ Bulk sync failed:`, error);
+        });
+
+      res.json({
+        success: true,
+        message: "Bulk sync started for all cities",
+        action: "bulk_sync_started",
+      });
+    } catch (error) {
+      console.error("Bulk sync failed:", error);
+      res.status(500).json({
+        success: false,
+        error: "Failed to start bulk sync",
+      });
+    }
+  });
+
+  // Get sync progress
+  app.get("/api/sync-progress", (req, res) => {
+    const progress = SyncScraper.getProgress();
+    res.json({
+      success: true,
+      progress,
+    });
 
       res.json({
         success: true,
