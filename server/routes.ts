@@ -4,6 +4,7 @@ import { storage } from "./storage";
 import { ScraperManager } from "./services/scraper-manager";
 import { BulkScraper } from "./services/bulk-scraper";
 import { SyncScraper } from "./services/sync-scraper";
+import { PropertyAnalyzer } from "./services/property-analyzer";
 import { CacheDatabase } from "./services/cache-database";
 import { searchFiltersSchema } from "@shared/schema";
 import { z } from "zod";
@@ -230,18 +231,107 @@ export async function registerRoutes(app: Express): Promise<Server> {
       success: true,
       progress,
     });
+  });
+
+  // Analyze property or properties with comprehensive financial metrics
+  app.post("/api/analyze", async (req, res) => {
+    try {
+      const { properties, assumptions } = req.body;
+
+      if (!properties || !Array.isArray(properties) || properties.length === 0) {
+        return res.status(400).json({
+          success: false,
+          error: "Properties array is required",
+        });
+      }
+
+      // Default assumptions for HMO analysis
+      const defaultAssumptions = {
+        method: 'location' as const,
+        annual_expense_rate: 0.30,    // 30% for maintenance, insurance, etc.
+        void_rate: 0.05,              // 5% vacancy rate
+        management_fee_rate: 0.10,    // 10% management fee
+        transaction_costs_rate: 0.05, // 5% transaction costs
+        income_tax_rate: 0.20,        // 20% income tax
+        mortgage: {
+          loan_amount: 0,             // Will be calculated based on LTV
+          downpayment: 0,             // Will be calculated
+          annual_interest_rate: 0.055, // 5.5% mortgage rate
+          term_years: 25,
+        },
+        ...assumptions,
+      };
+
+      console.log(`🧮 Analyzing ${properties.length} properties...`);
+
+      // Analyze each property
+      const analysisResults = properties.map((prop: any, index: number) => {
+        console.log(`📊 Analyzing property ${index + 1}: ${prop.address || 'Unknown address'}`);
+        
+        // Convert property to analyzer format
+        const propertyInput = {
+          price: prop.price || 0,
+          bedrooms: prop.bedrooms || 0,
+          bathrooms: prop.bathrooms || 0,
+          city: prop.city || '',
+          postcode: prop.postcode || '',
+          address: prop.address || '',
+          description: prop.description || '',
+        };
+
+        // Calculate mortgage details if needed
+        const updatedAssumptions = { ...defaultAssumptions };
+        if (propertyInput.price > 0 && defaultAssumptions.mortgage) {
+          const ltv = 0.75; // 75% loan-to-value typical for HMO
+          const loan_amount = propertyInput.price * ltv;
+          const downpayment = propertyInput.price - loan_amount;
+          
+          updatedAssumptions.mortgage = {
+            ...defaultAssumptions.mortgage,
+            loan_amount,
+            downpayment,
+          };
+        }
+
+        // Get detailed analysis
+        const metrics = PropertyAnalyzer.estimatePropertyMetrics(propertyInput, updatedAssumptions);
+        
+        // Get scenario analysis (conservative, typical, aggressive)
+        const scenarios = PropertyAnalyzer.scenarioReport(propertyInput, updatedAssumptions);
+
+        return {
+          original_property: prop,
+          analysis: {
+            ...metrics,
+            scenarios,
+            assumptions_used: updatedAssumptions,
+          },
+        };
+      });
+
+      console.log(`✅ Analysis completed for ${analysisResults.length} properties`);
 
       res.json({
         success: true,
-        search_id: searchQuery.id,
-        message: "Scraping started",
-        filters,
+        count: analysisResults.length,
+        results: analysisResults,
+        summary: {
+          total_properties: analysisResults.length,
+          avg_gross_yield: analysisResults.reduce((sum, r) => sum + (r.analysis.gross_yield_pct || 0), 0) / analysisResults.length,
+          avg_net_yield: analysisResults.reduce((sum, r) => sum + (r.analysis.net_yield_pct || 0), 0) / analysisResults.length,
+          avg_cash_on_cash: analysisResults.reduce((sum, r) => sum + (r.analysis.cash_on_cash_pct || 0), 0) / analysisResults.length,
+          price_range: {
+            min: Math.min(...analysisResults.map(r => r.analysis.price)),
+            max: Math.max(...analysisResults.map(r => r.analysis.price)),
+          },
+        },
       });
     } catch (error) {
-      console.error("Failed to start scraping:", error);
-      res.status(400).json({
+      console.error("Analysis failed:", error);
+      res.status(500).json({
         success: false,
-        error: error instanceof z.ZodError ? error.errors : "Invalid request parameters",
+        error: "Failed to analyze properties",
+        details: error instanceof Error ? error.message : 'Unknown error',
       });
     }
   });

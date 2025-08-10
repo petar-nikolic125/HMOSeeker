@@ -1,0 +1,269 @@
+"""
+Property estimation module with location-based rent defaults for 25 UK cities.
+
+Functions:
+- estimate_property_metrics(prop, assumptions=None)
+- scenario_report(prop, assumptions=None)
+
+Usage: Provide property dict with at least 'price' and either 'bedrooms' or 'city'.
+If city is in the built-in mapping, the algorithm will use that city's default
+rent_per_bed (monthly). You can override any assumption by passing the assumptions dict.
+"""
+
+import math
+import pandas as pd
+
+# --------- Location-based defaults (monthly rent per bedroom + city average rent) ----------
+# NOTE: These are *default estimates* for quick use. For production accuracy fetch live data.
+location_rent_defaults = {
+    "London":      {"rent_per_bed": 1000, "city_avg_monthly": 1850},
+    "Birmingham":  {"rent_per_bed": 580,  "city_avg_monthly": 900},
+    "Manchester":  {"rent_per_bed": 650,  "city_avg_monthly": 980},
+    "Liverpool":   {"rent_per_bed": 520,  "city_avg_monthly": 760},
+    "Leeds":       {"rent_per_bed": 540,  "city_avg_monthly": 820},
+    "Sheffield":   {"rent_per_bed": 480,  "city_avg_monthly": 730},
+    "Bristol":     {"rent_per_bed": 700,  "city_avg_monthly": 1150},
+    "Glasgow":     {"rent_per_bed": 470,  "city_avg_monthly": 680},
+    "Leicester":   {"rent_per_bed": 460,  "city_avg_monthly": 700},
+    "Edinburgh":   {"rent_per_bed": 700,  "city_avg_monthly": 1100},
+    "Newcastle":   {"rent_per_bed": 480,  "city_avg_monthly": 720},
+    "Nottingham":  {"rent_per_bed": 500,  "city_avg_monthly": 750},
+    "Cardiff":     {"rent_per_bed": 520,  "city_avg_monthly": 780},
+    "Coventry":    {"rent_per_bed": 430,  "city_avg_monthly": 650},
+    "Bradford":    {"rent_per_bed": 390,  "city_avg_monthly": 600},
+    "Stoke-on-Trent":{"rent_per_bed": 350,"city_avg_monthly": 540},
+    "Wolverhampton":{"rent_per_bed": 380, "city_avg_monthly": 560},
+    "Plymouth":    {"rent_per_bed": 420,  "city_avg_monthly": 650},
+    "Southampton": {"rent_per_bed": 500,  "city_avg_monthly": 800},
+    "Reading":     {"rent_per_bed": 780,  "city_avg_monthly": 1250},
+    "Derby":       {"rent_per_bed": 420,  "city_avg_monthly": 640},
+    "Dudley":      {"rent_per_bed": 380,  "city_avg_monthly": 560},
+    "Northampton": {"rent_per_bed": 420,  "city_avg_monthly": 660},
+    "Portsmouth":  {"rent_per_bed": 460,  "city_avg_monthly": 700},
+    "Preston":     {"rent_per_bed": 360,  "city_avg_monthly": 560},
+}
+
+# Normalise keys to allow case-insensitive matches
+location_rent_defaults = {k.lower(): v for k, v in location_rent_defaults.items()}
+
+
+# --------- Core estimation function ----------
+def estimate_property_metrics(prop, assumptions=None):
+    """
+    Estimate rent, ROI, yield and other stats for a property.
+    prop: dict with keys:
+        - price (required)
+        - bedrooms (optional)
+        - bathrooms (optional)
+        - city (optional)  # used for location-based defaults if present
+        - postcode (optional)
+        - area_sqm (optional)
+        - address, description (optional)
+    assumptions: dict with optional keys to override defaults:
+        - method: 'location' | 'per_bedroom' | 'one_percent_rule' | 'rent_per_sqm' | 'custom_rent'
+        - rent_per_bed: GBP monthly per bedroom (overrides location default)
+        - one_percent_rate
+        - rent_per_sqm
+        - custom_rent_monthly
+        - annual_expense_rate
+        - void_rate
+        - management_fee_rate
+        - transaction_costs_rate
+        - income_tax_rate
+        - mortgage: dict with loan_amount, downpayment, annual_interest_rate, term_years
+    """
+    # defaults
+    defaults = {
+        'method': 'location',         # prefer location-based rent by default
+        'rent_per_bed': 650,          # fallback if no location match
+        'one_percent_rate': 0.01,
+        'rent_per_sqm': None,
+        'annual_expense_rate': 0.30,
+        'void_rate': 0.05,
+        'management_fee_rate': 0.10,
+        'transaction_costs_rate': 0.05,
+        'income_tax_rate': 0.20,
+        'mortgage': None,
+    }
+    if assumptions:
+        defaults.update(assumptions)
+
+    # read property values
+    price = float(prop.get('price', 0))
+    bedrooms = int(prop.get('bedrooms', 0)) if prop.get('bedrooms') is not None else 0
+    city = (prop.get('city') or "").strip().lower()
+    area_sqm = prop.get('area_sqm')
+
+    # Decide rent estimation method
+    method = defaults['method']
+
+    # 1) Location-based rent if possible
+    rent_source = None
+    est_monthly_rent = None
+    if method == 'location' and city:
+        loc = location_rent_defaults.get(city)
+        if loc:
+            # If bedrooms known, use rent_per_bed * bedrooms (HMO / student style)
+            if bedrooms and loc.get('rent_per_bed'):
+                est_monthly_rent = bedrooms * loc['rent_per_bed']
+                rent_source = f"location_per_bed ({city})"
+            else:
+                # fallback to city average monthly rent
+                est_monthly_rent = loc.get('city_avg_monthly')
+                rent_source = f"location_city_avg ({city})"
+
+    # 2) Per-bedroom
+    if est_monthly_rent is None and method in ['per_bedroom', 'location']:
+        if bedrooms:
+            est_monthly_rent = bedrooms * defaults['rent_per_bed']
+            rent_source = f"per_bedroom ({defaults['rent_per_bed']}/bed)"
+    
+    # 3) One-percent rule
+    if est_monthly_rent is None and method == 'one_percent_rule':
+        est_monthly_rent = price * defaults['one_percent_rate']
+        rent_source = f"one_percent ({defaults['one_percent_rate']*100:.2f}%)"
+
+    # 4) rent per sqm
+    if est_monthly_rent is None and method == 'rent_per_sqm' and area_sqm and defaults.get('rent_per_sqm'):
+        est_monthly_rent = area_sqm * defaults['rent_per_sqm']
+        rent_source = f"rent_per_sqm ({defaults['rent_per_sqm']}/sqm)"
+
+    # 5) custom_rent
+    if est_monthly_rent is None and method == 'custom_rent' and defaults.get('custom_rent_monthly') is not None:
+        est_monthly_rent = defaults['custom_rent_monthly']
+        rent_source = "custom_rent"
+
+    # final fallback: average of per_bedroom and 1% rule or simple per_bedroom or default rent
+    if est_monthly_rent is None:
+        per_bed = bedrooms * defaults['rent_per_bed'] if bedrooms else None
+        one_pct = price * defaults['one_percent_rate'] if price else None
+        candidates = [c for c in (per_bed, one_pct) if c is not None]
+        if candidates:
+            est_monthly_rent = sum(candidates) / len(candidates)
+            rent_source = "fallback_avg"
+        else:
+            est_monthly_rent = defaults['rent_per_bed'] * (bedrooms or 1)
+            rent_source = "ultimate_fallback_per_bed"
+
+    # Vacancy and effective rent
+    vacancy_loss = est_monthly_rent * defaults['void_rate']
+    effective_monthly_rent = est_monthly_rent - vacancy_loss
+
+    annual_gross_rent = est_monthly_rent * 12
+    annual_effective_rent = effective_monthly_rent * 12
+
+    # Expenses
+    operating_expenses = annual_gross_rent * defaults['annual_expense_rate']
+    management_fee = annual_gross_rent * defaults['management_fee_rate']
+    total_operating_expenses = operating_expenses + management_fee
+
+    # NOI and yields
+    noi = annual_effective_rent - total_operating_expenses
+    gross_yield = (annual_gross_rent / price) if price else None
+    net_yield = (noi / price) if price else None
+
+    # Transaction costs
+    transaction_costs = price * defaults['transaction_costs_rate']
+
+    # Mortgage calculations (if provided)
+    downpayment = 0
+    annual_mortgage_payment = 0
+    mortgage = defaults.get('mortgage')
+    if mortgage:
+        loan_amount = float(mortgage.get('loan_amount', price - mortgage.get('downpayment', 0)))
+        annual_interest_rate = float(mortgage.get('annual_interest_rate', 0.05))
+        term_years = int(mortgage.get('term_years', 25))
+        r = annual_interest_rate / 12.0
+        n = term_years * 12
+        if r > 0 and n > 0:
+            monthly_payment = loan_amount * (r * (1 + r) ** n) / ((1 + r) ** n - 1)
+        else:
+            monthly_payment = (loan_amount / n) if n > 0 else 0
+        annual_mortgage_payment = monthly_payment * 12
+        downpayment = float(mortgage.get('downpayment', price - loan_amount))
+
+    # Cash flows & returns
+    cash_invested = downpayment + transaction_costs
+    pre_tax_cash_flow = noi - annual_mortgage_payment
+    cash_on_cash = (pre_tax_cash_flow / cash_invested) if cash_invested > 0 else None
+    simple_roi = (pre_tax_cash_flow / price) if price else None
+
+    taxable_income = max(0, noi - annual_mortgage_payment)
+    tax = taxable_income * defaults['income_tax_rate']
+    after_tax_cash_flow = taxable_income - tax
+
+    result = {
+        'address': prop.get('address', ''),
+        'city': prop.get('city', ''),
+        'postcode': prop.get('postcode', ''),
+        'price': price,
+        'bedrooms': bedrooms,
+        'bathrooms': prop.get('bathrooms'),
+        'rent_method_used': rent_source,
+        'estimated_monthly_rent': round(est_monthly_rent, 2),
+        'effective_monthly_rent_after_voids': round(effective_monthly_rent, 2),
+        'annual_gross_rent': round(annual_gross_rent, 2),
+        'annual_effective_rent': round(annual_effective_rent, 2),
+        'annual_operating_expenses': round(total_operating_expenses, 2),
+        'NOI': round(noi, 2),
+        'gross_yield_pct': round(gross_yield * 100, 4) if gross_yield is not None else None,
+        'net_yield_pct': round(net_yield * 100, 4) if net_yield is not None else None,
+        'transaction_costs': round(transaction_costs, 2),
+        'downpayment': round(downpayment, 2),
+        'annual_mortgage_payment': round(annual_mortgage_payment, 2),
+        'pre_tax_cash_flow': round(pre_tax_cash_flow, 2),
+        'cash_on_cash_pct': round(cash_on_cash * 100, 4) if cash_on_cash is not None else None,
+        'simple_roi_pct': round(simple_roi * 100, 4) if simple_roi is not None else None,
+        'after_tax_cash_flow': round(after_tax_cash_flow, 2),
+    }
+    return result
+
+
+# --------- convenience function to produce scenario comparisons ----------
+def scenario_report(prop, base_assumptions=None):
+    """
+    Produce conservative / typical / aggressive scenarios.
+    Conservative reduces rents and increases expenses; aggressive increases rents.
+    """
+    base = base_assumptions or {}
+    scenarios = {
+        "conservative": {**base, 'rent_per_bed': base.get('rent_per_bed', 650) * 0.9,
+                         'annual_expense_rate': base.get('annual_expense_rate', 0.30) * 1.1},
+        "typical": base,
+        "aggressive": {**base, 'rent_per_bed': base.get('rent_per_bed', 650) * 1.1,
+                       'annual_expense_rate': base.get('annual_expense_rate', 0.30) * 0.9},
+    }
+    results = {}
+    for name, a in scenarios.items():
+        results[name] = estimate_property_metrics(prop, a)
+    return results
+
+
+# --------- Example usage ----------
+if __name__ == "__main__":
+    sample_property = {
+        "address": "5 bed semi-detached house for sale Mina Road, Bristol BS2",
+        "price": 570000,
+        "bedrooms": 5,
+        "bathrooms": 2,
+        "city": "Bristol",
+    }
+    # You can override any assumptions here
+    assumptions = {
+        'method': 'location',  # 'location' will try to use city defaults first
+        'annual_expense_rate': 0.30,
+        'void_rate': 0.05,
+        'management_fee_rate': 0.10,
+        'transaction_costs_rate': 0.05,
+        'income_tax_rate': 0.20,
+        'mortgage': {
+            'loan_amount': 456000,
+            'downpayment': 114000,
+            'annual_interest_rate': 0.055,
+            'term_years': 25
+        }
+    }
+
+    out = estimate_property_metrics(sample_property, assumptions)
+    df = pd.DataFrame([out])
+    print(df.T)
