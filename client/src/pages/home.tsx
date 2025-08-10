@@ -152,6 +152,7 @@ export default function Home() {
       <HeroSection 
         onSearch={handleSearch} 
         isLoading={searchState.isLoading}
+        searchResults={{ count: searchState.properties.length, error: searchState.error }}
       />
       
       <PropertyResults 

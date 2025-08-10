@@ -1,26 +1,53 @@
-import { useState } from "react";
-import { Search, RefreshCw } from "lucide-react";
-import type { SearchFilters } from "@/lib/types";
+import { Search, MapPin, Home, TrendingUp } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { useToast } from '@/hooks/use-toast';
+import type { SearchFilters } from '@/lib/types';
 
 interface HeroSectionProps {
   onSearch: (filters: SearchFilters) => void;
-  isLoading?: boolean;
+  isLoading: boolean;
+  searchResults?: { count: number; error?: string } | null;
 }
 
-export default function HeroSection({ onSearch, isLoading }: HeroSectionProps) {
+export default function HeroSection({ onSearch, isLoading, searchResults }: HeroSectionProps) {
   const [city, setCity] = useState("Birmingham");
   const [maxPrice, setMaxPrice] = useState(500000);
   const [minBedrooms, setMinBedrooms] = useState(4);
+  const { toast } = useToast();
+  const [lastSearchFilters, setLastSearchFilters] = useState<SearchFilters | null>(null);
 
   const handleSearch = () => {
+    if (!city) return;
+
     const filters: SearchFilters = {
       city,
       maxPrice: maxPrice,
       minRooms: minBedrooms,
       // Ne dodajemo automatski keywords "hmo" 
     };
+
+    setLastSearchFilters(filters);
     onSearch(filters);
   };
+
+  // Show popup when search completes with no results
+  useEffect(() => {
+    if (searchResults && !isLoading && lastSearchFilters) {
+      if (searchResults.count === 0 && !searchResults.error) {
+        const hasFilters = lastSearchFilters.minRooms || lastSearchFilters.maxPrice || lastSearchFilters.keywords;
+
+        toast({
+          title: "Nema rezultata za pretragu",
+          description: hasFilters 
+            ? `Pronađeno je 0 nekretnina u ${lastSearchFilters.city} koje zadovoljavaju vaše kriterijume. Pokušajte da ublažite filtere.`
+            : `Nema HMO nekretnina u ${lastSearchFilters.city}. Pokušajte drugi grad.`,
+          variant: "destructive",
+          duration: 5000,
+        });
+      }
+      setLastSearchFilters(null); // Reset after showing toast
+    }
+  }, [searchResults, isLoading, lastSearchFilters, toast]);
 
   return (
     <section className="relative overflow-hidden py-20 min-h-[80vh] flex items-center">
@@ -42,7 +69,7 @@ export default function HeroSection({ onSearch, isLoading }: HeroSectionProps) {
         <div className="absolute w-1 h-1 bg-pink-400 rounded-full animate-float opacity-60" style={{left: '60%', top: '60%', animationDelay: '1s'}}></div>
         <div className="absolute w-2 h-2 bg-blue-300 rounded-full animate-float opacity-40" style={{left: '30%', top: '70%', animationDelay: '3s'}}></div>
       </div>
-      
+
       <div className="relative container mx-auto px-4 z-10">
         <div className="text-center mb-12 animate-fade-in">
           <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm font-medium border border-white/30 shadow-lg hover:bg-white/30 transition-all duration-300">
@@ -106,7 +133,7 @@ export default function HeroSection({ onSearch, isLoading }: HeroSectionProps) {
                   <option value="Newcastle">Newcastle</option>
                 </select>
               </div>
-              
+
               <div>
                 <label className="block text-sm font-semibold text-gray-800 mb-3 flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full"></div>
