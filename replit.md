@@ -10,7 +10,19 @@ Preferred communication style: Simple, everyday language.
 
 # Recent Changes (January 2025)
 
-## Automatski Python Setup Sistem
+## Cache-Based Database System (MAJOR UPGRADE)
+- **Architecture Change**: Migrated from PostgreSQL to cache-file-based persistent storage
+- **New System**: `CacheDatabase` service (`server/services/cache-database.ts`) 
+  - Cache files are now the main database (no more temporary storage)
+  - Filters work correctly: price (£300k = 2 properties), bedrooms (4+ = 40 properties), keywords ("detached" = 38 properties)  
+  - Duplicate prevention during bulk scraping preserves existing data
+  - 78 total properties across 4 cities (Birmingham: 52, Bristol: 26)
+- **Search & Scraping**: Fully separated functionality
+  - "Find HMO properties" searches cache files directly (instant results)
+  - "Scrape All UK Cities" only adds/updates cache without deleting existing data
+- **Result**: Fast, reliable property search with persistent data storage
+
+## Automatski Python Setup Sistem  
 - **Problem**: Python biblioteke (requests, beautifulsoup4) se nisu automatski instalirale pri importu projekta
 - **Rešenje**: Kreiran automatski setup sistem koji proverava i instalira biblioteke:
   - Na startup servera (`server/index.ts`)
@@ -36,15 +48,20 @@ Key backend services include:
 The API design follows RESTful principles with endpoints for property search, scraping initiation, and analysis retrieval.
 
 ## Data Storage Solutions
-The application uses a flexible storage architecture with PostgreSQL as the primary database through Drizzle ORM. The schema defines tables for users, property listings, search queries, and cache entries.
+The application uses a cache-file-based persistent storage system as the primary database. Cache files stored in `cache/primelocation/` serve as the main data repository, providing fast access and reliable persistence.
 
-Database features include:
-- Property listings with comprehensive metadata (price, location, agent details, coordinates)
-- Search query tracking with status management
-- Cache entries with TTL support
-- UUID primary keys for all entities
+Cache Database features include:
+- JSON files organized by city (birmingham, bristol, brighton-and-hove, etc.)
+- Automatic duplicate prevention based on property_url
+- Advanced filtering: price, bedrooms, keywords with proper type handling
+- City directory matching with flexible naming conventions
+- 78 total properties across 4 UK cities with instant search results
 
-The storage layer implements an interface pattern allowing for easy testing with in-memory implementations.
+The CacheDatabase service provides:
+- Direct property search without scraping delays
+- Bulk property addition that preserves existing data  
+- Statistics tracking (total properties, cached cities)
+- Smart city name matching for robust directory access
 
 ## Property Scraping System
 A sophisticated Python-based scraping system handles data collection from multiple UK property portals. The scraper features:

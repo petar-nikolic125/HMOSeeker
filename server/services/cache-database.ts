@@ -104,20 +104,34 @@ export class CacheDatabase {
     // Primeni filtere
     let filtered = properties;
     
+    console.log(`🔧 Applying filters:`, filters);
+    
     if (filters.min_bedrooms) {
-      filtered = filtered.filter(p => (p.bedrooms || 0) >= filters.min_bedrooms!);
+      const beforeCount = filtered.length;
+      filtered = filtered.filter(p => {
+        const bedrooms = p.bedrooms || 0;
+        return bedrooms >= filters.min_bedrooms!;
+      });
+      console.log(`🛏️  Min bedrooms filter (${filters.min_bedrooms}): ${beforeCount} → ${filtered.length}`);
     }
     
     if (filters.max_price) {
-      filtered = filtered.filter(p => (p.price || 0) <= filters.max_price!);
+      const beforeCount = filtered.length;
+      filtered = filtered.filter(p => {
+        const price = p.price || 0;
+        return price <= filters.max_price!;
+      });
+      console.log(`💰 Max price filter (£${filters.max_price}): ${beforeCount} → ${filtered.length}`);
     }
     
     if (filters.keywords) {
+      const beforeCount = filtered.length;
       const keywords = filters.keywords.toLowerCase();
       filtered = filtered.filter(p => 
         (p.address || '').toLowerCase().includes(keywords) ||
         (p.description || '').toLowerCase().includes(keywords)
       );
+      console.log(`🔍 Keywords filter ("${keywords}"): ${beforeCount} → ${filtered.length}`);
     }
     
     console.log(`🔍 Cache search: ${properties.length} total, ${filtered.length} after filters`);
@@ -146,20 +160,34 @@ export class CacheDatabase {
       // Primeni filtere
       let filtered = allResults;
       
+      console.log(`🔧 Multi-city applying filters:`, filters);
+      
       if (filters.min_bedrooms) {
-        filtered = filtered.filter(p => (p.bedrooms || 0) >= filters.min_bedrooms!);
+        const beforeCount = filtered.length;
+        filtered = filtered.filter(p => {
+          const bedrooms = p.bedrooms || 0;
+          return bedrooms >= filters.min_bedrooms!;
+        });
+        console.log(`🛏️  Min bedrooms filter (${filters.min_bedrooms}): ${beforeCount} → ${filtered.length}`);
       }
       
       if (filters.max_price) {
-        filtered = filtered.filter(p => (p.price || 0) <= filters.max_price!);
+        const beforeCount = filtered.length;
+        filtered = filtered.filter(p => {
+          const price = p.price || 0;
+          return price <= filters.max_price!;
+        });
+        console.log(`💰 Max price filter (£${filters.max_price}): ${beforeCount} → ${filtered.length}`);
       }
       
       if (filters.keywords) {
+        const beforeCount = filtered.length;
         const keywords = filters.keywords.toLowerCase();
         filtered = filtered.filter(p => 
           (p.address || '').toLowerCase().includes(keywords) ||
           (p.description || '').toLowerCase().includes(keywords)
         );
+        console.log(`🔍 Keywords filter ("${keywords}"): ${beforeCount} → ${filtered.length}`);
       }
       
       // Ukloni duplikate
