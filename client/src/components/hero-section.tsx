@@ -168,8 +168,10 @@ export default function HeroSection({ onSearch, isLoading, searchResults }: Hero
                   onChange={(e) => setMinBedrooms(parseInt(e.target.value))}
                   className="w-full h-12 text-base border-2 border-gray-200 hover:border-purple-400 focus:border-purple-500 transition-colors rounded-xl px-4 bg-white"
                 >
-                  <option value={4}>4 bedrooms</option>
+                  <option value={1}>1 bedroom</option>
+                  <option value={2}>2 bedrooms</option>
                   <option value={3}>3 bedrooms</option>
+                  <option value={4}>4 bedrooms</option>
                   <option value={5}>5+ bedrooms</option>
                 </select>
               </div>
