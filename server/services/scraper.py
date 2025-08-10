@@ -573,9 +573,8 @@ def scrape_primelocation(city, min_bedrooms, max_price, keywords_blob):
             print(f"    Total unique links so far: {len(all_detail_links)}", file=sys.stderr)
             
             # Continue collecting links from all pages to get maximum coverage
-            # if len(all_detail_links) >= target_min_results:
-            #     print(f"✅ Reached target of {target_min_results} properties, stopping search", file=sys.stderr)
-            #     break
+            if len(all_detail_links) >= target_min_results:
+                print(f"✅ Reached target of {target_min_results} properties but continuing to get maximum results", file=sys.stderr)
                 
             # Reset failed attempts on success
             failed_attempts = 0
