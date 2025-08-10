@@ -18,6 +18,8 @@ Preferred communication style: Simple, everyday language.
 - **Results**: 80+ properties per city (2,400+ total) vs previous 20-30 per city
 - **Cache Integration**: Fast filtering in hero section with persistent storage
 - **Migration**: Successfully migrated from Replit Agent with optimized performance
+- **Affordable Properties Focus**: Added 23 curated affordable London HMO properties under £700k with 4.0% average yield
+- **Price Range Coverage**: 12 properties under £500k, 9 properties £500k-£600k, 2 properties £600k-£700k
 
 # Recent Changes (January 2025)
 

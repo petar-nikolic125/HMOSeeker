@@ -1,0 +1,17 @@
+[
+  {
+    "address": "1 Test Street, London E1",
+    "price": 300000,
+    "bedrooms": 4,
+    "bathrooms": 2,
+    "description": "Test HMO property",
+    "property_url": "https://primelocation.com/test/1",
+    "image_url": "",
+    "postcode": "E1 1AA",
+    "city": "london",
+    "monthly_rent": 1600,
+    "annual_rent": 19200,
+    "gross_yield": 6.4,
+    "listing_id": "test"
+  }
+]
