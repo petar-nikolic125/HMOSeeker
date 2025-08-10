@@ -21,7 +21,7 @@ Environment (optional):
   PROXY_LIST="http://user:pass@ip:port, http://ip2:port2"
   REQUESTS_TIMEOUT=25
   PL_MAX_PAGES=12         # how many search pages to walk (50 results per page requested)  
-  PL_MIN_RESULTS=150      # target number of properties per search before stopping
+  PL_MIN_RESULTS=200      # target number of properties per search before stopping
   PL_CACHE_TTL_HOURS=12   # skip re-scrape if cache is fresh unless REFRESH=1
   REFRESH=1               # force a refresh even if cache exists
 """
@@ -546,7 +546,7 @@ def scrape_primelocation(city, min_bedrooms, max_price, keywords_blob):
 
     proxies_env = os.getenv("PROXY_LIST", "")
     proxies_list = [p.strip() for p in proxies_env.split(",") if p.strip()]
-    target_min_results = as_int(os.getenv("PL_MIN_RESULTS", 150), 150)
+    target_min_results = as_int(os.getenv("PL_MIN_RESULTS", 200), 200)
 
     session = setup_session()
 
@@ -605,8 +605,8 @@ def scrape_primelocation(city, min_bedrooms, max_price, keywords_blob):
                     break
             continue
 
-    # Process maximum found properties for comprehensive results
-    detail_links = all_detail_links[:min(120, len(all_detail_links))]  # Increased cap for more results
+    # Process maximum found properties for comprehensive results - 200 per city
+    detail_links = all_detail_links[:min(200, len(all_detail_links))]  # Save 200 properties per city
     print(f"🎯 Processing {len(detail_links)} property detail pages (capped from {len(all_detail_links)} found)", file=sys.stderr)
 
     # 3) Visit each detail page and extract fields
