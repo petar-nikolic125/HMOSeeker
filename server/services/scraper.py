@@ -572,9 +572,10 @@ def scrape_primelocation(city, min_bedrooms, max_price, keywords_blob):
             all_detail_links = list(dict.fromkeys(all_detail_links))  # de-dupe, preserve order
             print(f"    Total unique links so far: {len(all_detail_links)}", file=sys.stderr)
             
-            if len(all_detail_links) >= target_min_results:
-                print(f"✅ Reached target of {target_min_results} properties, stopping search", file=sys.stderr)
-                break
+            # Continue collecting links from all pages to get maximum coverage
+            # if len(all_detail_links) >= target_min_results:
+            #     print(f"✅ Reached target of {target_min_results} properties, stopping search", file=sys.stderr)
+            #     break
                 
             # Reset failed attempts on success
             failed_attempts = 0
@@ -605,8 +606,8 @@ def scrape_primelocation(city, min_bedrooms, max_price, keywords_blob):
                     break
             continue
 
-    # Cap to reasonable number for faster processing while getting good coverage
-    detail_links = all_detail_links[:min(80, len(all_detail_links))]
+    # Process all found links for maximum coverage
+    detail_links = all_detail_links[:min(200, len(all_detail_links))]  # Allow more properties
     print(f"🎯 Processing {len(detail_links)} property detail pages (capped from {len(all_detail_links)} found)", file=sys.stderr)
 
     # 3) Visit each detail page and extract fields
