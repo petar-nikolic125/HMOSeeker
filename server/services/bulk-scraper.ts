@@ -1,4 +1,5 @@
 import { ScraperManager } from "./scraper-manager";
+import { CacheDatabase } from "./cache-database";
 
 /**
  * Bulk Scraper - popunjava cache za sve UK gradove
@@ -51,22 +52,43 @@ export class BulkScraper {
         console.log(`📍 [${i + 1}/${this.UK_CITIES.length}] Scraping ${city}...`);
 
         try {
-          // Scrapuj svaki grad sa standardnim parametrima
-          await ScraperManager.searchProperties({
+          // Scrapuj grad sa standardnim parametrima
+          const result = await ScraperManager.searchProperties({
             city: city,
             min_bedrooms: 1,
             max_price: 1500000,
-            refresh: false // Ne forsiraj refresh - koristi cache ako postoji
+            refresh: false // Koristi cache ako postoji, inače scrape
           });
 
-          console.log(`✅ ${city} completed successfully`);
+          // Ako imamo nove podatke, dodaj ih u cache database (preskače duplikate)
+          if (result.success && result.listings && result.listings.length > 0) {
+            // Konvertuj scraper output u cache format
+            const cacheProperties = result.listings.map((prop: any) => ({
+              address: prop.address,
+              price: prop.price,
+              bedrooms: prop.bedrooms,
+              bathrooms: prop.bathrooms,
+              description: prop.description,
+              property_url: prop.property_url,
+              image_url: prop.image_url,
+              postcode: prop.postcode,
+              city: city,
+              monthly_rent: prop.lhaMonthly || 400,
+              annual_rent: (prop.lhaMonthly || 400) * 12,
+              gross_yield: prop.grossYield || 0
+            }));
+            
+            await CacheDatabase.addPropertiesToCache(city, cacheProperties);
+          }
+
+          console.log(`✅ ${city} completed successfully (${result.count} properties)`);
           
-          // Kratka pauza između gradova da ne overloadujem servise
+          // Kratka pauza između gradova
           await new Promise(resolve => setTimeout(resolve, 2000));
           
         } catch (cityError) {
           console.error(`❌ Failed to scrape ${city}:`, cityError);
-          // Nastavi sa sledećim gradom umesto da prekineš ceo proces
+          // Nastavi sa sledećim gradom
           continue;
         }
       }
