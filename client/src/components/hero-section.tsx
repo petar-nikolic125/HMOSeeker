@@ -17,7 +17,7 @@ export default function HeroSection({ onSearch, isLoading }: HeroSectionProps) {
       city,
       maxPrice: maxPrice,
       minRooms: minBedrooms,
-      keywords: "hmo",
+      // Ne dodajemo automatski keywords "hmo" 
     };
     onSearch(filters);
   };
