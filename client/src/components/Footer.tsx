@@ -153,30 +153,29 @@ export const Footer = () => {
             </div>
             <div className="flex items-center gap-4">
               {/* Bulk Scrape Button */}
-              <Button
+              <button
                 onClick={handleStartScraping}
                 disabled={bulkScrapeMutation.isPending || (progress?.progress?.isRunning)}
-                size="sm"
-                className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white"
+                className="text-gray-400 hover:text-white transition-colors text-sm disabled:opacity-50 disabled:cursor-not-allowed"
                 data-testid="button-bulk-scrape"
               >
                 {bulkScrapeMutation.isPending ? (
                   <>
-                    <Loader2 className="w-4 h-4 animate-spin mr-2" />
+                    <Loader2 className="w-4 h-4 inline mr-1" />
                     Starting...
                   </>
                 ) : progress?.progress?.isRunning ? (
                   <>
-                    <Loader2 className="w-4 h-4 animate-spin mr-2" />
+                    <Loader2 className="w-4 h-4 inline animate-spin mr-1" />
                     Scraping {progress.progress.current}/{progress.progress.total}
                   </>
                 ) : (
                   <>
-                    <Database className="w-4 h-4 mr-2" />
+                    <Database className="w-4 h-4 inline mr-1" />
                     Scrape All UK Cities
                   </>
                 )}
-              </Button>
+              </button>
               
               <div className="flex items-center gap-2 text-sm text-gray-400">
                 <Calculator className="w-4 h-4" />
