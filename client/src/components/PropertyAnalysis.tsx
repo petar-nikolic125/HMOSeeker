@@ -80,8 +80,50 @@ export const PropertyAnalysis = ({ property, isOpen, onClose }: PropertyAnalysis
     const totalInput = salePricePounds + totalRenovation + bridgingLoanFee + legals;
     
     // Use the same LHA rate calculation from the backend (from property analytics)
-    // Get LHA from property data if available, otherwise use Liverpool default
-    const localLHARate = property.lhaWeekly ? (property.lhaWeekly * 52 / 12) : 400;
+    // Get LHA from property data if available, otherwise use city-based default
+    const getCityLHARate = (city: string) => {
+      const cityLower = city.toLowerCase();
+      const cityRates: { [key: string]: number } = {
+        'london': 1000,
+        'birmingham': 580,
+        'manchester': 650,
+        'liverpool': 520,
+        'leeds': 540,
+        'sheffield': 480,
+        'bristol': 700,
+        'glasgow': 470,
+        'leicester': 460,
+        'edinburgh': 700,
+        'newcastle': 480,
+        'nottingham': 500,
+        'cardiff': 520,
+        'coventry': 430,
+        'bradford': 390,
+        'stoke-on-trent': 350,
+        'wolverhampton': 380,
+        'plymouth': 420,
+        'southampton': 500,
+        'reading': 780,
+        'derby': 420,
+        'dudley': 380,
+        'northampton': 420,
+        'portsmouth': 460,
+        'preston': 360
+      };
+      return cityRates[cityLower] || 400;
+    };
+    
+    // Extract city from property data
+    const extractCityFromAddress = (address: string) => {
+      const parts = address.split(',');
+      if (parts.length > 1) {
+        return parts[parts.length - 1].trim().toLowerCase();
+      }
+      return '';
+    };
+    
+    const cityFromProperty = property.city || extractCityFromAddress(property.address || '');
+    const localLHARate = property.lhaWeekly ? (property.lhaWeekly * 52 / 12) : getCityLHARate(cityFromProperty);
     const totalIncomePA = localLHARate * hmoEvaluationBeds * 12;
     
     // Net profit calculation (assuming 25% for taxes, maintenance, voids, management)
@@ -126,7 +168,8 @@ export const PropertyAnalysis = ({ property, isOpen, onClose }: PropertyAnalysis
       const totalInput = property.price + totalRenovation + 30000 + 15000;
       const leftInDeal = totalInput * 0.25;
       // Use the same LHA rate as initial calculation
-      const localLHARate = property.lhaWeekly ? (property.lhaWeekly * 52 / 12) : 400;
+      const cityFromProperty = property.city || extractCityFromAddress(property.address || '');
+      const localLHARate = property.lhaWeekly ? (property.lhaWeekly * 52 / 12) : getCityLHARate(cityFromProperty);
       const totalIncomePA = localLHARate * hmoEvaluationBeds * 12;
       const netProfitPA = totalIncomePA * 0.75;
       const paybackYears = leftInDeal / netProfitPA;
