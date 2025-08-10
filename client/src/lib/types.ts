@@ -12,16 +12,16 @@ export interface PropertyWithAnalytics extends PropertyListing {
   roi?: number;
   grossYield?: number;
   profitabilityScore?: string;
-
+  
   // LHA and rental data
   lhaWeekly?: number;
   lhaMonthly?: number;
-
+  
   // Property URLs for different portals
   rightmoveUrl?: string;
   zooplaUrl?: string;
   primeLocationUrl?: string;
-
+  
   // UI properties that map to schema fields
   imageUrl?: string;  // Maps to image_url
   propertyUrl?: string; // Maps to property_url
