@@ -22,9 +22,39 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const { city, max_price, min_bedrooms, keywords } = req.query;
       
+      // Konvertuj max_price string u integer (1.5M -> 1500000)
+      const parsePrice = (priceStr: string): number => {
+        if (!priceStr) return 0;
+        
+        const str = priceStr.toString().toLowerCase().trim();
+        
+        // Ako je već prost broj
+        if (/^\d+$/.test(str)) {
+          return parseInt(str);
+        }
+        
+        // Konvertuj format sa M (milioni)
+        if (str.includes('m')) {
+          const numPart = str.replace('m', '').replace(/[^\d.]/g, '');
+          const num = parseFloat(numPart);
+          return Math.round(num * 1000000);
+        }
+        
+        // Konvertuj format sa K (hiljade)
+        if (str.includes('k')) {
+          const numPart = str.replace('k', '').replace(/[^\d.]/g, '');
+          const num = parseFloat(numPart);
+          return Math.round(num * 1000);
+        }
+        
+        // Fallback - pokušaj osnovni parseInt
+        const cleaned = str.replace(/[^\d]/g, '');
+        return parseInt(cleaned) || 0;
+      };
+
       const filters: any = {};
       if (city) filters.city = city as string;
-      if (max_price) filters.max_price = parseInt(max_price as string);
+      if (max_price) filters.max_price = parsePrice(max_price as string);
       if (min_bedrooms) filters.min_bedrooms = parseInt(min_bedrooms as string);
       if (keywords) filters.keywords = keywords as string;
 
