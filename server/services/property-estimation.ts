@@ -55,6 +55,7 @@ export interface Assumptions {
   transaction_costs_rate?: number;
   income_tax_rate?: number;
   renovation_cost_per_room?: number;
+  custom_rent_per_bedroom?: number;
   mortgage?: {
     loan_amount?: number;
     downpayment?: number;
@@ -105,6 +106,7 @@ export function estimatePropertyMetrics(prop: PropertyData, assumptions?: Assump
     transaction_costs_rate: 0.05,
     income_tax_rate: 0.20,
     renovation_cost_per_room: 17000,
+    custom_rent_per_bedroom: 0,
     mortgage: {
       loan_amount: 0,
       downpayment: 0,
@@ -130,8 +132,13 @@ export function estimatePropertyMetrics(prop: PropertyData, assumptions?: Assump
   let rent_source = "";
   let est_monthly_rent = 0;
 
-  // 1) Location-based rent if possible
-  if (method === 'location' && city) {
+  // Check for custom rent first
+  if (assumptions?.custom_rent_per_bedroom && bedrooms) {
+    est_monthly_rent = bedrooms * assumptions.custom_rent_per_bedroom;
+    rent_source = `custom_per_bed (${assumptions.custom_rent_per_bedroom}/bed)`;
+  }
+  // 1) Location-based rent if possible (only if no custom rent)
+  else if (method === 'location' && city) {
     const loc = locationRentDefaults[city];
     if (loc) {
       if (bedrooms && loc.rent_per_bed) {

@@ -3,7 +3,7 @@ import { X, Calculator, TrendingUp, Percent, Coins, CheckCircle, PoundSterling }
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import type { PropertyListing } from "@shared/schema";
-import type { PropertyAnalysis } from "@/lib/types";
+// Analysis type will be inferred from API response
 
 interface PropertyAnalysisModalProps {
   property: PropertyListing;
@@ -12,11 +12,24 @@ interface PropertyAnalysisModalProps {
 
 export default function PropertyAnalysisModal({ property, onClose }: PropertyAnalysisModalProps) {
   const [renovationCostPerRoom, setRenovationCostPerRoom] = useState(17000);
-  const [analysis, setAnalysis] = useState<PropertyAnalysis | null>(null);
+  // Set initial rent based on property city
+  const getInitialRent = (city: string) => {
+    const cityLower = city.toLowerCase();
+    if (cityLower.includes('london')) return 1000;
+    if (cityLower.includes('birmingham')) return 580;
+    if (cityLower.includes('manchester')) return 550;
+    if (cityLower.includes('liverpool')) return 520;
+    if (cityLower.includes('leeds')) return 520;
+    if (cityLower.includes('bristol')) return 650;
+    return 580; // Default fallback
+  };
+
+  const [rentPerBedroom, setRentPerBedroom] = useState(getInitialRent(property.city || ''));
+  const [analysis, setAnalysis] = useState<any>(null);
 
   const analysisMutation = useMutation({
     mutationFn: async () => {
-      const response = await apiRequest("GET", `/api/properties/${property.id}/analysis?renovation_cost=${renovationCostPerRoom}`);
+      const response = await apiRequest("GET", `/api/properties/${property.id}/analysis?renovation_cost=${renovationCostPerRoom}&rent_per_bedroom=${rentPerBedroom}`);
       return response.json();
     },
     onSuccess: (data) => {
@@ -28,11 +41,16 @@ export default function PropertyAnalysisModal({ property, onClose }: PropertyAna
 
   useEffect(() => {
     analysisMutation.mutate();
-  }, [property.id, renovationCostPerRoom]);
+  }, [property.id, renovationCostPerRoom, rentPerBedroom]);
 
-  // Auto-refetch analysis when renovation cost changes
+  // Auto-refetch analysis when parameters change
   const handleRenovationCostChange = (newCost: number) => {
     setRenovationCostPerRoom(newCost);
+    analysisMutation.mutate();
+  };
+
+  const handleRentChange = (newRent: number) => {
+    setRentPerBedroom(newRent);
     analysisMutation.mutate();
   };
 
@@ -102,6 +120,35 @@ export default function PropertyAnalysisModal({ property, onClose }: PropertyAna
                       <span className="inline-block bg-gray-100 border border-gray-300 rounded-lg px-4 py-2 text-lg font-semibold">
                         £{renovationCostPerRoom.toLocaleString()} per room
                       </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Rent Price Slider */}
+                <div className="bg-white border border-gray-200 rounded-2xl p-6">
+                  <div className="flex items-center gap-2 mb-4">
+                    <TrendingUp className="text-green-500" />
+                    <h3 className="text-lg font-semibold">Monthly Rent per Bedroom</h3>
+                  </div>
+                  <div className="space-y-4">
+                    <div className="px-4">
+                      <input 
+                        type="range" 
+                        min="400" 
+                        max="1200" 
+                        value={rentPerBedroom}
+                        step="50"
+                        onChange={(e) => handleRentChange(parseInt(e.target.value))}
+                        className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                      />
+                    </div>
+                    <div className="text-center">
+                      <span className="inline-block bg-gray-100 border border-gray-300 rounded-lg px-4 py-2 text-lg font-semibold">
+                        £{rentPerBedroom.toLocaleString()} per bedroom
+                      </span>
+                    </div>
+                    <div className="text-center text-sm text-gray-600">
+                      Total: £{(rentPerBedroom * (property.bedrooms || 4)).toLocaleString()}/month
                     </div>
                   </div>
                 </div>

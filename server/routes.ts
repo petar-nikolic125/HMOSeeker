@@ -408,7 +408,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const { id } = req.params;
       
-      console.log(`🔍 Analysis request for property ID: ${id}`);
+      const renovationCost = req.query.renovation_cost ? Number(req.query.renovation_cost) : 17000;
+      const rentPerBedroom = req.query.rent_per_bedroom ? Number(req.query.rent_per_bedroom) : null;
+      
+      console.log(`🔍 Analysis request for property ID: ${id}, renovation: £${renovationCost}, rent: £${rentPerBedroom || 'auto'}/bed`);
       
       // Check if this is a cache-based property ID
       if (id.startsWith('cache-')) {
@@ -461,9 +464,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
                 address: propertyForAnalysis.address
               };
 
-              // Check for custom renovation cost in query params
-              const customRenovationCost = req.query.renovation_cost ? 
-                parseFloat(req.query.renovation_cost as string) : 17000;
+              // Use renovation cost from earlier extraction
 
               const assumptions: Assumptions = {
                 method: 'location',
@@ -472,7 +473,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
                 management_fee_rate: 0.10,
                 transaction_costs_rate: 0.05,
                 income_tax_rate: 0.20,
-                renovation_cost_per_room: customRenovationCost,
+                renovation_cost_per_room: renovationCost,
+                custom_rent_per_bedroom: rentPerBedroom || undefined, // Pass custom rent to estimation system
                 mortgage: {
                   loan_amount: propertyForAnalysis.price * 0.75, // 75% LTV
                   downpayment: propertyForAnalysis.price * 0.25,

@@ -1,4 +1,5 @@
 import { Star, Percent, TrendingUp, Bath, Bed, Square, ExternalLink, Calculator } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
 import type { PropertyListing } from "@shared/schema";
 
 interface PropertyCardProps {
@@ -8,11 +9,27 @@ interface PropertyCardProps {
 }
 
 export default function PropertyCard({ property, onAnalyze, delay = 0 }: PropertyCardProps) {
-  // Use the investment metrics from the scraper if available, otherwise calculate
-  const grossYield = property.gross_yield || 0;
-  const monthlyRent = property.monthly_rent || (property.bedrooms || 4) * 400;
+  // Fetch real analysis data for this property
+  const { data: analysisData } = useQuery({
+    queryKey: ['analysis', property.id],
+    queryFn: async () => {
+      const response = await fetch(`/api/properties/${property.id}/analysis`);
+      if (!response.ok) return null;
+      return response.json();
+    },
+    enabled: !!property.id,
+    staleTime: 5 * 60 * 1000, // Cache for 5 minutes
+  });
+
+  // Use real analysis data if available, otherwise fallback to estimates
+  const realYield = analysisData?.analysis?.gross_yield_pct;
+  const realMonthlyRent = analysisData?.analysis?.estimated_monthly_rent;
+  const realROI = analysisData?.analysis?.simple_roi_pct;
+
+  const grossYield = realYield || property.gross_yield || 0;
+  const monthlyRent = realMonthlyRent || property.monthly_rent || (property.bedrooms || 4) * 400;
   const estimatedYield = grossYield || (property.price > 0 ? (monthlyRent * 12 / property.price * 100) : 0);
-  const estimatedRoi = estimatedYield * 1.5; // Conservative estimate
+  const estimatedRoi = realROI || estimatedYield * 1.5; // Use real ROI if available
 
   const getYieldColor = (yieldValue: number) => {
     if (yieldValue >= 8) return "from-emerald-500 to-green-500";
@@ -55,10 +72,14 @@ export default function PropertyCard({ property, onAnalyze, delay = 0 }: Propert
           </div>
         </div>
         
-        <div className="absolute top-5 right-5">
+        <div className="absolute top-5 right-5 flex flex-col gap-2">
           <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white border-0 shadow-xl backdrop-blur-md px-4 py-2 font-bold text-sm flex items-center gap-1.5 rounded-full">
             <Percent className="w-4 h-4" />
             {estimatedYield.toFixed(1)}% Yield
+          </div>
+          <div className="bg-gradient-to-r from-green-600 to-emerald-600 text-white border-0 shadow-xl backdrop-blur-md px-4 py-2 font-bold text-sm flex items-center gap-1.5 rounded-full">
+            <TrendingUp className="w-4 h-4" />
+            £{monthlyRent.toLocaleString()}/mo
           </div>
         </div>
 
