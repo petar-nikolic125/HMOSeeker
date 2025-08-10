@@ -16,6 +16,10 @@ Preferred communication style: Simple, everyday language.
 - **Cache-Based Analysis Fix**: Resolved property analysis endpoint for cache-generated property IDs
 - **Debug Logging Added**: Enhanced server-side logging for better troubleshooting
 - **Real Property Data**: Analysis now uses actual cached property data instead of placeholders
+- **Location-Based Rent Calculator**: Integrated 25 UK cities with real rent per bedroom data (London: £1000/bed, Birmingham: £580/bed, etc.)
+- **Accurate Financial Metrics**: Property cards now show real ROI, yield, and rent calculations based on city-specific data
+- **Customizable Renovation Costs**: Analysis endpoint supports renovation_cost parameter for personalized calculations
+- **Advanced Property Analysis**: Comprehensive metrics including NOI, cash-on-cash returns, and scenario modeling
 - **Automatic Startup**: Python dependencies auto-install on server startup
 - **Security Enhanced**: Proper client/server separation maintained during migration
 - **All Features Working**: Property search, analysis, and scraping fully functional

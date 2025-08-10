@@ -6,6 +6,7 @@ import { BulkScraper } from "./services/bulk-scraper";
 import { SyncScraper } from "./services/sync-scraper";
 import { PropertyAnalyzer } from "./services/property-analyzer";
 import { CacheDatabase } from "./services/cache-database";
+import { estimatePropertyMetrics, scenarioReport, type PropertyData, type Assumptions } from "./services/property-estimation";
 import { searchFiltersSchema } from "@shared/schema";
 import { z } from "zod";
 
@@ -67,31 +68,63 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       console.log(`📊 Found ${properties.length} properties in cache database`);
       
-      // Transform properties to match frontend expectations
-      const transformedListings = properties.map((prop, index) => ({
-        id: `cache-${Date.now()}-${index}`,
-        source: 'primelocation',
-        title: prop.address || 'Property Listing',
-        address: prop.address || '',
-        price: prop.price || 0,
-        bedrooms: prop.bedrooms || 0,
-        bathrooms: prop.bathrooms || 0,
-        description: prop.description || '',
-        property_url: prop.property_url || '',
-        image_url: prop.image_url || 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop',
-        listing_id: prop.listing_id || `cache-${Date.now()}-${index}`,
-        postcode: prop.postcode || '',
-        city: prop.city || filters.city,
-        // Add analytics data
-        roi: Math.round((prop.gross_yield || 0) * 3.2),
-        grossYield: prop.gross_yield || 0,
-        profitabilityScore: (prop.gross_yield || 0) > 8 ? 'High' : (prop.gross_yield || 0) > 6 ? 'Medium' : 'Low',
-        lhaWeekly: Math.round((prop.monthly_rent || 400) / 4.33),
-        lhaMonthly: prop.monthly_rent || 400,
-        imageUrl: prop.image_url || 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop',
-        propertyUrl: prop.property_url,
-        coordinates: [0, 0]
-      }));
+      // Transform properties to match frontend expectations with real calculations
+      const transformedListings = properties.map((prop, index) => {
+        // Calculate real metrics for each property
+        const propertyData: PropertyData = {
+          price: prop.price || 0,
+          bedrooms: prop.bedrooms || 0,
+          bathrooms: prop.bathrooms || 0,
+          city: prop.city || '',
+          postcode: prop.postcode || '',
+          address: prop.address || ''
+        };
+
+        const quickMetrics = estimatePropertyMetrics(propertyData, {
+          method: 'location',
+          annual_expense_rate: 0.30,
+          void_rate: 0.05,
+          management_fee_rate: 0.10,
+          renovation_cost_per_room: 17000,
+          mortgage: {
+            loan_amount: (prop.price || 0) * 0.75,
+            downpayment: (prop.price || 0) * 0.25,
+            annual_interest_rate: 0.055,
+            term_years: 25,
+          },
+        });
+
+        const grossYield = quickMetrics.gross_yield_pct || 0;
+        const monthlyRent = quickMetrics.estimated_monthly_rent || 400;
+        const roi = quickMetrics.cash_on_cash_pct || 0;
+
+        return {
+          id: `cache-${Date.now()}-${index}`,
+          source: 'primelocation',
+          title: prop.address || 'Property Listing',
+          address: prop.address || '',
+          price: prop.price || 0,
+          bedrooms: prop.bedrooms || 0,
+          bathrooms: prop.bathrooms || 0,
+          description: prop.description || '',
+          property_url: prop.property_url || '',
+          image_url: prop.image_url || 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop',
+          listing_id: prop.listing_id || `cache-${Date.now()}-${index}`,
+          postcode: prop.postcode || '',
+          city: prop.city || filters.city,
+          // Real calculated analytics data
+          roi: Math.round(roi * 10) / 10,
+          grossYield: Math.round(grossYield * 10) / 10,
+          profitabilityScore: grossYield > 8 ? 'High' : grossYield > 6 ? 'Medium' : 'Low',
+          lhaWeekly: Math.round(monthlyRent / 4.33),
+          lhaMonthly: Math.round(monthlyRent),
+          imageUrl: prop.image_url || 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop',
+          propertyUrl: prop.property_url,
+          coordinates: [0, 0],
+          // Include rent calculation method for debugging
+          rentMethod: quickMetrics.rent_method_used
+        };
+      });
       
       res.json({
         success: true,
@@ -245,59 +278,57 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
 
-      // Default assumptions for HMO analysis
-      const defaultAssumptions = {
-        method: 'location' as const,
-        annual_expense_rate: 0.30,    // 30% for maintenance, insurance, etc.
-        void_rate: 0.05,              // 5% vacancy rate
-        management_fee_rate: 0.10,    // 10% management fee
-        transaction_costs_rate: 0.05, // 5% transaction costs
-        income_tax_rate: 0.20,        // 20% income tax
+      // Default assumptions for HMO analysis using new system
+      const defaultAssumptions: Assumptions = {
+        method: 'location',
+        annual_expense_rate: 0.30,
+        void_rate: 0.05,
+        management_fee_rate: 0.10,
+        transaction_costs_rate: 0.05,
+        income_tax_rate: 0.20,
+        renovation_cost_per_room: 17000,
         mortgage: {
-          loan_amount: 0,             // Will be calculated based on LTV
-          downpayment: 0,             // Will be calculated
-          annual_interest_rate: 0.055, // 5.5% mortgage rate
+          annual_interest_rate: 0.055,
           term_years: 25,
         },
         ...assumptions,
       };
 
-      console.log(`🧮 Analyzing ${properties.length} properties...`);
+      console.log(`🧮 Analyzing ${properties.length} properties with new estimation system...`);
 
       // Analyze each property
       const analysisResults = properties.map((prop: any, index: number) => {
         console.log(`📊 Analyzing property ${index + 1}: ${prop.address || 'Unknown address'}`);
         
-        // Convert property to analyzer format
-        const propertyInput = {
+        // Convert property to new format
+        const propertyData: PropertyData = {
           price: prop.price || 0,
           bedrooms: prop.bedrooms || 0,
           bathrooms: prop.bathrooms || 0,
           city: prop.city || '',
           postcode: prop.postcode || '',
           address: prop.address || '',
-          description: prop.description || '',
         };
 
-        // Calculate mortgage details if needed
+        // Calculate mortgage details
         const updatedAssumptions = { ...defaultAssumptions };
-        if (propertyInput.price > 0 && defaultAssumptions.mortgage) {
+        if (propertyData.price > 0) {
           const ltv = 0.75; // 75% loan-to-value typical for HMO
-          const loan_amount = propertyInput.price * ltv;
-          const downpayment = propertyInput.price - loan_amount;
+          const loan_amount = propertyData.price * ltv;
+          const downpayment = propertyData.price - loan_amount;
           
           updatedAssumptions.mortgage = {
-            ...defaultAssumptions.mortgage,
+            ...updatedAssumptions.mortgage,
             loan_amount,
             downpayment,
           };
         }
 
-        // Get detailed analysis
-        const metrics = PropertyAnalyzer.estimatePropertyMetrics(propertyInput, updatedAssumptions);
+        // Get detailed analysis using new system
+        const metrics = estimatePropertyMetrics(propertyData, updatedAssumptions);
         
         // Get scenario analysis (conservative, typical, aggressive)
-        const scenarios = PropertyAnalyzer.scenarioReport(propertyInput, updatedAssumptions);
+        const scenarios = scenarioReport(propertyData, updatedAssumptions);
 
         return {
           original_property: prop,
@@ -420,10 +451,46 @@ export async function registerRoutes(app: Express): Promise<Server> {
               
               console.log(`📈 Generating analysis for real cached property: ${propertyForAnalysis.address}`);
               
-              // Use the existing analysis function
-              const analysis = calculatePropertyAnalysis(propertyForAnalysis);
+              // Use the new property estimation system with real city data
+              const propertyData: PropertyData = {
+                price: propertyForAnalysis.price,
+                bedrooms: propertyForAnalysis.bedrooms,
+                bathrooms: propertyForAnalysis.bathrooms,
+                city: propertyForAnalysis.city,
+                postcode: propertyForAnalysis.postcode,
+                address: propertyForAnalysis.address
+              };
+
+              // Check for custom renovation cost in query params
+              const customRenovationCost = req.query.renovation_cost ? 
+                parseFloat(req.query.renovation_cost as string) : 17000;
+
+              const assumptions: Assumptions = {
+                method: 'location',
+                annual_expense_rate: 0.30,
+                void_rate: 0.05,
+                management_fee_rate: 0.10,
+                transaction_costs_rate: 0.05,
+                income_tax_rate: 0.20,
+                renovation_cost_per_room: customRenovationCost,
+                mortgage: {
+                  loan_amount: propertyForAnalysis.price * 0.75, // 75% LTV
+                  downpayment: propertyForAnalysis.price * 0.25,
+                  annual_interest_rate: 0.055,
+                  term_years: 25,
+                },
+              };
+
+              const metrics = estimatePropertyMetrics(propertyData, assumptions);
+              const scenarios = scenarioReport(propertyData, assumptions);
+
+              const analysis = {
+                ...metrics,
+                scenarios,
+                assumptions_used: assumptions,
+              };
               
-              console.log(`✅ Analysis completed for cached property ${id}`);
+              console.log(`✅ Analysis completed for cached property ${id} (${metrics.rent_method_used})`);
               
               return res.json({
                 success: true,
