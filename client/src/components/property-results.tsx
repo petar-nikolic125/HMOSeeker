@@ -23,13 +23,13 @@ interface PropertyResultsProps {
 
 export default function PropertyResults({ properties, filters, onAnalyze, onRefresh, searchState, onSortChange, currentSort }: PropertyResultsProps) {
   const { isLoading, isCached, lastRefreshed, error } = searchState;
-  
+
   const formatTime = (date: Date | null) => {
     if (!date) return 'Never';
     const now = new Date();
     const diffMs = now.getTime() - date.getTime();
     const diffMins = Math.floor(diffMs / 60000);
-    
+
     if (diffMins < 1) return 'Just now';
     if (diffMins < 60) return `${diffMins} minute${diffMins > 1 ? 's' : ''} ago`;
     const diffHours = Math.floor(diffMins / 60);
@@ -47,29 +47,15 @@ export default function PropertyResults({ properties, filters, onAnalyze, onRefr
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
               Found <span className="font-semibold text-blue-600">{properties.length}</span> properties matching your criteria with high investment potential
             </p>
-            
+
             {/* Search Status */}
             <div className="flex items-center justify-center gap-6 text-sm">
-              <div className="flex items-center gap-2">
-                {isCached ? (
-                  <>
-                    <Database className="w-4 h-4 text-amber-600" />
-                    <span className="text-amber-700 font-medium">Cached Data</span>
-                  </>
-                ) : (
-                  <>
-                    <CheckCircle className="w-4 h-4 text-green-600" />
-                    <span className="text-green-700 font-medium">Fresh Data</span>
-                  </>
-                )}
-              </div>
-              
               <div className="flex items-center gap-2 text-gray-600">
                 <Clock className="w-4 h-4" />
                 <span>Updated {formatTime(lastRefreshed)}</span>
               </div>
             </div>
-            
+
             {error && (
               <div className="mx-auto max-w-md p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
                 Error: {error}

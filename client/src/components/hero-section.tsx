@@ -179,10 +179,6 @@ export default function HeroSection({ onSearch, isLoading }: HeroSectionProps) {
                   <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
                   HMO Suitable Only
                 </span>
-                <span className="flex items-center gap-1">
-                  <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
-                  Live Data Feed
-                </span>
               </div>
               <p className="text-xs text-gray-500">
                 Last updated: <span>{new Date().toLocaleTimeString()}</span> • UK property data compliance
