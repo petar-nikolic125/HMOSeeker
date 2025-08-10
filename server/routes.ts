@@ -264,6 +264,63 @@ export async function registerRoutes(app: Express): Promise<Server> {
     });
   });
 
+  // Bulk insert properties endpoint (for cache population)
+  app.post("/api/properties/bulk-insert", async (req, res) => {
+    try {
+      const { properties } = req.body;
+      
+      if (!Array.isArray(properties) || properties.length === 0) {
+        return res.status(400).json({
+          success: false,
+          error: "Properties array is required"
+        });
+      }
+
+      console.log(`📥 Bulk inserting ${properties.length} properties...`);
+      
+      // Transform to storage format
+      const propertyListings = properties.map((prop: any) => ({
+        source: prop.source || 'primelocation',
+        title: prop.title || 'Property Listing',
+        address: prop.address || '',
+        price: prop.price || 0,
+        bedrooms: prop.bedrooms || 0,
+        bathrooms: prop.bathrooms || 0,
+        area_sqm: prop.area_sqm || null,
+        description: prop.description || '',
+        property_url: prop.property_url || '',
+        image_url: prop.image_url || '',
+        listing_id: prop.listing_id || `bulk-${Date.now()}-${Math.random()}`,
+        property_type: prop.property_type || 'house',
+        tenure: prop.tenure || null,
+        postcode: prop.postcode || '',
+        agent_name: prop.agent_name || null,
+        agent_phone: prop.agent_phone || null,
+        agent_url: prop.agent_url || null,
+        latitude: prop.latitude || null,
+        longitude: prop.longitude || null,
+        date_listed: prop.date_listed || null,
+      }));
+
+      const saved = await storage.createPropertyListings(propertyListings);
+      
+      console.log(`✅ Successfully saved ${saved.length} properties to database`);
+      
+      res.json({
+        success: true,
+        saved_count: saved.length,
+        message: `Successfully saved ${saved.length} properties`
+      });
+      
+    } catch (error) {
+      console.error("Bulk insert failed:", error);
+      res.status(500).json({
+        success: false,
+        error: "Failed to save properties to database"
+      });
+    }
+  });
+
   // Cleanup old data endpoint (for maintenance)
   app.post("/api/cleanup", async (req, res) => {
     try {

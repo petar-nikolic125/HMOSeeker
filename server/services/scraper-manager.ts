@@ -263,6 +263,42 @@ export class ScraperManager {
               
               console.log(`Successfully transformed ${transformedProperties.length} properties`);
               
+              // KLJUČNO: Sačuvaj podatke u PostgreSQL bazu!
+              try {
+                console.log('💾 Saving properties to database...');
+                
+                // Transform to PropertyListing format for database
+                const propertyListings = transformedProperties.map((prop: any) => ({
+                  source: prop.source || 'primelocation',
+                  title: prop.title,
+                  address: prop.address,
+                  price: prop.price,
+                  bedrooms: prop.bedrooms,
+                  bathrooms: prop.bathrooms,
+                  area_sqm: null,
+                  description: prop.description,
+                  property_url: prop.property_url,
+                  image_url: prop.image_url,
+                  listing_id: prop.listing_id,
+                  property_type: 'house',
+                  tenure: null,
+                  postcode: prop.postcode,
+                  agent_name: null,
+                  agent_phone: null,
+                  agent_url: null,
+                  latitude: null,
+                  longitude: null,
+                  date_listed: null,
+                }));
+
+                const stored = await storage.createPropertyListings(propertyListings);
+                console.log(`✅ Successfully saved ${stored.length} properties to database`);
+                
+              } catch (dbError) {
+                console.error('❌ Failed to save properties to database:', dbError);
+                // Continue with transformed data even if DB save fails
+              }
+              
               const result = {
                 success: true,
                 city: filters.city,
