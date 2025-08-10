@@ -123,7 +123,7 @@ def as_int(val, default=None):
     except:
         return default
 
-def rand_delay(a=0.6, b=1.8):
+def rand_delay(a=0.3, b=0.8):
     time.sleep(random.uniform(a, b))
 
 
@@ -262,19 +262,25 @@ def build_search_urls(city, min_beds, max_price, filters):
     q = filters.get("postcode") or get_search_query_for_city(city)
     max_pages = as_int(os.getenv("PL_MAX_PAGES", 15), 15)
     
-    # Primary URL pattern - include HMO keywords in search
-    keywords = filters.get("keywords", "")
-    if keywords:
-        q = f"{q} {keywords}"  # Add keywords to search query
-    
+    # Build parameters exactly like PrimeLocation search
     base_params = {
         "q": q,
-        "page_size": "50",
+        "price_max": str(max_price) if max_price else "1500000",
+        "is_auction": "include",
+        "is_retirement_home": "include", 
+        "is_shared_ownership": "include",
+        "radius": "0",
+        "results_sort": "highest_price",
+        "search_source": "for-sale"
     }
+    
+    # Add HMO keywords as separate parameter
+    keywords = filters.get("keywords", "")
+    if keywords:
+        base_params["keywords"] = keywords.upper()  # PrimeLocation uses uppercase
+    
     if min_beds:
         base_params["beds_min"] = str(min_beds)
-    if max_price:
-        base_params["price_max"] = str(max_price)
     
     qs_base = "&".join([f"{k}={quote_plus(v)}" for k, v in base_params.items() if v])
     
@@ -295,7 +301,7 @@ def build_search_urls(city, min_beds, max_price, filters):
         else:
             urls.append(f"{pattern}?{qs_base}&pn={pn}")
     
-    # Add fallback patterns for first page only
+    # Add fallback patterns for first page only  
     for pattern in url_patterns[1:]:
         urls.append(f"{pattern}?{qs_base}")
     
@@ -377,8 +383,8 @@ def get_html(session, url, proxies_list=None, max_attempts=4):
         try:
             with_proxy(session, proxies_list, attempt)
             
-            # Longer delay between requests to avoid rate limiting
-            rand_delay(2.0, 4.0)
+            # Shorter delay for faster scraping
+            rand_delay(0.8, 1.5)
             
             # Update headers for each attempt
             session.headers.update({
@@ -393,8 +399,8 @@ def get_html(session, url, proxies_list=None, max_attempts=4):
             if r.status_code == 200 and r.content:
                 return r.text
             elif r.status_code in (403, 429):
-                # Anti-bot protection hit - increase backoff significantly
-                backoff_time = 5.0 + (attempt * 3.0)
+                # Anti-bot protection hit - moderate backoff  
+                backoff_time = 2.0 + (attempt * 1.5)
                 print(f"❌ Error on search page {attempt + 1}: Status {r.status_code}, backing off {backoff_time}s", file=sys.stderr)
                 time.sleep(backoff_time)
                 
@@ -404,7 +410,7 @@ def get_html(session, url, proxies_list=None, max_attempts=4):
                 continue
             else:
                 # Other HTTP errors
-                time.sleep(1.5 + attempt * 1.0)
+                time.sleep(0.5 + attempt * 0.5)
                 
         except requests.RequestException as e:
             last_exc = e
@@ -540,7 +546,7 @@ def scrape_primelocation(city, min_bedrooms, max_price, keywords_blob):
 
     proxies_env = os.getenv("PROXY_LIST", "")
     proxies_list = [p.strip() for p in proxies_env.split(",") if p.strip()]
-    target_min_results = as_int(os.getenv("PL_MIN_RESULTS", 25), 25)
+    target_min_results = as_int(os.getenv("PL_MIN_RESULTS", 200), 200)
 
     session = setup_session()
 

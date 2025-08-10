@@ -59,7 +59,7 @@ export class BulkScraper {
             min_bedrooms: 1,
             max_price: 1500000,
             keywords: "hmo", // Samo HMO oglasi
-            refresh: false // Koristi cache ako postoji, inače scrape
+            refresh: true // Forsiraj svež scrape za više rezultata
           });
 
           // Ako imamo nove podatke, dodaj ih u cache database (preskače duplikate)

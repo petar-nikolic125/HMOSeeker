@@ -1,0 +1,44 @@
+[
+  {
+    "address": "3 bed terraced house for sale Steepwood Croft, Birmingham, West Midlands B30",
+    "price": 285000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "description": "3-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70917608/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/7fb447673bb21e561418d5871fcf48f0672fb6e2.jpg",
+    "postcode": "",
+    "city": "Birmingham",
+    "monthly_rent": 345,
+    "annual_rent": 4140,
+    "gross_yield": 1.45
+  },
+  {
+    "address": "1 bed flat for sale Bishopsgate Street, Birmingham B15",
+    "price": 138000,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "description": "1-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70223719/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/73cf55a5dcce30961f5eb6dba457509605e90beb.jpg",
+    "postcode": "",
+    "city": "Birmingham",
+    "monthly_rent": 115,
+    "annual_rent": 1380,
+    "gross_yield": 1
+  },
+  {
+    "address": "3 bed semi-detached house for sale Middle Park Road, Birmingham B29",
+    "price": 500000,
+    "bedrooms": 3,
+    "bathrooms": 5,
+    "description": "3-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70396271/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/6ad3dff1361b8c78c7f61dc1cbc043cc7eb75501.jpg",
+    "postcode": "",
+    "city": "Birmingham",
+    "monthly_rent": 345,
+    "annual_rent": 4140,
+    "gross_yield": 0.83
+  }
+]
