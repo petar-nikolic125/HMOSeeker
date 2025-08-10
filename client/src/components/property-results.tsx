@@ -1,7 +1,9 @@
-import { Clock, Filter, RefreshCw, CheckCircle, Database } from "lucide-react";
+import React from "react";
+import { Clock, Filter, RefreshCw, CheckCircle, Database, AlertCircle } from "lucide-react";
 import PropertyCard from "./property-card";
 import type { PropertyListing } from "@shared/schema";
 import type { SearchFilters, PropertyWithAnalytics } from "@/lib/types";
+import { useToast } from "@/hooks/use-toast";
 
 interface SearchState {
   properties: any[];
@@ -23,6 +25,21 @@ interface PropertyResultsProps {
 
 export default function PropertyResults({ properties, filters, onAnalyze, onRefresh, searchState, onSortChange, currentSort }: PropertyResultsProps) {
   const { isLoading, isCached, lastRefreshed, error } = searchState;
+  const { toast } = useToast();
+
+  // Show toast when no results due to filters
+  const hasActiveFilters = filters.max_price || filters.min_bedrooms || filters.keywords;
+  
+  React.useEffect(() => {
+    if (!isLoading && properties.length === 0 && hasActiveFilters && !error) {
+      toast({
+        title: "Nema rezultata za trenutne filtere",
+        description: `Pronađeno je 0 nekretnina u ${filters.city} koje zadovoljavaju vaše kriterijume. Pokušajte da ublažite filtere ili promenite grad.`,
+        variant: "destructive",
+        duration: 4000,
+      });
+    }
+  }, [isLoading, properties.length, hasActiveFilters, filters.city, error, toast]);
 
   const formatTime = (date: Date | null) => {
     if (!date) return 'Never';
@@ -123,15 +140,17 @@ export default function PropertyResults({ properties, filters, onAnalyze, onRefr
         ) : (
           <div className="text-center py-12">
             <div className="w-24 h-24 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
-              <Clock className="w-12 h-12 text-gray-400" />
+              <AlertCircle className="w-12 h-12 text-gray-400" />
             </div>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">
-              {error ? 'Search Failed' : 'No Properties Found'}
+              {error ? 'Search Failed' : hasActiveFilters ? 'Nema rezultata za filtere' : 'No Properties Found'}
             </h3>
             <p className="text-gray-600 mb-6">
               {error 
                 ? 'There was an error searching for properties. Please try a different search or check your connection.'
-                : `No HMO-suitable properties found for your search criteria in ${filters.city}. ${isCached ? 'Try adjusting your filters or search in a different area.' : 'Try adjusting your filters or searching in a different area.'}`
+                : hasActiveFilters 
+                  ? `Trenutni filteri su previše restriktivni za ${filters.city}. Pokušajte da ublažite kriterijume pretrage.`
+                  : `No HMO-suitable properties found in ${filters.city}. Try searching in a different area.`
               }
             </p>
           </div>
