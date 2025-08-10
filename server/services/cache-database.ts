@@ -13,13 +13,16 @@ export class CacheDatabase {
    * Učitaj sve properties iz cache-a za određeni grad
    */
   static async getPropertiesForCity(city: string): Promise<any[]> {
-    // Pokušaj različite varijante naziva grada
+    // Pokušaj različite varijante naziva grada - prvo tačno ime, zatim varijacije
     const possibleDirNames = [
-      city.toLowerCase(),
+      city.toLowerCase().trim(),
       city.toLowerCase().replace(/\s+/g, '-'),
       city.toLowerCase().replace(/\s+/g, '_'),
-      city.toLowerCase().replace(/[^a-z]/g, ''),
-      city.toLowerCase().replace(/\s+/g, '').replace(/[^a-z]/g, '')
+      city.toLowerCase().replace(/[^a-z-]/g, ''),
+      city.toLowerCase().replace(/\s+/g, '').replace(/[^a-z]/g, ''),
+      // Dodatne varijacije za slučajeve kao što su "Greater Manchester"
+      city.toLowerCase().split(' ')[0], // Prvi deo imena (npr "greater" za "Greater Manchester")
+      city.toLowerCase().split(' ').pop() // Poslednji deo imena (npr "manchester" za "Greater Manchester")
     ];
     
     let cityDir = '';

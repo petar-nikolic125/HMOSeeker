@@ -20,8 +20,8 @@ PrimeLocation scraper (99%-style reliability, caching, anti-403, proxy support)
 Environment (optional):
   PROXY_LIST="http://user:pass@ip:port, http://ip2:port2"
   REQUESTS_TIMEOUT=25
-  PL_MAX_PAGES=6          # how many search pages to walk (50 results per page requested)  
-  PL_MIN_RESULTS=60       # target number of properties per search before stopping
+  PL_MAX_PAGES=12         # how many search pages to walk (50 results per page requested)  
+  PL_MIN_RESULTS=150      # target number of properties per search before stopping
   PL_CACHE_TTL_HOURS=12   # skip re-scrape if cache is fresh unless REFRESH=1
   REFRESH=1               # force a refresh even if cache exists
 """
@@ -260,7 +260,7 @@ def build_search_urls(city, min_beds, max_price, filters):
     """
     city_slug = slug_city(city)
     q = filters.get("postcode") or get_search_query_for_city(city)
-    max_pages = as_int(os.getenv("PL_MAX_PAGES", 6), 6)
+    max_pages = as_int(os.getenv("PL_MAX_PAGES", 12), 12)
     
     # Build parameters exactly like PrimeLocation search
     base_params = {
@@ -320,7 +320,7 @@ def get_search_query_for_city(city):
         "kingston upon hull": "Hull, East Yorkshire",
         "bradford": "Bradford, West Yorkshire",
         "sheffield": "Sheffield, South Yorkshire", 
-        "manchester": "Greater Manchester",
+        "manchester": "Manchester",  # Exact Manchester, not Greater Manchester
         "greater manchester": "Greater Manchester",
         "liverpool": "Liverpool, Merseyside",
         "birmingham": "Birmingham, West Midlands",
@@ -546,7 +546,7 @@ def scrape_primelocation(city, min_bedrooms, max_price, keywords_blob):
 
     proxies_env = os.getenv("PROXY_LIST", "")
     proxies_list = [p.strip() for p in proxies_env.split(",") if p.strip()]
-    target_min_results = as_int(os.getenv("PL_MIN_RESULTS", 60), 60)
+    target_min_results = as_int(os.getenv("PL_MIN_RESULTS", 150), 150)
 
     session = setup_session()
 
@@ -606,8 +606,8 @@ def scrape_primelocation(city, min_bedrooms, max_price, keywords_blob):
                     break
             continue
 
-    # Process reasonable number for stable execution
-    detail_links = all_detail_links[:min(60, len(all_detail_links))]  # Cap for stability
+    # Process maximum found properties for comprehensive results
+    detail_links = all_detail_links[:min(120, len(all_detail_links))]  # Increased cap for more results
     print(f"🎯 Processing {len(detail_links)} property detail pages (capped from {len(all_detail_links)} found)", file=sys.stderr)
 
     # 3) Visit each detail page and extract fields
