@@ -52,6 +52,7 @@ export class CacheDatabase {
       const jsonFiles = files.filter(f => f.endsWith('.json'));
       
       console.log(`📄 Found ${jsonFiles.length} JSON files in ${cityDir}`);
+      console.log(`📂 File list: ${jsonFiles.join(', ')}`);
       
       let allProperties: any[] = [];
       
