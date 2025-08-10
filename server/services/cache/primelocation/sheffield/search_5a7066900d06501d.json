@@ -1,19 +1,5 @@
 [
   {
-    "address": "4 bed terraced house for sale Queens Road, Sheffield, South Yorkshire S2",
-    "postcode": null,
-    "price": 230000,
-    "bedrooms": 4,
-    "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/98edb712445c55407128c75beb5e49bb4407730d.jpg",
-    "description": "4-bed property in Sheffield.",
-    "property_url": "https://www.primelocation.com/for-sale/details/66633183/",
-    "city": "Sheffield",
-    "monthly_rent": 400,
-    "annual_rent": 4800,
-    "gross_yield": 2.09
-  },
-  {
     "address": "1 bed flat for sale Dun Street, Sheffield S3",
     "postcode": null,
     "price": 40000,
@@ -26,20 +12,6 @@
     "monthly_rent": 100,
     "annual_rent": 1200,
     "gross_yield": 3.0
-  },
-  {
-    "address": "4 bed terraced house for sale Neill Road, Sheffield S11",
-    "postcode": null,
-    "price": 250000,
-    "bedrooms": 4,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/c655cb2e989b545069edfeafacc1a8bbea20a0b8.jpg",
-    "description": "4-bed property in Sheffield.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70901645/",
-    "city": "Sheffield",
-    "monthly_rent": 400,
-    "annual_rent": 4800,
-    "gross_yield": 1.92
   },
   {
     "address": "4 bed flat for sale 8 And 8A Victoria Road Stocksbridge, Sheffield, South Yorkshire S36",
@@ -56,18 +28,18 @@
     "gross_yield": 2.4
   },
   {
-    "address": "6 bed terraced house for sale Pickmere Road, Sheffield S10",
+    "address": "4 bed terraced house for sale Shoreham Street, City Centre S2",
     "postcode": null,
-    "price": 300000,
-    "bedrooms": 6,
+    "price": 190000,
+    "bedrooms": 4,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/057c0018899279ff1384d9cc9fc1c71d89445bc9.jpg",
-    "description": "6-bed property in Sheffield.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70542516/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/5ba20c838446c45cc92ae2b26e9723a44484c436.jpg",
+    "description": "4-bed property in Sheffield.",
+    "property_url": "https://www.primelocation.com/for-sale/details/69818559/",
     "city": "Sheffield",
-    "monthly_rent": 600,
-    "annual_rent": 7200,
-    "gross_yield": 2.4
+    "monthly_rent": 400,
+    "annual_rent": 4800,
+    "gross_yield": 2.53
   },
   {
     "address": "6 bed terraced house for sale Cemetery Avenue, Sheffield S11",
@@ -84,20 +56,6 @@
     "gross_yield": 2.25
   },
   {
-    "address": "6 bed terraced house for sale Shoreham Street, Sheffield, South Yorkshire S2",
-    "postcode": null,
-    "price": 270000,
-    "bedrooms": 6,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/cb96369d45ff8a7180fc139aa8cbb9900a3fbbb3.jpg",
-    "description": "6-bed property in Sheffield.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70900901/",
-    "city": "Sheffield",
-    "monthly_rent": 600,
-    "annual_rent": 7200,
-    "gross_yield": 2.67
-  },
-  {
     "address": "5 bed end terrace house for sale The Nook, Sheffield S10",
     "postcode": null,
     "price": 290000,
@@ -110,34 +68,6 @@
     "monthly_rent": 500,
     "annual_rent": 6000,
     "gross_yield": 2.07
-  },
-  {
-    "address": "4 bed flat for sale Abbeydale Road, Sheffield S7",
-    "postcode": null,
-    "price": 179950,
-    "bedrooms": 4,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/db1d3b088e671c5957d8e44fd67a15f64f6d8246.jpg",
-    "description": "4-bed property in Sheffield.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69905710/",
-    "city": "Sheffield",
-    "monthly_rent": 400,
-    "annual_rent": 4800,
-    "gross_yield": 2.67
-  },
-  {
-    "address": "5 bed flat for sale Edward Street, Sheffield, South Yorkshire S3",
-    "postcode": null,
-    "price": 70000,
-    "bedrooms": 5,
-    "bathrooms": 5,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/d938ee2484d6e18adb979477541ea965ae308667.jpg",
-    "description": "5-bed property in Sheffield.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70549397/",
-    "city": "Sheffield",
-    "monthly_rent": 500,
-    "annual_rent": 6000,
-    "gross_yield": 8.57
   },
   {
     "address": "7 bed property for sale Watson Road, Sheffield S10",
@@ -154,17 +84,87 @@
     "gross_yield": 1.68
   },
   {
-    "address": "4 bed terraced house for sale Shoreham Street, City Centre S2",
+    "address": "4 bed terraced house for sale Queens Road, Sheffield, South Yorkshire S2",
     "postcode": null,
-    "price": 190000,
+    "price": 230000,
     "bedrooms": 4,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/5ba20c838446c45cc92ae2b26e9723a44484c436.jpg",
+    "bathrooms": 3,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/98edb712445c55407128c75beb5e49bb4407730d.jpg",
     "description": "4-bed property in Sheffield.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69818559/",
+    "property_url": "https://www.primelocation.com/for-sale/details/66633183/",
     "city": "Sheffield",
     "monthly_rent": 400,
     "annual_rent": 4800,
-    "gross_yield": 2.53
+    "gross_yield": 2.09
+  },
+  {
+    "address": "4 bed flat for sale Abbeydale Road, Sheffield S7",
+    "postcode": null,
+    "price": 179950,
+    "bedrooms": 4,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/db1d3b088e671c5957d8e44fd67a15f64f6d8246.jpg",
+    "description": "4-bed property in Sheffield.",
+    "property_url": "https://www.primelocation.com/for-sale/details/69905710/",
+    "city": "Sheffield",
+    "monthly_rent": 400,
+    "annual_rent": 4800,
+    "gross_yield": 2.67
+  },
+  {
+    "address": "6 bed terraced house for sale Shoreham Street, Sheffield, South Yorkshire S2",
+    "postcode": null,
+    "price": 270000,
+    "bedrooms": 6,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/cb96369d45ff8a7180fc139aa8cbb9900a3fbbb3.jpg",
+    "description": "6-bed property in Sheffield.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70900901/",
+    "city": "Sheffield",
+    "monthly_rent": 600,
+    "annual_rent": 7200,
+    "gross_yield": 2.67
+  },
+  {
+    "address": "4 bed terraced house for sale Neill Road, Sheffield S11",
+    "postcode": null,
+    "price": 250000,
+    "bedrooms": 4,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/c655cb2e989b545069edfeafacc1a8bbea20a0b8.jpg",
+    "description": "4-bed property in Sheffield.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70901645/",
+    "city": "Sheffield",
+    "monthly_rent": 400,
+    "annual_rent": 4800,
+    "gross_yield": 1.92
+  },
+  {
+    "address": "6 bed terraced house for sale Pickmere Road, Sheffield S10",
+    "postcode": null,
+    "price": 300000,
+    "bedrooms": 6,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/057c0018899279ff1384d9cc9fc1c71d89445bc9.jpg",
+    "description": "6-bed property in Sheffield.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70542516/",
+    "city": "Sheffield",
+    "monthly_rent": 600,
+    "annual_rent": 7200,
+    "gross_yield": 2.4
+  },
+  {
+    "address": "5 bed flat for sale Edward Street, Sheffield, South Yorkshire S3",
+    "postcode": null,
+    "price": 70000,
+    "bedrooms": 5,
+    "bathrooms": 5,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/d938ee2484d6e18adb979477541ea965ae308667.jpg",
+    "description": "5-bed property in Sheffield.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70549397/",
+    "city": "Sheffield",
+    "monthly_rent": 500,
+    "annual_rent": 6000,
+    "gross_yield": 8.57
   }
 ]
