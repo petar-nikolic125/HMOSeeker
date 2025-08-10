@@ -6,15 +6,16 @@ import { CacheDatabase } from "./cache-database";
  */
 export class BulkScraper {
   
-  // Lista glavnih UK gradova za scraping
+  // Lista glavnih UK gradova za scraping - uključujući regionalne varijante
   private static readonly UK_CITIES = [
-    "London", "Birmingham", "Manchester", "Liverpool", "Leeds", "Sheffield", 
+    "London", "Birmingham", "Greater Manchester", "Liverpool", "Leeds", "Sheffield", 
     "Bristol", "Newcastle", "Nottingham", "Leicester", "Portsmouth", "Southampton",
     "Brighton", "Hull", "Plymouth", "Stoke", "Wolverhampton", "Derby",
     "Swansea", "Cardiff", "Belfast", "Glasgow", "Edinburgh", "Aberdeen",
     "Coventry", "Bradford", "Sunderland", "Bournemouth", "Norwich", "Middlesbrough",
     "Swindon", "Crawley", "Ipswich", "Wigan", "Croydon", "Walsall",
-    "Mansfield", "Oxford", "Warrington", "Slough", "Peterborough", "Cambridge"
+    "Mansfield", "Oxford", "Warrington", "Slough", "Peterborough", "Cambridge",
+    "Manchester", "Stockport", "Oldham", "Bolton", "Rochdale", "Salford"
   ];
 
   private static isRunning = false;
@@ -52,11 +53,12 @@ export class BulkScraper {
         console.log(`📍 [${i + 1}/${this.UK_CITIES.length}] Scraping ${city}...`);
 
         try {
-          // Scrapuj grad sa standardnim parametrima
+          // Scrapuj grad sa fokusiranjem na HMO nekretnine
           const result = await ScraperManager.searchProperties({
             city: city,
             min_bedrooms: 1,
             max_price: 1500000,
+            keywords: "hmo", // Samo HMO oglasi
             refresh: false // Koristi cache ako postoji, inače scrape
           });
 

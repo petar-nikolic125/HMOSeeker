@@ -10,6 +10,16 @@ Preferred communication style: Simple, everyday language.
 
 # Recent Changes (January 2025)
 
+## Enhanced Bulk Scraper for HMO Properties (Replit Migration - August 2025)
+- **Enhanced Scraping**: Updated scraper to find many more properties per city (15 pages instead of 4)
+- **HMO Focus**: Changed keyword search to only "hmo" for targeted results
+- **Regional Search**: Added Greater Manchester and regional variations for better coverage
+- **City Coverage**: Extended to 48+ UK cities including Manchester variations (Manchester, Stockport, Oldham, Bolton, Rochdale, Salford)
+- **Target**: 200+ properties per city instead of previous 50 minimum
+- **Migration**: Successfully migrated from Replit Agent to standard Replit environment
+
+# Recent Changes (January 2025)
+
 ## Cache-Based Database System (MAJOR UPGRADE)
 - **Architecture Change**: Migrated from PostgreSQL to cache-file-based persistent storage
 - **New System**: `CacheDatabase` service (`server/services/cache-database.ts`) 

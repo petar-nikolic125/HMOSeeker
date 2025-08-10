@@ -20,8 +20,8 @@ PrimeLocation scraper (99%-style reliability, caching, anti-403, proxy support)
 Environment (optional):
   PROXY_LIST="http://user:pass@ip:port, http://ip2:port2"
   REQUESTS_TIMEOUT=25
-  PL_MAX_PAGES=4          # how many search pages to walk (50 results per page requested)
-  PL_MIN_RESULTS=50       # target number of properties per search before stopping
+  PL_MAX_PAGES=15         # how many search pages to walk (50 results per page requested)  
+  PL_MIN_RESULTS=200      # target number of properties per search before stopping
   PL_CACHE_TTL_HOURS=12   # skip re-scrape if cache is fresh unless REFRESH=1
   REFRESH=1               # force a refresh even if cache exists
 """
@@ -59,7 +59,8 @@ CITY_MAPPINGS = {
     "hull": "kingston-upon-hull",
     "kingston upon hull": "kingston-upon-hull",
     "birmingham": "birmingham",
-    "manchester": "manchester",
+    "manchester": "greater-manchester",
+    "greater manchester": "greater-manchester",
     "leeds": "leeds",
     "sheffield": "sheffield",
     "bristol": "bristol",
@@ -259,9 +260,13 @@ def build_search_urls(city, min_beds, max_price, filters):
     """
     city_slug = slug_city(city)
     q = filters.get("postcode") or get_search_query_for_city(city)
-    max_pages = as_int(os.getenv("PL_MAX_PAGES", 4), 4)
+    max_pages = as_int(os.getenv("PL_MAX_PAGES", 15), 15)
     
-    # Primary URL pattern
+    # Primary URL pattern - include HMO keywords in search
+    keywords = filters.get("keywords", "")
+    if keywords:
+        q = f"{q} {keywords}"  # Add keywords to search query
+    
     base_params = {
         "q": q,
         "page_size": "50",
@@ -282,16 +287,17 @@ def build_search_urls(city, min_beds, max_price, filters):
         f"https://www.primelocation.com/for-sale/",  # Fallback
     ]
     
-    for pattern in url_patterns:
-        for pn in range(1, min(max_pages + 1, 3)):  # Limit fallback pages
-            if pn == 1:
-                urls.append(f"{pattern}?{qs_base}")
-            else:
-                urls.append(f"{pattern}?{qs_base}&pn={pn}")
-        
-        # Only try first pattern initially, others are fallbacks
-        if pattern == url_patterns[0]:
-            break
+    # Generate URLs for primary pattern only (more pages)
+    pattern = url_patterns[0]
+    for pn in range(1, max_pages + 1):
+        if pn == 1:
+            urls.append(f"{pattern}?{qs_base}")
+        else:
+            urls.append(f"{pattern}?{qs_base}&pn={pn}")
+    
+    # Add fallback patterns for first page only
+    for pattern in url_patterns[1:]:
+        urls.append(f"{pattern}?{qs_base}")
     
     return urls
 
@@ -307,8 +313,9 @@ def get_search_query_for_city(city):
         "hull": "Hull, East Yorkshire",
         "kingston upon hull": "Hull, East Yorkshire",
         "bradford": "Bradford, West Yorkshire",
-        "sheffield": "Sheffield, South Yorkshire",
-        "manchester": "Manchester, Greater Manchester",
+        "sheffield": "Sheffield, South Yorkshire", 
+        "manchester": "Greater Manchester",
+        "greater manchester": "Greater Manchester",
         "liverpool": "Liverpool, Merseyside",
         "birmingham": "Birmingham, West Midlands",
         "nottingham": "Nottingham, Nottinghamshire",
