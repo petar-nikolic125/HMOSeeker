@@ -376,9 +376,96 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/properties/:id/analysis", async (req, res) => {
     try {
       const { id } = req.params;
+      
+      console.log(`🔍 Analysis request for property ID: ${id}`);
+      
+      // Check if this is a cache-based property ID
+      if (id.startsWith('cache-')) {
+        console.log(`📊 Cache-based property ID detected: ${id}`);
+        
+        // Extract timestamp and index from cache ID format: cache-timestamp-index
+        const parts = id.split('-');
+        if (parts.length >= 3) {
+          const timestamp = parts[1];
+          const index = parseInt(parts[2]);
+          
+          console.log(`🕒 Extracted timestamp: ${timestamp}, index: ${index}`);
+          
+          // Try to find the actual property from cache by searching all properties
+          // and matching by index position from the same timestamp
+          try {
+            console.log(`🔍 Searching cache for properties to match index ${index}...`);
+            
+            // Get all cached properties (without filters to find the exact one)
+            const allProperties = await CacheDatabase.searchProperties({});
+            console.log(`📄 Found ${allProperties.length} total cached properties`);
+            
+            // Use the index to get the specific property
+            if (index < allProperties.length && allProperties[index]) {
+              const cachedProperty = allProperties[index];
+              console.log(`✅ Found cached property at index ${index}: ${cachedProperty.address}`);
+              
+              // Convert cache property to analysis format
+              const propertyForAnalysis = {
+                id: id,
+                title: cachedProperty.address || 'HMO Property',
+                address: cachedProperty.address || '',
+                price: cachedProperty.price || 450000,
+                bedrooms: cachedProperty.bedrooms || 4,
+                bathrooms: cachedProperty.bathrooms || 2,
+                city: cachedProperty.city || 'London',
+                postcode: cachedProperty.postcode || '',
+                description: cachedProperty.description || 'Multi-bedroom property'
+              };
+              
+              console.log(`📈 Generating analysis for real cached property: ${propertyForAnalysis.address}`);
+              
+              // Use the existing analysis function
+              const analysis = calculatePropertyAnalysis(propertyForAnalysis);
+              
+              console.log(`✅ Analysis completed for cached property ${id}`);
+              
+              return res.json({
+                success: true,
+                property: propertyForAnalysis,
+                analysis,
+                source: 'cache',
+                cache_info: {
+                  timestamp,
+                  index,
+                  original_cache_data: cachedProperty
+                }
+              });
+            } else {
+              console.log(`❌ Property index ${index} not found in cache (total: ${allProperties.length})`);
+              return res.status(404).json({
+                success: false,
+                error: `Property index ${index} not found in cache`,
+              });
+            }
+          } catch (cacheError) {
+            console.error(`❌ Error accessing cache for property ${id}:`, cacheError);
+            return res.status(500).json({
+              success: false,
+              error: "Failed to access cache data",
+              details: cacheError instanceof Error ? cacheError.message : 'Unknown cache error'
+            });
+          }
+        } else {
+          console.log(`❌ Invalid cache ID format: ${id}`);
+          return res.status(400).json({
+            success: false,
+            error: "Invalid cache property ID format",
+          });
+        }
+      }
+      
+      // Try to get property from storage (legacy path)
+      console.log(`🗄️ Looking up property in storage: ${id}`);
       const property = await storage.getPropertyListing(id);
       
       if (!property) {
+        console.log(`❌ Property not found in storage: ${id}`);
         return res.status(404).json({
           success: false,
           error: "Property not found",
@@ -388,16 +475,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Calculate investment analysis
       const analysis = calculatePropertyAnalysis(property);
       
+      console.log(`✅ Analysis completed for storage property ${id}`);
+      
       res.json({
         success: true,
         property,
         analysis,
+        source: 'storage'
       });
     } catch (error) {
       console.error("Failed to get property analysis:", error);
       res.status(500).json({
         success: false,
         error: "Failed to retrieve property analysis",
+        details: error instanceof Error ? error.message : 'Unknown error'
       });
     }
   });
