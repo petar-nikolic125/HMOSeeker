@@ -1,0 +1,270 @@
+import re
+import json
+import requests  # if the script fetches data from web
+from bs4 import BeautifulSoup  # if HTML parsing is needed
+
+# Define known Article 4 areas for quick lookup
+ARTICLE4_BOROUGHS = {
+    # London boroughs with any Article 4 Direction for small HMOs (full or partial coverage)
+    "Barking and Dagenham", "Barnet", "Bexley", "Brent", "Croydon", "Enfield",
+    "Greenwich", "Havering", "Hounslow", "Newham", "Redbridge", "Tower Hamlets",
+    "Waltham Forest", "Hillingdon", "Ealing", "Haringey", "Southwark", "Lewisham",
+    "Merton", "Bromley", "Kingston upon Thames", "Sutton"
+    # (Boroughs not listed here are assumed *not* to have HMO Article 4 directions)
+}
+ARTICLE4_CITIES = {
+    # Known cities (outside London) with city-wide HMO Article 4 Directions
+    "Manchester", "Leeds", "Nottingham", "Birmingham", "Oxford", "Brighton", "Liverpool"
+}
+
+def is_article4_area(address, london_borough=None):
+    """Determine if the address is in an Article 4 area (HMO planning restrictions)."""
+    addr_lower = address.lower()
+    if london_borough:
+        # If we identified a London borough, use that
+        return london_borough in ARTICLE4_BOROUGHS
+    # If in London (address contains "London") but borough not identified, assume no Article 4 by default
+    if " london" in addr_lower:
+        return False
+    # For non-London addresses, check if any known Article 4 city name appears
+    for city in ARTICLE4_CITIES:
+        if re.search(rf"\b{city.lower()}\b", addr_lower):
+            return True
+    return False
+
+def parse_london_location(address):
+    """
+    Parse a London address string to identify the borough, district, and postcode area.
+    Returns (borough, district, postcode_area).
+    """
+    borough = None
+    district = None
+    postcode_area = None
+    addr_clean = address.strip()
+    addr_lower = addr_clean.lower()
+    # Extract postcode area (outcode) if present
+    match = re.search(r"\b([A-Z]{1,2}\d{1,2}[A-Z]?)\s*\d", addr_clean, flags=re.IGNORECASE)
+    if match:
+        postcode_area = match.group(1).upper()
+    # Check for known borough names in address
+    borough_names = [
+        "Barking and Dagenham", "Barnet", "Bexley", "Brent", "Bromley", "Camden", "Croydon", 
+        "Ealing", "Enfield", "Greenwich", "Hackney", "Hammersmith and Fulham", 
+        "Haringey", "Harrow", "Havering", "Hillingdon", "Hounslow", "Islington", 
+        "Kensington and Chelsea", "Kingston upon Thames", "Lambeth", "Lewisham", 
+        "Merton", "Newham", "Redbridge", "Richmond upon Thames", "Southwark", 
+        "Sutton", "Tower Hamlets", "Waltham Forest", "Wandsworth", "Westminster", "City of London"
+    ]
+    for name in borough_names:
+        if re.search(rf"\b{name.lower()}\b", addr_lower):
+            borough = name
+            break
+    # Identify district (neighborhood) within London
+    if borough:
+        # If borough name found in address, take any leading part as district
+        idx = addr_lower.find(borough.lower())
+        if idx != -1:
+            district_part = addr_clean[:idx].strip().strip(",")
+            if district_part:
+                district = district_part
+            else:
+                # If address starts with borough (no smaller area given), use borough as district
+                district = borough
+    else:
+        # If no borough name in address, use part before "London" (or postcode) as district
+        # e.g. "Tooting, London SW17" -> district "Tooting"
+        if " london" in addr_lower:
+            idx = addr_lower.index(" london")
+            district_part = addr_clean[:idx].strip().strip(",")
+            if district_part:
+                district = district_part
+        # Try to infer borough from postcode if possible (for outer London areas)
+        if postcode_area:
+            prefix = re.match(r"^[A-Z]+", postcode_area).group(0)
+            # Simple mapping for some outer London postcode prefixes to boroughs
+            postcode_to_borough = {
+                "EN": "Enfield", "HA": "Harrow", "UB": "Hillingdon", "KT": "Kingston upon Thames",
+                "SM": "Sutton", "CR": "Croydon", "BR": "Bromley", "DA": "Bexley",
+                "RM": "Havering", "IG": "Redbridge", "TW": "Hounslow", "SE": None,
+                "SW": None, "N": None, "E": None, "W": None, "NW": None, "EC": None, "WC": None
+            }
+            if prefix in postcode_to_borough and postcode_to_borough[prefix]:
+                borough = postcode_to_borough[prefix]
+    return borough, district, postcode_area
+
+# Initialize list for results
+properties = []
+
+# Example: Iterate through property listings (the actual scraping part depends on source)
+# Here we assume we have a list of listing URLs or data from a search page
+listing_urls = [...]  # This should be populated by the scraping of search results
+
+for url in listing_urls:
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    # Parse the listing page to extract relevant fields (implementation depends on site HTML)
+    title = soup.find(...).get_text(strip=True)        # placeholder for actual parsing logic
+    address = soup.find(...).get_text(strip=True)      # placeholder
+    description = soup.find(...).get_text(" ", strip=True)  # join text with spaces
+    price = soup.find(...).get_text(strip=True)        # placeholder
+    area_sqm = None
+    # Attempt to find area in a dedicated field if it exists on the page
+    area_field = soup.find(text=re.compile(r"sq m|sq ft", re.IGNORECASE))
+    if area_field:
+        text = area_field.get_text()
+        # If area is listed in sq m or sq ft on the page
+        sqm_match = re.search(r"([\d,\.]+)\s*sq\s*m", text, flags=re.IGNORECASE)
+        sqft_match = re.search(r"([\d,\.]+)\s*sq\s*ft", text, flags=re.IGNORECASE)
+        if sqm_match:
+            try:
+                area_sqm = float(sqm_match.group(1).replace(",", ""))
+            except:
+                area_sqm = None
+        elif sqft_match:
+            try:
+                sqft_val = float(sqft_match.group(1).replace(",", ""))
+            except:
+                sqft_val = None
+            if sqft_val is not None:
+                area_sqm = round(sqft_val * 0.092903, 2)  # convert sq ft to sq m
+    # Build the property data dictionary
+    property_data = {
+        "title": title,
+        "address": address,
+        "description": description,
+        "price": price,
+        "area_sqm": area_sqm
+        # ... include other existing fields like bedrooms, bathrooms, etc. if present
+    }
+    # **1. Filter out existing HMOs**: skip listings explicitly labeled as HMO
+    title_lower = title.lower()
+    desc_lower = description.lower()
+    if ("hmo" in title_lower) or ("house in multiple occupation" in title_lower) or \
+       ("hmo" in desc_lower) or ("house in multiple occupation" in desc_lower):
+        continue  # skip this listing entirely
+    
+    # **4. London Borough + District Identification**:
+    london_borough = None
+    london_district = None
+    postcode_area = None
+    if " london" in address.lower():  # If address indicates London
+        london_borough, london_district, postcode_area = parse_london_location(address)
+    else:
+        # For non-London addresses, still extract postcode area if available
+        match = re.search(r"\b([A-Z]{1,2}\d{1,2}[A-Z]?)\s*\d", address)
+        if match:
+            postcode_area = match.group(1).upper()
+    property_data["london_borough"] = london_borough
+    property_data["london_district"] = london_district
+    property_data["postcode_area"] = postcode_area
+    
+    # **3. Add Article 4 Area Checking**:
+    article4_flag = is_article4_area(address, london_borough)
+    property_data["article_4"] = True if article4_flag else False
+    
+    # **5. Other Property Enhancements**:
+    # Extract property_type and house_type from title if possible
+    title_words = title_lower.split()
+    property_type = None
+    house_type = None
+    if any(word in title_lower for word in ["flat", "apartment", "maisonette"]):
+        property_type = "flat"
+        # Maisonette is a type of flat but we'll just label as flat
+    elif "bungalow" in title_lower:
+        property_type = "house"
+        house_type = "bungalow"
+    elif "house" in title_lower or "cottage" in title_lower or "mews" in title_lower:
+        property_type = "house"
+    # Determine specific house_type (for houses only)
+    if property_type == "house":
+        if "semi-detached" in title_lower or "semi detached" in title_lower:
+            house_type = "semi-detached"
+        elif "detached" in title_lower and "semi" not in title_lower:
+            house_type = "detached"
+        elif "terraced" in title_lower or "terrace" in title_lower:
+            if "end of terrace" in title_lower or "end-terrace" in title_lower:
+                house_type = "end-terrace"
+            else:
+                house_type = "terraced"
+        elif "townhouse" in title_lower:
+            house_type = "townhouse"
+        elif "cottage" in title_lower:
+            house_type = "cottage"
+        elif "mews" in title_lower:
+            house_type = "mews"
+    elif property_type == "flat":
+        # No specific house_type for flats, but we can note floor_info if available below
+        house_type = None
+    property_data["property_type"] = property_type
+    property_data["house_type"] = house_type
+    
+    # Extract floor_info (e.g., "ground floor", "first floor") from title or description
+    floor_info = None
+    floor_phrases = ["ground floor", "first floor", "second floor", "third floor", 
+                     "fourth floor", "fifth floor", "top floor", "lower ground floor", "basement"]
+    for phrase in floor_phrases:
+        if phrase in title_lower or phrase in desc_lower:
+            floor_info = phrase
+            # If the phrase appears in description, it might be part of a longer string like "First floor apartment"
+            # We capture just the phrase itself as an indicator.
+            break
+    property_data["floor_info"] = floor_info
+    
+    # Check for garden and parking mentions in description/title
+    has_garden = False
+    has_parking = False
+    # Garden: ensure not counting phrases like "no garden"
+    if re.search(r"\bgarden\b", desc_lower) or re.search(r"\bgarden\b", title_lower):
+        if "no garden" not in desc_lower:
+            has_garden = True
+    # Parking: look for 'parking', 'garage', or 'driveway'
+    if re.search(r"\bparking\b", desc_lower) or re.search(r"\bgarage\b", desc_lower) or re.search(r"\bdriveway\b", desc_lower) or \
+       re.search(r"\bparking\b", title_lower) or re.search(r"\bgarage\b", title_lower):
+        if "no parking" not in desc_lower:
+            has_parking = True
+    property_data["has_garden"] = has_garden
+    property_data["has_parking"] = has_parking
+    
+    # Area estimation flag
+    area_estimated = False
+    if property_data["area_sqm"] is None:
+        # Try to infer area from description if not already set
+        sqft_match = re.search(r"([\d,]+)\s*sq\s*ft", desc_lower)
+        sqm_match = re.search(r"([\d,]+)\s*sq\s*m", desc_lower)
+        if sqft_match:
+            try:
+                sqft_val = float(sqft_match.group(1).replace(",", ""))
+            except:
+                sqft_val = None
+            if sqft_val:
+                property_data["area_sqm"] = round(sqft_val * 0.092903, 2)
+                area_estimated = True
+        elif sqm_match:
+            try:
+                sqm_val = float(sqm_match.group(1).replace(",", ""))
+            except:
+                sqm_val = None
+            if sqm_val:
+                property_data["area_sqm"] = round(sqm_val, 2)
+                area_estimated = True
+    else:
+        # If area_sqm was obtained (possibly converted from sq ft above)
+        # Determine if it was directly provided or calculated
+        # (In this script, if we found an 'sq ft' and converted, we've already set area_sqm and that is an estimate)
+        if re.search(r"sq\s*ft", desc_lower) or re.search(r"sq\s*ft", address.lower()) or (area_field and sqft_match):
+            # If the original data came from sq ft, we treat it as estimated (converted)
+            area_estimated = True
+    property_data["area_estimated"] = area_estimated
+    
+    # **2. Flag good HMO opportunities** (hmo_candidate):
+    # True if at least 90 sqm and in a non-Article 4 area
+    if property_data.get("area_sqm") and property_data["area_sqm"] >= 90 and not property_data["article_4"]:
+        property_data["hmo_candidate"] = True
+    else:
+        property_data["hmo_candidate"] = False
+    
+    # Add the processed property to results
+    properties.append(property_data)
+
+# Output the results in JSON format (maintaining existing structure)
+print(json.dumps(properties, indent=2, ensure_ascii=False))

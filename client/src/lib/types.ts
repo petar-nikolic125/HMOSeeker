@@ -7,6 +7,8 @@ export interface SearchFilters {
   maxSqm?: number;
   postcode?: string;
   keywords?: string;
+  hmo_candidate?: boolean;
+  article4_filter?: "all" | "non_article4" | "article4_only";
 }
 
 export interface PropertyWithAnalytics extends PropertyListing {

@@ -15,6 +15,8 @@ export default function HeroSection({ onSearch, isLoading, searchResults }: Hero
   const [minBedrooms, setMinBedrooms] = useState(1);
   const [maxSqm, setMaxSqm] = useState<number | undefined>(undefined);
   const [postcode, setPostcode] = useState<string>("");
+  const [hmo_candidate, setHmoCandidate] = useState<boolean>(false);
+  const [article4Filter, setArticle4Filter] = useState<"all" | "non_article4" | "article4_only">("all");
   const { toast } = useToast();
   const [lastSearchFilters, setLastSearchFilters] = useState<SearchFilters | null>(null);
 
@@ -27,6 +29,8 @@ export default function HeroSection({ onSearch, isLoading, searchResults }: Hero
       minRooms: minBedrooms,
       maxSqm: maxSqm,
       postcode: postcode.trim() || undefined,
+      hmo_candidate: hmo_candidate,
+      article4_filter: article4Filter,
       // Ne dodajemo automatski keywords "hmo" 
     };
 
@@ -206,6 +210,32 @@ export default function HeroSection({ onSearch, isLoading, searchResults }: Hero
                   placeholder="e.g. SW1A 1AA"
                   className="w-full h-12 text-base border-2 border-gray-200 hover:border-red-400 focus:border-red-500 transition-colors rounded-xl px-4 bg-white"
                 />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+              <div>
+                <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
+                  <input
+                    type="checkbox"
+                    checked={hmo_candidate}
+                    onChange={(e) => setHmoCandidate(e.target.checked)}
+                    className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                  />
+                  Show only HMO candidates (90+ sqm, non-Article 4)
+                </label>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Article 4 Filter</label>
+                <select
+                  value={article4Filter}
+                  onChange={(e) => setArticle4Filter(e.target.value as "all" | "non_article4" | "article4_only")}
+                  className="w-full h-10 text-sm border-2 border-gray-200 hover:border-blue-400 focus:border-blue-500 transition-colors rounded-xl px-3 bg-white"
+                >
+                  <option value="all">All areas</option>
+                  <option value="non_article4">Non-Article 4 only</option>
+                  <option value="article4_only">Article 4 areas only</option>
+                </select>
               </div>
             </div>
 

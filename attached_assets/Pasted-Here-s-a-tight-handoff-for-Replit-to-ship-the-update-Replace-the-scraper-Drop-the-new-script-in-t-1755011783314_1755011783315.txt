@@ -1,0 +1,67 @@
+Here’s a tight handoff for Replit to ship the update:
+
+Replace the scraper
+
+Drop the new script in the same path (overwriting the old one).
+
+Ensure requests and beautifulsoup4 are in requirements.txt; reinstall deps.
+
+New CLI (backwards-compatible)
+
+php-template
+Copy
+Edit
+python zoopla_scraper.py <city> <min_bedrooms> <max_price> <keywords> [postcode] [max_sqm]
+postcode (optional): e.g. E15 or E15 1BG.
+
+max_sqm (optional int): used for filtering if you want; we also flag HMO candidates.
+
+What changed (so the API/DB/UI can handle it)
+
+Existing HMOs are excluded: listings with “HMO/House in Multiple Occupation” in title/desc are skipped.
+
+New fields returned per property:
+
+area_sqm, area_estimated
+
+article4_area (bool), article4_status (“Full/Partial/None”)
+
+hmo_candidate (bool) → true when area_sqm ≥ 90 and NOT in Article 4
+
+London extras: london_borough, london_district, postcode_district, postcode_area
+
+Type/features: property_category, property_type, flat_floor, has_garden, has_parking, property_age
+
+If city=='London' the script currently groups output by borough. If your API expects a flat list, unwrap the dict values or toggle that block to always print(props).
+
+Minimal API touchpoints
+
+If you persist results, add nullable columns for the new fields (or accept dynamic JSON).
+
+Surface hmo_candidate in the UI as a badge/filter. Also allow a “Non-Article 4 only” filter using article4_area == false.
+
+Hide/grey out listings with article4_area==true if you want a strict “non Article 4” view.
+
+Quick sanity tests
+
+London (district + HMO flagging):
+
+nginx
+Copy
+Edit
+python zoopla_scraper.py London 3 650000 none E15 120
+Non-London:
+
+nginx
+Copy
+Edit
+python zoopla_scraper.py Leeds 3 300000 none
+Verify: no HMO-labelled listings; properties ≥90 sqm & non-Article4 have hmo_candidate: true.
+
+Deployment
+
+Commit, rebuild container, and restart the worker/job that runs the scraper.
+
+Rate limits: we already rotate UA + stagger requests; no extra config needed.
+
+Ping me if you want the London grouping disabled by default or want the script to filter out Article 4 areas instead of just flagging.

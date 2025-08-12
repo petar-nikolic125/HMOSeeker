@@ -1,4 +1,4 @@
-import { Star, Percent, TrendingUp, Bath, Bed, Square, ExternalLink, Calculator } from "lucide-react";
+import { Star, Percent, TrendingUp, Bath, Bed, Square, ExternalLink, Calculator, CheckCircle, AlertTriangle } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import type { PropertyListing } from "@shared/schema";
 
@@ -70,6 +70,28 @@ export default function PropertyCard({ property, onAnalyze, delay = 0 }: Propert
             <Star className="w-4 h-4" />
             {getYieldLabel(estimatedYield)}
           </div>
+          
+          {/* HMO Candidate Badge */}
+          {property.hmo_candidate && (
+            <div className="bg-gradient-to-r from-green-600 to-emerald-600 text-white border-0 shadow-xl backdrop-blur-md px-4 py-2 font-bold text-sm flex items-center gap-1.5 rounded-full">
+              <CheckCircle className="w-4 h-4" />
+              HMO Candidate
+            </div>
+          )}
+          
+          {/* Article 4 Status Badge */}
+          {property.article4_area === false && (
+            <div className="bg-gradient-to-r from-indigo-600 to-blue-600 text-white border-0 shadow-xl backdrop-blur-md px-4 py-2 font-bold text-sm flex items-center gap-1.5 rounded-full">
+              <CheckCircle className="w-4 h-4" />
+              Non-Article 4
+            </div>
+          )}
+          {property.article4_area === true && (
+            <div className="bg-gradient-to-r from-orange-600 to-red-600 text-white border-0 shadow-xl backdrop-blur-md px-4 py-2 font-bold text-sm flex items-center gap-1.5 rounded-full">
+              <AlertTriangle className="w-4 h-4" />
+              Article 4 Area
+            </div>
+          )}
         </div>
         
         <div className="absolute top-5 right-5 flex flex-col gap-2">

@@ -23,7 +23,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Get cached property listings (Quick cache search - cache je glavna baza!)
   app.get("/api/properties", async (req, res) => {
     try {
-      const { city, max_price, min_bedrooms, max_sqm, postcode, keywords } = req.query;
+      const { city, max_price, min_bedrooms, max_sqm, postcode, keywords, hmo_candidate, article4_filter } = req.query;
       
       // Konvertuj max_price string u integer (1.5M -> 1500000)
       const parsePrice = (priceStr: string): number => {
@@ -62,6 +62,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (max_sqm) filters.max_sqm = parseInt(max_sqm as string);
       if (postcode) filters.postcode = postcode as string;
       if (keywords) filters.keywords = keywords as string;
+      if (hmo_candidate !== undefined) filters.hmo_candidate = hmo_candidate === 'true';
+      if (article4_filter && article4_filter !== "all") filters.article4_filter = article4_filter as "non_article4" | "article4_only";
 
       console.log(`🔍 Searching cache database for: ${JSON.stringify(filters)}`);
       
@@ -114,6 +116,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
           listing_id: prop.listing_id || `cache-${Date.now()}-${index}`,
           postcode: prop.postcode || '',
           city: prop.city || filters.city,
+          
+          // Enhanced HMO and Article 4 fields
+          area_sqm: prop.area_sqm || null,
+          area_estimated: prop.area_estimated || false,
+          article4_area: prop.article4_area || false,
+          article4_status: prop.article4_status || "None",
+          hmo_candidate: prop.hmo_candidate || false,
+          london_borough: prop.london_borough || null,
+          london_district: prop.london_district || null,
+          postcode_district: prop.postcode_district || null,
+          postcode_area: prop.postcode_area || null,
+          property_category: prop.property_category || "residential",
+          property_type: prop.property_type || "unknown",
+          flat_floor: prop.flat_floor || null,
+          has_garden: prop.has_garden || false,
+          has_parking: prop.has_parking || false,
+          property_age: prop.property_age || null,
+          
           // Real calculated analytics data
           roi: Math.round(roi * 10) / 10,
           grossYield: Math.round(grossYield * 10) / 10,

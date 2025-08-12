@@ -99,6 +99,8 @@ export class CacheDatabase {
     max_sqm?: number;
     postcode?: string;
     keywords?: string;
+    hmo_candidate?: boolean;
+    article4_filter?: "all" | "non_article4" | "article4_only";
   }): Promise<any[]> {
     
     if (!filters.city) {
@@ -160,6 +162,25 @@ export class CacheDatabase {
       );
       console.log(`🔍 Keywords filter ("${keywords}"): ${beforeCount} → ${filtered.length}`);
     }
+
+    if (filters.hmo_candidate !== undefined) {
+      const beforeCount = filtered.length;
+      filtered = filtered.filter(p => {
+        const isCandidate = p.hmo_candidate === true || 
+          (p.area_sqm >= 90 && p.article4_area !== true);
+        return filters.hmo_candidate ? isCandidate : !isCandidate;
+      });
+      console.log(`🏠 HMO candidate filter (${filters.hmo_candidate}): ${beforeCount} → ${filtered.length}`);
+    }
+
+    if (filters.article4_filter && filters.article4_filter !== "all") {
+      const beforeCount = filtered.length;
+      filtered = filtered.filter(p => {
+        const isArticle4 = p.article4_area === true;
+        return filters.article4_filter === "non_article4" ? !isArticle4 : isArticle4;
+      });
+      console.log(`📋 Article 4 filter ("${filters.article4_filter}"): ${beforeCount} → ${filtered.length}`);
+    }
     
     console.log(`🔍 Cache search: ${properties.length} total, ${filtered.length} after filters`);
     
@@ -175,6 +196,8 @@ export class CacheDatabase {
     max_sqm?: number;
     postcode?: string;
     keywords?: string;
+    hmo_candidate?: boolean;
+    article4_filter?: "all" | "non_article4" | "article4_only";
   }): Promise<any[]> {
     
     try {
@@ -237,6 +260,25 @@ export class CacheDatabase {
           (p.description || '').toLowerCase().includes(keywords)
         );
         console.log(`🔍 Keywords filter ("${keywords}"): ${beforeCount} → ${filtered.length}`);
+      }
+
+      if (filters.hmo_candidate !== undefined) {
+        const beforeCount = filtered.length;
+        filtered = filtered.filter(p => {
+          const isCandidate = p.hmo_candidate === true || 
+            (p.area_sqm >= 90 && p.article4_area !== true);
+          return filters.hmo_candidate ? isCandidate : !isCandidate;
+        });
+        console.log(`🏠 Multi-city HMO candidate filter (${filters.hmo_candidate}): ${beforeCount} → ${filtered.length}`);
+      }
+
+      if (filters.article4_filter && filters.article4_filter !== "all") {
+        const beforeCount = filtered.length;
+        filtered = filtered.filter(p => {
+          const isArticle4 = p.article4_area === true;
+          return filters.article4_filter === "non_article4" ? !isArticle4 : isArticle4;
+        });
+        console.log(`📋 Multi-city Article 4 filter ("${filters.article4_filter}"): ${beforeCount} → ${filtered.length}`);
       }
       
       // Ukloni duplikate
