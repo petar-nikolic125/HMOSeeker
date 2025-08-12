@@ -168,24 +168,30 @@ export class CacheDatabase {
 
     if (filters.hmo_candidate !== undefined) {
       const beforeCount = filtered.length;
+      let explicitCount = 0;
+      let areaBasedCount = 0;
+      
       filtered = filtered.filter(p => {
         // Calculate if property is HMO candidate based on available data
         const hasAreaData = p.area_sqm && p.area_sqm >= 90;
         const notArticle4 = p.article4_area !== true;
         const explicitCandidate = p.hmo_candidate === true;
-        const has4PlusBeds = (p.bedrooms || 0) >= 4; // 4+ bedrooms often indicates HMO potential
         
-        // Property is HMO candidate if:
-        // 1. Explicitly marked as HMO candidate, OR
-        // 2. Has area >= 90sqm and not Article 4, OR
-        // 3. Has 4+ bedrooms and not Article 4 (for properties without area data)
-        const isCandidate = explicitCandidate || 
-                          (hasAreaData && notArticle4) || 
-                          (has4PlusBeds && notArticle4);
+        if (explicitCandidate) explicitCount++;
+        if (hasAreaData && notArticle4) areaBasedCount++;
+        
+        // Very strict HMO candidate logic: Only properties that are explicitly marked 
+        // OR have confirmed area >= 90sqm in non-Article 4 areas
+        const isCandidate = explicitCandidate || (hasAreaData && notArticle4);
+        
+        // Debug: Log first few properties to understand filtering
+        if (beforeCount <= 115 && beforeCount > 110) {
+          console.log(`  🔍 Property debug: beds=${p.bedrooms}, sqm=${p.area_sqm}, explicit=${explicitCandidate}, article4=${p.article4_area}, candidate=${isCandidate}`);
+        }
         
         return filters.hmo_candidate ? isCandidate : !isCandidate;
       });
-      console.log(`🏠 HMO candidate filter (${filters.hmo_candidate}): ${beforeCount} → ${filtered.length}`);
+      console.log(`🏠 HMO candidate filter (${filters.hmo_candidate}): ${beforeCount} → ${filtered.length} (explicit: ${explicitCount}, area-based: ${areaBasedCount})`);
     }
 
     if (filters.min_sqm) {

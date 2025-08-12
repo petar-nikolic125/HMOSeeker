@@ -29,8 +29,8 @@ export default function Home() {
   const [currentFilters, setCurrentFilters] = useState<SearchFilters>({ 
     city: "London",
     minRooms: 3,
-    hmo_candidate: true,
-    article4_filter: "non_article4"
+    hmo_candidate: false,
+    article4_filter: "all"
   });
   const [lastSearchTime, setLastSearchTime] = useState<number>(0);
   const [sortBy, setSortBy] = useState<string>("yield_desc");
