@@ -23,7 +23,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Get cached property listings (Quick cache search - cache je glavna baza!)
   app.get("/api/properties", async (req, res) => {
     try {
-      const { city, max_price, min_bedrooms, keywords } = req.query;
+      const { city, max_price, min_bedrooms, max_sqm, postcode, keywords } = req.query;
       
       // Konvertuj max_price string u integer (1.5M -> 1500000)
       const parsePrice = (priceStr: string): number => {
@@ -59,6 +59,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (city) filters.city = city as string;
       if (max_price) filters.max_price = parsePrice(max_price as string);
       if (min_bedrooms) filters.min_bedrooms = parseInt(min_bedrooms as string);
+      if (max_sqm) filters.max_sqm = parseInt(max_sqm as string);
+      if (postcode) filters.postcode = postcode as string;
       if (keywords) filters.keywords = keywords as string;
 
       console.log(`🔍 Searching cache database for: ${JSON.stringify(filters)}`);

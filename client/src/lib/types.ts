@@ -4,6 +4,8 @@ export interface SearchFilters {
   city: string;
   minRooms?: number;
   maxPrice?: number;
+  maxSqm?: number;
+  postcode?: string;
   keywords?: string;
 }
 

@@ -24,6 +24,15 @@ Preferred communication style: Simple, everyday language.
 - **Security Enhanced**: Proper client/server separation maintained during migration
 - **All Features Working**: Property search, analysis, and scraping fully functional
 
+## London Cache Enhancement (August 2025)
+- **London Default**: Set London as default city on application startup
+- **Multiple Cache Files**: Fixed London cache loading with 6+ JSON cache files (69 total properties)
+- **Max SQM Filter**: Added square meter filtering functionality for property size constraints
+- **Postcode Search**: Implemented postcode-based search filtering
+- **Enhanced UI**: Updated hero section with 5-column responsive grid (location, price, bedrooms, sqm, postcode)
+- **Cache Database Fix**: Resolved LSP errors and improved cache file handling for London
+- **Complete Section 1**: All basic search functionality now complete and working
+
 ## Enhanced Bulk Scraper for HMO Properties (Previous Development)
 - **Dramatic Performance Improvement**: Optimized scraper to find 205+ property links per city (8 pages, 80 processed)
 - **Speed Optimization**: 5x faster with reduced delays (0.2-0.5s vs 0.8-1.5s), 2-minute timeout per city

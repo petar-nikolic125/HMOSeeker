@@ -10,9 +10,11 @@ interface HeroSectionProps {
 }
 
 export default function HeroSection({ onSearch, isLoading, searchResults }: HeroSectionProps) {
-  const [city, setCity] = useState("Birmingham");
+  const [city, setCity] = useState("London");
   const [maxPrice, setMaxPrice] = useState(500000);
   const [minBedrooms, setMinBedrooms] = useState(1);
+  const [maxSqm, setMaxSqm] = useState<number | undefined>(undefined);
+  const [postcode, setPostcode] = useState<string>("");
   const { toast } = useToast();
   const [lastSearchFilters, setLastSearchFilters] = useState<SearchFilters | null>(null);
 
@@ -23,6 +25,8 @@ export default function HeroSection({ onSearch, isLoading, searchResults }: Hero
       city,
       maxPrice: maxPrice,
       minRooms: minBedrooms,
+      maxSqm: maxSqm,
+      postcode: postcode.trim() || undefined,
       // Ne dodajemo automatski keywords "hmo" 
     };
 
@@ -92,7 +96,7 @@ export default function HeroSection({ onSearch, isLoading, searchResults }: Hero
 
         <div className="max-w-5xl mx-auto animate-slide-up">
           <div className="bg-white/95 backdrop-blur-sm rounded-3xl p-4 md:p-8 shadow-2xl border border-white/20 hover:shadow-3xl transition-all duration-500">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 mb-6 md:mb-8">
               <div>
                 <label className="block text-sm font-semibold text-gray-800 mb-3 flex items-center gap-2">
                   <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
@@ -174,6 +178,34 @@ export default function HeroSection({ onSearch, isLoading, searchResults }: Hero
                   <option value={4}>4 bedrooms</option>
                   <option value={5}>5+ bedrooms</option>
                 </select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-gray-800 mb-3 flex items-center gap-2">
+                  <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
+                  Max Sqm
+                </label>
+                <input 
+                  type="number"
+                  value={maxSqm || ''}
+                  onChange={(e) => setMaxSqm(e.target.value ? parseInt(e.target.value) : undefined)}
+                  placeholder="e.g. 150"
+                  className="w-full h-12 text-base border-2 border-gray-200 hover:border-orange-400 focus:border-orange-500 transition-colors rounded-xl px-4 bg-white"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-gray-800 mb-3 flex items-center gap-2">
+                  <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                  Postcode
+                </label>
+                <input 
+                  type="text"
+                  value={postcode}
+                  onChange={(e) => setPostcode(e.target.value)}
+                  placeholder="e.g. SW1A 1AA"
+                  className="w-full h-12 text-base border-2 border-gray-200 hover:border-red-400 focus:border-red-500 transition-colors rounded-xl px-4 bg-white"
+                />
               </div>
             </div>
 

@@ -30,6 +30,7 @@ export class CacheDatabase {
     
     // Pronađi postojeći direktorijum
     for (const dirName of possibleDirNames) {
+      if (!dirName) continue; // Skip undefined/empty directory names
       const testDir = path.join(this.CACHE_DIR, dirName);
       try {
         await fs.access(testDir);
@@ -95,6 +96,8 @@ export class CacheDatabase {
     city?: string;
     min_bedrooms?: number;
     max_price?: number;
+    max_sqm?: number;
+    postcode?: string;
     keywords?: string;
   }): Promise<any[]> {
     
@@ -128,6 +131,26 @@ export class CacheDatabase {
       console.log(`💰 Max price filter (£${filters.max_price}): ${beforeCount} → ${filtered.length}`);
     }
     
+    if (filters.max_sqm) {
+      const beforeCount = filtered.length;
+      filtered = filtered.filter(p => {
+        const sqm = p.area_sqm || 0;
+        return sqm > 0 && sqm <= filters.max_sqm!;
+      });
+      console.log(`📐 Max sqm filter (${filters.max_sqm}): ${beforeCount} → ${filtered.length}`);
+    }
+    
+    if (filters.postcode) {
+      const beforeCount = filtered.length;
+      const postcodeSearch = filters.postcode.toLowerCase().trim();
+      filtered = filtered.filter(p => {
+        const postcode = (p.postcode || '').toLowerCase();
+        const address = (p.address || '').toLowerCase();
+        return postcode.includes(postcodeSearch) || address.includes(postcodeSearch);
+      });
+      console.log(`📮 Postcode filter ("${filters.postcode}"): ${beforeCount} → ${filtered.length}`);
+    }
+    
     if (filters.keywords) {
       const beforeCount = filtered.length;
       const keywords = filters.keywords.toLowerCase();
@@ -149,6 +172,8 @@ export class CacheDatabase {
   static async searchAllCities(filters: {
     min_bedrooms?: number;
     max_price?: number;
+    max_sqm?: number;
+    postcode?: string;
     keywords?: string;
   }): Promise<any[]> {
     
@@ -182,6 +207,26 @@ export class CacheDatabase {
           return price <= filters.max_price!;
         });
         console.log(`💰 Max price filter (£${filters.max_price}): ${beforeCount} → ${filtered.length}`);
+      }
+      
+      if (filters.max_sqm) {
+        const beforeCount = filtered.length;
+        filtered = filtered.filter(p => {
+          const sqm = p.area_sqm || 0;
+          return sqm > 0 && sqm <= filters.max_sqm!;
+        });
+        console.log(`📐 Max sqm filter (${filters.max_sqm}): ${beforeCount} → ${filtered.length}`);
+      }
+      
+      if (filters.postcode) {
+        const beforeCount = filtered.length;
+        const postcodeSearch = filters.postcode.toLowerCase().trim();
+        filtered = filtered.filter(p => {
+          const postcode = (p.postcode || '').toLowerCase();
+          const address = (p.address || '').toLowerCase();
+          return postcode.includes(postcodeSearch) || address.includes(postcodeSearch);
+        });
+        console.log(`📮 Postcode filter ("${filters.postcode}"): ${beforeCount} → ${filtered.length}`);
       }
       
       if (filters.keywords) {

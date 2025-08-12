@@ -38,6 +38,8 @@ export default function Home() {
       if (filters.minRooms) params.append('min_bedrooms', filters.minRooms.toString());
       if (filters.maxPrice) params.append('max_price', filters.maxPrice.toString());
       if (filters.keywords) params.append('keywords', filters.keywords);
+      if (filters.maxSqm) params.append('max_sqm', filters.maxSqm.toString());
+      if (filters.postcode) params.append('postcode', filters.postcode);
       
       // Use cache endpoint instead of search (no scraping)
       const response = await fetch(`/api/properties?${params.toString()}`);
@@ -152,7 +154,7 @@ export default function Home() {
       <HeroSection 
         onSearch={handleSearch} 
         isLoading={searchState.isLoading}
-        searchResults={{ count: searchState.properties.length, error: searchState.error }}
+        searchResults={{ count: searchState.properties.length, error: searchState.error || undefined }}
       />
       
       <PropertyResults 
