@@ -73,7 +73,8 @@ def parse_london_location(address):
         outcode_match = re.search(r"\b([A-Z]{1,2}\d{1,2}[A-Z]?)\b", addr_clean, flags=re.IGNORECASE)
         if outcode_match:
             postcode_district = outcode_match.group(1).upper()
-            postcode_area = re.match(r"^[A-Z]+", postcode_district).group(0)
+            postcode_match = re.match(r"^[A-Z]+", postcode_district)
+            postcode_area = postcode_match.group(0) if postcode_match else None
     
     # London boroughs
     borough_names = [
@@ -324,9 +325,44 @@ def extract_property_from_card(card, city, max_sqm=None):
     if property_url and not property_url.startswith('http'):
         property_url = f"https://www.zoopla.co.uk{property_url}"
     
-    # Extract image URL
-    img_elem = card.find('img')
-    image_url = img_elem.get('src') or img_elem.get('data-src') if img_elem else ""
+    # Extract image URL - try multiple strategies for better image capture
+    image_url = ""
+    # Strategy 1: Look for property-specific images first
+    img_elem = card.find('img', {'alt': re.compile(r'property|house|flat', re.I)})
+    if not img_elem:
+        # Strategy 2: Look for any image with src or data-src
+        img_elem = card.find('img', src=True) or card.find('img', attrs={'data-src': True})
+    if not img_elem:
+        # Strategy 3: Look for lazy-loaded images
+        img_elem = card.find('img', attrs={'data-lazy': True}) or card.find('img', attrs={'data-original': True})
+    
+    if img_elem:
+        # Try multiple attributes for image URL
+        image_url = (img_elem.get('src') or 
+                    img_elem.get('data-src') or 
+                    img_elem.get('data-lazy') or 
+                    img_elem.get('data-original') or 
+                    img_elem.get('srcset', '').split(',')[0].strip().split(' ')[0] or "")
+        
+        # Clean up the URL - remove query parameters but keep essential ones
+        if image_url and '?' in image_url:
+            base_url, params = image_url.split('?', 1)
+            # Keep only essential parameters for image sizing
+            essential_params = []
+            for param in params.split('&'):
+                if any(key in param.lower() for key in ['w=', 'h=', 'width=', 'height=', 'fit=', 'crop=']):
+                    essential_params.append(param)
+            if essential_params:
+                image_url = f"{base_url}?{'&'.join(essential_params)}"
+            else:
+                image_url = base_url
+        
+        # Ensure URL is absolute
+        if image_url and not image_url.startswith('http'):
+            if image_url.startswith('//'):
+                image_url = f"https:{image_url}"
+            elif image_url.startswith('/'):
+                image_url = f"https://www.zoopla.co.uk{image_url}"
     
     # Determine location details
     london_borough = None

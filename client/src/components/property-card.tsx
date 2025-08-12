@@ -2,6 +2,41 @@ import { Star, Percent, TrendingUp, Bath, Bed, Square, ExternalLink, Calculator,
 import { useQuery } from "@tanstack/react-query";
 import type { PropertyListing } from "@shared/schema";
 
+// Smart fallback image selection based on property characteristics
+const getPropertyFallbackImage = (property: any) => {
+  const bedrooms = property.bedrooms || 3;
+  const isFlat = property.address?.toLowerCase().includes('flat') || property.title?.toLowerCase().includes('flat');
+  const isDetached = property.address?.toLowerCase().includes('detached') || property.title?.toLowerCase().includes('detached');
+  const isTerrace = property.address?.toLowerCase().includes('terrace') || property.title?.toLowerCase().includes('terrace');
+  
+  // High-quality property images from Unsplash with proper sizing
+  const images = {
+    // Large detached houses (4+ bedrooms)
+    detached_large: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=600&fit=crop&crop=center&q=85",
+    // Medium detached houses (3 bedrooms)  
+    detached_medium: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&h=600&fit=crop&crop=center&q=85",
+    // Terraced houses
+    terraced: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop&crop=center&q=85",
+    // Semi-detached houses
+    semi_detached: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&h=600&fit=crop&crop=center&q=85",
+    // Flats/apartments
+    flat_modern: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop&crop=center&q=85",
+    flat_period: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop&crop=center&q=85",
+    // Default fallback
+    default: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop&crop=center&q=85"
+  };
+  
+  if (isFlat) {
+    return bedrooms >= 3 ? images.flat_modern : images.flat_period;
+  } else if (isDetached) {
+    return bedrooms >= 4 ? images.detached_large : images.detached_medium;
+  } else if (isTerrace) {
+    return images.terraced;
+  } else {
+    return bedrooms >= 4 ? images.detached_large : images.semi_detached;
+  }
+};
+
 interface PropertyCardProps {
   property: any; // Using any to handle the scraper's data format
   onAnalyze: (property: any) => void;
@@ -55,9 +90,15 @@ export default function PropertyCard({ property, onAnalyze, delay = 0 }: Propert
       {/* Image Section */}
       <div className="relative h-80 overflow-hidden">
         <img 
-          src={property.image_url || "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop&crop=entropy&q=80"}
-          alt={property.title}
+          src={property.image_url || getPropertyFallbackImage(property)}
+          alt={property.title || property.address || "Property image"}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 filter group-hover:brightness-105"
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            if (!target.src.includes('unsplash.com')) {
+              target.src = getPropertyFallbackImage(property);
+            }
+          }}
         />
         
         {/* Gradient overlays */}
