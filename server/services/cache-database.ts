@@ -192,10 +192,11 @@ export class CacheDatabase {
       const beforeCount = filtered.length;
       filtered = filtered.filter(p => {
         const sqm = p.area_sqm;
-        // If area_sqm is null/undefined, exclude the property for minSqm filtering
-        return sqm !== null && sqm !== undefined && sqm >= filters.min_sqm!;
+        // If area_sqm is null/undefined, include the property (since cached data often lacks area)
+        // Only filter out if we have area data that's below the minimum
+        return sqm === null || sqm === undefined || sqm >= filters.min_sqm!;
       });
-      console.log(`📐 Min sqm filter (${filters.min_sqm}): ${beforeCount} → ${filtered.length} (excludes properties without area data)`);
+      console.log(`📐 Min sqm filter (${filters.min_sqm}): ${beforeCount} → ${filtered.length} (includes properties without area data)`);
     }
 
     if (filters.article4_filter && filters.article4_filter !== "all") {

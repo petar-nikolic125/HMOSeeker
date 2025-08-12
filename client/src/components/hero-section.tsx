@@ -13,7 +13,7 @@ export default function HeroSection({ onSearch, isLoading, searchResults }: Hero
   const [city, setCity] = useState("London");
   const [maxPrice, setMaxPrice] = useState(500000);
   const [minBedrooms, setMinBedrooms] = useState(3);
-  const [minSqm, setMinSqm] = useState<number>(90);
+  const [minSqm, setMinSqm] = useState<number | ''>('');
   const [maxSqm, setMaxSqm] = useState<number | undefined>(undefined);
   const [postcode, setPostcode] = useState<string>("");
   const [hmo_candidate, setHmoCandidate] = useState<boolean>(true);
@@ -28,7 +28,7 @@ export default function HeroSection({ onSearch, isLoading, searchResults }: Hero
       city,
       maxPrice: maxPrice,
       minRooms: minBedrooms,
-      minSqm: minSqm,
+      minSqm: typeof minSqm === 'number' ? minSqm : undefined,
       maxSqm: maxSqm,
       postcode: postcode.trim() || undefined,
       hmo_candidate: hmo_candidate,
@@ -203,8 +203,8 @@ export default function HeroSection({ onSearch, isLoading, searchResults }: Hero
                 <input 
                   type="number"
                   value={minSqm}
-                  onChange={(e) => setMinSqm(parseInt(e.target.value) || 90)}
-                  placeholder="90+ for HMO"
+                  onChange={(e) => setMinSqm(e.target.value ? parseInt(e.target.value) : '')}
+                  placeholder="90+ for HMO (optional)"
                   className="w-full h-12 text-base border-2 border-gray-200 hover:border-orange-400 focus:border-orange-500 transition-colors rounded-xl px-4 bg-white"
                 />
               </div>

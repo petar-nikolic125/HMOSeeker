@@ -29,7 +29,6 @@ export default function Home() {
   const [currentFilters, setCurrentFilters] = useState<SearchFilters>({ 
     city: "London",
     minRooms: 3,
-    minSqm: 90,
     hmo_candidate: true,
     article4_filter: "non_article4"
   });
