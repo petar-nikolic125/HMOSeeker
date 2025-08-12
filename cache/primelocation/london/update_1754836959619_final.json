@@ -6,7 +6,7 @@
     "bathrooms": 2,
     "description": "Test HMO property",
     "property_url": "https://primelocation.com/test/1",
-    "image_url": "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&h=600&fit=crop&crop=center&q=85",
+    "image_url": "",
     "postcode": "E1 1AA",
     "city": "london",
     "monthly_rent": 1600,
