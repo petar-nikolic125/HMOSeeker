@@ -16,7 +16,7 @@ export default function HeroSection({ onSearch, isLoading, searchResults }: Hero
   const [minSqm, setMinSqm] = useState<number | ''>('');
   const [maxSqm, setMaxSqm] = useState<number | undefined>(undefined);
   const [postcode, setPostcode] = useState<string>("");
-  const [hmo_candidate, setHmoCandidate] = useState<boolean>(false);
+
   const [article4Filter, setArticle4Filter] = useState<"all" | "non_article4" | "article4_only">("all");
   const { toast } = useToast();
   const [lastSearchFilters, setLastSearchFilters] = useState<SearchFilters | null>(null);
@@ -31,7 +31,7 @@ export default function HeroSection({ onSearch, isLoading, searchResults }: Hero
       minSqm: typeof minSqm === 'number' ? minSqm : undefined,
       maxSqm: maxSqm,
       postcode: postcode.trim() || undefined,
-      hmo_candidate: hmo_candidate,
+      hmo_candidate: false,
       article4_filter: article4Filter,
     };
 
@@ -47,7 +47,7 @@ export default function HeroSection({ onSearch, isLoading, searchResults }: Hero
       }, 300); // Debounce by 300ms
       return () => clearTimeout(timer);
     }
-  }, [city, maxPrice, minBedrooms, minSqm, maxSqm, postcode, hmo_candidate, article4Filter]);
+  }, [city, maxPrice, minBedrooms, minSqm, maxSqm, postcode, article4Filter]);
 
   // Show popup when search completes with no results
   useEffect(() => {
@@ -229,11 +229,11 @@ export default function HeroSection({ onSearch, isLoading, searchResults }: Hero
                 <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
                   <input
                     type="checkbox"
-                    checked={hmo_candidate}
-                    onChange={(e) => setHmoCandidate(e.target.checked)}
+                    checked={minBedrooms >= 4}
+                    onChange={(e) => setMinBedrooms(e.target.checked ? 4 : 3)}
                     className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                   />
-                  Show only HMO candidates (90+ sqm, non-Article 4)
+                  Show only large properties (4+ bedrooms)
                 </label>
               </div>
               <div>
@@ -279,7 +279,7 @@ export default function HeroSection({ onSearch, isLoading, searchResults }: Hero
                 </span>
                 <span className="flex items-center gap-1">
                   <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-                  HMO Suitable Only
+                  Large Properties Filter
                 </span>
               </div>
               <p className="text-xs text-gray-500">
