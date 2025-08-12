@@ -136,10 +136,12 @@ export class CacheDatabase {
     if (filters.max_sqm) {
       const beforeCount = filtered.length;
       filtered = filtered.filter(p => {
-        const sqm = p.area_sqm || 0;
-        return sqm > 0 && sqm <= filters.max_sqm!;
+        const sqm = p.area_sqm;
+        // If area_sqm is null/undefined, include the property (don't filter out)
+        // Only filter out if we have a valid sqm value that exceeds the limit
+        return sqm === null || sqm === undefined || sqm <= filters.max_sqm!;
       });
-      console.log(`📐 Max sqm filter (${filters.max_sqm}): ${beforeCount} → ${filtered.length}`);
+      console.log(`📐 Max sqm filter (${filters.max_sqm}): ${beforeCount} → ${filtered.length} (includes properties without area data)`);
     }
     
     if (filters.postcode) {
@@ -235,10 +237,12 @@ export class CacheDatabase {
       if (filters.max_sqm) {
         const beforeCount = filtered.length;
         filtered = filtered.filter(p => {
-          const sqm = p.area_sqm || 0;
-          return sqm > 0 && sqm <= filters.max_sqm!;
+          const sqm = p.area_sqm;
+          // If area_sqm is null/undefined, include the property (don't filter out)
+          // Only filter out if we have a valid sqm value that exceeds the limit
+          return sqm === null || sqm === undefined || sqm <= filters.max_sqm!;
         });
-        console.log(`📐 Max sqm filter (${filters.max_sqm}): ${beforeCount} → ${filtered.length}`);
+        console.log(`📐 Multi-city Max sqm filter (${filters.max_sqm}): ${beforeCount} → ${filtered.length} (includes properties without area data)`);
       }
       
       if (filters.postcode) {
