@@ -96,6 +96,7 @@ export class CacheDatabase {
     city?: string;
     min_bedrooms?: number;
     max_price?: number;
+    min_sqm?: number;
     max_sqm?: number;
     postcode?: string;
     keywords?: string;
@@ -132,7 +133,7 @@ export class CacheDatabase {
       });
       console.log(`💰 Max price filter (£${filters.max_price}): ${beforeCount} → ${filtered.length}`);
     }
-    
+
     if (filters.max_sqm) {
       const beforeCount = filtered.length;
       filtered = filtered.filter(p => {
@@ -168,11 +169,33 @@ export class CacheDatabase {
     if (filters.hmo_candidate !== undefined) {
       const beforeCount = filtered.length;
       filtered = filtered.filter(p => {
-        const isCandidate = p.hmo_candidate === true || 
-          (p.area_sqm >= 90 && p.article4_area !== true);
+        // Calculate if property is HMO candidate based on available data
+        const hasAreaData = p.area_sqm && p.area_sqm >= 90;
+        const notArticle4 = p.article4_area !== true;
+        const explicitCandidate = p.hmo_candidate === true;
+        const has4PlusBeds = (p.bedrooms || 0) >= 4; // 4+ bedrooms often indicates HMO potential
+        
+        // Property is HMO candidate if:
+        // 1. Explicitly marked as HMO candidate, OR
+        // 2. Has area >= 90sqm and not Article 4, OR
+        // 3. Has 4+ bedrooms and not Article 4 (for properties without area data)
+        const isCandidate = explicitCandidate || 
+                          (hasAreaData && notArticle4) || 
+                          (has4PlusBeds && notArticle4);
+        
         return filters.hmo_candidate ? isCandidate : !isCandidate;
       });
       console.log(`🏠 HMO candidate filter (${filters.hmo_candidate}): ${beforeCount} → ${filtered.length}`);
+    }
+
+    if (filters.min_sqm) {
+      const beforeCount = filtered.length;
+      filtered = filtered.filter(p => {
+        const sqm = p.area_sqm;
+        // If area_sqm is null/undefined, exclude the property for minSqm filtering
+        return sqm !== null && sqm !== undefined && sqm >= filters.min_sqm!;
+      });
+      console.log(`📐 Min sqm filter (${filters.min_sqm}): ${beforeCount} → ${filtered.length} (excludes properties without area data)`);
     }
 
     if (filters.article4_filter && filters.article4_filter !== "all") {

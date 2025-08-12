@@ -12,11 +12,12 @@ interface HeroSectionProps {
 export default function HeroSection({ onSearch, isLoading, searchResults }: HeroSectionProps) {
   const [city, setCity] = useState("London");
   const [maxPrice, setMaxPrice] = useState(500000);
-  const [minBedrooms, setMinBedrooms] = useState(1);
+  const [minBedrooms, setMinBedrooms] = useState(3);
+  const [minSqm, setMinSqm] = useState<number>(90);
   const [maxSqm, setMaxSqm] = useState<number | undefined>(undefined);
   const [postcode, setPostcode] = useState<string>("");
-  const [hmo_candidate, setHmoCandidate] = useState<boolean>(false);
-  const [article4Filter, setArticle4Filter] = useState<"all" | "non_article4" | "article4_only">("all");
+  const [hmo_candidate, setHmoCandidate] = useState<boolean>(true);
+  const [article4Filter, setArticle4Filter] = useState<"all" | "non_article4" | "article4_only">("non_article4");
   const { toast } = useToast();
   const [lastSearchFilters, setLastSearchFilters] = useState<SearchFilters | null>(null);
 
@@ -27,16 +28,26 @@ export default function HeroSection({ onSearch, isLoading, searchResults }: Hero
       city,
       maxPrice: maxPrice,
       minRooms: minBedrooms,
+      minSqm: minSqm,
       maxSqm: maxSqm,
       postcode: postcode.trim() || undefined,
       hmo_candidate: hmo_candidate,
       article4_filter: article4Filter,
-      // Ne dodajemo automatski keywords "hmo" 
     };
 
     setLastSearchFilters(filters);
     onSearch(filters);
   };
+
+  // Auto-filter when parameters change
+  useEffect(() => {
+    if (city) {
+      const timer = setTimeout(() => {
+        handleSearch();
+      }, 300); // Debounce by 300ms
+      return () => clearTimeout(timer);
+    }
+  }, [city, maxPrice, minBedrooms, minSqm, maxSqm, postcode, hmo_candidate, article4Filter]);
 
   // Show popup when search completes with no results
   useEffect(() => {
@@ -187,13 +198,13 @@ export default function HeroSection({ onSearch, isLoading, searchResults }: Hero
               <div>
                 <label className="block text-sm font-semibold text-gray-800 mb-3 flex items-center gap-2">
                   <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
-                  Max Sqm
+                  Min Sqm (HMO)
                 </label>
                 <input 
                   type="number"
-                  value={maxSqm || ''}
-                  onChange={(e) => setMaxSqm(e.target.value ? parseInt(e.target.value) : undefined)}
-                  placeholder="e.g. 150"
+                  value={minSqm}
+                  onChange={(e) => setMinSqm(parseInt(e.target.value) || 90)}
+                  placeholder="90+ for HMO"
                   className="w-full h-12 text-base border-2 border-gray-200 hover:border-orange-400 focus:border-orange-500 transition-colors rounded-xl px-4 bg-white"
                 />
               </div>

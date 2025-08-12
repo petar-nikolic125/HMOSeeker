@@ -26,7 +26,13 @@ export default function Home() {
     error: null,
   });
   const [selectedProperty, setSelectedProperty] = useState<PropertyListing | null>(null);
-  const [currentFilters, setCurrentFilters] = useState<SearchFilters>({ city: "London" });
+  const [currentFilters, setCurrentFilters] = useState<SearchFilters>({ 
+    city: "London",
+    minRooms: 3,
+    minSqm: 90,
+    hmo_candidate: true,
+    article4_filter: "non_article4"
+  });
   const [lastSearchTime, setLastSearchTime] = useState<number>(0);
   const [sortBy, setSortBy] = useState<string>("yield_desc");
   const [sortedProperties, setSortedProperties] = useState<any[]>([]);
@@ -38,8 +44,11 @@ export default function Home() {
       if (filters.minRooms) params.append('min_bedrooms', filters.minRooms.toString());
       if (filters.maxPrice) params.append('max_price', filters.maxPrice.toString());
       if (filters.keywords) params.append('keywords', filters.keywords);
+      if (filters.minSqm) params.append('min_sqm', filters.minSqm.toString());
       if (filters.maxSqm) params.append('max_sqm', filters.maxSqm.toString());
       if (filters.postcode) params.append('postcode', filters.postcode);
+      if (filters.hmo_candidate) params.append('hmo_candidate', 'true');
+      if (filters.article4_filter && filters.article4_filter !== 'all') params.append('article4_filter', filters.article4_filter);
       
       // Use cache endpoint instead of search (no scraping)
       const response = await fetch(`/api/properties?${params.toString()}`);
