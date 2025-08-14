@@ -31,7 +31,7 @@ users:
     shell: /bin/bash
     sudo: ['ALL=(ALL) NOPASSWD:ALL']
     ssh_authorized_keys:
-      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC... # REPLACE WITH YOUR SSH PUBLIC KEY
+      - REPLACE_WITH_YOUR_ACTUAL_SSH_PUBLIC_KEY_HERE
 
 # Setup commands
 runcmd:
@@ -252,7 +252,7 @@ write_files:
       
       # Pull latest code
       echo "📥 Pulling latest code..."
-      git pull origin main
+      git pull origin main || git pull origin master
       
       # Install dependencies
       echo "📦 Installing dependencies..."
