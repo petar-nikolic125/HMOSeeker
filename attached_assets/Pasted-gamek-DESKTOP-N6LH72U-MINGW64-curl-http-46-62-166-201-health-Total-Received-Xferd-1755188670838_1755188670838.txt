@@ -1,0 +1,78 @@
+gamek@DESKTOP-N6LH72U MINGW64 ~
+$ curl http://46.62.166.201/health
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   166  100   166    0     0    989      0 --:--:-- --:--:-- --:--:--   994<html>
+<head><title>502 Bad Gateway</title></head>
+<body>
+<center><h1>502 Bad Gateway</h1></center>
+<hr><center>nginx/1.24.0 (Ubuntu)</center>
+</body>
+</html>
+
+
+gamek@DESKTOP-N6LH72U MINGW64 ~
+$ ssh root@46.62.166.201
+Welcome to Ubuntu 24.04.3 LTS (GNU/Linux 6.8.0-71-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Thu 14 Aug 17:24:08 BST 2025
+
+  System load:  0.12              Processes:             158
+  Usage of /:   4.6% of 74.79GB   Users logged in:       1
+  Memory usage: 10%               IPv4 address for eth0: 46.62.166.201
+  Swap usage:   0%                IPv6 address for eth0: 2a01:4f9:c013:f54c::1
+
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+Last login: Thu Aug 14 17:20:37 2025 from 185.26.173.118
+root@Hmofinder:~# # Na Hetzner serveru, izvršite:
+systemctl stop hmo-hunter
+
+# Kreirajte funkcionalni server
+cd /var/www/hmo-hunter
+cat > dist/index.js << 'EOF'
+import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const app = express();
+
+// Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+// Serve static files from dist/public
+app.use('/', express.static(path.join(__dirname, 'public')));
+
+// Health endpoint
+app.get('/health', (req, res) => {
+systemctl status hmo-hunterrservison at:', promise, 'reason:', reason);ealth`);
+[1] 22816
+🏠 HMO Hunter running on port 5000
+📊 Health check available at: http://localhost:5000/health
+● hmo-hunter.service - HMO Hunter Property Analysis Platform:"2025-08-14T16:24:18.644Z","server":"production"}
+     Loaded: loaded (/etc/systemd/system/hmo-hunter.service; enabled; preset: enabled)
+     Active: active (running) since Thu 2025-08-14 17:24:18 BST; 7ms ago
+   Main PID: 22831 (node)
+      Tasks: 1 (limit: 4540)
+     Memory: 316.0K (max: 2.0G available: 1.9G peak: 316.0K)
+        CPU: 4ms
+     CGroup: /system.slice/hmo-hunter.service
+             └─22831 /usr/bin/node dist/index.js
+
+Aug 14 17:24:18 Hmofinder systemd[1]: Started hmo-hunter.service - HMO Hunter Property Analysis Platform.
+root@Hmofinder:/var/www/hmo-hunter#
