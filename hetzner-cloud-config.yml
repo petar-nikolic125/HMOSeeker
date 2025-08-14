@@ -21,7 +21,7 @@ packages:
   - ufw
   - fail2ban
   - htop
-  - postgresql-client
+  - jq
 
 # Create application user
 users:
@@ -38,10 +38,12 @@ runcmd:
   - curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
   - apt-get install -y nodejs
 
-  # Create application directory
+  # Create application directory with cache storage
   - mkdir -p /var/www/hmo-hunter
+  - mkdir -p /var/www/hmo-hunter/cache/primelocation
   - chown -R hmo:www-data /var/www/hmo-hunter
   - chmod -R 755 /var/www/hmo-hunter
+  - chmod -R 775 /var/www/hmo-hunter/cache
 
   # Install Python dependencies globally
   - pip3 install requests beautifulsoup4 lxml
@@ -157,8 +159,8 @@ write_files:
       NODE_ENV=production
       PORT=5000
       
-      # Database Configuration
-      DATABASE_URL=postgresql://username:password@your-db-host:5432/hmo_hunter
+      # JSON Cache Configuration (no database needed)
+      CACHE_BASE_PATH=/var/www/hmo-hunter/cache
       
       # Optional: External APIs
       # ZOOPLA_API_KEY=your_zoopla_key

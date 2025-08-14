@@ -16,9 +16,10 @@ ssh-keygen -t rsa -b 4096 -C "your-email@example.com"
 cat ~/.ssh/id_rsa.pub
 ```
 
-### 3. Database Setup
-- Set up a PostgreSQL database (Hetzner Cloud SQL, DigitalOcean, or Neon)
-- Update the DATABASE_URL in the cloud-config
+### 3. Cache Storage Setup
+- No database required - uses JSON cache files
+- Cache directory automatically created: `/var/www/hmo-hunter/cache/primelocation/`
+- Existing cache files will be preserved during deployment
 
 ## Deployment Steps
 
@@ -94,7 +95,11 @@ sudo tail -f /var/log/nginx/error.log
 htop
 
 # Service status
-sudo systemctl status hmo-hunter nginx postgresql
+sudo systemctl status hmo-hunter nginx
+
+# Check cache storage
+du -sh /var/www/hmo-hunter/cache/
+ls -la /var/www/hmo-hunter/cache/primelocation/
 ```
 
 ## Security Features Included
