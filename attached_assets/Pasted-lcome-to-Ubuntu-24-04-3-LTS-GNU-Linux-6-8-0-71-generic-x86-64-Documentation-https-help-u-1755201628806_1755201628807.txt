@@ -1,0 +1,89 @@
+lcome to Ubuntu 24.04.3 LTS (GNU/Linux 6.8.0-71-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Thu 14 Aug 20:59:49 BST 2025
+
+  System load:  0.01              Processes:             142
+  Usage of /:   4.3% of 74.79GB   Users logged in:       0
+  Memory usage: 8%                IPv4 address for eth0: 188.34.176.15
+  Swap usage:   0%                IPv6 address for eth0: 2a01:4f8:c17:3d04::1
+
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+Last login: Thu Aug 14 20:58:44 2025 from 94.189.201.148
+root@hmofinder:~# # Proverite logove da vidimo grešku
+journalctl -u hmo-hunter --lines=20 --no-pager
+
+# Testiramo da li aplikacija uopšte odgovara
+curl http://localhost:5000/health
+
+# Proverite da li port 5000 je zauzet
+netstat -tlnp | grep 5000
+Aug 14 20:59:41 hmofinder node[3727]: }
+Aug 14 20:59:41 hmofinder node[3727]: Node.js v18.19.1
+Aug 14 20:59:41 hmofinder systemd[1]: hmo-hunter.service: Main process exited, code=exited, status=1/FAILURE
+Aug 14 20:59:41 hmofinder systemd[1]: hmo-hunter.service: Failed with result 'exit-code'.
+Aug 14 20:59:51 hmofinder systemd[1]: hmo-hunter.service: Scheduled restart job, restart counter is at 116.
+Aug 14 20:59:51 hmofinder systemd[1]: Started hmo-hunter.service - HMO Hunter Property Analysis Platform.
+Aug 14 20:59:51 hmofinder node[3817]: node:internal/modules/cjs/loader:1137
+Aug 14 20:59:51 hmofinder node[3817]:   throw err;
+Aug 14 20:59:51 hmofinder node[3817]:   ^
+Aug 14 20:59:51 hmofinder node[3817]: Error: Cannot find module '/var/www/hmo-hunter/dist/index.js'
+Aug 14 20:59:51 hmofinder node[3817]:     at Module._resolveFilename (node:internal/modules/cjs/loader:1134:15)
+Aug 14 20:59:51 hmofinder node[3817]:     at Module._load (node:internal/modules/cjs/loader:975:27)
+Aug 14 20:59:51 hmofinder node[3817]:     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:128:12)
+Aug 14 20:59:51 hmofinder node[3817]:     at node:internal/main/run_main_module:28:49 {
+Aug 14 20:59:51 hmofinder node[3817]:   code: 'MODULE_NOT_FOUND',
+Aug 14 20:59:51 hmofinder node[3817]:   requireStack: []
+Aug 14 20:59:51 hmofinder node[3817]: }
+Aug 14 20:59:51 hmofinder node[3817]: Node.js v18.19.1
+Aug 14 20:59:51 hmofinder systemd[1]: hmo-hunter.service: Main process exited, code=exited, status=1/FAILURE
+Aug 14 20:59:51 hmofinder systemd[1]: hmo-hunter.service: Failed with result 'exit-code'.
+curl: (7) Failed to connect to localhost port 5000 after 0 ms: Couldn't connect to server
+root@hmofinder:~# cd /var/www/hmo-hunter
+
+# Kreiraj jednostavan CommonJS server
+cat > server-simple.js << 'EOF'
+const express = require('express');
+const path = require('path');
+
+const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+console.log('🚀 HMO Hunter - Starting simple server...');
+
+// Serve static files from dist/public
+app.use(express.static(path.join(__dirname, 'dist/public')));
+
+// Health check endpoint
+app.get('/health', (req, res) => {
+    console.log('Health check requested');
+    res.json({
+        status: 'healthy',
+        timestamp: new Date().toISOString(),
+        service: 'HMO Hunter API - Simple Version'
+    });
+curl http://188.34.176.15/healthss..."no-pagerormEOF't}`);});.html');
+● hmo-hunter.service - HMO Hunter Property Analysis Platform
+     Loaded: loaded (/etc/systemd/system/hmo-hunter.service; enabled; preset: e>
+     Active: active (running) since Thu 2025-08-14 21:00:16 BST; 6ms ago
+   Main PID: 3907 (node)
+      Tasks: 1 (limit: 4540)
+     Memory: 1.0M (peak: 1.0M)
+        CPU: 4ms
+     CGroup: /system.slice/hmo-hunter.service
+             └─3907 /usr/bin/node server-simple.js
+
+Aug 14 21:00:16 hmofinder systemd[1]: Started hmo-hunter.service - HMO Hunter P>
+lines 1-11/11 (END)
