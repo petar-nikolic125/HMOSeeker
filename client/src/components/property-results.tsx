@@ -26,6 +26,15 @@ interface PropertyResultsProps {
 export default function PropertyResults({ properties, filters, onAnalyze, onRefresh, searchState, onSortChange, currentSort }: PropertyResultsProps) {
   const { isLoading, isCached, lastRefreshed, error } = searchState;
   const { toast } = useToast();
+  
+  // Debug logging
+  console.log('PropertyResults received:', {
+    propertiesCount: properties.length,
+    searchStatePropertiesCount: searchState.properties.length,
+    isLoading,
+    error,
+    filters
+  });
 
   // Show toast when no results due to filters
   const hasActiveFilters = filters.maxPrice || filters.minRooms || filters.keywords;
