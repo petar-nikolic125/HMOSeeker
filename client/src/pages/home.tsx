@@ -58,19 +58,27 @@ export default function Home() {
       setSearchState(prev => ({ ...prev, isLoading: true, error: null }));
     },
     onSuccess: (data) => {
-      console.log('Search API response:', data);
-      console.log('Properties count:', data.properties?.length || 0);
-      console.log('First property:', data.properties?.[0]);
-      
+      console.log('🔥 API SUCCESS - Raw data:', data);
       const properties = data.properties || data.listings || [];
-      console.log('Properties to set in state:', properties.length);
+      console.log('🔥 Properties extracted:', properties.length, properties);
       
-      setSearchState({
-        properties: properties,
-        isLoading: false,
-        isCached: data.cached || true,
-        lastRefreshed: new Date(),
-        error: null,
+      if (properties.length === 0) {
+        console.error('🚨 NO PROPERTIES FOUND - API returned empty array!');
+      } else {
+        console.log('✅ Setting', properties.length, 'properties in state');
+      }
+      
+      setSearchState(prev => {
+        console.log('🔄 Previous state:', prev.properties.length, 'properties');
+        const newState = {
+          properties: properties,
+          isLoading: false,
+          isCached: data.cached || true,
+          lastRefreshed: new Date(),
+          error: null,
+        };
+        console.log('🔄 New state:', newState.properties.length, 'properties');
+        return newState;
       });
     },
     onError: (error: Error) => {
