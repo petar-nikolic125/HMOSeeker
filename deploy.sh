@@ -3,6 +3,16 @@ set -e
 
 echo "🚀 Pokretam HMO Hunter deployment..."
 
+# Proverava postojanje .git direktorijuma
+if [ ! -d ".git" ]; then
+    echo "📥 Inicijalizujem git repo..."
+    git init
+    if [ ! -z "$1" ]; then
+        git remote add origin "$1"
+        git pull origin main || git pull origin master
+    fi
+fi
+
 # Proverava da li je u produkciji
 if [ "$NODE_ENV" = "production" ]; then
     echo "📦 Production mode - instaliram dependencies..."
@@ -20,12 +30,27 @@ fi
 
 # Instalira Python dependencies
 echo "🐍 Instaliram Python dependencies..."
-if command -v pip3 &> /dev/null; then
-    pip3 install -r requirements.txt 2>/dev/null || pip3 install requests beautifulsoup4 lxml
-elif command -v python3 -m pip &> /dev/null; then
-    python3 -m pip install requests beautifulsoup4 lxml
+if [ "$NODE_ENV" = "production" ]; then
+    # Ubuntu/Debian production - koristi system packages ili --break-system-packages
+    if command -v apt &> /dev/null; then
+        echo "📦 Instaliram Python biblioteke preko apt..."
+        sudo apt update -qq
+        sudo apt install -y python3-requests python3-bs4 python3-lxml || {
+            echo "🔧 Apt instalacija neuspešna, koristim pip sa --break-system-packages..."
+            pip3 install --break-system-packages requests beautifulsoup4 lxml
+        }
+    else
+        pip3 install --break-system-packages requests beautifulsoup4 lxml
+    fi
 else
-    echo "⚠️  Python pip nije dostupan - preskačem Python dependencies"
+    # Development mode
+    if command -v pip3 &> /dev/null; then
+        pip3 install -r requirements.txt 2>/dev/null || pip3 install requests beautifulsoup4 lxml
+    elif command -v python3 -m pip &> /dev/null; then
+        python3 -m pip install requests beautifulsoup4 lxml
+    else
+        echo "⚠️  Python pip nije dostupan - preskačem Python dependencies"
+    fi
 fi
 
 # Proverava cache direktorijum
