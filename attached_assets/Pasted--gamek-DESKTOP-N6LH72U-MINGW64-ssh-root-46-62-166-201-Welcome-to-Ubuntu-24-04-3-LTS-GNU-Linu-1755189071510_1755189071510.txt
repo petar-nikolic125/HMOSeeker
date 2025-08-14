@@ -1,0 +1,255 @@
+
+gamek@DESKTOP-N6LH72U MINGW64 ~
+$ ssh root@46.62.166.201
+Welcome to Ubuntu 24.04.3 LTS (GNU/Linux 6.8.0-71-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Thu 14 Aug 17:28:56 BST 2025
+
+  System load:  0.0               Processes:             157
+  Usage of /:   4.6% of 74.79GB   Users logged in:       1
+  Memory usage: 10%               IPv4 address for eth0: 46.62.166.201
+  Swap usage:   0%                IPv6 address for eth0: 2a01:4f9:c013:f54c::1
+
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+Last login: Thu Aug 14 17:26:42 2025 from 185.26.173.118
+root@Hmofinder:~# cd /var/www/hmo-hunter
+root@Hmofinder:/var/www/hmo-hunter#
+gamek@DESKTOP-N6LH72U MINGW64 ~
+$ ssh root@46.62.166.201
+Welcome to Ubuntu 24.04.3 LTS (GNU/Linux 6.8.0-71-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Thu 14 Aug 17:28:56 BST 2025
+
+  System load:  0.0               Processes:             157
+  Usage of /:   4.6% of 74.79GB   Users logged in:       1
+  Memory usage: 10%               IPv4 address for eth0: 46.62.166.201
+  Swap usage:   0%                IPv6 address for eth0: 2a01:4f9:c013:f54c::1
+
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+Enable ESM Apps to receive additional future security updates.
+
+gamek@DESKTOP-N6LH72U: command not found
+$: command not found
+-bash: syntax error near unexpected token `('
+
+attached_assets: command not found
+attached_assets: command not found
+attached_assets: command not found
+System: command not found
+System: command not found
+Command 'Usage' not found, did you mean:
+  command 'osage' from deb graphviz (2.42.2-9ubuntu0.1)
+Try: apt install <deb name>
+Memory: command not found
+Swap: command not found
+Expanded: command not found
+0: command not found
+Enable: command not found
+Command 'See' not found, did you mean:
+  command 'tee' from deb coreutils (9.4-2ubuntu2)
+  command 'pee' from deb moreutils (0.67-1)
+  command 'ree' from deb ree (1.4.1-2)
+  command 'see' from deb mailcap (3.70+nmu1ubuntu1)
+Try: apt install <deb name>
+Command 'Last' not found, did you mean:
+  command 'fast' from snap fast (0.0.4)
+  command 'last' from deb util-linux (2.39.3-9ubuntu6.2)
+  command 'ast' from deb jruby (9.3.9.0+ds-1)
+  command 'nast' from deb nast (0.2.0-10)
+See 'snap info <snapname>' for additional versions.
+root@Hmofinder:~#: command not found
+root@Hmofind: command not found
+root@Hmofinder:/var/www/hmo-hunter#
+root@Hmofinder:/var/www/hmo-hunter# ls -la dist/public/
+ls: cannot access 'dist/public/': No such file or directory
+root@Hmofinder:/var/www/hmo-hunter# cp -r ../dist/public ./dist/ 2>/dev/null || echo "Build public files missing"
+root@Hmofinder:/var/www/hmo-hunter# mkdir -p dist/public
+cp client/index.html dist/public/
+cp -r client/src dist/public/ 2>/dev/null || true
+root@Hmofinder:/var/www/hmo-hunter# cat > dist/index.js << 'EOF'
+import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+// Static files
+app.use(express.static(path.join(__dirname, 'public')));
+// Health endpoint
+app.get('/health', (req, res) => {
+  res.json({
+    status: 'ok',
+    message: 'HMO Hunter is running',
+    timestamp: new Date().toISOString(),
+    server: 'production'
+  });
+});
+// SPA fallback
+app.get('*', (req, res) => {
+  const indexPath = path.join(__dirname, 'public', 'index.html');
+  console.log('Serving:', indexPath);
+EOFonsole.log(`🏠 HMO Hunter running on port ${PORT}`);/p>
+root@Hmofinder:/var/www/hmo-hunter# cat > dist/index.js << 'EOF'
+import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+// Static files
+app.use(express.static(path.join(__dirname, 'public')));
+// Health endpoint
+app.get('/health', (req, res) => {
+  res.json({
+    status: 'ok',
+    message: 'HMO Hunter is running',
+    timestamp: new Date().toISOString(),
+    server: 'production'
+  });
+});
+// SPA fallback
+app.get('*', (req, res) => {
+  const indexPath = path.join(__dirname, 'public', 'index.html');
+  console.log('Serving:', indexPath);
+EOFonsole.log(`🏠 HMO Hunter running on port ${PORT}`);/p>
+root@Hmofinder:/var/www/hmo-hunter# systemctl restart hmo-hunter
+root@Hmofinder:/var/www/hmo-hunter# curl http://localhost:5000/
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <title>HMO Property Finder - UK Investment Opportunities</title>
+    <meta name="description" content="Search Rightmove, Zoopla & PrimeLocation for profitable HMO opportunities. Real-time property data, investment analysis, and ROI calculations for UK property investors." />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://hmofinder.co.uk/" />
+    <meta property="og:title" content="HMO Property Finder - UK Investment Opportunities" />
+    <meta property="og:description" content="Search Rightmove, Zoopla & PrimeLocation for profitable HMO opportunities. Real-time property data, investment analysis, and ROI calculations for UK property investors." />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1200&h=630&fit=crop" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://hmofinder.co.uk/" />
+    <meta property="twitter:title" content="HMO Property Finder - UK Investment Opportunities" />
+    <meta property="twitter:description" content="Search Rightmove, Zoopla & PrimeLocation for profitable HMO opportunities. Real-time property data, investment analysis, and ROI calculations for UK property investors." />
+    <meta property="twitter:image" content="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1200&h=630&fit=crop" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏠</text></svg>">
+  </head>
+  <body class="font-sans">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <!-- This is a replit script which adds a banner on the top of the page when opened in development mode outside the replit environment -->
+    <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js"></script>
+  </body>
+</html>
+root@Hmofinder:/var/www/hmo-hunter# curl http://localhost:5000/health
+{"status":"ok","message":"HMO Hunter is running","timestamp":"2025-08-14T16:30:41.705Z","server":"production"}root@Hmofinder:/var/www/hmo-hunter# # Na serveru, izvršite sledeće:
+cd /var/www/hmo-hunter
+
+# Proverite da li postoji dist/public direktorijum sa frontend fajlovima
+ls -la dist/public/
+
+# Ako ne postoji, kopirajte iz build-a
+cp -r ../dist/public ./dist/ 2>/dev/null || echo "Build public files missing"
+
+# Alternativno, kopirajte client/index.html direktno u dist/public
+mkdir -p dist/public
+cp client/index.html dist/public/
+cp -r client/src dist/public/ 2>/dev/null || true
+
+# Ili kopirajte sve build fajlove
+find . -name "index-*.css" -exec cp {} dist/public/ \;
+find . -name "index-*.js" -exec cp {} dist/public/ \;
+
+# Ažuriraj server da pravilno servira fajlove
+cat > dist/index.js << 'EOF'
+import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+curl http://localhost:5000/healthing on port ${PORT}`);/p>html');
+total 20
+drwxr-xr-x 4 root root     4096 Aug 14 17:29 .
+drwxr-xr-x 3 hmo  www-data 4096 Aug 14 17:29 ..
+drwxr-xr-x 2 root root     4096 Aug 14 17:29 assets
+-rw-r--r-- 1 root root     2521 Aug 14 17:29 index.html
+drwxr-xr-x 6 root root     4096 Aug 14 17:29 src
+cp: './dist/public/index-es5.js' and 'dist/public/index-es5.js' are the same file
+cp: './dist/public/index-browser.js' and 'dist/public/index-browser.js' are the same file
+curl: (7) Failed to connect to localhost port 5000 after 0 ms: Couldn't connect to server
+curl: (7) Failed to connect to localhost port 5000 after 0 ms: Couldn't connect to server
+root@Hmofinder:/var/www/hmo-hunter# # Na serveru, izvršite sledeće:
+cd /var/www/hmo-hunter
+
+# Proverite da li postoji dist/public direktorijum sa frontend fajlovima
+ls -la dist/public/
+
+# Ako ne postoji, kopirajte iz build-a
+cp -r ../dist/public ./dist/ 2>/dev/null || echo "Build public files missing"
+
+# Alternativno, kopirajte client/index.html direktno u dist/public
+mkdir -p dist/public
+cp client/index.html dist/public/
+cp -r client/src dist/public/ 2>/dev/null || true
+
+# Ili kopirajte sve build fajlove
+find . -name "index-*.css" -exec cp {} dist/public/ \;
+find . -name "index-*.js" -exec cp {} dist/public/ \;
+
+# Ažuriraj server da pravilno servira fajlove
+cat > dist/index.js << 'EOF'
+import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+curl http://localhost:5000/healthing on port ${PORT}`);/p>html');
+total 444
+drwxr-xr-x 4 root root       4096 Aug 14 17:30 .
+drwxr-xr-x 3 hmo  www-data   4096 Aug 14 17:29 ..
+drwxr-xr-x 2 root root       4096 Aug 14 17:29 assets
+-rw-r--r-- 1 root root      91689 Aug 14 17:30 index-BPcPS5Nr.css
+-rw-r--r-- 1 root root       1568 Aug 14 17:30 index-browser.js
+-rw-r--r-- 1 root root        674 Aug 14 17:30 index-es5.js
+-rw-r--r-- 1 root root       2521 Aug 14 17:30 index.html
+-rw-r--r-- 1 root root     329117 Aug 14 17:30 index-nwzmp_pv.js
+drwxr-xr-x 6 root root       4096 Aug 14 17:29 src
+cp: './dist/public/index-BPcPS5Nr.css' and 'dist/public/index-BPcPS5Nr.css' are the same file
+cp: './dist/public/index-es5.js' and 'dist/public/index-es5.js' are the same file
+cp: './dist/public/index-nwzmp_pv.js' and 'dist/public/index-nwzmp_pv.js' are the same file
+cp: './dist/public/index-browser.js' and 'dist/public/index-browser.js' are the same file
+curl: (7) Failed to connect to localhost port 5000 after 0 ms: Couldn't connect to server
+curl: (7) Failed to connect to localhost port 5000 after 0 ms: Couldn't connect to server
+root@Hmofinder:/var/www/hmo-hunter#
