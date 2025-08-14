@@ -1,0 +1,83 @@
+url: (7) Failed to connect to localhost port 5000 after 0 ms: Couldn't connect to server
+<html>
+<head><title>502 Bad Gateway</title></head>
+<body>
+<center><h1>502 Bad Gateway</h1></center>
+<hr><center>nginx/1.24.0 (Ubuntu)</center>
+</body>
+</html>
+root@Hmofinder:/var/www/hmo-hunter# # Proverite greške u systemd logu
+journalctl -u hmo-hunter -f --no-pager -n 20
+
+# Ili alternativno
+systemctl status hmo-hunter -l
+
+# Verovatno je problem sa korisničkim dozvolama. Testirajte direktno kao root
+node production.cjs
+
+# Ako to radi, problem je u dozvolama. Ispravite:
+chown -R hmo:www-data /var/www/hmo-hunter
+chmod +x production.cjs
+
+# Alternativno, pokrenite kao root korisnik u systemd servisu
+cat > /etc/systemd/system/hmo-hunter.service << 'EOF'
+[Unit]
+Description=HMO Hunter Property Analysis Platform
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/var/www/hmo-hunter
+ExecStart=/usr/bin/node production.cjs
+Restart=always
+RestartSec=5
+Environment=NODE_ENV=production
+Environment=PORT=5000
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+# Reload i restart
+systemctl daemon-reload
+systemctl restart hmo-hunter
+
+# Čekajte startup
+sleep 3
+
+# Test
+tail /var/log/hmo-hunter.logalthhlog/hmo-hunter.log 2>&1 &
+Aug 14 17:52:31 Hmofinder systemd[1]: hmo-hunter.service: Failed with result 'exit-code'.
+Aug 14 17:52:41 Hmofinder systemd[1]: hmo-hunter.service: Scheduled restart job, restart counter is at 10.
+Aug 14 17:52:41 Hmofinder systemd[1]: Started hmo-hunter.service - HMO Hunter Property Analysis Platform.
+Aug 14 17:52:41 Hmofinder systemd[1]: hmo-hunter.service: Main process exited, code=exited, status=1/FAILURE
+Aug 14 17:52:41 Hmofinder systemd[1]: hmo-hunter.service: Failed with result 'exit-code'.
+Aug 14 17:52:51 Hmofinder systemd[1]: hmo-hunter.service: Scheduled restart job, restart counter is at 11.
+Aug 14 17:52:51 Hmofinder systemd[1]: Started hmo-hunter.service - HMO Hunter Property Analysis Platform.
+Aug 14 17:52:52 Hmofinder systemd[1]: hmo-hunter.service: Main process exited, code=exited, status=1/FAILURE
+Aug 14 17:52:52 Hmofinder systemd[1]: hmo-hunter.service: Failed with result 'exit-code'.
+Aug 14 17:53:02 Hmofinder systemd[1]: hmo-hunter.service: Scheduled restart job, restart counter is at 12.
+Aug 14 17:53:02 Hmofinder systemd[1]: Started hmo-hunter.service - HMO Hunter Property Analysis Platform.
+Aug 14 17:53:02 Hmofinder systemd[1]: hmo-hunter.service: Main process exited, code=exited, status=1/FAILURE
+Aug 14 17:53:02 Hmofinder systemd[1]: hmo-hunter.service: Failed with result 'exit-code'.
+Aug 14 17:53:06 Hmofinder systemd[1]: Stopped hmo-hunter.service - HMO Hunter Property Analysis Platform.
+Aug 14 17:58:06 Hmofinder systemd[1]: /etc/systemd/system/hmo-hunter.service:13: Standard output type syslog is obsolete, automatically updating to journal. Please update your unit file, and consider removing the setting altogether.
+Aug 14 17:58:06 Hmofinder systemd[1]: /etc/systemd/system/hmo-hunter.service:14: Standard output type syslog is obsolete, automatically updating to journal. Please update your unit file, and consider removing the setting altogether.
+Aug 14 17:58:06 Hmofinder systemd[1]: /etc/systemd/system/hmo-hunter.service:19: Unit uses MemoryLimit=; please use MemoryMax= instead. Support for MemoryLimit= will be removed soon.
+Aug 14 17:58:07 Hmofinder systemd[1]: Started hmo-hunter.service - HMO Hunter Property Analysis Platform.
+Aug 14 17:58:07 Hmofinder hmo-hunter[24425]: Server running on port 5000
+Aug 14 17:58:07 Hmofinder hmo-hunter[24425]: Cache exists: true
+Aug 14 17:59:14 Hmofinder hmo-hunter[24425]: API request: { city: 'London', min_bedrooms: '3' }
+Aug 14 17:59:14 Hmofinder hmo-hunter[24425]: Loaded 53 properties
+Aug 14 17:59:14 Hmofinder hmo-hunter[24425]: Filtered to 53 properties
+Aug 14 17:59:15 Hmofinder hmo-hunter[24425]: API request: { city: 'London', min_bedrooms: '3', max_price: '500000' }
+Aug 14 17:59:15 Hmofinder hmo-hunter[24425]: Loaded 53 properties
+Aug 14 17:59:15 Hmofinder hmo-hunter[24425]: Filtered to 19 properties
+Aug 14 17:59:16 Hmofinder hmo-hunter[24425]: API request: { city: 'London', min_bedrooms: '3', max_price: '500000' }
+Aug 14 17:59:16 Hmofinder hmo-hunter[24425]: Loaded 53 properties
+Aug 14 17:59:16 Hmofinder hmo-hunter[24425]: Filtered to 19 properties
+Aug 14 17:59:29 Hmofinder hmo-hunter[24425]: API request: { city: 'London', min_bedrooms: '3', max_price: '500000' }
+Aug 14 17:59:29 Hmofinder hmo-hunter[24425]: Loaded 53 properties
+Aug 14 17:59:29 Hmofinder hmo-hunter[24425]: Filtered to 19 properties
+

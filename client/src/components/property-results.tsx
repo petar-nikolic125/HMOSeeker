@@ -28,7 +28,7 @@ export default function PropertyResults({ properties, filters, onAnalyze, onRefr
   const { toast } = useToast();
 
   // Show toast when no results due to filters
-  const hasActiveFilters = filters.max_price || filters.min_bedrooms || filters.keywords;
+  const hasActiveFilters = filters.maxPrice || filters.minRooms || filters.keywords;
   
   React.useEffect(() => {
     if (!isLoading && properties.length === 0 && hasActiveFilters && !error) {
