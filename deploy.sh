@@ -20,7 +20,13 @@ fi
 
 # Instalira Python dependencies
 echo "🐍 Instaliram Python dependencies..."
-pip3 install -r requirements.txt 2>/dev/null || pip3 install requests beautifulsoup4 lxml
+if command -v pip3 &> /dev/null; then
+    pip3 install -r requirements.txt 2>/dev/null || pip3 install requests beautifulsoup4 lxml
+elif command -v python3 -m pip &> /dev/null; then
+    python3 -m pip install requests beautifulsoup4 lxml
+else
+    echo "⚠️  Python pip nije dostupan - preskačem Python dependencies"
+fi
 
 # Proverava cache direktorijum
 echo "📁 Proveravam cache strukturu..."

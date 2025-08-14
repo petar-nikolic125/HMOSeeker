@@ -1,0 +1,16 @@
+[
+  {
+    "address": "6 bed terraced house for sale Portland Street, Southampton SO14",
+    "price": 1250000,
+    "bedrooms": 6,
+    "bathrooms": 4,
+    "description": "6-bed property in Southampton.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71035829/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/ff9140d78930ef5381e2ce5658b994066a0cb993.jpg",
+    "postcode": "",
+    "city": "Southampton",
+    "monthly_rent": 660,
+    "annual_rent": 7920,
+    "gross_yield": 0.63
+  }
+]

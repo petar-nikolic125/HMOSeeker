@@ -1,0 +1,30 @@
+[
+  {
+    "address": "4 bed terraced house for sale Hunter House Road, Hunters Bar S11",
+    "price": 365000,
+    "bedrooms": 4,
+    "bathrooms": 2,
+    "description": "4-bed property in Sheffield.",
+    "property_url": "https://www.primelocation.com/for-sale/details/69630361/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/925bf4bcb5646f55e827d530bd583bd4631052db.jpg",
+    "postcode": "",
+    "city": "Sheffield",
+    "monthly_rent": 400,
+    "annual_rent": 4800,
+    "gross_yield": 1.32
+  },
+  {
+    "address": "5 bed terraced house for sale Pomona Street, Sheffield S11",
+    "price": 230000,
+    "bedrooms": 5,
+    "bathrooms": 2,
+    "description": "5-bed property in Sheffield.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70984923/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/4eeefc19e3d947e39094bfa0f89f759c5eab6e4e.jpg",
+    "postcode": "",
+    "city": "Sheffield",
+    "monthly_rent": 500,
+    "annual_rent": 6000,
+    "gross_yield": 2.61
+  }
+]

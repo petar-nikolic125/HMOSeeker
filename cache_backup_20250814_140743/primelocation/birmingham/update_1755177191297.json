@@ -1,0 +1,72 @@
+[
+  {
+    "address": "7 bed property for sale Bearwood Road, Bearwood, Smethwick B66",
+    "price": 480000,
+    "bedrooms": 7,
+    "bathrooms": 4,
+    "description": "7-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71022252/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/ed0ec55cb5c48dab5135cddfcb046d469c0e5c89.jpg",
+    "postcode": "",
+    "city": "Birmingham",
+    "monthly_rent": 805,
+    "annual_rent": 9660,
+    "gross_yield": 2.01
+  },
+  {
+    "address": "6 bed terraced house for sale Raddlebarn Road, Birmingham, West Midlands B29",
+    "price": 460000,
+    "bedrooms": 6,
+    "bathrooms": 2,
+    "description": "6-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71017520/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/ec1a12bf68a82c087ddcc9e9a476d4c3297f85fd.jpg",
+    "postcode": "",
+    "city": "Birmingham",
+    "monthly_rent": 690,
+    "annual_rent": 8280,
+    "gross_yield": 1.8
+  },
+  {
+    "address": "4 bed property for sale Meadowside Close, Great Barr, Birmingham B43",
+    "price": 280000,
+    "bedrooms": 4,
+    "bathrooms": 1,
+    "description": "4-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71021730/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/85760f96b81465c790fffd5e1bc958edecc41db9.jpg",
+    "postcode": "",
+    "city": "Birmingham",
+    "monthly_rent": 460,
+    "annual_rent": 5520,
+    "gross_yield": 1.97
+  },
+  {
+    "address": "3 bed flat for sale Chelmsley Circle, Birmingham B37",
+    "price": 110000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "description": "3-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71038867/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/ac3386f928c8c6ba5cadf42af0d224315d73ce36.jpg",
+    "postcode": "",
+    "city": "Birmingham",
+    "monthly_rent": 345,
+    "annual_rent": 4140,
+    "gross_yield": 3.76
+  },
+  {
+    "address": "5 bed terraced house for sale Sherborne Grove, Birmingham B1",
+    "price": 280000,
+    "bedrooms": 5,
+    "bathrooms": 4,
+    "description": "5-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/68453036/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/3ca5ec505e474164d518723dff78d82368b3788b.jpg",
+    "postcode": "",
+    "city": "Birmingham",
+    "monthly_rent": 575,
+    "annual_rent": 6900,
+    "gross_yield": 2.46
+  }
+]
