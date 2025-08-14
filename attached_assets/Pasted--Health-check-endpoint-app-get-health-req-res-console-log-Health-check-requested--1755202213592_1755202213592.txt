@@ -1,0 +1,178 @@
+ Health check endpoint
+app.get('/health', (req, res) => {
+    console.log('Health check requested');
+    res.json({
+        status: 'healthy',
+        timestamp: new Date().toISOString(),
+        service: 'HMO Hunter API - CommonJS Version'
+    });
+});
+// Basic API endpoint
+app.get('/api/properties', (req, res) => {
+    res.json({
+        message: 'HMO Hunter API is running',
+EOFtedBy=multi-user.targetrver-simple.cjsPlatformEOF't}`);});.html');
+root@hmofinder:~# fgdfg
+fgdfg: command not found
+root@hmofinder:~# cat > /etc/systemd/system/hmo-hunter.service << 'EOF'
+[Unit]
+Description=HMO Hunter Property Analysis Platform
+After=network.target
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/var/www/hmo-hunter
+Environment=NODE_ENV=production
+Environment=PORT=5000
+ExecStart=/usr/bin/node server-simple.cjs
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=hmo-hunter
+[Install]
+WantedBy=multi-user.target
+EOF
+root@hmofinder:~# systemctl daemon-reload
+systemctl stop hmo-hunter
+sleep 2
+systemctl start hmo-hunter
+root@hmofinder:~# systemctl status hmo-hunter --no-pager
+sleep 3
+● hmo-hunter.service - HMO Hunter Property Analysis Platform
+     Loaded: loaded (/etc/systemd/system/hmo-hunter.service; enabled; preset: enabled)
+     Active: activating (auto-restart) (Result: exit-code) since Thu 2025-08-14 21:05:53 BST; 3s ago
+    Process: 4896 ExecStart=/usr/bin/node server-simple.cjs (code=exited, status=1/FAILURE)
+   Main PID: 4896 (code=exited, status=1/FAILURE)
+        CPU: 109ms
+root@hmofinder:~# curl http://localhost:5000/health
+curl: (7) Failed to connect to localhost port 5000 after 0 ms: Couldn't connect to server
+root@hmofinder:~# journalctl -u hmo-hunter --lines=5 --no-pager
+Aug 14 21:06:09 hmofinder hmo-hunter[4932]:   requireStack: []
+Aug 14 21:06:09 hmofinder hmo-hunter[4932]: }
+Aug 14 21:06:09 hmofinder hmo-hunter[4932]: Node.js v18.19.1
+Aug 14 21:06:09 hmofinder systemd[1]: hmo-hunter.service: Main process exited, code=exited, status=1/FAILURE
+Aug 14 21:06:09 hmofinder systemd[1]: hmo-hunter.service: Failed with result 'exit-code'.
+root@hmofinder:~# curl http://188.34.176.15/health
+<html>
+<head><title>502 Bad Gateway</title></head>
+<body>
+<center><h1>502 Bad Gateway</h1></center>
+<hr><center>nginx/1.24.0 (Ubuntu)</center>
+</body>
+</html>
+root@hmofinder:~# # Proverite da li je fajl kreiran
+ls -la /var/www/hmo-hunter/
+
+# Vidite punu grešku
+journalctl -u hmo-hunter --lines=10 --no-pager
+
+# Proverite da li express postoji
+cd /var/www/hmo-hunter
+ls -la node_modules/express/
+
+# Kreirajte minimalni test server prvo
+cat > test-server.cjs << 'EOF'
+console.log('Starting minimal test server...');
+
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+  console.log(`Request: ${req.method} ${req.url}`);
+
+  if (req.url === '/health') {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({
+      status: 'healthy',
+      timestamp: new Date().toISOString(),
+kill %1tp://localhost:5000/healthvong on port ${port}`);
+total 712
+drwxr-xr-x  12 root root   4096 Aug 14 21:00  .
+drwxr-xr-x   4 root root   4096 Aug 14 20:41  ..
+drwxr-xr-x   2 root root  12288 Aug 14 20:41  attached_assets
+-rw-r--r--   1 root root   1175 Aug 14 20:41  AUTOMATSKI_SETUP.md
+-rw-r--r--   1 root root     39 Aug 14 20:41  build.sh
+-rw-r--r--   1 root root   4096 Aug 14 20:41  bulk_london_scraper.py
+-rwxr-xr-x   1 root root   2202 Aug 14 20:41  bulk_scraper.sh
+drwxr-xr-x   3 root root   4096 Aug 14 20:41  cache
+-rw-r--r--   1 root root   8628 Aug 14 20:41  cache_all_cities.py
+drwxr-xr-x   3 root root   4096 Aug 14 20:41  cache_backup_20250814_140715
+drwxr-xr-x   3 root root   4096 Aug 14 20:41  cache_backup_20250814_140743
+drwxr-xr-x   3 root root   4096 Aug 14 20:41  client
+-rw-r--r--   1 root root    459 Aug 14 20:41  components.json
+-rw-r--r--   1 root root   2127 Aug 14 20:41  DEPLOY_COMMANDS.md
+-rw-r--r--   1 root root   2879 Aug 14 20:41  deployment-guide.md
+-rw-r--r--   1 root root   2768 Aug 14 20:41  deploy.sh
+-rw-r--r--   1 root root   2483 Aug 14 20:41  deploy-to-hetzner-guide.md
+-rw-r--r--   1 root root    325 Aug 14 20:41  drizzle.config.ts
+-rw-r--r--   1 root root   1328 Aug 14 20:58 'e hmo-hunter aplikacija pokrenula'
+-rwxr-xr-x   1 root root   2885 Aug 14 20:41  emergency-deploy.sh
+-rw-r--r--   1 root root    223 Aug 14 20:41  .env.example
+-rw-r--r--   1 root root   1486 Aug 14 20:41  FIKSNI_DEPLOY.md
+-rw-r--r--   1 root root   4116 Aug 14 20:41  final_cache_validation.py
+-rw-r--r--   1 root root   1355 Aug 14 20:41  FINALNI_KORACI.md
+drwxr-xr-x   8 root root   4096 Aug 14 20:41  .git
+-rw-r--r--   1 root root     67 Aug 14 20:41  .gitignore
+-rw-r--r--   1 root root  12650 Aug 14 20:41  hetzner-cloud-config-final.yml
+-rw-r--r--   1 root root   6350 Aug 14 20:41  hetzner-cloud-config.yml
+-rw-r--r--   1 root root   3139 Aug 14 20:41  HETZNER_DEPLOYMENT.md
+-rwxr-xr-x   1 root root   4762 Aug 14 20:41  hetzner-deploy.sh
+-rw-r--r--   1 root root    364 Aug 14 20:41  index.html
+-rw-r--r--   1 root root  11107 Aug 14 20:41  migrate_cache_files.py
+-rw-r--r--   1 root root    310 Aug 14 20:41  nixpacks.toml
+drwxr-xr-x 275 root root  12288 Aug 14 20:42  node_modules
+-rw-r--r--   1 root root   3535 Aug 14 20:41  package.json
+-rw-r--r--   1 root root 320348 Aug 14 20:41  package-lock.json
+-rw-r--r--   1 root root     80 Aug 14 20:41  postcss.config.js
+-rw-r--r--   1 root root     18 Aug 14 20:41  Procfile
+-rwxr-xr-x   1 root root   3129 Aug 14 20:41  production-deploy.sh
+-rwxr-xr-x   1 root root   9450 Aug 14 20:41  production-fix.sh
+-rw-r--r--   1 root root    217 Aug 14 20:41  pyproject.toml
+-rw-r--r--   1 root root   3906 Aug 14 20:41  quick_cache_test.py
+-rwxr-xr-x   1 root root   1281 Aug 14 20:41  quick-deploy.sh
+-rw-r--r--   1 root root    381 Aug 14 20:41  railway.json
+-rw-r--r--   1 root root    230 Aug 14 20:41  railway.toml
+-rw-r--r--   1 root root   1535 Aug 14 20:41  README.md
+-rw-r--r--   1 root root    285 Aug 14 20:41  render.yaml
+-rw-r--r--   1 root root    743 Aug 14 20:41  .replit
+-rw-r--r--   1 root root  13455 Aug 14 20:41  replit.md
+-rw-r--r--   1 root root   2600 Aug 14 20:41  run_bulk_scraper.py
+drwxr-xr-x   3 root root   4096 Aug 14 20:41  server
+-rw-r--r--   1 root root   1353 Aug 14 21:00  server-simple.js
+-rwxr-xr-x   1 root root    783 Aug 14 20:41  setup-python.sh
+drwxr-xr-x   2 root root   4096 Aug 14 20:41  shared
+drwxr-xr-x   6 root root   4096 Aug 14 20:41  src
+-rw-r--r--   1 root root   4660 Aug 14 20:41  tailwind.config.ts
+-rw-r--r--   1 root root  13067 Aug 14 20:58 'tartuj i proverite logove'
+-rw-r--r--   1 root root   5925 Aug 14 20:41  test_all_cities.py
+-rw-r--r--   1 root root   3691 Aug 14 20:41  test_cache_to_db.py
+-rw-r--r--   1 root root   5611 Aug 14 20:41  test_london_system.py
+-rw-r--r--   1 root root    657 Aug 14 20:41  tsconfig.json
+-rw-r--r--   1 root root  30152 Aug 14 20:41  uv.lock
+-rw-r--r--   1 root root    934 Aug 14 20:41  vite.config.ts
+-rw-r--r--   1 root root  17840 Aug 14 20:41  zoopla_scraper.py
+Aug 14 21:07:22 hmofinder hmo-hunter[5115]:     at Module._resolveFilename (node:internal/modules/cjs/loader:1134:15)
+Aug 14 21:07:22 hmofinder hmo-hunter[5115]:     at Module._load (node:internal/modules/cjs/loader:975:27)
+Aug 14 21:07:22 hmofinder hmo-hunter[5115]:     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:128:12)
+Aug 14 21:07:22 hmofinder hmo-hunter[5115]:     at node:internal/main/run_main_module:28:49 {
+Aug 14 21:07:22 hmofinder hmo-hunter[5115]:   code: 'MODULE_NOT_FOUND',
+Aug 14 21:07:22 hmofinder hmo-hunter[5115]:   requireStack: []
+Aug 14 21:07:22 hmofinder hmo-hunter[5115]: }
+Aug 14 21:07:22 hmofinder hmo-hunter[5115]: Node.js v18.19.1
+Aug 14 21:07:22 hmofinder systemd[1]: hmo-hunter.service: Main process exited, code=exited, status=1/FAILURE
+Aug 14 21:07:22 hmofinder systemd[1]: hmo-hunter.service: Failed with result 'exit-code'.
+total 164
+drwxr-xr-x   4 root root   4096 Aug 14 20:41 .
+drwxr-xr-x 275 root root  12288 Aug 14 20:42 ..
+-rw-r--r--   1 root root 115153 Aug 14 20:41 History.md
+-rw-r--r--   1 root root    224 Aug 14 20:41 index.js
+drwxr-xr-x   4 root root   4096 Aug 14 20:41 lib
+-rw-r--r--   1 root root   1249 Aug 14 20:41 LICENSE
+drwxr-xr-x   4 root root   4096 Aug 14 20:41 node_modules
+-rw-r--r--   1 root root   2806 Aug 14 20:41 package.json
+-rw-r--r--   1 root root   9806 Aug 14 20:41 Readme.md
+[1] 5130
+Starting minimal test server...
+✅ Test server running on port 5000
+Request: GET /health
+{"status":"healthy","timestamp":"2025-08-14T20:07:29.549Z","service":"HMO Hunter Test Server"}root@hmofinder:/var/www/hmo-hunter#
