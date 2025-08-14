@@ -1,0 +1,78 @@
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Thu 14 Aug 17:16:35 BST 2025
+
+  System load:  0.17              Processes:             155
+  Usage of /:   4.6% of 74.79GB   Users logged in:       1
+  Memory usage: 9%                IPv4 address for eth0: 46.62.166.201
+  Swap usage:   0%                IPv6 address for eth0: 2a01:4f9:c013:f54c::1
+
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+Last login: Thu Aug 14 17:15:38 2025 from 185.26.173.118
+root@Hmofinder:~# # 1. Prvo omogući firewall i otvori portove
+ufw --force enable
+ufw allow 22/tcp
+ufw allow 80/tcp
+ufw allow 5000/tcp
+ufw reload
+
+# 2. Proveri nginx grešku i popravi
+nginx -t
+
+# 3. Ako je problem sa konfiguracijom, resetuj nginx
+rm -f /etc/nginx/sites-enabled/default
+rm -f /etc/nginx/sites-available/hmo-hunter
+
+# 4. Kreiraj ispravnu nginx konfiguraciju
+cat > /etc/nginx/sites-available/hmo-hunter << 'EOF'
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    server_name _;
+
+    location / {
+        proxy_pass http://127.0.0.1:5000;
+        proxy_http_version 1.1;
+curl http://localhost:5000/health/hmo-hunter /etc/nginx/sites-enabled/
+Firewall is active and enabled on system startup
+Rule added
+Rule added (v6)
+Skipping adding existing rule
+Skipping adding existing rule (v6)
+Skipping adding existing rule
+Skipping adding existing rule (v6)
+Firewall reloaded
+2025/08/14 17:16:43 [emerg] 21499#21499: cannot load certificate "/etc/letsencrypt/live/hmofinder.com/fullchain.pem": BIO_new_file() failed (SSL: error:80000002:system library::No such file or directory:calling fopen(/etc/letsencrypt/live/hmofinder.com/fullchain.pem, r) error:10000080:BIO routines::no such file)
+nginx: configuration file /etc/nginx/nginx.conf test failed
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+Synchronizing state of nginx.service with SysV service script with /usr/lib/systemd/systemd-sysv-install.
+Executing: /usr/lib/systemd/systemd-sysv-install enable nginx
+● nginx.service - A high performance web server and a reverse proxy server
+     Loaded: loaded (/usr/lib/systemd/system/nginx.service; enabled; preset: en>
+     Active: active (running) since Thu 2025-08-14 17:16:44 BST; 591ms ago
+       Docs: man:nginx(8)
+   Main PID: 21510 (nginx)
+      Tasks: 4 (limit: 4540)
+     Memory: 3.0M (peak: 3.2M)
+        CPU: 19ms
+     CGroup: /system.slice/nginx.service
+             ├─21510 "nginx: master process /usr/sbin/nginx -g daemon on; maste>
+             ├─21511 "nginx: worker process"
+             ├─21512 "nginx: worker process"
+             └─21514 "nginx: worker process"
+
+Aug 14 17:16:44 Hmofinder systemd[1]: Starting nginx.service - A high performan>
+Aug 14 17:16:44 Hmofinder systemd[1]: Started nginx.service - A high performanc>
+lines 1-16/16 (END)
