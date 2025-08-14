@@ -1,5 +1,33 @@
 [
   {
+    "address": "5 bed terraced house for sale Brandon Grove, Newcastle Upon Tyne NE2",
+    "postcode": null,
+    "price": 220000,
+    "bedrooms": 5,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/885e519d4330117d64fe1f716f4315b9d3942b7c.jpg",
+    "description": "5-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70367800/",
+    "city": "Newcastle",
+    "monthly_rent": 475,
+    "annual_rent": 5700,
+    "gross_yield": 2.59
+  },
+  {
+    "address": "4 bed terraced house for sale Ripon Gardens, Jesmond Vale, Newcastle Upon Tyne NE2",
+    "postcode": null,
+    "price": 350000,
+    "bedrooms": 4,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/b843ced48e68942dc4bf0672c67834007e10a07d.jpg",
+    "description": "4-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70353107/",
+    "city": "Newcastle",
+    "monthly_rent": 380,
+    "annual_rent": 4560,
+    "gross_yield": 1.3
+  },
+  {
     "address": "6 bed terraced house for sale Osborne Avenue, Newcastle Upon Tyne NE2",
     "postcode": null,
     "price": 650000,
@@ -12,34 +40,6 @@
     "monthly_rent": 570,
     "annual_rent": 6840,
     "gross_yield": 1.05
-  },
-  {
-    "address": "6 bed maisonette for sale Northumberland Road, Lemington, Newcastle Upon Tyne NE15",
-    "postcode": null,
-    "price": 170000,
-    "bedrooms": 6,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/81e674607fff3401fa44478b15ced6ef2420ac09.jpg",
-    "description": "6-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70255522/",
-    "city": "Newcastle",
-    "monthly_rent": 570,
-    "annual_rent": 6840,
-    "gross_yield": 4.02
-  },
-  {
-    "address": "8 bed terraced house for sale Osborne Road, Newcastle Upon Tyne NE2",
-    "postcode": null,
-    "price": 880000,
-    "bedrooms": 8,
-    "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/102de4a96f7695b912ed03745cbc6cf3ebb9d441.jpg",
-    "description": "8-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70970924/",
-    "city": "Newcastle",
-    "monthly_rent": 760,
-    "annual_rent": 9120,
-    "gross_yield": 1.04
   },
   {
     "address": "4 bed end terrace house for sale Station Cottages, Ponteland, Newcastle Upon Tyne, Northumberland NE20",
@@ -56,6 +56,20 @@
     "gross_yield": 1.18
   },
   {
+    "address": "6 bed end terrace house for sale Stannington Avenue, Heaton NE6",
+    "postcode": null,
+    "price": 270000,
+    "bedrooms": 6,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/34be3ceccf297befae7edd95d33588ae0a7d5a7f.jpg",
+    "description": "6-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70667058/",
+    "city": "Newcastle",
+    "monthly_rent": 570,
+    "annual_rent": 6840,
+    "gross_yield": 2.53
+  },
+  {
     "address": "8 bed terraced house for sale Manor House Road, Newcastle Upon Tyne NE2",
     "postcode": null,
     "price": 975000,
@@ -68,6 +82,20 @@
     "monthly_rent": 760,
     "annual_rent": 9120,
     "gross_yield": 0.94
+  },
+  {
+    "address": "8 bed terraced house for sale Osborne Road, Newcastle Upon Tyne NE2",
+    "postcode": null,
+    "price": 880000,
+    "bedrooms": 8,
+    "bathrooms": 3,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/102de4a96f7695b912ed03745cbc6cf3ebb9d441.jpg",
+    "description": "8-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70970924/",
+    "city": "Newcastle",
+    "monthly_rent": 760,
+    "annual_rent": 9120,
+    "gross_yield": 1.04
   },
   {
     "address": "6 bed terraced house for sale First Avenue, Heaton, Newcastle Upon Tyne NE6",
@@ -84,20 +112,6 @@
     "gross_yield": 2.49
   },
   {
-    "address": "5 bed terraced house for sale Brandon Grove, Newcastle Upon Tyne NE2",
-    "postcode": null,
-    "price": 220000,
-    "bedrooms": 5,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/885e519d4330117d64fe1f716f4315b9d3942b7c.jpg",
-    "description": "5-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70367800/",
-    "city": "Newcastle",
-    "monthly_rent": 475,
-    "annual_rent": 5700,
-    "gross_yield": 2.59
-  },
-  {
     "address": "5 bed terraced house for sale Sunbury Avenue, Newcastle Upon Tyne NE2",
     "postcode": null,
     "price": 600000,
@@ -112,31 +126,17 @@
     "gross_yield": 0.95
   },
   {
-    "address": "6 bed end terrace house for sale Stannington Avenue, Heaton NE6",
+    "address": "6 bed maisonette for sale Northumberland Road, Lemington, Newcastle Upon Tyne NE15",
     "postcode": null,
-    "price": 270000,
+    "price": 170000,
     "bedrooms": 6,
     "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/34be3ceccf297befae7edd95d33588ae0a7d5a7f.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/81e674607fff3401fa44478b15ced6ef2420ac09.jpg",
     "description": "6-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70667058/",
+    "property_url": "https://www.primelocation.com/for-sale/details/70255522/",
     "city": "Newcastle",
     "monthly_rent": 570,
     "annual_rent": 6840,
-    "gross_yield": 2.53
-  },
-  {
-    "address": "4 bed terraced house for sale Ripon Gardens, Jesmond Vale, Newcastle Upon Tyne NE2",
-    "postcode": null,
-    "price": 350000,
-    "bedrooms": 4,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/b843ced48e68942dc4bf0672c67834007e10a07d.jpg",
-    "description": "4-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70353107/",
-    "city": "Newcastle",
-    "monthly_rent": 380,
-    "annual_rent": 4560,
-    "gross_yield": 1.3
+    "gross_yield": 4.02
   }
 ]

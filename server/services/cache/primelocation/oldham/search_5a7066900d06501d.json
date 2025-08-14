@@ -1,17 +1,17 @@
 [
   {
-    "address": "5 bed terraced house for sale Ronald Street, Oldham OL4",
+    "address": "4 bed terraced house for sale Swinton Street, Oldham, Lancashire OL4",
     "postcode": null,
-    "price": 180000,
-    "bedrooms": 5,
-    "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/409a0524013c3fc9d57b354504678faf4412ff1a.jpg",
-    "description": "5-bed property in Oldham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70112533/",
+    "price": 200000,
+    "bedrooms": 4,
+    "bathrooms": 4,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/377f9d655b4706a32e0bb00e0c72ce13421f9e01.jpg",
+    "description": "4-bed property in Oldham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70109030/",
     "city": "Oldham",
-    "monthly_rent": 550,
-    "annual_rent": 6600,
-    "gross_yield": 3.67
+    "monthly_rent": 440,
+    "annual_rent": 5280,
+    "gross_yield": 2.64
   },
   {
     "address": "5 bed semi-detached house for sale Seville Street, Royton OL2",
@@ -26,19 +26,5 @@
     "monthly_rent": 550,
     "annual_rent": 6600,
     "gross_yield": 2.0
-  },
-  {
-    "address": "4 bed terraced house for sale Swinton Street, Oldham, Lancashire OL4",
-    "postcode": null,
-    "price": 200000,
-    "bedrooms": 4,
-    "bathrooms": 4,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/377f9d655b4706a32e0bb00e0c72ce13421f9e01.jpg",
-    "description": "4-bed property in Oldham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70109030/",
-    "city": "Oldham",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 2.64
   }
 ]

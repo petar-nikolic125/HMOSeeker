@@ -1,19 +1,5 @@
 [
   {
-    "address": "4 bed terraced house for sale School Lane, Heaton Chapel, Stockport SK4",
-    "postcode": null,
-    "price": 325000,
-    "bedrooms": 4,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/356386393dd97471b952bbe9486747036370cd6b.jpg",
-    "description": "4-bed property in Stockport.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70901239/",
-    "city": "Stockport",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 1.62
-  },
-  {
     "address": "5 bed terraced house for sale Chatham Street, Stockport SK3",
     "postcode": null,
     "price": 350000,
@@ -26,5 +12,19 @@
     "monthly_rent": 550,
     "annual_rent": 6600,
     "gross_yield": 1.89
+  },
+  {
+    "address": "4 bed terraced house for sale School Lane, Heaton Chapel, Stockport SK4",
+    "postcode": null,
+    "price": 325000,
+    "bedrooms": 4,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/356386393dd97471b952bbe9486747036370cd6b.jpg",
+    "description": "4-bed property in Stockport.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70901239/",
+    "city": "Stockport",
+    "monthly_rent": 440,
+    "annual_rent": 5280,
+    "gross_yield": 1.62
   }
 ]

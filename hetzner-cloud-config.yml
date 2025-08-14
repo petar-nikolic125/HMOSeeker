@@ -1,0 +1,227 @@
+#cloud-config
+# HMO Hunter - Hetzner Cloud Configuration
+# This sets up a production-ready Ubuntu server for your HMO property platform
+
+package_update: true
+package_upgrade: true
+
+packages:
+  - nginx
+  - nodejs
+  - npm
+  - python3
+  - python3-pip
+  - python3-venv
+  - git
+  - curl
+  - wget
+  - unzip
+  - certbot
+  - python3-certbot-nginx
+  - ufw
+  - fail2ban
+  - htop
+  - postgresql-client
+
+# Create application user
+users:
+  - name: hmo
+    groups: sudo, www-data
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh_authorized_keys:
+      - ssh-rsa YOUR_SSH_PUBLIC_KEY_HERE
+
+# Create directories
+runcmd:
+  # Set up Node.js 20 (latest LTS)
+  - curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+  - apt-get install -y nodejs
+
+  # Create application directory
+  - mkdir -p /var/www/hmo-hunter
+  - chown -R hmo:www-data /var/www/hmo-hunter
+  - chmod -R 755 /var/www/hmo-hunter
+
+  # Install Python dependencies globally
+  - pip3 install requests beautifulsoup4 lxml
+
+  # Configure firewall
+  - ufw default deny incoming
+  - ufw default allow outgoing
+  - ufw allow ssh
+  - ufw allow 'Nginx Full'
+  - ufw --force enable
+
+  # Start fail2ban
+  - systemctl enable fail2ban
+  - systemctl start fail2ban
+
+write_files:
+  # Nginx configuration for HMO Hunter
+  - path: /etc/nginx/sites-available/hmo-hunter
+    content: |
+      server {
+          listen 80;
+          server_name your-domain.com www.your-domain.com;
+          
+          # Redirect all HTTP to HTTPS
+          return 301 https://$server_name$request_uri;
+      }
+      
+      server {
+          listen 443 ssl http2;
+          server_name your-domain.com www.your-domain.com;
+          
+          # SSL configuration (certbot will fill this)
+          ssl_certificate /etc/letsencrypt/live/your-domain.com/fullchain.pem;
+          ssl_certificate_key /etc/letsencrypt/live/your-domain.com/privkey.pem;
+          
+          # Security headers
+          add_header X-Frame-Options "SAMEORIGIN" always;
+          add_header X-XSS-Protection "1; mode=block" always;
+          add_header X-Content-Type-Options "nosniff" always;
+          add_header Referrer-Policy "no-referrer-when-downgrade" always;
+          add_header Content-Security-Policy "default-src 'self' http: https: data: blob: 'unsafe-inline'" always;
+          
+          # Gzip compression
+          gzip on;
+          gzip_vary on;
+          gzip_min_length 1024;
+          gzip_types text/plain text/css text/xml text/javascript application/javascript application/xml+rss application/json;
+          
+          # Main application
+          location / {
+              proxy_pass http://localhost:5000;
+              proxy_http_version 1.1;
+              proxy_set_header Upgrade $http_upgrade;
+              proxy_set_header Connection 'upgrade';
+              proxy_set_header Host $host;
+              proxy_set_header X-Real-IP $remote_addr;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header X-Forwarded-Proto $scheme;
+              proxy_cache_bypass $http_upgrade;
+              proxy_read_timeout 300s;
+              proxy_connect_timeout 75s;
+          }
+          
+          # Static assets with caching
+          location /assets {
+              proxy_pass http://localhost:5000;
+              expires 1y;
+              add_header Cache-Control "public, immutable";
+          }
+          
+          # API endpoints with no caching
+          location /api {
+              proxy_pass http://localhost:5000;
+              add_header Cache-Control "no-cache, no-store, must-revalidate";
+          }
+      }
+    permissions: '0644'
+
+  # Systemd service for HMO Hunter
+  - path: /etc/systemd/system/hmo-hunter.service
+    content: |
+      [Unit]
+      Description=HMO Hunter Property Analysis Platform
+      After=network.target
+      
+      [Service]
+      Type=simple
+      User=hmo
+      WorkingDirectory=/var/www/hmo-hunter
+      Environment=NODE_ENV=production
+      Environment=PORT=5000
+      ExecStart=/usr/bin/npm start
+      Restart=always
+      RestartSec=10
+      StandardOutput=syslog
+      StandardError=syslog
+      SyslogIdentifier=hmo-hunter
+      
+      # Security settings
+      NoNewPrivileges=true
+      PrivateTmp=true
+      ProtectSystem=strict
+      ProtectHome=true
+      ReadWritePaths=/var/www/hmo-hunter
+      
+      [Install]
+      WantedBy=multi-user.target
+    permissions: '0644'
+
+  # Environment variables template
+  - path: /var/www/hmo-hunter/.env.production
+    content: |
+      NODE_ENV=production
+      PORT=5000
+      
+      # Database Configuration
+      DATABASE_URL=postgresql://username:password@your-db-host:5432/hmo_hunter
+      
+      # Optional: External APIs
+      # ZOOPLA_API_KEY=your_zoopla_key
+      # RIGHTMOVE_API_KEY=your_rightmove_key
+      
+      # Security
+      SESSION_SECRET=your-very-long-random-session-secret-here
+      
+      # Scraping Configuration
+      PL_MAX_PAGES=12
+      PL_MIN_RESULTS=200
+      PL_CACHE_TTL_HOURS=12
+      REQUESTS_TIMEOUT=25
+    permissions: '0600'
+    owner: hmo:hmo
+
+  # Deployment script
+  - path: /home/hmo/deploy.sh
+    content: |
+      #!/bin/bash
+      set -e
+      
+      echo "🚀 Deploying HMO Hunter..."
+      
+      cd /var/www/hmo-hunter
+      
+      # Pull latest code
+      git pull origin main
+      
+      # Install dependencies
+      npm ci --production
+      
+      # Build application
+      npm run build
+      
+      # Restart service
+      sudo systemctl restart hmo-hunter
+      
+      echo "✅ Deployment complete!"
+    permissions: '0755'
+    owner: hmo:hmo
+
+# Final setup commands
+runcmd:
+  # Enable Nginx site
+  - ln -sf /etc/nginx/sites-available/hmo-hunter /etc/nginx/sites-enabled/
+  - rm -f /etc/nginx/sites-enabled/default
+  - nginx -t
+  - systemctl restart nginx
+  - systemctl enable nginx
+
+  # Enable HMO Hunter service
+  - systemctl daemon-reload
+  - systemctl enable hmo-hunter
+
+  # Set up log rotation
+  - echo '/var/log/hmo-hunter/*.log { daily missingok rotate 52 compress delaycompress notifempty create 644 hmo hmo }' > /etc/logrotate.d/hmo-hunter
+
+# System timezone
+timezone: Europe/London
+
+# Reboot after setup
+power_state:
+  delay: "+1"
+  mode: reboot
+  message: "HMO Hunter server setup complete, rebooting..."

@@ -1,0 +1,44 @@
+[
+  {
+    "address": "5 bed end terrace house for sale St. Georges Road, Bolton, Greater Manchester BL1",
+    "price": 200000,
+    "bedrooms": 5,
+    "bathrooms": 2,
+    "description": "5-bed property in Manchester.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71028364/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/c38704ebeac85698372a2ff410a913cd1f7e2415.jpg",
+    "postcode": "",
+    "city": "Manchester",
+    "monthly_rent": 600,
+    "annual_rent": 7200,
+    "gross_yield": 3.6
+  },
+  {
+    "address": "3 bed semi-detached house for sale Willow Street, Bury, Greater Manchester BL9",
+    "price": 250000,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "description": "3-bed property in Manchester.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71042294/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/ffcae1e15c6bf20dd4eca663978a8d8fb634749c.jpg",
+    "postcode": "",
+    "city": "Manchester",
+    "monthly_rent": 360,
+    "annual_rent": 4320,
+    "gross_yield": 1.73
+  },
+  {
+    "address": "4 bed terraced house for sale Cockcroft Street, Blackley, Manchester M9",
+    "price": 225000,
+    "bedrooms": 4,
+    "bathrooms": 1,
+    "description": "4-bed property in Manchester.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71039222/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/1c36d5b4ce228a9f30aee3e2cf4ddfc3d89869e4.jpg",
+    "postcode": "",
+    "city": "Manchester",
+    "monthly_rent": 480,
+    "annual_rent": 5760,
+    "gross_yield": 2.56
+  }
+]

@@ -1,47 +1,5 @@
 [
   {
-    "address": "4 bed detached house for sale Cannock Road, Wednesfield WV10",
-    "postcode": null,
-    "price": 380000,
-    "bedrooms": 4,
-    "bathrooms": 4,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/b24af6b712cc03a48a9bf1e0b181e0fd932fff38.jpg",
-    "description": "4-bed property in Wolverhampton.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71010396/",
-    "city": "Wolverhampton",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 1.39
-  },
-  {
-    "address": "4 bed terraced house for sale Frome Drive, Wolverhampton WV11",
-    "postcode": null,
-    "price": 230000,
-    "bedrooms": 4,
-    "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/ed3e32abe0b6ac82147035b0a2d47e90367245b0.jpg",
-    "description": "4-bed property in Wolverhampton.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70172159/",
-    "city": "Wolverhampton",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 2.3
-  },
-  {
-    "address": "4 bed terraced house for sale Harrow Street, Wolverhampton WV1",
-    "postcode": null,
-    "price": 170000,
-    "bedrooms": 4,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/5d2ac6ee1823ee717081d31cfa0cf2e52041283b.jpg",
-    "description": "4-bed property in Wolverhampton.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70971049/",
-    "city": "Wolverhampton",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 3.11
-  },
-  {
     "address": "4 bed terraced house for sale Sherwood Street, Wolverhampton WV1",
     "postcode": null,
     "price": 180000,
@@ -56,6 +14,20 @@
     "gross_yield": 2.93
   },
   {
+    "address": "4 bed terraced house for sale Frome Drive, Wolverhampton WV11",
+    "postcode": null,
+    "price": 230000,
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/1916dffcf56bc592bb3439232155c620ba0557ef.jpg",
+    "description": "4-bed property in Wolverhampton.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70172159/",
+    "city": "Wolverhampton",
+    "monthly_rent": 440,
+    "annual_rent": 5280,
+    "gross_yield": 2.3
+  },
+  {
     "address": "3 bed terraced house for sale Rugby Street, Whitmore Reans, Wolverhampton WV1",
     "postcode": null,
     "price": 130000,
@@ -68,6 +40,20 @@
     "monthly_rent": 330,
     "annual_rent": 3960,
     "gross_yield": 3.05
+  },
+  {
+    "address": "4 bed detached house for sale Cannock Road, Wednesfield WV10",
+    "postcode": null,
+    "price": 380000,
+    "bedrooms": 4,
+    "bathrooms": 4,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/b24af6b712cc03a48a9bf1e0b181e0fd932fff38.jpg",
+    "description": "4-bed property in Wolverhampton.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71010396/",
+    "city": "Wolverhampton",
+    "monthly_rent": 440,
+    "annual_rent": 5280,
+    "gross_yield": 1.39
   },
   {
     "address": "4 bed terraced house for sale Fawdry Street, Whitmore Reans, Wolverhampton WV1",
