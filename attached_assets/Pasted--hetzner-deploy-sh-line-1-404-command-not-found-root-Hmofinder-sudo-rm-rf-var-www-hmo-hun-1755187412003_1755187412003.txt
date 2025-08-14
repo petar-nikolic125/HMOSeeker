@@ -1,0 +1,52 @@
+./hetzner-deploy.sh: line 1: 404:: command not found
+root@Hmofinder:~# sudo rm -rf /var/www/hmo-hunter
+sudo mkdir -p /var/www/hmo-hunter
+cd /var/www/hmo-hunter
+root@Hmofinder:/var/www/hmo-hunter# sudo git clone https://github.com/vase-repo/hmo-hunter.git .
+sudo chown -R hmo:www-data /var/www/hmo-hunter
+Cloning into '.'...
+Username for 'https://github.com': s
+Password for 'https://s@github.com':
+remote: Invalid username or token. Password authentication is not supported for Git operations.
+fatal: Authentication failed for 'https://github.com/vase-repo/hmo-hunter.git/'
+root@Hmofinder:/var/www/hmo-hunter#
+root@Hmofinder:/var/www/hmo-hunter# sudo git clone https://github.com/petar-nikolic125/HMOSeeker.git .
+sudo chown -R hmo:www-data /var/www/hmo-hunter
+Cloning into '.'...
+remote: Enumerating objects: 1379, done.
+remote: Counting objects: 100% (1379/1379), done.
+remote: Compressing objects: 100% (632/632), done.
+remote: Total 1379 (delta 877), reused 1193 (delta 694), pack-reused 0 (from 0)
+Receiving objects: 100% (1379/1379), 4.99 MiB | 20.61 MiB/s, done.
+Resolving deltas: 100% (877/877), done.
+root@Hmofinder:/var/www/hmo-hunter# # Python
+sudo apt install -y python3-requests python3-bs4 python3-lxml
+
+# Node.js
+npm ci --production
+npm run build
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+python3-requests is already the newest version (2.31.0+dfsg-1ubuntu1.1).
+python3-bs4 is already the newest version (4.12.3-1).
+python3-lxml is already the newest version (5.2.1-1).
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+npm WARN config production Use `--omit=dev` instead.
+
+added 372 packages, and audited 373 packages in 5s
+
+52 packages are looking for funding
+  run `npm fund` for details
+
+3 low severity vulnerabilities
+
+To address all issues, run:
+  npm audit fix
+
+Run `npm audit` for details.
+
+> rest-express@1.0.0 build
+> vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist
+
+sh: 1: vite: not found
