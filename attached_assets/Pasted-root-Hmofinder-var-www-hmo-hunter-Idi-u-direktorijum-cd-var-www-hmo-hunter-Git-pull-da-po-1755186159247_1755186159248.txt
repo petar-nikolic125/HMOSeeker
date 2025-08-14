@@ -1,0 +1,83 @@
+root@Hmofinder:/var/www/hmo-hunter# # Idi u direktorijum
+cd /var/www/hmo-hunter
+
+# Git pull da povučeš novi index.html
+git pull origin main
+
+# Build treba da radi sada
+npm run build
+
+# Kreiraj environment ako ne postoji
+cat > .env.production << 'EOF'
+NODE_ENV=production
+PORT=5000
+CACHE_BASE_PATH=/var/www/hmo-hunter/cache
+SESSION_SECRET=hmo-hunter-secret-key-$(date +%s)
+PL_MAX_PAGES=12
+PL_MIN_RESULTS=200
+PL_CACHE_TTL_HOURS=12
+REQUESTS_TIMEOUT=25
+EOF
+
+# Restart servisa
+sudo systemctl restart hmo-hunter
+
+# Proveri status
+systemctl status hmo-hunter
+curl http://localhost:5000/health
+remote: Enumerating objects: 11, done.
+remote: Counting objects: 100% (11/11), done.
+remote: Compressing objects: 100% (4/4), done.
+remote: Total 9 (delta 5), reused 9 (delta 5), pack-reused 0 (from 0)
+Unpacking objects: 100% (9/9), 4.04 KiB | 2.02 MiB/s, done.
+From https://github.com/petar-nikolic125/HMOSeeker
+ * branch            main       -> FETCH_HEAD
+   043b72c..935cb46  main       -> origin/main
+Updating 043b72c..935cb46
+Fast-forward
+ ...imelocation-chmod-R-775-cache-sudo-sy-1755185871208_1755185871208.txt | 76 ++++++++++++++++++++++++++++++++++
+ ...-Idi-u-direktorijum-cd-var-www-hmo-hu-1755186057606_1755186057606.txt | 72 ++++++++++++++++++++++++++++++++
+ index.html                                                               | 13 ++++++
+ 3 files changed, 161 insertions(+)
+ create mode 100644 attached_assets/Pasted--ci-production-silent-npm-run-build-mkdir-p-cache-primelocation-chmod-R-775-cache-sudo-sy-1755185871208_1755185871208.txt
+ create mode 100644 attached_assets/Pasted-sh-1-vite-not-found-root-Hmofinder-var-www-hmo-hunter-Idi-u-direktorijum-cd-var-www-hmo-hu-1755186057606_1755186057606.txt
+ create mode 100644 index.html
+
+> rest-express@1.0.0 build
+> vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist
+
+sh: 1: vite: not found
+● hmo-hunter.service - HMO Hunter Property Analysis Platform
+     Loaded: loaded (/etc/systemd/system/hmo-hunter.service; enabled; preset: enabled)
+     Active: active (running) since Thu 2025-08-14 16:42:18 BST; 8ms ago
+   Main PID: 15340 (node)
+      Tasks: 1 (limit: 4540)
+     Memory: 700.0K (max: 2.0G available: 1.9G peak: 700.0K)
+        CPU: 5ms
+     CGroup: /system.slice/hmo-hunter.service
+             └─15340 node /usr/bin/npm start
+
+Aug 14 16:42:18 Hmofinder systemd[1]: Started hmo-hunter.service - HMO Hunter Property Analysis Platform.
+curl: (7) Failed to connect to localhost port 5000 after 0 ms: Couldn't connect to server
+root@Hmofinder:/var/www/hmo-hunter# journalctl -u hmo-hunter --no-pager -n 20
+Aug 14 16:41:49 Hmofinder systemd[1]: hmo-hunter.service: Scheduled restart job, restart counter is at 366.
+Aug 14 16:41:49 Hmofinder systemd[1]: Started hmo-hunter.service - HMO Hunter Property Analysis Platform.
+Aug 14 16:41:50 Hmofinder systemd[1]: hmo-hunter.service: Main process exited, code=exited, status=1/FAILURE
+Aug 14 16:41:50 Hmofinder systemd[1]: hmo-hunter.service: Failed with result 'exit-code'.
+Aug 14 16:42:00 Hmofinder systemd[1]: hmo-hunter.service: Scheduled restart job, restart counter is at 367.
+Aug 14 16:42:00 Hmofinder systemd[1]: Started hmo-hunter.service - HMO Hunter Property Analysis Platform.
+Aug 14 16:42:01 Hmofinder systemd[1]: hmo-hunter.service: Main process exited, code=exited, status=1/FAILURE
+Aug 14 16:42:01 Hmofinder systemd[1]: hmo-hunter.service: Failed with result 'exit-code'.
+Aug 14 16:42:11 Hmofinder systemd[1]: hmo-hunter.service: Scheduled restart job, restart counter is at 368.
+Aug 14 16:42:11 Hmofinder systemd[1]: Started hmo-hunter.service - HMO Hunter Property Analysis Platform.
+Aug 14 16:42:12 Hmofinder systemd[1]: hmo-hunter.service: Main process exited, code=exited, status=1/FAILURE
+Aug 14 16:42:12 Hmofinder systemd[1]: hmo-hunter.service: Failed with result 'exit-code'.
+Aug 14 16:42:18 Hmofinder systemd[1]: Stopped hmo-hunter.service - HMO Hunter Property Analysis Platform.
+Aug 14 16:42:18 Hmofinder systemd[1]: Started hmo-hunter.service - HMO Hunter Property Analysis Platform.
+Aug 14 16:42:18 Hmofinder systemd[1]: hmo-hunter.service: Main process exited, code=exited, status=1/FAILURE
+Aug 14 16:42:18 Hmofinder systemd[1]: hmo-hunter.service: Failed with result 'exit-code'.
+Aug 14 16:42:29 Hmofinder systemd[1]: hmo-hunter.service: Scheduled restart job, restart counter is at 369.
+Aug 14 16:42:29 Hmofinder systemd[1]: Started hmo-hunter.service - HMO Hunter Property Analysis Platform.
+Aug 14 16:42:29 Hmofinder systemd[1]: hmo-hunter.service: Main process exited, code=exited, status=1/FAILURE
+Aug 14 16:42:29 Hmofinder systemd[1]: hmo-hunter.service: Failed with result 'exit-code'.
+root@Hmofinder:/var/www/hmo-hunter#
