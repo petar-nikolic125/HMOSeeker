@@ -58,6 +58,9 @@ export default function Home() {
       setSearchState(prev => ({ ...prev, isLoading: true, error: null }));
     },
     onSuccess: (data) => {
+      console.log('Search API response:', data);
+      console.log('Properties count:', data.properties?.length || 0);
+      
       setSearchState({
         properties: data.properties || data.listings || [],
         isLoading: false,
