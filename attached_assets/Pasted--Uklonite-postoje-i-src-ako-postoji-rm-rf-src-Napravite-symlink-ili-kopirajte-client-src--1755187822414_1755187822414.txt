@@ -1,0 +1,51 @@
+
+# Uklonite postojeći src ako postoji
+rm -rf src/
+
+# Napravite symlink ili kopirajte client/src na src
+cp -r client/src ./src
+
+# Ili koristite symlink (bolje rešenje)
+ln -sf client/src ./src
+
+# Sada probajte build ponovo
+./node_modules/.bin/vite build && ./node_modules/.bin/esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist
+vite v5.4.19 building for production...
+✓ 1670 modules transformed.
+../dist/public/index.html                   0.46 kB │ gzip:   0.30 kB
+../dist/public/assets/index-BPcPS5Nr.css   91.69 kB │ gzip:  15.15 kB
+../dist/public/assets/index-nwzmp_pv.js   329.06 kB │ gzip: 101.13 kB
+✓ built in 4.23s
+
+  dist/index.js  91.2kb
+
+⚡ Done in 7ms
+root@Hmofinder:/var/www/hmo-hunter# # Status servisa
+systemctl status hmo-hunter
+
+# Health check
+curl http://localhost:5000/health
+
+# Ako ne radi, pogledajte logove
+journalctl -u hmo-hunter -f
+○ hmo-hunter.service - HMO Hunter Property Analysis Platform
+     Loaded: loaded (/etc/systemd/system/hmo-hunter.service; enabled; preset: enabled)
+     Active: inactive (dead) (Result: exit-code) since Thu 2025-08-14 17:06:21 BST; 3min 54s ago
+   Duration: 623ms
+    Process: 19693 ExecStart=/usr/bin/npm start (code=exited, status=1/FAILURE)
+   Main PID: 19693 (code=exited, status=1/FAILURE)
+        CPU: 787ms
+
+Aug 14 17:06:21 Hmofinder systemd[1]: Stopped hmo-hunter.service - HMO Hunter Property Analysis Platform.
+curl: (7) Failed to connect to localhost port 5000 after 0 ms: Couldn't connect to server
+Aug 14 17:05:55 Hmofinder systemd[1]: hmo-hunter.service: Failed with result 'exit-code'.
+Aug 14 17:06:05 Hmofinder systemd[1]: hmo-hunter.service: Scheduled restart job, restart counter is at 477.
+Aug 14 17:06:05 Hmofinder systemd[1]: Started hmo-hunter.service - HMO Hunter Property Analysis Platform.
+Aug 14 17:06:06 Hmofinder systemd[1]: hmo-hunter.service: Main process exited, code=exited, status=1/FAILURE
+Aug 14 17:06:06 Hmofinder systemd[1]: hmo-hunter.service: Failed with result 'exit-code'.
+Aug 14 17:06:16 Hmofinder systemd[1]: hmo-hunter.service: Scheduled restart job, restart counter is at 478.
+Aug 14 17:06:16 Hmofinder systemd[1]: Started hmo-hunter.service - HMO Hunter Property Analysis Platform.
+Aug 14 17:06:16 Hmofinder systemd[1]: hmo-hunter.service: Main process exited, code=exited, status=1/FAILURE
+Aug 14 17:06:16 Hmofinder systemd[1]: hmo-hunter.service: Failed with result 'exit-code'.
+Aug 14 17:06:21 Hmofinder systemd[1]: Stopped hmo-hunter.service - HMO Hunter Property Analysis Platform.
+
