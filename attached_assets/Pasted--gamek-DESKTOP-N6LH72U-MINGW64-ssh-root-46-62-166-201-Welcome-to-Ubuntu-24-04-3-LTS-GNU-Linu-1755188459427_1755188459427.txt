@@ -1,0 +1,131 @@
+
+gamek@DESKTOP-N6LH72U MINGW64 ~
+$ ssh root@46.62.166.201
+Welcome to Ubuntu 24.04.3 LTS (GNU/Linux 6.8.0-71-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Thu 14 Aug 17:19:56 BST 2025
+
+  System load:  0.09              Processes:             160
+  Usage of /:   4.6% of 74.79GB   Users logged in:       1
+  Memory usage: 9%                IPv4 address for eth0: 46.62.166.201
+  Swap usage:   0%                IPv6 address for eth0: 2a01:4f9:c013:f54c::1
+
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+Last login: Thu Aug 14 17:19:56 2025 from 185.26.173.118
+root@Hmofinder:~# # Proveri da li built fajl postoji
+ls -la dist/index.js
+
+# Ako ne postoji, rebuild
+npm run build
+
+# Proveri dozvole
+ls -la /var/www/hmo-hunter/
+chown -R hmo:www-data /var/www/hmo-hunter/
+ls: cannot access 'dist/index.js': No such file or directory
+npm ERR! code ENOENT
+npm ERR! syscall open
+npm ERR! path /root/package.json
+npm ERR! errno -2
+npm ERR! enoent ENOENT: no such file or directory, open '/root/package.json'
+npm ERR! enoent This is related to npm not being able to find a file.
+npm ERR! enoent
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2025-08-14T16_20_22_033Z-debug-0.log
+total 656
+drwxr-xr-x  13 hmo  www-data   4096 Aug 14 17:09 .
+drwxr-xr-x   5 root root       4096 Aug 14 17:08 ..
+drwxr-xr-x   2 hmo  www-data  12288 Aug 14 17:05 attached_assets
+-rw-r--r--   1 hmo  www-data   1175 Aug 14 17:03 AUTOMATSKI_SETUP.md
+-rw-r--r--   1 hmo  www-data     39 Aug 14 17:03 build.sh
+-rw-r--r--   1 hmo  www-data   4096 Aug 14 17:03 bulk_london_scraper.py
+-rwxr-xr-x   1 hmo  www-data   2202 Aug 14 17:03 bulk_scraper.sh
+drwxr-xr-x   3 hmo  www-data   4096 Aug 14 17:03 cache
+-rw-r--r--   1 hmo  www-data   8628 Aug 14 17:03 cache_all_cities.py
+drwxr-xr-x   3 hmo  www-data   4096 Aug 14 17:03 cache_backup_20250814_140715
+drwxr-xr-x   3 hmo  www-data   4096 Aug 14 17:03 cache_backup_20250814_140743
+drwxr-xr-x   3 hmo  www-data   4096 Aug 14 17:03 client
+-rw-r--r--   1 hmo  www-data    459 Aug 14 17:03 components.json
+-rw-r--r--   1 hmo  www-data   2127 Aug 14 17:03 DEPLOY_COMMANDS.md
+-rw-r--r--   1 hmo  www-data   2879 Aug 14 17:03 deployment-guide.md
+-rw-r--r--   1 hmo  www-data   2768 Aug 14 17:03 deploy.sh
+drwxr-xr-x   2 root root       4096 Aug 14 17:08 dist
+-rw-r--r--   1 hmo  www-data    325 Aug 14 17:03 drizzle.config.ts
+-rwxr-xr-x   1 hmo  www-data   2885 Aug 14 17:06 emergency-deploy.sh
+-rw-r--r--   1 hmo  www-data    223 Aug 14 17:03 .env.example
+-rw-r--r--   1 hmo  www-data   1486 Aug 14 17:03 FIKSNI_DEPLOY.md
+-rw-r--r--   1 hmo  www-data   4116 Aug 14 17:03 final_cache_validation.py
+-rw-r--r--   1 hmo  www-data   1355 Aug 14 17:03 FINALNI_KORACI.md
+drwxr-xr-x   8 hmo  www-data   4096 Aug 14 17:05 .git
+-rw-r--r--   1 hmo  www-data     67 Aug 14 17:03 .gitignore
+-rw-r--r--   1 hmo  www-data  12650 Aug 14 17:03 hetzner-cloud-config-final.yml
+-rw-r--r--   1 hmo  www-data   6350 Aug 14 17:03 hetzner-cloud-config.yml
+-rw-r--r--   1 hmo  www-data   3139 Aug 14 17:03 HETZNER_DEPLOYMENT.md
+-rwxr-xr-x   1 hmo  www-data   4762 Aug 14 17:03 hetzner-deploy.sh
+-rw-r--r--   1 hmo  www-data    364 Aug 14 17:03 index.html
+-rw-r--r--   1 hmo  www-data  11107 Aug 14 17:03 migrate_cache_files.py
+-rw-r--r--   1 hmo  www-data    310 Aug 14 17:03 nixpacks.toml
+drwxr-xr-x 329 root root      12288 Aug 14 17:11 node_modules
+-rw-r--r--   1 hmo  www-data   3535 Aug 14 17:03 package.json
+-rw-r--r--   1 root root     307695 Aug 14 17:06 package-lock.json
+-rw-r--r--   1 hmo  www-data     80 Aug 14 17:03 postcss.config.js
+-rw-r--r--   1 hmo  www-data     18 Aug 14 17:03 Procfile
+-rwxr-xr-x   1 hmo  www-data   3129 Aug 14 17:03 production-deploy.sh
+-rw-r--r--   1 hmo  www-data    217 Aug 14 17:03 pyproject.toml
+-rw-r--r--   1 hmo  www-data   3906 Aug 14 17:03 quick_cache_test.py
+-rw-r--r--   1 hmo  www-data    381 Aug 14 17:03 railway.json
+-rw-r--r--   1 hmo  www-data    230 Aug 14 17:03 railway.toml
+-rw-r--r--   1 hmo  www-data   1535 Aug 14 17:03 README.md
+-rw-r--r--   1 hmo  www-data    285 Aug 14 17:03 render.yaml
+-rw-r--r--   1 root root        743 Aug 14 17:05 .replit
+-rw-r--r--   1 hmo  www-data  11595 Aug 14 17:03 replit.md
+-rw-r--r--   1 hmo  www-data   2600 Aug 14 17:03 run_bulk_scraper.py
+drwxr-xr-x   3 hmo  www-data   4096 Aug 14 17:03 server
+-rwxr-xr-x   1 hmo  www-data    783 Aug 14 17:03 setup-python.sh
+drwxr-xr-x   2 hmo  www-data   4096 Aug 14 17:03 shared
+drwxr-xr-x   6 root root       4096 Aug 14 17:09 src
+-rw-r--r--   1 hmo  www-data   4660 Aug 14 17:03 tailwind.config.ts
+-rw-r--r--   1 hmo  www-data   5925 Aug 14 17:03 test_all_cities.py
+-rw-r--r--   1 hmo  www-data   3691 Aug 14 17:03 test_cache_to_db.py
+-rw-r--r--   1 hmo  www-data   5611 Aug 14 17:03 test_london_system.py
+-rw-r--r--   1 hmo  www-data    657 Aug 14 17:03 tsconfig.json
+-rw-r--r--   1 hmo  www-data  30152 Aug 14 17:03 uv.lock
+-rw-r--r--   1 hmo  www-data    934 Aug 14 17:03 vite.config.ts
+-rw-r--r--   1 hmo  www-data  17840 Aug 14 17:03 zoopla_scraper.py
+root@Hmofinder:~# # Konektuj se na server
+ssh root@46.62.166.201
+
+# Proveri status aplikacije
+systemctl status hmo-hunter
+
+# Ako nije pokrenuta, pokreni je
+systemctl restart hmo-hunter
+systemctl enable hmo-hunter
+
+# Testiraj lokalnu konekciju
+curl http://localhost:5000/health
+
+# Proveri logove ako ima problema
+journalctl -u hmo-hunter -f --no-pager -n 20
+root@46.62.166.201's password:
+
+[1]+  Stopped                 ssh root@46.62.166.201
+● hmo-hunter.service - HMO Hunter Property Analysis Platform
+     Loaded: loaded (/etc/systemd/system/hmo-hunter.service; enabled; preset: e>
+     Active: activating (auto-restart) (Result: exit-code) since Thu 2025-08-14>
+    Process: 22325 ExecStart=/usr/bin/node dist/index.js (code=exited, status=1>
+   Main PID: 22325 (code=exited, status=1/FAILURE)
+        CPU: 668ms
+log file: d
