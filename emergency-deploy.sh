@@ -24,12 +24,6 @@ if [ -f "./node_modules/.bin/vite" ]; then
     ./node_modules/.bin/esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist
 else
     echo "❌ Vite nije pronađen, kreiram alternativni server..."
-    # Run the tailwind fix first
-    if [ -f "./production-tailwind-fix.sh" ]; then
-        chmod +x production-tailwind-fix.sh
-        ./production-tailwind-fix.sh
-    fi
-    
     # Kreiraj jednostavan express server
     cat > dist/index.js << 'EOF'
 import express from 'express';

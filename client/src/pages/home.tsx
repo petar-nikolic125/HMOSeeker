@@ -58,27 +58,15 @@ export default function Home() {
       setSearchState(prev => ({ ...prev, isLoading: true, error: null }));
     },
     onSuccess: (data) => {
-      console.log('🔥 API SUCCESS - Raw data:', data);
-      const properties = data.properties || data.listings || [];
-      console.log('🔥 Properties extracted:', properties.length, properties);
+      console.log('Search API response:', data);
+      console.log('Properties count:', data.properties?.length || 0);
       
-      if (properties.length === 0) {
-        console.error('🚨 NO PROPERTIES FOUND - API returned empty array!');
-      } else {
-        console.log('✅ Setting', properties.length, 'properties in state');
-      }
-      
-      setSearchState(prev => {
-        console.log('🔄 Previous state:', prev.properties.length, 'properties');
-        const newState = {
-          properties: properties,
-          isLoading: false,
-          isCached: data.cached || true,
-          lastRefreshed: new Date(),
-          error: null,
-        };
-        console.log('🔄 New state:', newState.properties.length, 'properties');
-        return newState;
+      setSearchState({
+        properties: data.properties || data.listings || [],
+        isLoading: false,
+        isCached: data.cached || true,
+        lastRefreshed: new Date(),
+        error: null,
       });
     },
     onError: (error: Error) => {
@@ -131,20 +119,9 @@ export default function Home() {
 
   // Update sorted properties when properties or sort type changes
   useEffect(() => {
-    console.log('Sorting properties:', {
-      searchStateProperties: searchState.properties.length,
-      sortBy,
-      currentSortedProperties: sortedProperties.length
-    });
-    
     if (searchState.properties.length > 0) {
       const sorted = sortProperties(searchState.properties, sortBy);
-      console.log('Setting sorted properties:', sorted.length);
       setSortedProperties(sorted);
-    } else {
-      // Clear sorted properties when no search results
-      console.log('Clearing sorted properties');
-      setSortedProperties([]);
     }
   }, [searchState.properties, sortBy, sortProperties]);
 
@@ -192,7 +169,7 @@ export default function Home() {
       />
       
       <PropertyResults 
-        properties={searchState.properties} 
+        properties={sortedProperties.length > 0 ? sortedProperties : searchState.properties} 
         filters={currentFilters}
         onAnalyze={handlePropertyAnalysis}
         onRefresh={handleRefresh}

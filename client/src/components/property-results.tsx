@@ -26,22 +26,6 @@ interface PropertyResultsProps {
 export default function PropertyResults({ properties, filters, onAnalyze, onRefresh, searchState, onSortChange, currentSort }: PropertyResultsProps) {
   const { isLoading, isCached, lastRefreshed, error } = searchState;
   const { toast } = useToast();
-  
-  // Debug logging
-  console.log('🔥 PropertyResults DEBUG:', {
-    propertiesCount: properties.length,
-    searchStatePropertiesCount: searchState.properties.length,
-    isLoading,
-    error,
-    filters,
-    firstProperty: properties[0]
-  });
-  
-  if (properties.length > 0 && !isLoading) {
-    console.log('✅ SHOULD SHOW PROPERTIES:', properties.length, 'properties received');
-  } else {
-    console.log('❌ NOT SHOWING PROPERTIES:', { propertiesLength: properties.length, isLoading, error });
-  }
 
   // Show toast when no results due to filters
   const hasActiveFilters = filters.maxPrice || filters.minRooms || filters.keywords;
@@ -142,49 +126,34 @@ export default function PropertyResults({ properties, filters, onAnalyze, onRefr
               </div>
             </div>
           </div>
+        ) : properties.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            {properties.map((property, index) => (
+              <PropertyCard 
+                key={property.property_url || index} 
+                property={property} 
+                onAnalyze={onAnalyze}
+                delay={index * 100}
+              />
+            ))}
+          </div>
         ) : (
-          <>
-            {/* DEBUG SECTION - Show what we have */}
-            <div className="mb-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-              <h4 className="font-bold text-yellow-800">DEBUG INFO:</h4>
-              <p>Properties received: {properties.length}</p>
-              <p>Loading: {isLoading ? 'YES' : 'NO'}</p>
-              <p>Error: {error || 'NONE'}</p>
-              {properties.length > 0 && (
-                <p>First property: {properties[0]?.title || properties[0]?.address || 'NO TITLE/ADDRESS'}</p>
-              )}
+          <div className="text-center py-12">
+            <div className="w-24 h-24 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
+              <AlertCircle className="w-12 h-12 text-gray-400" />
             </div>
-            
-            {properties.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-                {properties.map((property, index) => (
-                  <PropertyCard 
-                    key={property.property_url || property.id || index} 
-                    property={property} 
-                    onAnalyze={onAnalyze}
-                    delay={index * 100}
-                  />
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-12">
-                <div className="w-24 h-24 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
-                  <AlertCircle className="w-12 h-12 text-gray-400" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  {error ? 'Search Failed' : hasActiveFilters ? 'Nema rezultata za filtere' : 'No Properties Found'}
-                </h3>
-                <p className="text-gray-600 mb-6">
-                  {error 
-                    ? 'There was an error searching for properties. Please try a different search or check your connection.'
-                    : hasActiveFilters 
-                      ? `Trenutni filteri su previše restriktivni za ${filters.city}. Pokušajte da ublažite kriterijume pretrage.`
-                      : `No HMO-suitable properties found in ${filters.city}. Try searching in a different area.`
-                  }
-                </p>
-              </div>
-            )}
-          </>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">
+              {error ? 'Search Failed' : hasActiveFilters ? 'Nema rezultata za filtere' : 'No Properties Found'}
+            </h3>
+            <p className="text-gray-600 mb-6">
+              {error 
+                ? 'There was an error searching for properties. Please try a different search or check your connection.'
+                : hasActiveFilters 
+                  ? `Trenutni filteri su previše restriktivni za ${filters.city}. Pokušajte da ublažite kriterijume pretrage.`
+                  : `No HMO-suitable properties found in ${filters.city}. Try searching in a different area.`
+              }
+            </p>
+          </div>
         )}
 
         {/* Results Summary */}
