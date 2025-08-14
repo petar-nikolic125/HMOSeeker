@@ -1,0 +1,75 @@
+/dist/public/index.html                   0.46 kB │ gzip:   0.30 kB
+../dist/public/assets/index-BPcPS5Nr.css   91.69 kB │ gzip:  15.15 kB
+../dist/public/assets/index-nwzmp_pv.js   329.06 kB │ gzip: 101.13 kB
+✓ built in 4.45s
+
+  dist/index.js  91.2kb
+
+⚡ Done in 8ms
+vite v5.4.19 building for production...
+✓ 1670 modules transformed.
+../dist/public/index.html                   0.46 kB │ gzip:   0.30 kB
+../dist/public/assets/index-BPcPS5Nr.css   91.69 kB │ gzip:  15.15 kB
+../dist/public/assets/index-nwzmp_pv.js   329.06 kB │ gzip: 101.13 kB
+✓ built in 4.48s
+
+  dist/index.js  91.2kb
+
+⚡ Done in 7ms
+-rw-r--r-- 1 hmo www-data 93411 Aug 14 17:21 dist/index.js
+🚀 Pokretam HMO Hunter server...
+🔧 Proveravam Python biblioteke...
+✅ Python biblioteke su već instalirane
+5:21:34 PM [express] serving on port 5000
+TypeError [ERR_INVALID_ARG_TYPE]: The "paths[0]" argument must be of type string. Received undefined
+    at new NodeError (node:internal/errors:405:5)
+    at validateString (node:internal/validators:162:11)
+    at Object.resolve (node:path:1097:7)
+    at file:///var/www/hmo-hunter/dist/index.js:2383:36
+    at Layer.handle [as handle_request] (/var/www/hmo-hunter/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/var/www/hmo-hunter/node_modules/express/lib/router/index.js:328:13)
+    at /var/www/hmo-hunter/node_modules/express/lib/router/index.js:286:9
+    at param (/var/www/hmo-hunter/node_modules/express/lib/router/index.js:365:14)
+    at param (/var/www/hmo-hunter/node_modules/express/lib/router/index.js:376:14)
+    at Function.process_params (/var/www/hmo-hunter/node_modules/express/lib/router/index.js:421:3)
+^C
+root@Hmofinder:/var/www/hmo-hunter# systemctl restart hmo-hunter
+systemctl status hmo-hunter
+● hmo-hunter.service - HMO Hunter Property Analysis Platform
+     Loaded: loaded (/etc/systemd/system/hmo-hunter.service; enabled; preset: e>
+     Active: active (running) since Thu 2025-08-14 17:22:51 BST; 6ms ago
+   Main PID: 22623 (node)
+      Tasks: 1 (limit: 4540)
+     Memory: 256.0K (max: 2.0G available: 1.9G peak: 256.0K)
+        CPU: 4ms
+     CGroup: /system.slice/hmo-hunter.service
+             └─22623 /usr/bin/node dist/index.js
+
+Aug 14 17:22:51 Hmofinder systemd[1]: Started hmo-hunter.service - HMO Hunter P>
+lines 1-11/11 (END)
+● hmo-hunter.service - HMO Hunter Property Analysis Platform
+     Loaded: loaded (/etc/systemd/system/hmo-hunter.service; enabled; preset: enabled)
+     Active: active (running) since Thu 2025-08-14 17:22:51 BST; 6ms ago
+   Main PID: 22623 (node)
+      Tasks: 1 (limit: 4540)
+     Memory: 256.0K (max: 2.0G available: 1.9G peak: 256.0K)
+        CPU: 4ms
+     CGroup: /system.slice/hmo-hunter.service
+             └─22623 /usr/bin/node dist/index.js
+
+Aug 14 17:22:51 Hmofinder systemd[1]: Started hmo-hunter.service - HMO Hunter Property Analysis Platform.
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+lines 1-11/11 (END)
