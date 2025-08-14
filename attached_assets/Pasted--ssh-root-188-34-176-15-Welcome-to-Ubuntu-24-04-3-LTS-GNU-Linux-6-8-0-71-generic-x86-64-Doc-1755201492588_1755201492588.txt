@@ -1,0 +1,69 @@
+ ssh root@188.34.176.15
+Welcome to Ubuntu 24.04.3 LTS (GNU/Linux 6.8.0-71-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Thu 14 Aug 20:57:58 BST 2025
+
+  System load:  0.1               Processes:             138
+  Usage of /:   4.3% of 74.79GB   Users logged in:       0
+  Memory usage: 9%                IPv4 address for eth0: 188.34.176.15
+  Swap usage:   0%                IPv6 address for eth0: 2a01:4f8:c17:3d04::1
+
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+Last login: Thu Aug 14 20:56:58 2025 from 94.189.201.148
+root@hmofinder:~# # 1. Prvo popravimo nginx konfiguraciju (uklanjamo SSL zavisnost)
+cd /var/www/hmo-hunter
+
+# Kreirajmo jednostavnu nginx konfiguraciju bez SSL
+cat > /etc/nginx/sites-available/hmo-hunter << 'EOF'
+server {
+    listen 80;
+    server_name _;
+
+    # Security headers
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header X-Content-Type-Options "nosniff" always;
+
+    # Proxy to Node.js app
+    location / {
+        proxy_pass http://127.0.0.1:5000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+curl http://188.34.176.15/healthha pokrenula /etc/nginx/sites-enabled/
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+● nginx.service - A high performance web server and a reverse proxy server
+     Loaded: loaded (/usr/lib/systemd/system/nginx.service; enabled; preset: en>
+     Active: active (running) since Thu 2025-08-14 20:58:04 BST; 9ms ago
+       Docs: man:nginx(8)
+    Process: 3548 ExecStartPre=/usr/sbin/nginx -t -q -g daemon on; master_proce>
+    Process: 3550 ExecStart=/usr/sbin/nginx -g daemon on; master_process on; (c>
+   Main PID: 3551 (nginx)
+      Tasks: 4 (limit: 4540)
+     Memory: 3.1M (peak: 3.2M)
+        CPU: 15ms
+     CGroup: /system.slice/nginx.service
+             ├─3551 "nginx: master process /usr/sbin/nginx -g daemon on; master>
+             ├─3552 "nginx: worker process"
+             ├─3553 "nginx: worker process"
+             └─3555 "nginx: worker process"
+
+Aug 14 20:58:04 hmofinder systemd[1]: Starting nginx.service - A high performan>
+Aug 14 20:58:04 hmofinder systemd[1]: Started nginx.service - A high performanc>
+lines 1-18/18 (END)
