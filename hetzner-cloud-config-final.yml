@@ -1,0 +1,411 @@
+#cloud-config
+# HMO Hunter - Hetzner Cloud Configuration (JSON Cache Version)
+# Production-ready Ubuntu server for HMO property analysis platform
+
+package_update: true
+package_upgrade: true
+
+packages:
+  - nginx
+  - nodejs
+  - npm
+  - python3
+  - python3-pip
+  - python3-venv
+  - git
+  - curl
+  - wget
+  - unzip
+  - certbot
+  - python3-certbot-nginx
+  - ufw
+  - fail2ban
+  - htop
+  - jq
+  - rsync
+
+# Create application user
+users:
+  - name: hmo
+    groups: sudo, www-data
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh_authorized_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC... # REPLACE WITH YOUR SSH PUBLIC KEY
+
+# Setup commands
+runcmd:
+  # Install Node.js 20 LTS
+  - curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+  - apt-get install -y nodejs
+
+  # Create application structure with cache directories
+  - mkdir -p /var/www/hmo-hunter
+  - mkdir -p /var/www/hmo-hunter/cache/primelocation
+  - mkdir -p /var/log/hmo-hunter
+  - chown -R hmo:www-data /var/www/hmo-hunter
+  - chown -R hmo:www-data /var/log/hmo-hunter
+  - chmod -R 755 /var/www/hmo-hunter
+  - chmod -R 775 /var/www/hmo-hunter/cache
+
+  # Install Python dependencies globally
+  - pip3 install requests beautifulsoup4 lxml
+
+  # Configure firewall
+  - ufw default deny incoming
+  - ufw default allow outgoing
+  - ufw allow ssh
+  - ufw allow 'Nginx Full'
+  - ufw --force enable
+
+  # Start and enable fail2ban
+  - systemctl enable fail2ban
+  - systemctl start fail2ban
+
+write_files:
+  # Nginx configuration optimized for HMO Hunter
+  - path: /etc/nginx/sites-available/hmo-hunter
+    content: |
+      # Rate limiting zones
+      limit_req_zone $binary_remote_addr zone=api:10m rate=10r/s;
+      limit_req_zone $binary_remote_addr zone=scraping:1m rate=1r/s;
+      
+      server {
+          listen 80;
+          server_name your-domain.com www.your-domain.com;
+          return 301 https://$server_name$request_uri;
+      }
+      
+      server {
+          listen 443 ssl http2;
+          server_name your-domain.com www.your-domain.com;
+          
+          # SSL Configuration (Let's Encrypt will populate)
+          ssl_certificate /etc/letsencrypt/live/your-domain.com/fullchain.pem;
+          ssl_certificate_key /etc/letsencrypt/live/your-domain.com/privkey.pem;
+          ssl_protocols TLSv1.2 TLSv1.3;
+          ssl_ciphers ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384;
+          ssl_prefer_server_ciphers off;
+          ssl_session_cache shared:SSL:10m;
+          ssl_session_timeout 10m;
+          
+          # Security headers
+          add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+          add_header X-Frame-Options "SAMEORIGIN" always;
+          add_header X-Content-Type-Options "nosniff" always;
+          add_header X-XSS-Protection "1; mode=block" always;
+          add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+          add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' fonts.googleapis.com; font-src 'self' fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self';" always;
+          
+          # Logging
+          access_log /var/log/nginx/hmo-hunter-access.log;
+          error_log /var/log/nginx/hmo-hunter-error.log;
+          
+          # Gzip compression
+          gzip on;
+          gzip_vary on;
+          gzip_min_length 1024;
+          gzip_comp_level 6;
+          gzip_types
+              text/plain
+              text/css
+              text/xml
+              text/javascript
+              application/javascript
+              application/xml+rss
+              application/json
+              image/svg+xml;
+          
+          # Main application
+          location / {
+              proxy_pass http://127.0.0.1:5000;
+              proxy_http_version 1.1;
+              proxy_set_header Upgrade $http_upgrade;
+              proxy_set_header Connection 'upgrade';
+              proxy_set_header Host $host;
+              proxy_set_header X-Real-IP $remote_addr;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header X-Forwarded-Proto $scheme;
+              proxy_cache_bypass $http_upgrade;
+              proxy_read_timeout 300s;
+              proxy_connect_timeout 75s;
+              proxy_send_timeout 300s;
+              
+              # Rate limiting for general requests
+              limit_req zone=api burst=20 nodelay;
+          }
+          
+          # API endpoints with specific rate limiting
+          location /api/scrape {
+              proxy_pass http://127.0.0.1:5000;
+              proxy_set_header Host $host;
+              proxy_set_header X-Real-IP $remote_addr;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header X-Forwarded-Proto $scheme;
+              proxy_read_timeout 600s;
+              proxy_connect_timeout 30s;
+              proxy_send_timeout 600s;
+              
+              # Strict rate limiting for scraping
+              limit_req zone=scraping burst=3 nodelay;
+          }
+          
+          # Static assets with aggressive caching
+          location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$ {
+              proxy_pass http://127.0.0.1:5000;
+              expires 1y;
+              add_header Cache-Control "public, immutable";
+              add_header Vary "Accept-Encoding";
+          }
+          
+          # Health check endpoint
+          location /health {
+              proxy_pass http://127.0.0.1:5000;
+              access_log off;
+          }
+      }
+    permissions: '0644'
+
+  # Systemd service for HMO Hunter
+  - path: /etc/systemd/system/hmo-hunter.service
+    content: |
+      [Unit]
+      Description=HMO Hunter Property Analysis Platform
+      After=network.target
+      StartLimitIntervalSec=0
+      
+      [Service]
+      Type=simple
+      User=hmo
+      Group=www-data
+      WorkingDirectory=/var/www/hmo-hunter
+      Environment=NODE_ENV=production
+      Environment=PORT=5000
+      Environment=CACHE_BASE_PATH=/var/www/hmo-hunter/cache
+      ExecStart=/usr/bin/npm start
+      Restart=always
+      RestartSec=10
+      StandardOutput=append:/var/log/hmo-hunter/app.log
+      StandardError=append:/var/log/hmo-hunter/error.log
+      SyslogIdentifier=hmo-hunter
+      
+      # Resource limits
+      LimitNOFILE=65536
+      MemoryMax=2G
+      CPUQuota=200%
+      
+      # Security settings
+      NoNewPrivileges=true
+      PrivateTmp=true
+      ProtectSystem=strict
+      ProtectHome=true
+      ReadWritePaths=/var/www/hmo-hunter /var/log/hmo-hunter
+      CapabilityBoundingSet=CAP_NET_BIND_SERVICE
+      AmbientCapabilities=CAP_NET_BIND_SERVICE
+      
+      [Install]
+      WantedBy=multi-user.target
+    permissions: '0644'
+
+  # Environment configuration
+  - path: /var/www/hmo-hunter/.env.production
+    content: |
+      NODE_ENV=production
+      PORT=5000
+      
+      # JSON Cache Configuration
+      CACHE_BASE_PATH=/var/www/hmo-hunter/cache
+      
+      # Security
+      SESSION_SECRET=hmo-hunter-super-secret-key-change-this-in-production-2024
+      
+      # Scraping Configuration
+      PL_MAX_PAGES=12
+      PL_MIN_RESULTS=200
+      PL_CACHE_TTL_HOURS=12
+      REQUESTS_TIMEOUT=25
+      
+      # Performance
+      NODE_OPTIONS=--max-old-space-size=2048
+      
+      # Optional API Keys (uncomment and add if needed)
+      # ZOOPLA_API_KEY=your_zoopla_api_key
+      # RIGHTMOVE_API_KEY=your_rightmove_api_key
+    permissions: '0600'
+    owner: hmo:hmo
+
+  # Deployment script
+  - path: /home/hmo/deploy.sh
+    content: |
+      #!/bin/bash
+      set -e
+      
+      echo "🚀 Deploying HMO Hunter..."
+      
+      cd /var/www/hmo-hunter
+      
+      # Backup existing cache
+      if [ -d "cache" ]; then
+          echo "📁 Backing up cache..."
+          cp -r cache cache_backup_$(date +%Y%m%d_%H%M%S)
+      fi
+      
+      # Pull latest code
+      echo "📥 Pulling latest code..."
+      git pull origin main
+      
+      # Install dependencies
+      echo "📦 Installing dependencies..."
+      npm ci --production --silent
+      
+      # Build application
+      echo "🔨 Building application..."
+      npm run build
+      
+      # Restore cache if it was overwritten
+      if [ -d "cache_backup_$(date +%Y%m%d)_"* ]; then
+          echo "🔄 Restoring cache..."
+          LATEST_BACKUP=$(ls -td cache_backup_* | head -1)
+          if [ -d "$LATEST_BACKUP" ]; then
+              rsync -av "$LATEST_BACKUP/" cache/
+          fi
+      fi
+      
+      # Restart service
+      echo "♻️  Restarting service..."
+      sudo systemctl restart hmo-hunter
+      
+      # Check status
+      sleep 3
+      if systemctl is-active --quiet hmo-hunter; then
+          echo "✅ Deployment successful! HMO Hunter is running."
+      else
+          echo "❌ Deployment failed! Check logs:"
+          sudo journalctl -u hmo-hunter --no-pager -n 20
+          exit 1
+      fi
+    permissions: '0755'
+    owner: hmo:hmo
+
+  # Cache backup script
+  - path: /home/hmo/backup-cache.sh
+    content: |
+      #!/bin/bash
+      set -e
+      
+      BACKUP_DIR="/home/hmo/cache-backups"
+      TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+      
+      mkdir -p "$BACKUP_DIR"
+      
+      echo "📁 Creating cache backup..."
+      tar -czf "$BACKUP_DIR/cache_backup_$TIMESTAMP.tar.gz" -C /var/www/hmo-hunter cache/
+      
+      # Keep only last 10 backups
+      cd "$BACKUP_DIR"
+      ls -t cache_backup_*.tar.gz | tail -n +11 | xargs -r rm
+      
+      echo "✅ Cache backup created: cache_backup_$TIMESTAMP.tar.gz"
+      echo "📊 Backup size: $(du -h cache_backup_$TIMESTAMP.tar.gz | cut -f1)"
+    permissions: '0755'
+    owner: hmo:hmo
+
+  # Log rotation for HMO Hunter
+  - path: /etc/logrotate.d/hmo-hunter
+    content: |
+      /var/log/hmo-hunter/*.log {
+          daily
+          missingok
+          rotate 30
+          compress
+          delaycompress
+          notifempty
+          create 644 hmo www-data
+          postrotate
+              systemctl reload hmo-hunter || true
+          endscript
+      }
+      
+      /var/log/nginx/hmo-hunter-*.log {
+          daily
+          missingok
+          rotate 30
+          compress
+          delaycompress
+          notifempty
+          create 644 www-data adm
+          postrotate
+              systemctl reload nginx || true
+          endscript
+      }
+    permissions: '0644'
+
+  # Monitoring script
+  - path: /home/hmo/monitor.sh
+    content: |
+      #!/bin/bash
+      
+      echo "🔍 HMO Hunter System Status"
+      echo "=========================="
+      echo
+      
+      # Service status
+      echo "📊 Service Status:"
+      systemctl is-active hmo-hunter && echo "✅ HMO Hunter: Running" || echo "❌ HMO Hunter: Stopped"
+      systemctl is-active nginx && echo "✅ Nginx: Running" || echo "❌ Nginx: Stopped"
+      echo
+      
+      # System resources
+      echo "💾 System Resources:"
+      echo "Memory: $(free -h | grep Mem | awk '{print $3 "/" $2}')"
+      echo "Disk: $(df -h / | tail -1 | awk '{print $3 "/" $2 " (" $5 " used)"}')"
+      echo "Load: $(uptime | awk -F'load average:' '{print $2}')"
+      echo
+      
+      # Cache statistics
+      echo "📁 Cache Statistics:"
+      if [ -d "/var/www/hmo-hunter/cache/primelocation" ]; then
+          CITIES=$(find /var/www/hmo-hunter/cache/primelocation -mindepth 1 -maxdepth 1 -type d | wc -l)
+          CACHE_SIZE=$(du -sh /var/www/hmo-hunter/cache 2>/dev/null | cut -f1)
+          echo "Cities cached: $CITIES"
+          echo "Cache size: $CACHE_SIZE"
+      else
+          echo "Cache directory not found"
+      fi
+      echo
+      
+      # Recent activity
+      echo "📝 Recent Activity (last 10 lines):"
+      tail -10 /var/log/hmo-hunter/app.log 2>/dev/null || echo "No recent logs found"
+    permissions: '0755'
+    owner: hmo:hmo
+
+# Final setup commands
+runcmd:
+  # Enable Nginx site
+  - ln -sf /etc/nginx/sites-available/hmo-hunter /etc/nginx/sites-enabled/
+  - rm -f /etc/nginx/sites-enabled/default
+  - nginx -t
+  - systemctl restart nginx
+  - systemctl enable nginx
+
+  # Enable HMO Hunter service
+  - systemctl daemon-reload
+  - systemctl enable hmo-hunter
+
+  # Setup automatic cache backup (daily at 2 AM)
+  - echo "0 2 * * * /home/hmo/backup-cache.sh" | crontab -u hmo -
+
+  # Create initial cache structure
+  - mkdir -p /var/www/hmo-hunter/cache/primelocation
+  - chown -R hmo:www-data /var/www/hmo-hunter/cache
+
+# System configuration
+timezone: Europe/London
+locale: en_GB.UTF-8
+
+# Final reboot
+power_state:
+  delay: "+1"
+  mode: reboot
+  message: "HMO Hunter server setup complete, rebooting..."
