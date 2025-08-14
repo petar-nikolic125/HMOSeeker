@@ -1,0 +1,62 @@
+gamek@DESKTOP-N6LH72U MINGW64 ~
+$ ssh root@46.62.166.201
+Welcome to Ubuntu 24.04.3 LTS (GNU/Linux 6.8.0-71-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Thu 14 Aug 17:12:46 BST 2025
+
+  System load:  0.01              Processes:             151
+  Usage of /:   4.6% of 74.79GB   Users logged in:       1
+  Memory usage: 8%                IPv4 address for eth0: 46.62.166.201
+  Swap usage:   0%                IPv6 address for eth0: 2a01:4f9:c013:f54c::1
+
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+Last login: Thu Aug 14 17:11:18 2025 from 185.26.173.118
+root@Hmofinder:~# sudo systemctl stop hmo-hunter
+root@Hmofinder:~# # Zaustaviti trenutni servis
+sudo systemctl stop hmo-hunter
+
+# Ažurirati systemd servis da koristi built fajl
+sudo sed -i 's|ExecStart=/usr/bin/npm start|ExecStart=/usr/bin/node dist/index.js|' /etc/systemd/system/hmo-hunter.service
+
+# Ili kompletno zameniti sa boljom konfiguracijom
+sudo cat > /etc/systemd/system/hmo-hunter.service << 'EOF'
+[Unit]
+Description=HMO Hunter Property Analysis Platform
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+User=hmo
+Group=www-data
+WorkingDirectory=/var/www/hmo-hunter
+Environment=NODE_ENV=production
+Environment=PORT=5000
+Environment=PATH=/usr/local/bin:/usr/bin:/bin
+ExecStart=/usr/bin/node dist/index.js
+Restart=always
+curl http://localhost:5000/healthSERVICECEg/hmo-hunter
+● hmo-hunter.service - HMO Hunter Property Analysis Platform
+     Loaded: loaded (/etc/systemd/system/hmo-hunter.service; enabled; preset: e>
+     Active: active (running) since Thu 2025-08-14 17:13:00 BST; 218ms ago
+   Main PID: 20253 (node)
+      Tasks: 11 (limit: 4540)
+     Memory: 22.8M (max: 2.0G available: 1.9G peak: 22.9M)
+        CPU: 263ms
+     CGroup: /system.slice/hmo-hunter.service
+             └─20253 /usr/bin/node dist/index.js
+
+Aug 14 17:13:00 Hmofinder systemd[1]: Started hmo-hunter.service - HMO Hunter P>
+lines 1-11/11 (END)
