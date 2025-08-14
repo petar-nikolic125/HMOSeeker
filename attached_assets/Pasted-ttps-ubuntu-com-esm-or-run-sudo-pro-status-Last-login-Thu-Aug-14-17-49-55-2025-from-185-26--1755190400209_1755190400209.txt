@@ -1,0 +1,50 @@
+ttps://ubuntu.com/esm or run: sudo pro status
+
+
+Last login: Thu Aug 14 17:49:55 2025 from 185.26.173.118
+root@Hmofinder:~# # Na serveru, kreirajte jednostavan test server
+cd /var/www/hmo-hunter
+# Zaustavite systemd servis
+systemctl stop hmo-hunter
+# Kreirajte test server koji sigurno radi
+cat > test-server.js << 'EOF'
+const express = require('express');
+const path = require('path');
+const fs = require('fs');
+const app = express();
+app.use(express.json());
+// Serve static files
+app.use(express.static(path.join(__dirname, 'dist/public')));
+// Health endpoint
+app.get('/health', (req, res) => {
+  res.json({
+    status: 'ok',
+    message: 'HMO Hunter Test Server',
+    timestamp: new Date().toISOString()
+  });
+});
+// Simple properties endpoint with real cache data
+app.get('/api/properties', (req, res) => {
+  console.log('API request received:', req.query);
+
+  try {
+    // Read one cache file synchronously for simplicity
+    const cacheFile = path.join(__dirname, 'cache/primelocation/london/search_357d0caa7a95df23.json');
+
+sleep 3te da se pokrene direktno);${fs.existsSync('./cache/primelocation/london/
+[1] 24237
+file:///var/www/hmo-hunter/test-server.js:1
+const express = require('express');
+                ^
+
+ReferenceError: require is not defined in ES module scope, you can use import instead
+This file is being treated as an ES module because it has a '.js' file extension and '/var/www/hmo-hunter/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension.
+    at file:///var/www/hmo-hunter/test-server.js:1:17
+    at ModuleJob.run (node:internal/modules/esm/module_job:195:25)
+    at async ModuleLoader.import (node:internal/modules/esm/loader:336:24)
+    at async loadESM (node:internal/process/esm_loader:34:7)
+    at async handleMainPromise (node:internal/modules/run_main:106:12)
+
+Node.js v18.19.1
+[1]+  Exit 1                  node test-server.js
+root@Hmofinder:/var/www/hmo-hunter#
