@@ -73,6 +73,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       console.log(`📊 Found ${properties.length} properties in cache database`);
       
+      // Return immediately if no properties found
+      if (properties.length === 0) {
+        return res.json({
+          success: true,
+          count: 0,
+          cached: true,
+          properties: []
+        });
+      }
+      
       // Transform properties to match frontend expectations with real calculations
       const transformedListings = properties.map((prop, index) => {
         // Calculate real metrics for each property
@@ -153,7 +163,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         success: true,
         count: transformedListings.length,
         cached: true,
-        listings: transformedListings,
+        properties: transformedListings,
       });
     } catch (error) {
       console.error("Failed to get properties:", error);
