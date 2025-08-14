@@ -1,0 +1,72 @@
+sh: 1: vite: not found
+root@Hmofinder:/var/www/hmo-hunter# # Idi u direktorijum
+cd /var/www/hmo-hunter
+
+# Instaliraj SVE dependencies (uključujući dev za build)
+npm ci --silent
+
+# Sada treba da radi build
+npm run build
+
+# Posle build-a očisti dev dependencies
+npm ci --production --silent
+
+# Kreiraj environment
+cat > .env.production << 'EOF'
+NODE_ENV=production
+PORT=5000
+CACHE_BASE_PATH=/var/www/hmo-hunter/cache
+SESSION_SECRET=hmo-hunter-secret-key-$(date +%s)
+PL_MAX_PAGES=12
+PL_MIN_RESULTS=200
+PL_CACHE_TTL_HOURS=12
+REQUESTS_TIMEOUT=25
+EOF
+
+# Restart servisa
+sudo systemctl restart hmo-hunter
+
+> rest-express@1.0.0 build
+> vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist
+
+vite v5.4.19 building for production...
+✓ 0 modules transformed.
+x Build failed in 19ms
+error during build:
+Could not resolve entry module "index.html".
+    at getRollupError (file:///var/www/hmo-hunter/node_modules/rollup/dist/es/shared/parseAst.js:396:41)
+    at error (file:///var/www/hmo-hunter/node_modules/rollup/dist/es/shared/parseAst.js:392:42)
+    at ModuleLoader.loadEntryModule (file:///var/www/hmo-hunter/node_modules/rollup/dist/es/shared/node-entry.js:20086:20)
+    at async Promise.all (index 0)
+root@Hmofinder:/var/www/hmo-hunter# # Status servisa
+systemctl status hmo-hunter
+
+# Health check
+curl http://localhost:5000/health
+
+# Ako treba logove
+journalctl -u hmo-hunter --no-pager -n 10
+● hmo-hunter.service - HMO Hunter Property Analysis Platform
+     Loaded: loaded (/etc/systemd/system/hmo-hunter.service; enabled; preset: enabled)
+     Active: active (running) since Thu 2025-08-14 16:40:45 BST; 1ms ago
+   Main PID: 15053 ((npm))
+      Tasks: 1 (limit: 4540)
+     Memory: 0B (max: 2.0G available: 2.0G peak: 0B)
+        CPU: 0
+     CGroup: /system.slice/hmo-hunter.service
+             └─15053 "(npm)"
+
+Aug 14 16:40:45 Hmofinder systemd[1]: hmo-hunter.service: Scheduled restart job, restart counter is at 360.
+Aug 14 16:40:45 Hmofinder systemd[1]: Started hmo-hunter.service - HMO Hunter Property Analysis Platform.
+curl: (7) Failed to connect to localhost port 5000 after 0 ms: Couldn't connect to server
+Aug 14 16:40:24 Hmofinder systemd[1]: Stopped hmo-hunter.service - HMO Hunter Property Analysis Platform.
+Aug 14 16:40:24 Hmofinder systemd[1]: Started hmo-hunter.service - HMO Hunter Property Analysis Platform.
+Aug 14 16:40:24 Hmofinder systemd[1]: hmo-hunter.service: Main process exited, code=exited, status=1/FAILURE
+Aug 14 16:40:24 Hmofinder systemd[1]: hmo-hunter.service: Failed with result 'exit-code'.
+Aug 14 16:40:34 Hmofinder systemd[1]: hmo-hunter.service: Scheduled restart job, restart counter is at 359.
+Aug 14 16:40:34 Hmofinder systemd[1]: Started hmo-hunter.service - HMO Hunter Property Analysis Platform.
+Aug 14 16:40:35 Hmofinder systemd[1]: hmo-hunter.service: Main process exited, code=exited, status=1/FAILURE
+Aug 14 16:40:35 Hmofinder systemd[1]: hmo-hunter.service: Failed with result 'exit-code'.
+Aug 14 16:40:45 Hmofinder systemd[1]: hmo-hunter.service: Scheduled restart job, restart counter is at 360.
+Aug 14 16:40:45 Hmofinder systemd[1]: Started hmo-hunter.service - HMO Hunter Property Analysis Platform.
+root@Hmofinder:/var/www/hmo-hunter#
