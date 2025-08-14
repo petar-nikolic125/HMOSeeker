@@ -1,0 +1,99 @@
+root@Hmofinder:/var/www/hmo-hunter# cd /var/www/hmo-hunter
+
+# Git pull da povučeš emergency script
+git pull origin main
+
+# Pokreni emergency deploy
+chmod +x emergency-deploy.sh
+./emergency-deploy.sh
+remote: Enumerating objects: 8, done.
+remote: Counting objects: 100% (8/8), done.
+remote: Compressing objects: 100% (4/4), done.
+remote: Total 6 (delta 2), reused 6 (delta 2), pack-reused 0 (from 0)
+Unpacking objects: 100% (6/6), 4.24 KiB | 4.24 MiB/s, done.
+From https://github.com/petar-nikolic125/HMOSeeker
+ * branch            main       -> FETCH_HEAD
+   935cb46..3a263fc  main       -> origin/main
+Updating 935cb46..3a263fc
+Fast-forward
+ FIKSNI_DEPLOY.md                                                         |  62 +++++++++++++++++++
+ ...-cd-var-www-hmo-hunter-Git-pull-da-po-1755186159247_1755186159248.txt |  83 +++++++++++++++++++++++++
+ emergency-deploy.sh                                                      | 107 +++++++++++++++++++++++++++++++++
+ 3 files changed, 252 insertions(+)
+ create mode 100644 FIKSNI_DEPLOY.md
+ create mode 100644 attached_assets/Pasted-root-Hmofinder-var-www-hmo-hunter-Idi-u-direktorijum-cd-var-www-hmo-hunter-Git-pull-da-po-1755186159247_1755186159248.txt
+ create mode 100755 emergency-deploy.sh
+🚨 Emergency HMO Hunter Deploy
+🧹 Čišćenje node_modules...
+📦 Fresh npm install...
+npm WARN deprecated @esbuild-kit/esm-loader@2.6.5: Merged into tsx: https://tsx.is
+npm WARN deprecated @esbuild-kit/core-utils@3.3.2: Merged into tsx: https://tsx.is
+
+added 499 packages, and audited 500 packages in 33s
+
+67 packages are looking for funding
+  run `npm fund` for details
+
+5 moderate severity vulnerabilities
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+🔨 Build sa punu putanju...
+✅ Vite found, building...
+NODE_ENV=production is not supported in the .env file. Only NODE_ENV=development is supported to create a development build of your project. If you need to set process.env.NODE_ENV, you can set it in the Vite config instead.
+vite v5.4.19 building for production...
+✓ 8 modules transformed.
+x Build failed in 1.62s
+error during build:
+[vite:load-fallback] Could not load /var/www/hmo-hunter/src/components/ui/toaster (imported by client/src/App.tsx): ENOENT: no such file or directory, open '/var/www/hmo-hunter/src/components/ui/toaster'
+Error: Could not load /var/www/hmo-hunter/src/components/ui/toaster (imported by client/src/App.tsx): ENOENT: no such file or directory, open '/var/www/hmo-hunter/src/components/ui/toaster'
+root@Hmofinder:/var/www/hmo-hunter# cd /var/www/hmo-hunter
+
+# Stop service
+sudo systemctl stop hmo-hunter
+
+# Fresh install
+rm -rf node_modules package-lock.json
+npm install
+
+# Build sa punom putanjom
+./node_modules/.bin/vite build
+./node_modules/.bin/esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist
+
+# Test server
+node dist/index.js
+
+# Ako radi, restart service
+sudo systemctl start hmo-hunter
+npm WARN deprecated @esbuild-kit/esm-loader@2.6.5: Merged into tsx: https://tsx.is
+npm WARN deprecated @esbuild-kit/core-utils@3.3.2: Merged into tsx: https://tsx.is
+
+added 499 packages, and audited 500 packages in 11s
+
+67 packages are looking for funding
+  run `npm fund` for details
+
+5 moderate severity vulnerabilities
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+NODE_ENV=production is not supported in the .env file. Only NODE_ENV=development is supported to create a development build of your project. If you need to set process.env.NODE_ENV, you can set it in the Vite config instead.
+vite v5.4.19 building for production...
+✓ 7 modules transformed.
+x Build failed in 1.09s
+error during build:
+[vite:load-fallback] Could not load /var/www/hmo-hunter/src/components/ui/toaster (imported by client/src/App.tsx): ENOENT: no such file or directory, open '/var/www/hmo-hunter/src/components/ui/toaster'
+Error: Could not load /var/www/hmo-hunter/src/components/ui/toaster (imported by client/src/App.tsx): ENOENT: no such file or directory, open '/var/www/hmo-hunter/src/components/ui/toaster'
+
+  dist/index.js  91.2kb
+
+⚡ Done in 7ms
+🚀 Pokretam HMO Hunter server...
+🔧 Proveravam Python biblioteke...
+✅ Python biblioteke su već instalirane
+4:45:06 PM [express] serving on port 5000
+
