@@ -45,7 +45,7 @@ if [ "$NODE_ENV" = "production" ]; then
 else
     # Development mode
     if command -v pip3 &> /dev/null; then
-        pip3 install -r requirements.txt 2>/dev/null || pip3 install requests beautifulsoup4 lxml
+        pip3 install -r requirements.txt 2>/dev/null || ./venv/bin/pip install -r requirements.txt
     elif command -v python3 -m pip &> /dev/null; then
         python3 -m pip install requests beautifulsoup4 lxml
     else
