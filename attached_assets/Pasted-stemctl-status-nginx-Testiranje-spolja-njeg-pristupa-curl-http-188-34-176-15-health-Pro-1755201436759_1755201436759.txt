@@ -1,0 +1,49 @@
+stemctl status nginx
+
+# Testiranje spoljašnjeg pristupa
+curl http://188.34.176.15/health
+
+# Proverite logove aplikacije
+journalctl -u hmo-hunter -f --lines=20
+curl: (7) Failed to connect to localhost port 5000 after 0 ms: Couldn't connect to server
+× nginx.service - A high performance web server and a reverse proxy server
+     Loaded: loaded (/usr/lib/systemd/system/nginx.service; enabled; preset: en>
+     Active: failed (Result: exit-code) since Thu 2025-08-14 20:39:55 BST; 17mi>
+       Docs: man:nginx(8)
+        CPU: 12ms
+
+Aug 14 20:39:55 hmofinder systemd[1]: Starting nginx.service - A high performan>
+Aug 14 20:39:55 hmofinder nginx[759]: 2025/08/14 20:39:55 [emerg] 759#759: cann>
+Aug 14 20:39:55 hmofinder nginx[759]: nginx: configuration file /etc/nginx/ngin>
+Aug 14 20:39:55 hmofinder systemd[1]: nginx.service: Control process exited, co>
+Aug 14 20:39:55 hmofinder systemd[1]: nginx.service: Failed with result 'exit-c>
+Aug 14 20:39:55 hmofinder systemd[1]: Failed to start nginx.service - A high pe>
+lines 1-12/12 (END)...skipping...
+× nginx.service - A high performance web server and a reverse proxy server
+     Loaded: loaded (/usr/lib/systemd/system/nginx.service; enabled; preset: enabled)
+     Active: failed (Result: exit-code) since Thu 2025-08-14 20:39:55 BST; 17min ago
+       Docs: man:nginx(8)
+        CPU: 12ms
+
+Aug 14 20:39:55 hmofinder systemd[1]: Starting nginx.service - A high performance web server and a revers>
+Aug 14 20:39:55 hmofinder nginx[759]: 2025/08/14 20:39:55 [emerg] 759#759: cannot load certificate "/etc/>
+Aug 14 20:39:55 hmofinder nginx[759]: nginx: configuration file /etc/nginx/nginx.conf test failed
+Aug 14 20:39:55 hmofinder systemd[1]: nginx.service: Control process exited, code=exited, status=1/FAILURE
+Aug 14 20:39:55 hmofinder systemd[1]: nginx.service: Failed with result 'exit-code'.
+Aug 14 20:39:55 hmofinder systemd[1]: Failed to start nginx.service - A high performance web server and a>
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+lines 1-12/12 (END)
