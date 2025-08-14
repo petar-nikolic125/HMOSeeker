@@ -1,0 +1,76 @@
+amek@DESKTOP-N6LH72U MINGW64 ~
+$ ssh root@46.62.166.201
+Welcome to Ubuntu 24.04.3 LTS (GNU/Linux 6.8.0-71-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Thu 14 Aug 17:19:56 BST 2025
+
+  System load:  0.09              Processes:             160
+  Usage of /:   4.6% of 74.79GB   Users logged in:       1
+  Memory usage: 9%                IPv4 address for eth0: 46.62.166.201
+  Swap usage:   0%                IPv6 address for eth0: 2a01:4f9:c013:f54c::1
+
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+Last login: Thu Aug 14 17:20:19 2025 from 185.26.173.118
+root@Hmofinder:~# # Idite u pravi direktorijum
+cd /var/www/hmo-hunter
+
+# Proverite sadržaj dist direktorijuma
+ls -la dist/
+
+# Ako je prazan, pokrenite build
+npm run build
+
+# Ili koristite direktnu putanju
+./node_modules/.bin/vite build && ./node_modules/.bin/esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist
+
+# Proverite da li je fajl kreiran
+ls -la dist/index.js
+
+# Testirajte direktno
+node dist/index.js
+total 100
+drwxr-xr-x  2 hmo www-data  4096 Aug 14 17:08 .
+drwxr-xr-x 13 hmo www-data  4096 Aug 14 17:09 ..
+-rw-r--r--  1 hmo www-data 93411 Aug 14 17:10 index.js
+
+> rest-express@1.0.0 build
+> vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist
+
+vite v5.4.19 building for production...
+✓ 1670 modules transformed.
+../dist/public/index.html                   0.46 kB │ gzip:   0.30 kB
+../dist/public/assets/index-BPcPS5Nr.css   91.69 kB │ gzip:  15.15 kB
+../dist/public/assets/index-nwzmp_pv.js   329.06 kB │ gzip: 101.13 kB
+✓ built in 4.45s
+
+  dist/index.js  91.2kb
+
+⚡ Done in 8ms
+vite v5.4.19 building for production...
+✓ 1670 modules transformed.
+../dist/public/index.html                   0.46 kB │ gzip:   0.30 kB
+../dist/public/assets/index-BPcPS5Nr.css   91.69 kB │ gzip:  15.15 kB
+../dist/public/assets/index-nwzmp_pv.js   329.06 kB │ gzip: 101.13 kB
+✓ built in 4.48s
+
+  dist/index.js  91.2kb
+
+⚡ Done in 7ms
+-rw-r--r-- 1 hmo www-data 93411 Aug 14 17:21 dist/index.js
+🚀 Pokretam HMO Hunter server...
+🔧 Proveravam Python biblioteke...
+✅ Python biblioteke su već instalirane
+5:21:34 PM [express] serving on port 5000
+
