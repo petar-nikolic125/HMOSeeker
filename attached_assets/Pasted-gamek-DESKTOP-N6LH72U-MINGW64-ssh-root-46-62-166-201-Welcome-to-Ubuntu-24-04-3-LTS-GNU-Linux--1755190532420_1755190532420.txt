@@ -1,0 +1,78 @@
+gamek@DESKTOP-N6LH72U MINGW64 ~
+$ ssh root@46.62.166.201
+Welcome to Ubuntu 24.04.3 LTS (GNU/Linux 6.8.0-71-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Thu 14 Aug 17:54:59 BST 2025
+
+  System load:  0.0               Processes:             149
+  Usage of /:   4.6% of 74.79GB   Users logged in:       1
+  Memory usage: 8%                IPv4 address for eth0: 46.62.166.201
+  Swap usage:   0%                IPv6 address for eth0: 2a01:4f9:c013:f54c::1
+
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+Last login: Thu Aug 14 17:52:31 2025 from 185.26.173.118
+root@Hmofinder:~# # Na serveru, kreirajte CommonJS verziju
+cd /var/www/hmo-hunter
+
+# Zaustavite sve postojeće procese
+pkill -f node || true
+systemctl stop hmo-hunter
+
+# Kreirajte CommonJS server (.cjs ekstenzija)
+cat > test-server.cjs << 'EOF'
+const express = require('express');
+const path = require('path');
+const fs = require('fs');
+
+const app = express();
+app.use(express.json());
+
+// Serve static files
+app.use(express.static(path.join(__dirname, 'dist/public')));
+
+// Health endpoint
+app.get('/health', (req, res) => {
+  res.json({
+    status: 'ok',
+    message: 'HMO Hunter Test Server',
+echo "# Update systemd service to use: node production-server.cjs"e=500k" | jq '
+[1] 24336
+/var/www/hmo-hunter/test-server.cjs:40
+        if (max_price. je što Node.js tretira fajl kao ES module. Trebam da kreiram CommonJS verziju servera (.cjs ekstenzija) ili promenim module tip.
+                          ^^^
+
+SyntaxError: Unexpected identifier
+    at internalCompileFunction (node:internal/vm:73:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1274:20)
+    at Module._compile (node:internal/modules/cjs/loader:1320:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+    at Module._load (node:internal/modules/cjs/loader:1013:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:128:12)
+    at node:internal/main/run_main_module:28:49
+
+Node.js v18.19.1
+[1]+  Exit 1                  node test-server.cjs
+curl: (7) Failed to connect to localhost port 5000 after 0 ms: Couldn't connect to server
+
+--- Testing API ---
+
+--- Server logs ---
+root       24351  0.0  0.0   6548  2304 pts/0    S+   17:55   0:00 grep --color=auto node
+If working, run:
+pkill -f 'node test-server.cjs'
+cp test-server.cjs production-server.cjs
+# Update systemd service to use: node production-server.cjs
+root@Hmofinder:/var/www/hmo-hunter#
