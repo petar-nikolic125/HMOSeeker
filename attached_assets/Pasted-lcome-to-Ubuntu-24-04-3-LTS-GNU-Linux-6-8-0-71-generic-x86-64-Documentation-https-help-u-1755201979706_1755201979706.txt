@@ -1,0 +1,98 @@
+lcome to Ubuntu 24.04.3 LTS (GNU/Linux 6.8.0-71-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Thu 14 Aug 21:04:55 BST 2025
+
+  System load:  0.1               Processes:             143
+  Usage of /:   4.3% of 74.79GB   Users logged in:       0
+  Memory usage: 8%                IPv4 address for eth0: 188.34.176.15
+  Swap usage:   0%                IPv6 address for eth0: 2a01:4f8:c17:3d04::1
+
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+Last login: Thu Aug 14 21:03:11 2025 from 94.189.201.148
+root@hmofinder:~#
+# Kreiraj CommonJS verziju sa .cjs ekstenzijom
+cat > server-simple.cjs << 'EOF'
+const express = require('express');
+const path = require('path');
+const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+console.log('🚀 HMO Hunter - Starting CommonJS server...');
+// Serve static files from dist/public
+app.use(express.static(path.join(__dirname, 'dist/public')));
+// Health check endpoint
+app.get('/health', (req, res) => {
+    console.log('Health check requested');
+    res.json({
+        status: 'healthy',
+        timestamp: new Date().toISOString(),
+        service: 'HMO Hunter API - CommonJS Version'
+    });
+});
+// Basic API endpoint
+app.get('/api/properties', (req, res) => {
+    res.json({
+        message: 'HMO Hunter API is running',
+EOFtedBy=multi-user.targetrver-simple.cjsPlatformEOF't}`);});.html');
+root@hmofinder:~# fgdfg
+fgdfg: command not found
+root@hmofinder:~# cat > /etc/systemd/system/hmo-hunter.service << 'EOF'
+[Unit]
+Description=HMO Hunter Property Analysis Platform
+After=network.target
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/var/www/hmo-hunter
+Environment=NODE_ENV=production
+Environment=PORT=5000
+ExecStart=/usr/bin/node server-simple.cjs
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=hmo-hunter
+[Install]
+WantedBy=multi-user.target
+EOF
+root@hmofinder:~# systemctl daemon-reload
+systemctl stop hmo-hunter
+sleep 2
+systemctl start hmo-hunter
+root@hmofinder:~# systemctl status hmo-hunter --no-pager
+sleep 3
+● hmo-hunter.service - HMO Hunter Property Analysis Platform
+     Loaded: loaded (/etc/systemd/system/hmo-hunter.service; enabled; preset: enabled)
+     Active: activating (auto-restart) (Result: exit-code) since Thu 2025-08-14 21:05:53 BST; 3s ago
+    Process: 4896 ExecStart=/usr/bin/node server-simple.cjs (code=exited, status=1/FAILURE)
+   Main PID: 4896 (code=exited, status=1/FAILURE)
+        CPU: 109ms
+root@hmofinder:~# curl http://localhost:5000/health
+curl: (7) Failed to connect to localhost port 5000 after 0 ms: Couldn't connect to server
+root@hmofinder:~# journalctl -u hmo-hunter --lines=5 --no-pager
+Aug 14 21:06:09 hmofinder hmo-hunter[4932]:   requireStack: []
+Aug 14 21:06:09 hmofinder hmo-hunter[4932]: }
+Aug 14 21:06:09 hmofinder hmo-hunter[4932]: Node.js v18.19.1
+Aug 14 21:06:09 hmofinder systemd[1]: hmo-hunter.service: Main process exited, code=exited, status=1/FAILURE
+Aug 14 21:06:09 hmofinder systemd[1]: hmo-hunter.service: Failed with result 'exit-code'.
+root@hmofinder:~# curl http://188.34.176.15/health
+<html>
+<head><title>502 Bad Gateway</title></head>
+<body>
+<center><h1>502 Bad Gateway</h1></center>
+<hr><center>nginx/1.24.0 (Ubuntu)</center>
+</body>
+</html>
+root@hmofinder:~#
