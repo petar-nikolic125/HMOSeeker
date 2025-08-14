@@ -1,0 +1,133 @@
+gamek@DESKTOP-N6LH72U MINGW64 ~
+$ ssh root@188.34.176.15
+Welcome to Ubuntu 24.04.3 LTS (GNU/Linux 6.8.0-71-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Thu 14 Aug 20:54:34 BST 2025
+
+  System load:  0.09              Processes:             145
+  Usage of /:   4.3% of 74.79GB   Users logged in:       1
+  Memory usage: 9%                IPv4 address for eth0: 188.34.176.15
+  Swap usage:   0%                IPv6 address for eth0: 2a01:4f8:c17:3d04::1
+
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+Last login: Thu Aug 14 20:49:33 2025 from 94.189.201.148
+root@hmofinder:~# root@# Na serveru root@hmofinder:~# pokrenite:
+cd hmo-hunter
+
+# Proverite da li je build uspešan
+ls -la dist/
+
+# Proverite da li postoji Node.js
+which node
+node --version
+
+# Pokušajte da pokrenete aplikaciju direktno
+cd /root/hmo-hunter
+node dist/index.js
+
+
+root@#: command not found
+-bash: cd: hmo-hunter: No such file or directory
+ls: cannot access 'dist/': No such file or directory
+/usr/bin/node
+v18.19.1
+-bash: cd: /root/hmo-hunter: No such file or directory
+node:internal/modules/cjs/loader:1137
+  throw err;
+  ^
+
+Error: Cannot find module '/root/dist/index.js'
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1134:15)
+    at Module._load (node:internal/modules/cjs/loader:975:27)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:128:12)
+    at node:internal/main/run_main_module:28:49 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v18.19.1
+root@hmofinder:~# root@# Na serveru root@hmofinder:~# pokrenite:
+cd hmo-hunter
+
+# Proverite da li je build uspešan
+ls -la dist/
+
+# Proverite da li postoji Node.js
+which node
+node --version
+
+# Pokušajte da pokrenete aplikaciju direktno
+cd /root/hmo-hunter
+node dist/index.js
+
+
+root@#: command not found
+-bash: cd: hmo-hunter: No such file or directory
+ls: cannot access 'dist/': No such file or directory
+/usr/bin/node
+v18.19.1
+-bash: cd: /root/hmo-hunter: No such file or directory
+node:internal/modules/cjs/loader:1137
+  throw err;
+  ^
+
+Error: Cannot find module '/root/dist/index.js'
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1134:15)
+    at Module._load (node:internal/modules/cjs/loader:975:27)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:128:12)
+    at node:internal/main/run_main_module:28:49 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v18.19.1
+root@hmofinder:~# # Pomerite aplikaciju na pravo mesto i popravite service
+sudo mv /root/hmo-hunter /var/www/
+cd /var/www/hmo-hunter
+
+# Popravite systemd service sa ispravnim putanjama
+cat > /etc/systemd/system/hmo-hunter.service << 'EOF'
+[Unit]
+Description=HMO Hunter Property Analysis Platform
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/var/www/hmo-hunter
+Environment=NODE_ENV=production
+Environment=PORT=5000
+Environment=CACHE_BASE_PATH=/var/www/hmo-hunter/cache
+Environment=SESSION_SECRET=hmo-hunter-production
+ExecStart=/usr/bin/node /var/www/hmo-hunter/dist/index.js
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+systemctl status hmo-hunterr
+mv: cannot stat '/root/hmo-hunter': No such file or directory
+● hmo-hunter.service - HMO Hunter Property Analysis Platform
+     Loaded: loaded (/etc/systemd/system/hmo-hunter.service; enabled; preset: e>
+     Active: active (running) since Thu 2025-08-14 20:55:14 BST; 7ms ago
+   Main PID: 3219 (node)
+      Tasks: 1 (limit: 4540)
+     Memory: 1.5M (peak: 1.5M)
+        CPU: 5ms
+     CGroup: /system.slice/hmo-hunter.service
+             └─3219 /usr/bin/node /var/www/hmo-hunter/dist/index.js
+
+Aug 14 20:55:14 hmofinder systemd[1]: Started hmo-hunter.service - HMO Hunter P>
+lines 1-11/11 (END)

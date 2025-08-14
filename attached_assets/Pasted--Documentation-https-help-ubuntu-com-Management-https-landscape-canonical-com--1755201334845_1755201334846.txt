@@ -1,0 +1,175 @@
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Thu 14 Aug 20:49:33 BST 2025
+
+  System load:  0.0               Processes:             133
+  Usage of /:   3.7% of 74.79GB   Users logged in:       0
+  Memory usage: 7%                IPv4 address for eth0: 188.34.176.15
+  Swap usage:   0%                IPv6 address for eth0: 2a01:4f8:c17:3d04::1
+
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+Last login: Thu Aug 14 20:39:56 2025 from 94.189.201.148
+root@hmofinder:~# curl -O https://raw.githubusercontent.com/petar-nikolic125/HMOSeeker/main/simple-deploy.sh
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  5230  100  5230    0     0   104k      0 --:--:-- --:--:-- --:--:--  106k
+root@hmofinder:~# chmod +x simple-deploy.sh
+./simple-deploy.sh
+🚀 HMO Hunter - Simple Deploy (Fix vite PATH issue)
+==================================================
+📥 Initial git setup...
+Cloning into 'hmo-hunter'...
+remote: Enumerating objects: 1535, done.
+remote: Counting objects: 100% (1535/1535), done.
+remote: Compressing objects: 100% (727/727), done.
+remote: Total 1535 (delta 978), reused 1309 (delta 755), pack-reused 0 (from 0)
+Receiving objects: 100% (1535/1535), 5.85 MiB | 39.68 MiB/s, done.
+Resolving deltas: 100% (978/978), done.
+🐍 Installing Python dependencies...
+All packages are up to date.
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+python3-requests is already the newest version (2.31.0+dfsg-1ubuntu1.1).
+python3-bs4 is already the newest version (4.12.3-1).
+python3-lxml is already the newest version (5.2.1-1).
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+📦 Installing ALL Node.js dependencies (including dev for build)...
+npm WARN deprecated @esbuild-kit/esm-loader@2.6.5: Merged into tsx: https://tsx.is
+npm WARN deprecated @esbuild-kit/core-utils@3.3.2: Merged into tsx: https://tsx.is
+
+added 481 packages, and audited 482 packages in 9s
+
+64 packages are looking for funding
+  run `npm fund` for details
+
+11 vulnerabilities (3 low, 8 moderate)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+🔨 Building with explicit paths...
+Building frontend...
+vite v5.4.19 building for production...
+transforming (2) vite/modulepreload-polyfill.jsBrowserslist: browsers data (caniuse-lite) is 10 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+✓ 1668 modules transformed.
+../dist/public/index.html                   0.46 kB │ gzip:   0.30 kB
+../dist/public/assets/index-CQ8I9G9D.css   92.01 kB │ gzip:  15.18 kB
+../dist/public/assets/index-BQSM6UJm.js   327.62 kB │ gzip: 100.60 kB
+✓ built in 4.29s
+Building backend...
+
+  dist/index.js  91.2kb
+
+⚡ Done in 9ms
+⚙️ Setting up production environment...
+🔧 Creating systemd service...
+🌐 Setting up nginx...
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+🚀 Starting services...
+Job for hmo-hunter.service failed because of unavailable resources or another system error.
+See "systemctl status hmo-hunter.service" and "journalctl -xeu hmo-hunter.service" for details.
+root@hmofinder:~# cat > simple-deploy.sh << 'EOF'
+#!/bin/bash
+# Simple deployment script for HMO Hunter - resolves vite PATH issues
+set -e
+
+echo "🚀 HMO Hunter - Simple Deploy (Fix vite PATH issue)"
+
+# Setup git if needed
+if [ ! -d ".git" ]; then
+    echo "📥 Initial git setup..."
+    cd ..
+    rm -rf hmo-hunter
+    git clone https://github.com/petar-nikolic125/HMOSeeker.git hmo-hunter
+    cd hmo-hunter
+else
+    echo "📥 Updating code..."
+    git fetch origin
+    git reset --hard origin/main
+fi
+
+# Python dependencies
+apt update -qq
+apt install -y python3-requests python3-bs4 python3-lxml
+
+./simple-deploy.shploy.sherp://$(curl -s ifconfig.me)"x/sites-enabled/=external
+🚀 HMO Hunter - Simple Deploy (Fix vite PATH issue)
+📥 Initial git setup...
+Cloning into 'hmo-hunter'...
+remote: Enumerating objects: 1535, done.
+remote: Counting objects: 100% (1535/1535), done.
+remote: Compressing objects: 100% (727/727), done.
+remote: Total 1535 (delta 978), reused 1309 (delta 755), pack-reused 0 (from 0)
+Receiving objects: 100% (1535/1535), 5.85 MiB | 38.91 MiB/s, done.
+Resolving deltas: 100% (978/978), done.
+All packages are up to date.
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+python3-requests is already the newest version (2.31.0+dfsg-1ubuntu1.1).
+python3-bs4 is already the newest version (4.12.3-1).
+python3-lxml is already the newest version (5.2.1-1).
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+📦 Installing dependencies with build tools...
+npm WARN deprecated @esbuild-kit/esm-loader@2.6.5: Merged into tsx: https://tsx.is
+npm WARN deprecated @esbuild-kit/core-utils@3.3.2: Merged into tsx: https://tsx.is
+
+added 481 packages, and audited 482 packages in 7s
+
+64 packages are looking for funding
+  run `npm fund` for details
+
+11 vulnerabilities (3 low, 8 moderate)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+🔨 Building with explicit paths...
+vite v5.4.19 building for production...
+transforming (3) client/src/main.tsxBrowserslist: browsers data (caniuse-lite) is 10 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+✓ 1668 modules transformed.
+../dist/public/index.html                   0.46 kB │ gzip:   0.30 kB
+../dist/public/assets/index-CQ8I9G9D.css   92.01 kB │ gzip:  15.18 kB
+../dist/public/assets/index-BQSM6UJm.js   327.62 kB │ gzip: 100.60 kB
+✓ built in 4.60s
+
+  dist/index.js  91.2kb
+
+⚡ Done in 8ms
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+Job for hmo-hunter.service failed because of unavailable resources or another system error.
+See "systemctl status hmo-hunter.service" and "journalctl -xeu hmo-hunter.service" for details.
+root@hmofinder:~# # Na serveru pokrenite ove komande da vidimo šta je problem:
+systemctl status hmo-hunter.service
+journalctl -xeu hmo-hunter.service
+● hmo-hunter.service - HMO Hunter Property Analysis Platform
+     Loaded: loaded (/etc/systemd/system/hmo-hunter.service; enabled; preset: e>
+     Active: activating (auto-restart) (Result: resources) since Thu 2025-08-14>
+        CPU: 0
+lines 1-4/4 (END)
