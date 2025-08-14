@@ -1,0 +1,76 @@
+ ci --production --silent
+npm run build
+mkdir -p cache/primelocation
+chmod -R 775 cache/
+sudo systemctl restart hmo-hunter
+Cloning into '.'...
+remote: Enumerating objects: 1358, done.
+remote: Counting objects: 100% (1358/1358), done.
+remote: Compressing objects: 100% (616/616), done.
+remote: Total 1358 (delta 863), reused 1181 (delta 689), pack-reused 0 (from 0)
+Receiving objects: 100% (1358/1358), 4.98 MiB | 23.07 MiB/s, done.
+Resolving deltas: 100% (863/863), done.
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+python3-requests is already the newest version (2.31.0+dfsg-1ubuntu1.1).
+python3-requests set to manually installed.
+The following additional packages will be installed:
+  python3-cssselect python3-html5lib python3-soupsieve python3-webencodings
+Suggested packages:
+  python3-genshi python-lxml-doc
+The following NEW packages will be installed:
+  python3-bs4 python3-cssselect python3-html5lib python3-lxml python3-soupsieve python3-webencodings
+0 upgraded, 6 newly installed, 0 to remove and 0 not upgraded.
+Need to get 1,504 kB of archives.
+After this operation, 6,468 kB of additional disk space will be used.
+Get:1 https://mirror.hetzner.com/ubuntu/packages noble/main amd64 python3-soupsieve all 2.5-1 [33.0 kB]
+Get:2 https://mirror.hetzner.com/ubuntu/packages noble/main amd64 python3-bs4 all 4.12.3-1 [109 kB]
+Get:3 https://mirror.hetzner.com/ubuntu/packages noble/main amd64 python3-webencodings all 0.5.1-5 [11.5 kB]
+Get:4 https://mirror.hetzner.com/ubuntu/packages noble/main amd64 python3-html5lib all 1.1-6 [88.8 kB]
+Get:5 https://mirror.hetzner.com/ubuntu/packages noble/main amd64 python3-lxml amd64 5.2.1-1 [1,243 kB]
+Get:6 https://mirror.hetzner.com/ubuntu/packages noble/main amd64 python3-cssselect all 1.2.0-2 [18.5 kB]
+Fetched 1,504 kB in 0s (4,865 kB/s)
+Selecting previously unselected package python3-soupsieve.
+(Reading database ... 80781 files and directories currently installed.)
+Preparing to unpack .../0-python3-soupsieve_2.5-1_all.deb ...
+Unpacking python3-soupsieve (2.5-1) ...
+Selecting previously unselected package python3-bs4.
+Preparing to unpack .../1-python3-bs4_4.12.3-1_all.deb ...
+Unpacking python3-bs4 (4.12.3-1) ...
+Selecting previously unselected package python3-webencodings.
+Preparing to unpack .../2-python3-webencodings_0.5.1-5_all.deb ...
+Unpacking python3-webencodings (0.5.1-5) ...
+Selecting previously unselected package python3-html5lib.
+Preparing to unpack .../3-python3-html5lib_1.1-6_all.deb ...
+Unpacking python3-html5lib (1.1-6) ...
+Selecting previously unselected package python3-lxml:amd64.
+Preparing to unpack .../4-python3-lxml_5.2.1-1_amd64.deb ...
+Unpacking python3-lxml:amd64 (5.2.1-1) ...
+Selecting previously unselected package python3-cssselect.
+Preparing to unpack .../5-python3-cssselect_1.2.0-2_all.deb ...
+Unpacking python3-cssselect (1.2.0-2) ...
+Setting up python3-webencodings (0.5.1-5) ...
+Setting up python3-html5lib (1.1-6) ...
+Setting up python3-lxml:amd64 (5.2.1-1) ...
+Setting up python3-cssselect (1.2.0-2) ...
+Setting up python3-soupsieve (2.5-1) ...
+Setting up python3-bs4 (4.12.3-1) ...
+Scanning processes...
+Scanning linux images...
+
+Running kernel seems to be up-to-date.
+
+No services need to be restarted.
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+
+> rest-express@1.0.0 build
+> vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist
+
+sh: 1: vite: not found
+root@Hmofinder:/var/www/hmo-hunter#
