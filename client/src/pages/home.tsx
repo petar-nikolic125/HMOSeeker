@@ -59,7 +59,7 @@ export default function Home() {
     },
     onSuccess: (data) => {
       setSearchState({
-        properties: data.listings || [],
+        properties: data.properties || data.listings || [],
         isLoading: false,
         isCached: data.cached || true,
         lastRefreshed: new Date(),
