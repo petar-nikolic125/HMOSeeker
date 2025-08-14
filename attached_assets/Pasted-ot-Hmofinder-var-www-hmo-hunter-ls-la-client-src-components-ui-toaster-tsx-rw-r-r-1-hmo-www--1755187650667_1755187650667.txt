@@ -1,0 +1,45 @@
+ot@Hmofinder:/var/www/hmo-hunter# ls -la client/src/components/ui/toaster.tsx
+-rw-r--r-- 1 hmo www-data 786 Aug 14 17:05 client/src/components/ui/toaster.tsx
+root@Hmofinder:/var/www/hmo-hunter# ./node_modules/.bin/vite build && ./node_modules/.bin/esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist
+vite v5.4.19 building for production...
+transforming (3) client/src/main.tsxBrowserslist: browsers data (caniuse-lite) is 10 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+✓ 27 modules transformed.
+x Build failed in 1.56s
+error during build:
+[vite:load-fallback] Could not load /var/www/hmo-hunter/src/components/ui/toaster (imported by client/src/App.tsx): ENOENT: no such file or directory, open '/var/www/hmo-hunter/src/components/ui/toaster'
+Error: Could not load /var/www/hmo-hunter/src/components/ui/toaster (imported by client/src/App.tsx): ENOENT: no such file or directory, open '/var/www/hmo-hunter/src/components/ui/toaster'
+root@Hmofinder:/var/www/hmo-hunter# cd /var/www/hmo-hunter
+curl -O https://raw.githubusercontent.com/petar-nikolic125/HMOSeeker/main/emergency-deploy.sh
+chmod +x emergency-deploy.sh
+./emergency-deploy.sh
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  2885  100  2885    0     0  13279      0 --:--:-- --:--:-- --:--:-- 13294
+🚨 Emergency HMO Hunter Deploy
+🧹 Čišćenje node_modules...
+📦 Fresh npm install...
+npm WARN deprecated @esbuild-kit/esm-loader@2.6.5: Merged into tsx: https://tsx.is
+npm WARN deprecated @esbuild-kit/core-utils@3.3.2: Merged into tsx: https://tsx.is
+
+added 499 packages, and audited 500 packages in 35s
+
+67 packages are looking for funding
+  run `npm fund` for details
+
+5 moderate severity vulnerabilities
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+🔨 Build sa punu putanju...
+✅ Vite found, building...
+vite v5.4.19 building for production...
+✓ 8 modules transformed.
+x Build failed in 1.55s
+error during build:
+[vite:load-fallback] Could not load /var/www/hmo-hunter/src/components/ui/toaster (imported by client/src/App.tsx): ENOENT: no such file or directory, open '/var/www/hmo-hunter/src/components/ui/toaster'
+Error: Could not load /var/www/hmo-hunter/src/components/ui/toaster (imported by client/src/App.tsx): ENOENT: no such file or directory, open '/var/www/hmo-hunter/src/components/ui/toaster'
+root@Hmofinder:/var/www/hmo-hunter#
