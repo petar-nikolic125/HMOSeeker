@@ -31,7 +31,8 @@ export interface ScrapeResult {
 }
 
 export class ScraperManager {
-  private static readonly PYTHON_SCRIPT_PATH = join(__dirname, "..");   //scraper.py
+  private static readonly PYTHON_SCRIPT_PATH = join(__dirname, "..", "..", "server", "services", "scraper.py");
+   //scraper.py
   private static readonly PYTHON_CMD = process.env.NODE_ENV === 'production' ? 'python3' : 'python3';
   private static readonly DEFAULT_TIMEOUT = 180000; // 3 minutes
 
@@ -184,7 +185,7 @@ export class ScraperManager {
       
       console.log('Spawning Python process with args:', args);
       const pythonProcess = spawn(this.PYTHON_CMD, args, {
-        cwd: __dirname,
+       // cwd: __dirname,
         timeout: this.DEFAULT_TIMEOUT,
         env,
       });
