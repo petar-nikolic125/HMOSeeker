@@ -1,29 +1,20 @@
 #!/usr/bin/env python3
 """
-PrimeLocation scraper (99%-style reliability, caching, anti-403, proxy support)
+PrimeLocation async scraper — single-site, high-throughput but polite.
 
-- Input:  python primelocation_scraper.py <city> <min_bedrooms> <max_price> <keywords>
-  * <keywords> can be free text (e.g. "hmo") or key:value pairs separated by semicolons:
-      "postcode:SW1A 1AA;baths_min:2;keywords:hmo"
-  * City may be any UK city name; we'll slug it for PrimeLocation.
+Usage:
+    python scraper.py "<city>" <min_bedrooms> <max_price> ""
 
-- Output: prints JSON to stdout AND writes a cache file under ./cache/primelocation/<slug>/
-  that is safe to commit to GitHub as a fallback dataset.
-
-- What it does:
-  1) Builds real PrimeLocation search URLs with q/city, beds_min, price_max, page_size=50 & pn pagination.
-  2) Collects detail links from each search page ("/for-sale/details/<id>/").
-  3) Visits each details page and extracts: address, postcode, price, bedrooms, bathrooms, description,
-     image, plus some investment metrics (optional).
-  4) Robust anti-403 (UA rotation, referer spoofing, randomized delays/jitter, optional proxies via env).
-
-Environment (optional):
-  PROXY_LIST="http://user:pass@ip:port, http://ip2:port2"
-  REQUESTS_TIMEOUT=25
-  PL_MAX_PAGES=12         # how many search pages to walk (50 results per page requested)  
-  PL_MIN_RESULTS=200      # target number of properties per search before stopping
-  PL_CACHE_TTL_HOURS=12   # skip re-scrape if cache is fresh unless REFRESH=1
-  REFRESH=1               # force a refresh even if cache exists
+Notes:
+- This version focuses ONLY on primelocation.com (no HMO keyword logic).
+- Tune concurrency & timeouts via env vars:
+    PL_CONCURRENCY (default 12)
+    REQUESTS_TIMEOUT (default 25)
+    PL_MAX_PAGES (default 12)
+    PL_MIN_RESULTS (default 200)
+    PL_CACHE_TTL_HOURS (default 12)
+    PROXY_LIST -> comma-separated proxies (http://user:pass@ip:port,...)
+    REFRESH=1 -> force refresh even if cache is fresh
 """
 
 import sys
@@ -34,20 +25,23 @@ import time
 import math
 import random
 import hashlib
+import asyncio
+import async_timeout
 from datetime import datetime, timedelta
 from urllib.parse import urljoin, quote_plus
 
+# network & parsing
+import aiohttp
 import requests
 from bs4 import BeautifulSoup
 
-
 # ---------- Config & helpers ----------
-
 USER_AGENTS = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 13_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.3 Safari/605.1.15",
     "Mozilla/5.0 (X11; Linux x86_64; rv:123.0) Gecko/20100101 Firefox/123.0",
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Edg/121.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36",
 ]
 
 CITY_MAPPINGS = {
@@ -86,99 +80,20 @@ def slug_city(city: str) -> str:
     city_lower = (city or "").strip().lower()
     return CITY_MAPPINGS.get(city_lower, city_lower.replace(" ", "-"))
 
-def parse_keywords_blob(blob: str):
-    """
-    Accepts free text or semi-structured "k:v;k:v" and returns dict:
-      {
-        'keywords': 'hmo ...',
-        'postcode': 'SW1A 1AA',
-        'baths_min': 2,
-        ...
-      }
-    """
-    out = {}
-    if not blob:
-        return out
-    # try parse k:v pairs first
-    parts = [p.strip() for p in blob.split(";") if p.strip()]
-    kv_found = False
-    for p in parts:
-        if ":" in p:
-            kv_found = True
-            k, v = p.split(":", 1)
-            out[k.strip().lower()] = v.strip()
-    if not kv_found:  # treat it as free keywords
-        out["keywords"] = blob.strip()
-    # normalize ints
-    if "baths_min" in out:
-        try:
-            out["baths_min"] = int(out["baths_min"])
-        except:
-            del out["baths_min"]
-    return out
-
 def as_int(val, default=None):
     try:
         return int(val)
     except:
         return default
 
-def rand_delay(a=0.1, b=0.3):
+def rand_delay(a=0.05, b=0.2):
     time.sleep(random.uniform(a, b))
 
-
-# ---------- Session & anti-403 ----------
-
-def setup_session():
-    s = requests.Session()
-    # Enhanced headers to better mimic real browsers
-    ua = random.choice(USER_AGENTS)
-    s.headers.update({
-        "User-Agent": ua,
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-        "Accept-Language": "en-GB,en-US;q=0.9,en;q=0.8",
-        "Accept-Encoding": "gzip, deflate, br, zstd",
-        "Upgrade-Insecure-Requests": "1",
-        "Sec-Fetch-Dest": "document",
-        "Sec-Fetch-Mode": "navigate",
-        "Sec-Fetch-Site": "none",
-        "Sec-Fetch-User": "?1",
-        "Sec-CH-UA": '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
-        "Sec-CH-UA-Mobile": "?0",
-        "Sec-CH-UA-Platform": '"Windows"',
-        "Cache-Control": "max-age=0",
-        "DNT": "1",
-        "Connection": "keep-alive",
-    })
-    
-    # Enhanced cookies to appear more realistic
-    timestamp = int(time.time())
-    random_id = random.randint(1000000000, 9999999999)
-    s.cookies.set("_ga", f"GA1.2.{random_id}.{timestamp}")
-    s.cookies.set("_gid", f"GA1.2.{random.randint(100000000, 999999999)}.{timestamp}")
-    s.cookies.set("_gat_gtag_UA_12345_1", "1")
-    s.cookies.set("session_token", f"st_{random.randint(100000, 999999)}_{timestamp}")
-    s.cookies.set("cookieconsent_status", "allow")
-    s.cookies.set("primelocation_session", f"pl_sess_{random.randint(1000000, 9999999)}")
-    
-    return s
-
-def with_proxy(session: requests.Session, proxies_list, attempt):
-    if proxies_list:
-        proxy_choice = proxies_list[attempt % len(proxies_list)]
-        session.proxies = {"http": proxy_choice, "https": proxy_choice}
-    else:
-        session.proxies = {}
-    session.headers.update({"User-Agent": random.choice(USER_AGENTS)})
-
-
 # ---------- Cache ----------
-
-def cache_path_for(city_slug, min_beds, max_price, filters: dict):
+def cache_path_for(city_slug, min_beds, max_price):
     cache_dir = os.path.join("cache", "primelocation", city_slug)
     os.makedirs(cache_dir, exist_ok=True)
-    # hash the filter dict for stability
-    key = json.dumps({"min_beds": min_beds, "max_price": max_price, **filters}, sort_keys=True)
+    key = json.dumps({"min_beds": min_beds, "max_price": max_price}, sort_keys=True)
     stamp = hashlib.sha1(key.encode("utf-8")).hexdigest()[:16]
     return os.path.join(cache_dir, f"search_{stamp}.json")
 
@@ -189,9 +104,7 @@ def cache_fresh(path):
     mtime = datetime.fromtimestamp(os.path.getmtime(path))
     return datetime.utcnow() - mtime < timedelta(hours=ttl_hours)
 
-
-# ---------- Parsing helpers ----------
-
+# ---------- Parsers ----------
 PRICE_RE = re.compile(r"[£]\s?([\d,]+)")
 BED_RE = re.compile(r"(\d+)\s*bed", re.I)
 BATH_RE = re.compile(r"(\d+)\s*bath", re.I)
@@ -202,8 +115,7 @@ def extract_price(text):
         return 0
     m = PRICE_RE.search(text)
     if not m:
-        # sometimes price appears like "600,000"
-        m2 = re.search(r"\b(\d{3,3}(?:,\d{3})+)\b", text)
+        m2 = re.search(r"\b(\d{1,3}(?:,\d{3})+)\b", text)
         if not m2:
             return 0
         digits = m2.group(1).replace(",", "")
@@ -226,18 +138,11 @@ def extract_postcode(text):
     m = POSTCODE_RE.search(text)
     return m.group(1).upper() if m else None
 
-
-# ---------- Investment calcs (unchanged from your flow, trimmed) ----------
-
+# ---------- Investment helper (kept minimal) ----------
 def estimate_monthly_rent(city, address, bedrooms):
-    # super-simple, conservative stub so we don't overfit here.
-    baseline = {
-        "london": 225, "oxford": 165, "cambridge": 160, "bristol": 150,
-        "manchester": 120, "leeds": 110, "birmingham": 115,
-        "liverpool": 110, "sheffield": 100, "newcastle": 95
-    }
+    baseline = {"london":225, "oxford":165, "cambridge":160, "bristol":150, "manchester":120}
     per_room = baseline.get((city or "").lower(), 110)
-    return per_room * bedrooms
+    return per_room * max(1, bedrooms or 1)
 
 def add_investment_metrics(rec, city):
     price = rec.get("price") or 0
@@ -250,192 +155,80 @@ def add_investment_metrics(rec, city):
     rec["gross_yield"] = round(gross_yield, 2)
     return rec
 
-
-# ---------- Build real search URLs ----------
-
-def build_search_urls(city, min_beds, max_price, filters):
-    """
-    Mirrors PrimeLocation's search URL shape with fallback patterns and regional variations:
-      https://www.primelocation.com/for-sale/property/<city-slug>/?q=<city or postcode>&beds_min=<n>&price_max=<n>&page_size=50&pn=<page>
-    """
-    city_slug = slug_city(city)
-    q = filters.get("postcode") or get_search_query_for_city(city)
-    max_pages = as_int(os.getenv("PL_MAX_PAGES", 12), 12)
-    
-    # Build parameters exactly like PrimeLocation search
-    base_params = {
-        "q": q,
-        "price_max": str(max_price) if max_price else "1500000",
-        "is_auction": "include",
-        "is_retirement_home": "include", 
-        "is_shared_ownership": "include",
-        "radius": "0",
-        "results_sort": "highest_price",
-        "search_source": "for-sale"
-    }
-    
-    # Add HMO keywords as separate parameter
-    keywords = filters.get("keywords", "")
-    if keywords:
-        base_params["keywords"] = keywords.upper()  # PrimeLocation uses uppercase
-    
-    if min_beds:
-        base_params["beds_min"] = str(min_beds)
-    
-    qs_base = "&".join([f"{k}={quote_plus(v)}" for k, v in base_params.items() if v])
-    
-    urls = []
-    
-    # Try multiple URL patterns for better compatibility
-    url_patterns = [
-        f"https://www.primelocation.com/for-sale/property/{city_slug}/",
-        f"https://www.primelocation.com/for-sale/property/",  # Generic search
-        f"https://www.primelocation.com/for-sale/",  # Fallback
-    ]
-    
-    # Generate URLs for primary pattern only (more pages)
-    pattern = url_patterns[0]
-    for pn in range(1, max_pages + 1):
-        if pn == 1:
-            urls.append(f"{pattern}?{qs_base}")
-        else:
-            urls.append(f"{pattern}?{qs_base}&pn={pn}")
-    
-    # Add fallback patterns for first page only  
-    for pattern in url_patterns[1:]:
-        urls.append(f"{pattern}?{qs_base}")
-    
-    return urls
-
-
+# ---------- URL builders ----------
 def get_search_query_for_city(city):
-    """Get the proper search query including regional qualifiers for better results"""
     city_lower = city.lower()
-    
-    # Cities with regional qualifiers that work better on PrimeLocation
     regional_queries = {
         "leeds": "Leeds, West Yorkshire",
-        "brighton": "Brighton, East Sussex", 
+        "brighton": "Brighton, East Sussex",
         "hull": "Hull, East Yorkshire",
-        "kingston upon hull": "Hull, East Yorkshire",
         "bradford": "Bradford, West Yorkshire",
-        "sheffield": "Sheffield, South Yorkshire", 
-        "manchester": "Manchester",  # Exact Manchester, not Greater Manchester
-        "greater manchester": "Greater Manchester",
+        "sheffield": "Sheffield, South Yorkshire",
+        "manchester": "Manchester",
         "liverpool": "Liverpool, Merseyside",
         "birmingham": "Birmingham, West Midlands",
         "nottingham": "Nottingham, Nottinghamshire",
         "leicester": "Leicester, Leicestershire",
         "coventry": "Coventry, West Midlands",
-        "wolverhampton": "Wolverhampton, West Midlands",
         "stockport": "Stockport, Greater Manchester",
-        "preston": "Preston, Lancashire",
-        "plymouth": "Plymouth, Devon",
-        "portsmouth": "Portsmouth, Hampshire",
-        "southampton": "Southampton, Hampshire",
-        "reading": "Reading, Berkshire",
-        "derby": "Derby, Derbyshire",
         "cardiff": "Cardiff, Wales",
-        "newport": "Newport, Wales",
-        "swansea": "Swansea, Wales",
         "glasgow": "Glasgow, Scotland",
         "edinburgh": "Edinburgh, Scotland",
         "newcastle": "Newcastle upon Tyne, Tyne and Wear",
-        "newcastle upon tyne": "Newcastle upon Tyne, Tyne and Wear",
-        "bristol": "Bristol, England",
     }
-    
     return regional_queries.get(city_lower, city)
 
+def build_search_urls(city, min_beds, max_price):
+    city_slug = slug_city(city)
+    q = get_search_query_for_city(city)
+    max_pages = as_int(os.getenv("PL_MAX_PAGES", 12), 12)
 
-def build_fallback_urls(city, min_beds, max_price, filters):
-    """Build alternative URL patterns when primary patterns fail"""
-    q = filters.get("postcode") or city
-    
     base_params = {
         "q": q,
+        "price_max": str(max_price) if max_price else "1500000",
+        "is_auction": "include",
+        "is_retirement_home": "include",
+        "is_shared_ownership": "include",
+        "radius": "0",
+        "results_sort": "highest_price",
+        "search_source": "for-sale",
     }
     if min_beds:
         base_params["beds_min"] = str(min_beds)
-    if max_price:
-        base_params["price_max"] = str(max_price)
-    
+
     qs_base = "&".join([f"{k}={quote_plus(v)}" for k, v in base_params.items() if v])
-    
-    # Alternative URL patterns
-    fallback_patterns = [
-        f"https://www.primelocation.com/for-sale/property/?{qs_base}",  # Generic search
-        f"https://www.primelocation.com/for-sale/?{qs_base}",  # Simplified
-        f"https://www.primelocation.com/for-sale/property/{city.lower()}/?{qs_base}",  # Simple city
-    ]
-    
-    return fallback_patterns
 
+    urls = []
+    pattern = f"https://www.primelocation.com/for-sale/property/{city_slug}/"
+    for pn in range(1, max_pages + 1):
+        if pn == 1:
+            urls.append(f"{pattern}?{qs_base}")
+        else:
+            urls.append(f"{pattern}?{qs_base}&pn={pn}")
 
-# ---------- Network fetch with retries/backoff ----------
+    # fallback first pages
+    urls.append(f"https://www.primelocation.com/for-sale/property/?{qs_base}")
+    urls.append(f"https://www.primelocation.com/for-sale/?{qs_base}")
+    urls.append(f"https://www.primelocation.com/for-sale/property/{city.lower()}/?{qs_base}")
 
-def get_html(session, url, proxies_list=None, max_attempts=4):
-    timeout = as_int(os.getenv("REQUESTS_TIMEOUT", 25), 25)
-    last_exc = None
-    last_status = None
-    
-    for attempt in range(max_attempts):
-        try:
-            with_proxy(session, proxies_list, attempt)
-            
-            # Minimal delay for faster scraping
-            rand_delay(0.2, 0.5)
-            
-            # Update headers for each attempt
-            session.headers.update({
-                "User-Agent": random.choice(USER_AGENTS),
-                "Sec-Fetch-Site": "none" if attempt == 0 else "same-origin",
-                "Referer": "https://www.google.com/" if attempt == 0 else url.split('?')[0],
-            })
-            
-            r = session.get(url, timeout=timeout, allow_redirects=True)
-            last_status = r.status_code
-            
-            if r.status_code == 200 and r.content:
-                return r.text
-            elif r.status_code in (403, 429):
-                # Anti-bot protection hit - quick backoff  
-                backoff_time = 1.0 + (attempt * 0.5)
-                print(f"❌ Error on search page {attempt + 1}: Status {r.status_code}, backing off {backoff_time}s", file=sys.stderr)
-                time.sleep(backoff_time)
-                
-                # Create new session for next attempt
-                if attempt < max_attempts - 1:
-                    session = setup_session()
-                continue
-            else:
-                # Other HTTP errors
-                time.sleep(0.2 + attempt * 0.2)
-                
-        except requests.RequestException as e:
-            last_exc = e
-            print(f"❌ Network error on attempt {attempt + 1}: {str(e)}", file=sys.stderr)
-            time.sleep(2.0 + attempt * 1.5)
-            continue
-    
-    # Log final failure
-    if last_status:
-        raise RuntimeError(f"Failed to fetch {url} - final status: {last_status}")
-    elif last_exc:
-        raise last_exc
-    else:
-        raise RuntimeError(f"Failed to fetch {url}")
+    return urls
 
+# ---------- network helpers (aiohttp) ----------
+async def fetch_text_aio(session, url, timeout_s):
+    try:
+        with async_timeout.timeout(timeout_s):
+            async with session.get(url, allow_redirects=True) as resp:
+                text = await resp.text()
+                return resp.status, text
+    except asyncio.TimeoutError:
+        return None, None
+    except Exception:
+        return None, None
 
-# ---------- Listing page parsing ----------
-
-def collect_detail_links(listing_html):
-    """
-    Don't trust classes; harvest anchors to details pages and de-dupe.
-    """
-    soup = BeautifulSoup(listing_html, "html.parser")
+# ---------- collect search page links ----------
+def collect_detail_links_from_html(html):
+    soup = BeautifulSoup(html, "lxml")
     links = set()
-    # Any anchor that points at /for-sale/details/<id>/
     for a in soup.find_all("a", href=True):
         href = a["href"]
         if "/for-sale/details/" in href:
@@ -445,15 +238,11 @@ def collect_detail_links(listing_html):
                 links.add(urljoin("https://www.primelocation.com", href.split("?")[0]))
     return list(links)
 
-
-# ---------- Details page parsing ----------
-
+# ---------- parse detail page ----------
 def parse_details(detail_html):
-    soup = BeautifulSoup(detail_html, "html.parser")
+    soup = BeautifulSoup(detail_html, "lxml")
     text = soup.get_text(" ", strip=True)
 
-    # Title / address
-    # Prefer the <h1> if present; else fallback to og:title/twitter:title
     address = None
     h1 = soup.find("h1")
     if h1:
@@ -461,45 +250,36 @@ def parse_details(detail_html):
         if at and len(at) > 8:
             address = at
     if not address:
-        mt = soup.find("meta", attrs={"property": "og:title"})
-        if mt and mt.name == "meta":
+        mt = soup.find("meta", attrs={"property":"og:title"})
+        if mt:
             content = mt.get("content")
             if content:
                 address = content
     if not address:
-        mt = soup.find("meta", attrs={"name": "twitter:title"})
-        if mt and mt.name == "meta":
+        mt = soup.find("meta", attrs={"name":"twitter:title"})
+        if mt:
             content = mt.get("content")
             if content:
                 address = content
 
-    # Price
-    price = 0
-    # Price widgets often render with "£" — grab the first reasonable £-amount
     price = extract_price(text)
-
-    # Bedrooms / bathrooms
-    bedrooms = extract_first_int(BED_RE, text) or 0
+    bedrooms = extract_first_int(BED_RE, text) or None
     bathrooms = extract_first_int(BATH_RE, text) or None
-
-    # Postcode
     postcode = extract_postcode(address or text)
 
-    # Primary image (best-effort)
     image_url = None
-    og_image = soup.find("meta", attrs={"property": "og:image"})
-    if og_image and og_image.name == "meta":
+    og_image = soup.find("meta", attrs={"property":"og:image"})
+    if og_image:
         content = og_image.get("content")
         if content:
             image_url = content
     if not image_url:
         img = soup.find("img")
-        if img and img.name == "img":
+        if img:
             src = img.get("src")
             if src:
                 image_url = src
 
-    # Description (trim to something reasonable)
     desc = None
     desc_blocks = soup.select("div[class*='description'], section[class*='description'], article p")
     if desc_blocks:
@@ -515,200 +295,294 @@ def parse_details(detail_html):
         "address": address,
         "postcode": postcode,
         "price": price,
-        "bedrooms": bedrooms if bedrooms else None,
+        "bedrooms": bedrooms,
         "bathrooms": bathrooms,
         "image_url": image_url,
         "description": desc,
     }
 
-
-# ---------- Main scrape flow ----------
-
-def scrape_primelocation(city, min_bedrooms, max_price, keywords_blob):
-    print(f"🔍 Starting PrimeLocation scrape for: city={city}, min_beds={min_bedrooms}, max_price={max_price}, keywords={keywords_blob}", file=sys.stderr)
-    
-    filters = parse_keywords_blob(keywords_blob)
-    min_beds = as_int(min_bedrooms, 1) or 1
-    max_price_int = as_int(max_price, None)
-    
-    print(f"📊 Parsed filters: min_beds={min_beds}, max_price_int={max_price_int}, filters={filters}", file=sys.stderr)
-
+# ---------- main scrape flow ----------
+async def scrape_primelocation_async(city, min_bedrooms, max_price):
+    print(f"🔍 Starting PrimeLocation scrape for: city={city}, min_beds={min_bedrooms}, max_price={max_price}", file=sys.stderr)
     city_slug = slug_city(city)
-    cache_file = cache_path_for(city_slug, min_beds, max_price_int, filters)
+    cache_file = cache_path_for(city_slug, min_bedrooms, max_price)
     print(f"💾 Cache file path: {cache_file}", file=sys.stderr)
 
     if not os.getenv("REFRESH") and cache_fresh(cache_file):
         print(f"✅ Using fresh cache from {cache_file}", file=sys.stderr)
         with open(cache_file, "r", encoding="utf-8") as f:
             cached = json.load(f)
-        print(f"📋 Loaded {len(cached)} cached properties", file=sys.stderr)
         return cached, {"cached": True, "cache_path": cache_file}
 
     proxies_env = os.getenv("PROXY_LIST", "")
     proxies_list = [p.strip() for p in proxies_env.split(",") if p.strip()]
     target_min_results = as_int(os.getenv("PL_MIN_RESULTS", 200), 200)
 
-    session = setup_session()
-
-    # 1) Build search URLs (pages)
-    urls = build_search_urls(city, min_beds, max_price_int, filters)
-    print(f"🌐 Built {len(urls)} search URLs:", file=sys.stderr)
-    for i, url in enumerate(urls, 1):
-        print(f"  {i}. {url}", file=sys.stderr)
-
-    # 2) Visit each search page, collect details links
-    all_detail_links = []
-    print(f"🔗 Collecting property detail links from search pages...", file=sys.stderr)
-    
-    failed_attempts = 0
+    # Build search URLs
+    urls = build_search_urls(city, min_bedrooms, max_price)
+    print(f"🌐 Built {len(urls)} search URLs (including fallbacks):", file=sys.stderr)
     for i, u in enumerate(urls, 1):
-        try:
-            print(f"  📄 Fetching search page {i}/{len(urls)}: {u}", file=sys.stderr)
-            html = get_html(session, u, proxies_list)
-            links = collect_detail_links(html)
-            print(f"    Found {len(links)} property links on page {i}", file=sys.stderr)
-            
-            all_detail_links.extend(links)
-            all_detail_links = list(dict.fromkeys(all_detail_links))  # de-dupe, preserve order
-            print(f"    Total unique links so far: {len(all_detail_links)}", file=sys.stderr)
-            
-            # Continue collecting links from all pages to get maximum coverage
+        print(f"  {i}. {u}", file=sys.stderr)
+
+    # Session config for aiohttp
+    CONCURRENCY = as_int(os.getenv("PL_CONCURRENCY", 12), 12)
+    REQUEST_TIMEOUT = as_int(os.getenv("REQUESTS_TIMEOUT", 25), 25)
+
+    connector = aiohttp.TCPConnector(limit=CONCURRENCY, ssl=False, ttl_dns_cache=300)
+    headers = {
+        "User-Agent": random.choice(USER_AGENTS),
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-GB,en;q=0.9",
+        "Connection": "keep-alive",
+        "Referer": "https://www.google.com/",
+    }
+    # We'll adaptively reduce concurrency if we see too many 403s
+    adaptive_concurrency = CONCURRENCY
+    total_403 = 0
+
+    async with aiohttp.ClientSession(connector=connector, headers=headers, trust_env=True) as session:
+        all_detail_links = []
+        failed_attempts = 0
+
+        # fetch search pages serially (sa retry/backoff). We keep this serial to reduce bot-detection surface.
+        for i, u in enumerate(urls, 1):
+            attempts = 0
+            success = False
+            while attempts < 4 and not success:
+                attempts += 1
+                # slight jitter and rotate UA / Referer per-request
+                session.headers.update({
+                    "User-Agent": random.choice(USER_AGENTS),
+                    "Referer": random.choice(["https://www.google.com/", "https://www.bing.com/", "https://search.yahoo.com/"])
+                })
+                if proxies_list:
+                    proxy_choice = proxies_list[(i + attempts) % len(proxies_list)]
+                else:
+                    proxy_choice = None
+
+                try:
+                    with async_timeout.timeout(REQUEST_TIMEOUT):
+                        async with session.get(u, proxy=proxy_choice, allow_redirects=True) as resp:
+                            status = resp.status
+                            txt = await resp.text()
+                    if status == 200 and txt:
+                        links = collect_detail_links_from_html(txt)
+                        print(f"  📄 Fetching search page {i}/{len(urls)}: found {len(links)} links", file=sys.stderr)
+                        all_detail_links.extend(links)
+                        # de-dupe preserve order
+                        all_detail_links = list(dict.fromkeys(all_detail_links))
+                        success = True
+                        failed_attempts = 0
+                        # small polite delay
+                        await asyncio.sleep(0.15 + random.random()*0.15)
+                    elif status in (403, 429):
+                        total_403 += 1
+                        backoff_time = 1.0 + attempts * 0.5 + random.random()*0.4
+                        print(f"❌ Error on search page {i}: Status {status}, backing off {backoff_time}s", file=sys.stderr)
+                        await asyncio.sleep(backoff_time)
+                    else:
+                        # other http issues
+                        backoff_time = 0.2 + attempts*0.2
+                        print(f"⚠️ Search page {i} returned {status}; backoff {backoff_time}s", file=sys.stderr)
+                        await asyncio.sleep(backoff_time)
+                except asyncio.TimeoutError:
+                    print(f"❌ Timeout fetching search page {i} attempt {attempts}", file=sys.stderr)
+                    await asyncio.sleep(0.5 + attempts*0.5)
+                except Exception as e:
+                    print(f"❌ Network error on search page {i} attempt {attempts}: {e}", file=sys.stderr)
+                    await asyncio.sleep(0.6 + attempts*0.6)
+
+            if not success:
+                print(f"❌ Failed to fetch search page {i} after retries", file=sys.stderr)
+                failed_attempts += 1
+                # If many 403s detected, adaptively reduce concurrency for detail fetches
+                if total_403 >= 4 and adaptive_concurrency > 2:
+                    adaptive_concurrency = max(2, adaptive_concurrency // 2)
+                    print(f"⚙️ Detected many 403s; reducing concurrency to {adaptive_concurrency}", file=sys.stderr)
+
+            # Stop if we've got lots of links (but we still attempt to get as many as possible)
             if len(all_detail_links) >= target_min_results:
-                print(f"✅ Reached target of {target_min_results} properties but continuing to get maximum results", file=sys.stderr)
-                
-            # Reset failed attempts on success
-            failed_attempts = 0
-            
-        except Exception as e:
-            failed_attempts += 1
-            print(f"❌ Error on search page {i}: {str(e)}", file=sys.stderr)
-            
-            # If all primary URLs fail, try fallback patterns
-            if failed_attempts >= 3 and len(all_detail_links) == 0:
-                print(f"🔄 Primary URLs failing, trying fallback patterns...", file=sys.stderr)
-                fallback_urls = build_fallback_urls(city, min_beds, max_price_int, filters)
-                
-                for j, fallback_url in enumerate(fallback_urls):
+                print(f"✅ Reached target of {target_min_results} links (continuing to collect for coverage)", file=sys.stderr)
+
+        # finalize detail links (cap for processing if super huge)
+        detail_links = all_detail_links[:max(target_min_results, min(len(all_detail_links), 1000))]
+        print(f"🎯 Processing {len(detail_links)} property detail pages (from {len(all_detail_links)} found)", file=sys.stderr)
+
+        # ---------- concurrent detail fetch ----------
+        results = []
+        sem = asyncio.Semaphore(adaptive_concurrency)
+
+        async def fetch_parse(url, idx):
+            nonlocal results, total_403
+            async with sem:
+                # rotate headers and small jitter
+                hdr = {
+                    "User-Agent": random.choice(USER_AGENTS),
+                    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+                    "Accept-Language": "en-GB,en;q=0.9",
+                    "Referer": random.choice(["https://www.google.com/", "https://www.bing.com/"]),
+                    "Connection": "keep-alive",
+                }
+                if proxies_list:
+                    proxy_choice = proxies_list[idx % len(proxies_list)]
+                else:
+                    proxy_choice = None
+
+                attempt = 0
+                while attempt < 5:
+                    attempt += 1
                     try:
-                        print(f"  🔄 Trying fallback {j+1}: {fallback_url}", file=sys.stderr)
-                        html = get_html(session, fallback_url, proxies_list)
-                        links = collect_detail_links(html)
-                        if links:
-                            print(f"    ✅ Fallback successful! Found {len(links)} links", file=sys.stderr)
-                            all_detail_links.extend(links)
-                            break
-                    except Exception as fe:
-                        print(f"    ❌ Fallback {j+1} failed: {str(fe)}", file=sys.stderr)
-                        continue
-                        
-                if all_detail_links:
-                    break
-            continue
+                        async with async_timeout.timeout(REQUEST_TIMEOUT):
+                            async with session.get(url, headers=hdr, proxy=proxy_choice, allow_redirects=True) as resp:
+                                status = resp.status
+                                html = await resp.text()
+                        if status == 200 and html:
+                            rec = parse_details(html)
+                            rec["property_url"] = url
+                            rec["city"] = city
+                            # filter logic
+                            price_val = rec.get("price", 0) or 0
+                            if max_price and price_val and price_val > max_price:
+                                # skip
+                                return
+                            beds_val = rec.get("bedrooms") or 0
+                            if min_bedrooms and beds_val < min_bedrooms:
+                                return
+                            if not rec.get("description"):
+                                rec["description"] = f"{beds_val or 1}-bed property in {city}."
+                            add_investment_metrics(rec, city)
+                            results.append(rec)
+                            # small polite delay
+                            await asyncio.sleep(0.02 + random.random()*0.05)
+                            return
+                        elif status in (403, 429):
+                            total_403 += 1
+                            backoff = 0.8 + attempt * 0.6 + random.random()*0.5
+                            print(f"    ❌ HTTP {status} for {url} attempt {attempt}; backoff {backoff}s", file=sys.stderr)
+                            await asyncio.sleep(backoff)
+                            # adaptive reduce concurrency on many 403s
+                            if total_403 > 8 and sem._value > 1:
+                                # shrink semaphore (best-effort)
+                                try:
+                                    # not ideal to modify sem, but we can slow via sleep
+                                    await asyncio.sleep(1.0)
+                                except:
+                                    pass
+                            continue
+                        else:
+                            # other statuses
+                            await asyncio.sleep(0.2 + attempt*0.2)
+                            continue
+                    except asyncio.TimeoutError:
+                        print(f"    ❌ Timeout for {url} attempt {attempt}", file=sys.stderr)
+                        await asyncio.sleep(0.3 + attempt*0.3)
+                    except Exception as e:
+                        print(f"    ❌ Network error for {url} attempt {attempt}: {e}", file=sys.stderr)
+                        await asyncio.sleep(0.4 + attempt*0.4)
+                print(f"    ❌ Failed to fetch {url} after retries", file=sys.stderr)
 
-    # Process maximum found properties for comprehensive results - 200 per city
-    detail_links = all_detail_links[:min(200, len(all_detail_links))]  # Save 200 properties per city
-    print(f"🎯 Processing {len(detail_links)} property detail pages (capped from {len(all_detail_links)} found)", file=sys.stderr)
+        # schedule tasks
+        tasks = [asyncio.create_task(fetch_parse(link, idx)) for idx, link in enumerate(detail_links)]
+        # run tasks with gather
+        await asyncio.gather(*tasks, return_exceptions=True)
 
-    # 3) Visit each detail page and extract fields
-    results = []
-    print(f"🏠 Extracting property details...", file=sys.stderr)
-    
-    for i, dlink in enumerate(detail_links):
+        print(f"🏁 Detail fetch complete. Collected {len(results)} records (before dedupe). Total 403s seen: {total_403}", file=sys.stderr)
+
+        # dedupe by (url, price, beds)
+        seen = set()
+        unique = []
+        for r in results:
+            sig = (r.get("property_url"), r.get("price"), r.get("bedrooms"))
+            if sig in seen:
+                continue
+            seen.add(sig)
+            unique.append(r)
+
+        print(f"✨ Final results: {len(unique)} unique properties", file=sys.stderr)
+        # persist cache
+        with open(cache_file, "w", encoding="utf-8") as f:
+            json.dump(unique, f, ensure_ascii=False, indent=2)
+        print(f"💾 Wrote cache: {cache_file}", file=sys.stderr)
+        return unique, {"cached": False, "cache_path": cache_file}
+
+# Synchronous fallback for environments without aiohttp installed / emergency
+def scrape_primelocation_sync(city, min_bedrooms, max_price):
+    print("⚠️ Running synchronous fallback (requests). This is slower.", file=sys.stderr)
+    city_slug = slug_city(city)
+    cache_file = cache_path_for(city_slug, min_bedrooms, max_price)
+    if not os.getenv("REFRESH") and cache_fresh(cache_file):
+        with open(cache_file, "r", encoding="utf-8") as f:
+            return json.load(f), {"cached": True, "cache_path": cache_file}
+
+    urls = build_search_urls(city, min_bedrooms, max_price)
+    session = requests.Session()
+    session.headers.update({"User-Agent": random.choice(USER_AGENTS), "Accept-Language": "en-GB,en;q=0.9"})
+    proxies_env = os.getenv("PROXY_LIST", "")
+    proxies_list = [p.strip() for p in proxies_env.split(",") if p.strip()]
+
+    all_links = []
+    for u in urls:
         try:
-            print(f"  🔍 Processing property {i+1}/{len(detail_links)}: {dlink}", file=sys.stderr)
-            html = get_html(session, dlink, proxies_list)
-            rec = parse_details(html)
-            
-            rec["property_url"] = dlink
-            rec["city"] = city
-            
-            # Log extracted data
-            print(f"    ✏️  Extracted: {rec.get('address', 'No address')} - £{rec.get('price', 0):,} - {rec.get('bedrooms', 0)} beds", file=sys.stderr)
-            
-            # Apply price filter - skip properties above max_price
-            property_price = rec.get("price", 0)
-            if max_price_int and property_price > max_price_int:
-                print(f"    ⏭️  Skipped: £{property_price:,} exceeds max price £{max_price_int:,}", file=sys.stderr)
-                continue
-                
-            # Apply minimum bedrooms filter
-            property_beds = rec.get("bedrooms", 0)
-            if min_beds and property_beds < min_beds:
-                print(f"    ⏭️  Skipped: {property_beds} beds less than minimum {min_beds}", file=sys.stderr)
-                continue
-            
-            # best-effort infer baths filter: if user required min baths, skip non-matching
-            if "baths_min" in filters and rec.get("bathrooms") is not None:
-                if rec["bathrooms"] < int(filters["baths_min"]):
-                    print(f"    ⏭️  Skipped: only {rec['bathrooms']} baths, need {filters['baths_min']}+", file=sys.stderr)
-                    continue
-            
-            # Add a plain description if none found
-            if not rec.get("description"):
-                beds = rec.get("bedrooms") or min_beds
-                rec["description"] = f"{beds}-bed property in {city}."
-                
-            # add investment metrics
-            add_investment_metrics(rec, city)
-            print(f"    💰 Added metrics: {rec.get('gross_yield', 0):.1f}% yield, £{rec.get('monthly_rent', 0)}/month", file=sys.stderr)
-            
-            results.append(rec)
-            # polite pacing between details
-            rand_delay(0.4, 1.1)
-            
+            r = session.get(u, timeout=as_int(os.getenv("REQUESTS_TIMEOUT", 25), 25))
+            if r.status_code == 200:
+                links = collect_detail_links_from_html(r.text)
+                all_links.extend(links)
+            else:
+                print(f"⚠️ Sync search page {u} returned {r.status_code}", file=sys.stderr)
         except Exception as e:
-            print(f"    ❌ Error processing property {i+1}: {str(e)}", file=sys.stderr)
-            # skip bad pages and continue
+            print(f"❌ Sync error fetching {u}: {e}", file=sys.stderr)
+
+    detail_links = list(dict.fromkeys(all_links))
+    results = []
+    for d in detail_links[:500]:
+        try:
+            r = session.get(d, timeout=as_int(os.getenv("REQUESTS_TIMEOUT", 25), 25))
+            if r.status_code == 200:
+                rec = parse_details(r.text)
+                rec["property_url"] = d
+                rec["city"] = city
+                add_investment_metrics(rec, city)
+                results.append(rec)
+            rand_delay(0.05, 0.2)
+        except Exception as e:
+            print(f"❌ Sync detail error {d}: {e}", file=sys.stderr)
             continue
 
-    # 4) De-dup & clean
-    print(f"🧹 Deduplicating {len(results)} properties...", file=sys.stderr)
-    seen = set()
     unique = []
-    duplicates = 0
-    
+    seen = set()
     for r in results:
         sig = (r.get("property_url"), r.get("price"), r.get("bedrooms"))
         if sig in seen:
-            duplicates += 1
             continue
         seen.add(sig)
         unique.append(r)
-    
-    print(f"✨ Final results: {len(unique)} unique properties ({duplicates} duplicates removed)", file=sys.stderr)
-
-    # 5) Persist cache
-    print(f"💾 Writing {len(unique)} properties to cache: {cache_file}", file=sys.stderr)
     with open(cache_file, "w", encoding="utf-8") as f:
         json.dump(unique, f, ensure_ascii=False, indent=2)
-    
-    print(f"✅ Scraping complete! Found {len(unique)} properties in {city}", file=sys.stderr)
     return unique, {"cached": False, "cache_path": cache_file}
 
-
-# ---------- CLI ----------
-
+# CLI entry
 def main():
-    if len(sys.argv) != 5:
-        print("Usage: python primelocation_scraper.py <city> <min_bedrooms> <max_price> <keywords>", file=sys.stderr)
-        print('  Example keywords: "postcode:SW1A 1AA;baths_min:2;keywords:hmo"', file=sys.stderr)
+    if len(sys.argv) < 4:
+        print("Usage: python scraper.py <city> <min_bedrooms> <max_price>", file=sys.stderr)
         sys.exit(1)
 
     city = sys.argv[1]
-    min_beds = sys.argv[2]
-    max_price = sys.argv[3]
-    keywords = sys.argv[4]
+    min_beds = as_int(sys.argv[2], 1) or 1
+    max_price = as_int(sys.argv[3], None)
 
-    data, meta = scrape_primelocation(city, min_beds, max_price, keywords)
+    # prefer async path if aiohttp available
+    try:
+        results, meta = asyncio.run(scrape_primelocation_async(city, min_beds, max_price))
+    except Exception as e:
+        print(f"⚠️ Async scrape failed or aiohttp not available: {e}", file=sys.stderr)
+        results, meta = scrape_primelocation_sync(city, min_beds, max_price)
 
-    # Be verbose (stderr) about cache
     if meta.get("cached"):
         print(f"⚠️ Using cached results: {meta['cache_path']}", file=sys.stderr)
     else:
         print(f"💾 Wrote cache: {meta['cache_path']}", file=sys.stderr)
 
-    print(json.dumps(data, ensure_ascii=False, indent=2))
-
+    print(json.dumps(results, ensure_ascii=False, indent=2))
 
 if __name__ == "__main__":
     main()
