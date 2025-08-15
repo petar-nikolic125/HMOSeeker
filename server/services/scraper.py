@@ -22,7 +22,6 @@ import os
 import re
 import json
 import time
-import math
 import random
 import hashlib
 import asyncio
@@ -213,19 +212,7 @@ def build_search_urls(city, min_beds, max_price):
 
     return urls
 
-# ---------- network helpers (aiohttp) ----------
-async def fetch_text_aio(session, url, timeout_s):
-    try:
-        with async_timeout.timeout(timeout_s):
-            async with session.get(url, allow_redirects=True) as resp:
-                text = await resp.text()
-                return resp.status, text
-    except asyncio.TimeoutError:
-        return None, None
-    except Exception:
-        return None, None
-
-# ---------- collect search page links ----------
+# ---------- collect detail links ----------
 def collect_detail_links_from_html(html):
     soup = BeautifulSoup(html, "lxml")
     links = set()
@@ -329,18 +316,17 @@ async def scrape_primelocation_async(city, min_bedrooms, max_price):
     REQUEST_TIMEOUT = as_int(os.getenv("REQUESTS_TIMEOUT", 25), 25)
 
     connector = aiohttp.TCPConnector(limit=CONCURRENCY, ssl=False, ttl_dns_cache=300)
-    headers = {
+    base_headers = {
         "User-Agent": random.choice(USER_AGENTS),
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
         "Accept-Language": "en-GB,en;q=0.9",
         "Connection": "keep-alive",
         "Referer": "https://www.google.com/",
     }
-    # We'll adaptively reduce concurrency if we see too many 403s
     adaptive_concurrency = CONCURRENCY
     total_403 = 0
 
-    async with aiohttp.ClientSession(connector=connector, headers=headers, trust_env=True) as session:
+    async with aiohttp.ClientSession(connector=connector, headers=base_headers, trust_env=True) as session:
         all_detail_links = []
         failed_attempts = 0
 
@@ -350,44 +336,45 @@ async def scrape_primelocation_async(city, min_bedrooms, max_price):
             success = False
             while attempts < 4 and not success:
                 attempts += 1
-                # slight jitter and rotate UA / Referer per-request
-                session.headers.update({
+                # rotate UA / Referer per-request
+                hdrs = {
                     "User-Agent": random.choice(USER_AGENTS),
                     "Referer": random.choice(["https://www.google.com/", "https://www.bing.com/", "https://search.yahoo.com/"])
-                })
+                }
+                proxy_choice = None
                 if proxies_list:
                     proxy_choice = proxies_list[(i + attempts) % len(proxies_list)]
-                else:
-                    proxy_choice = None
 
                 try:
-                    with async_timeout.timeout(REQUEST_TIMEOUT):
-                        async with session.get(u, proxy=proxy_choice, allow_redirects=True) as resp:
-                            status = resp.status
-                            txt = await resp.text()
+                    async with async_timeout.timeout(REQUEST_TIMEOUT):
+                        if proxy_choice:
+                            async with session.get(u, proxy=proxy_choice, allow_redirects=True, headers=hdrs) as resp:
+                                status = resp.status
+                                txt = await resp.text()
+                        else:
+                            async with session.get(u, allow_redirects=True, headers=hdrs) as resp:
+                                status = resp.status
+                                txt = await resp.text()
                     if status == 200 and txt:
                         links = collect_detail_links_from_html(txt)
                         print(f"  📄 Fetching search page {i}/{len(urls)}: found {len(links)} links", file=sys.stderr)
                         all_detail_links.extend(links)
-                        # de-dupe preserve order
                         all_detail_links = list(dict.fromkeys(all_detail_links))
                         success = True
                         failed_attempts = 0
-                        # small polite delay
-                        await asyncio.sleep(0.15 + random.random()*0.15)
+                        await asyncio.sleep(0.12 + random.random()*0.18)
                     elif status in (403, 429):
                         total_403 += 1
-                        backoff_time = 1.0 + attempts * 0.5 + random.random()*0.4
+                        backoff_time = 1.0 + attempts * 0.5 + random.random()*0.6
                         print(f"❌ Error on search page {i}: Status {status}, backing off {backoff_time}s", file=sys.stderr)
                         await asyncio.sleep(backoff_time)
                     else:
-                        # other http issues
                         backoff_time = 0.2 + attempts*0.2
                         print(f"⚠️ Search page {i} returned {status}; backoff {backoff_time}s", file=sys.stderr)
                         await asyncio.sleep(backoff_time)
                 except asyncio.TimeoutError:
                     print(f"❌ Timeout fetching search page {i} attempt {attempts}", file=sys.stderr)
-                    await asyncio.sleep(0.5 + attempts*0.5)
+                    await asyncio.sleep(0.5 + attempts*0.6)
                 except Exception as e:
                     print(f"❌ Network error on search page {i} attempt {attempts}: {e}", file=sys.stderr)
                     await asyncio.sleep(0.6 + attempts*0.6)
@@ -395,27 +382,22 @@ async def scrape_primelocation_async(city, min_bedrooms, max_price):
             if not success:
                 print(f"❌ Failed to fetch search page {i} after retries", file=sys.stderr)
                 failed_attempts += 1
-                # If many 403s detected, adaptively reduce concurrency for detail fetches
                 if total_403 >= 4 and adaptive_concurrency > 2:
                     adaptive_concurrency = max(2, adaptive_concurrency // 2)
-                    print(f"⚙️ Detected many 403s; reducing concurrency to {adaptive_concurrency}", file=sys.stderr)
+                    print(f"⚙️ Detected many 403s; reducing target concurrency to {adaptive_concurrency}", file=sys.stderr)
 
-            # Stop if we've got lots of links (but we still attempt to get as many as possible)
             if len(all_detail_links) >= target_min_results:
                 print(f"✅ Reached target of {target_min_results} links (continuing to collect for coverage)", file=sys.stderr)
 
-        # finalize detail links (cap for processing if super huge)
         detail_links = all_detail_links[:max(target_min_results, min(len(all_detail_links), 1000))]
         print(f"🎯 Processing {len(detail_links)} property detail pages (from {len(all_detail_links)} found)", file=sys.stderr)
 
-        # ---------- concurrent detail fetch ----------
         results = []
         sem = asyncio.Semaphore(adaptive_concurrency)
 
         async def fetch_parse(url, idx):
             nonlocal results, total_403
             async with sem:
-                # rotate headers and small jitter
                 hdr = {
                     "User-Agent": random.choice(USER_AGENTS),
                     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
@@ -423,27 +405,29 @@ async def scrape_primelocation_async(city, min_bedrooms, max_price):
                     "Referer": random.choice(["https://www.google.com/", "https://www.bing.com/"]),
                     "Connection": "keep-alive",
                 }
+                proxy_choice = None
                 if proxies_list:
                     proxy_choice = proxies_list[idx % len(proxies_list)]
-                else:
-                    proxy_choice = None
 
                 attempt = 0
                 while attempt < 5:
                     attempt += 1
                     try:
                         async with async_timeout.timeout(REQUEST_TIMEOUT):
-                            async with session.get(url, headers=hdr, proxy=proxy_choice, allow_redirects=True) as resp:
-                                status = resp.status
-                                html = await resp.text()
+                            if proxy_choice:
+                                async with session.get(url, headers=hdr, proxy=proxy_choice, allow_redirects=True) as resp:
+                                    status = resp.status
+                                    html = await resp.text()
+                            else:
+                                async with session.get(url, headers=hdr, allow_redirects=True) as resp:
+                                    status = resp.status
+                                    html = await resp.text()
                         if status == 200 and html:
                             rec = parse_details(html)
                             rec["property_url"] = url
                             rec["city"] = city
-                            # filter logic
                             price_val = rec.get("price", 0) or 0
                             if max_price and price_val and price_val > max_price:
-                                # skip
                                 return
                             beds_val = rec.get("bedrooms") or 0
                             if min_bedrooms and beds_val < min_bedrooms:
@@ -452,25 +436,18 @@ async def scrape_primelocation_async(city, min_bedrooms, max_price):
                                 rec["description"] = f"{beds_val or 1}-bed property in {city}."
                             add_investment_metrics(rec, city)
                             results.append(rec)
-                            # small polite delay
                             await asyncio.sleep(0.02 + random.random()*0.05)
                             return
                         elif status in (403, 429):
                             total_403 += 1
-                            backoff = 0.8 + attempt * 0.6 + random.random()*0.5
+                            backoff = 0.8 + attempt * 0.6 + random.random()*0.6
                             print(f"    ❌ HTTP {status} for {url} attempt {attempt}; backoff {backoff}s", file=sys.stderr)
                             await asyncio.sleep(backoff)
-                            # adaptive reduce concurrency on many 403s
-                            if total_403 > 8 and sem._value > 1:
-                                # shrink semaphore (best-effort)
-                                try:
-                                    # not ideal to modify sem, but we can slow via sleep
-                                    await asyncio.sleep(1.0)
-                                except:
-                                    pass
+                            # if many 403s, be more polite
+                            if total_403 > 10:
+                                await asyncio.sleep(1.0 + random.random()*1.5)
                             continue
                         else:
-                            # other statuses
                             await asyncio.sleep(0.2 + attempt*0.2)
                             continue
                     except asyncio.TimeoutError:
@@ -483,12 +460,10 @@ async def scrape_primelocation_async(city, min_bedrooms, max_price):
 
         # schedule tasks
         tasks = [asyncio.create_task(fetch_parse(link, idx)) for idx, link in enumerate(detail_links)]
-        # run tasks with gather
         await asyncio.gather(*tasks, return_exceptions=True)
 
         print(f"🏁 Detail fetch complete. Collected {len(results)} records (before dedupe). Total 403s seen: {total_403}", file=sys.stderr)
 
-        # dedupe by (url, price, beds)
         seen = set()
         unique = []
         for r in results:
@@ -499,7 +474,6 @@ async def scrape_primelocation_async(city, min_bedrooms, max_price):
             unique.append(r)
 
         print(f"✨ Final results: {len(unique)} unique properties", file=sys.stderr)
-        # persist cache
         with open(cache_file, "w", encoding="utf-8") as f:
             json.dump(unique, f, ensure_ascii=False, indent=2)
         print(f"💾 Wrote cache: {cache_file}", file=sys.stderr)
@@ -570,9 +544,11 @@ def main():
     min_beds = as_int(sys.argv[2], 1) or 1
     max_price = as_int(sys.argv[3], None)
 
-    # prefer async path if aiohttp available
     try:
         results, meta = asyncio.run(scrape_primelocation_async(city, min_beds, max_price))
+    except KeyboardInterrupt:
+        print("Interrupted by user", file=sys.stderr)
+        sys.exit(1)
     except Exception as e:
         print(f"⚠️ Async scrape failed or aiohttp not available: {e}", file=sys.stderr)
         results, meta = scrape_primelocation_sync(city, min_beds, max_price)
