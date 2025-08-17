@@ -51,12 +51,16 @@ The system includes a basic user management schema for username/password authent
 
 # Recent Updates
 
-## Hetzner Server Deployment Success (August 14, 2025)
+## Migration to Replit Environment (August 17, 2025)
+- **Migration Completed**: Successfully migrated HMO Hunter from Replit Agent to standard Replit environment
+- **Dependencies Installed**: All required packages properly configured and working
+- **Server Optimization**: Express server running smoothly on port 5000 with Python integration
+- **Scraper Upgrade**: Integrated v2 scraper removing forced HMO keywords injection
+- **Performance Improvements**: New scraper includes parallel detail fetching, improved link harvesting, and multi-sort optimization
+- **Security Enhanced**: Proper client/server separation maintained throughout migration
+- **Application Status**: Fully functional with property search, analysis, and investment calculations working
+
+## Previous Deployment (August 14, 2025)
 - **Deployment Completed**: Successfully deployed HMO Hunter to Hetzner Cloud server at IP 188.34.176.15
 - **ES Module Issues Resolved**: Fixed CommonJS/ES module conflicts by creating custom HTTP server bypassing Express
 - **Production Server**: Created production-server.cjs with native Node.js HTTP module for stability
-- **Nginx Configuration**: Reverse proxy working correctly with proper security headers
-- **Systemd Service**: Production-ready service configuration running successfully
-- **Application Live**: HMO Hunter accessible at http://188.34.176.15 with health check endpoint
-- **Server Architecture**: Custom HTTP server handles static files, SPA routing, and API endpoints
-- **Final Step**: Build process needed to serve complete React frontend
