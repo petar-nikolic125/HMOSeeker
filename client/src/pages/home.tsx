@@ -61,8 +61,11 @@ export default function Home() {
       console.log('Search API response:', data);
       console.log('Properties count:', data.properties?.length || 0);
       
+      const properties = data.listings || data.properties || [];
+      console.log('Properties count:', properties.length);
+      
       setSearchState({
-        properties: data.properties || data.listings || [],
+        properties: properties,
         isLoading: false,
         isCached: data.cached || true,
         lastRefreshed: new Date(),

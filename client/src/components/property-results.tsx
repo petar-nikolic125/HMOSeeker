@@ -33,8 +33,8 @@ export default function PropertyResults({ properties, filters, onAnalyze, onRefr
   React.useEffect(() => {
     if (!isLoading && properties.length === 0 && hasActiveFilters && !error) {
       toast({
-        title: "Nema rezultata za trenutne filtere",
-        description: `Pronađeno je 0 nekretnina u ${filters.city} koje zadovoljavaju vaše kriterijume. Pokušajte da ublažite filtere ili promenite grad.`,
+        title: "No results for current filters",
+        description: `Found 0 properties in ${filters.city} matching your criteria. Try adjusting filters or changing the city.`,
         variant: "destructive",
         duration: 4000,
       });
@@ -143,13 +143,13 @@ export default function PropertyResults({ properties, filters, onAnalyze, onRefr
               <AlertCircle className="w-12 h-12 text-gray-400" />
             </div>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">
-              {error ? 'Search Failed' : hasActiveFilters ? 'Nema rezultata za filtere' : 'No Properties Found'}
+              {error ? 'Search Failed' : hasActiveFilters ? 'No results for filters' : 'No Properties Found'}
             </h3>
             <p className="text-gray-600 mb-6">
               {error 
                 ? 'There was an error searching for properties. Please try a different search or check your connection.'
                 : hasActiveFilters 
-                  ? `Trenutni filteri su previše restriktivni za ${filters.city}. Pokušajte da ublažite kriterijume pretrage.`
+                  ? `Current filters are too restrictive for ${filters.city}. Try loosening search criteria.`
                   : `No HMO-suitable properties found in ${filters.city}. Try searching in a different area.`
               }
             </p>
