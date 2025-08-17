@@ -249,7 +249,7 @@ def add_investment_metrics(rec, city):
 def build_search_urls(city, min_beds, max_price, filters):
     city_slug = slug_city(city)
     q = filters.get("postcode") or get_search_query_for_city(city)
-    max_pages = as_int(os.getenv("PL_MAX_PAGES", 12), 12)
+    max_pages = as_int(os.getenv("PL_MAX_PAGES", 30), 30)
     page_size = as_int(os.getenv("PL_PAGE_SIZE", 50), 50)
 
     base_params = {
