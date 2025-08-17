@@ -33,10 +33,18 @@ from urllib.parse import urljoin, quote_plus
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Tag
 
 
 # ---------- Config & helpers ----------
+
+def safe_get_attr(element, attr_name, default=None):
+    """Safely get attribute from BeautifulSoup element"""
+    if hasattr(element, 'get') and callable(getattr(element, 'get')):
+        return element.get(attr_name, default)
+    elif hasattr(element, 'attrs') and isinstance(element.attrs, dict):
+        return element.attrs.get(attr_name, default)
+    return default
 USER_AGENTS = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 13_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.3 Safari/605.1.15",
@@ -376,17 +384,20 @@ def collect_detail_links(listing_html):
 
     # 1) anchors
     for a in soup.find_all("a", href=True):
-        href = a["href"].split("?")[0]
-        if "/for-sale/details/" in href:
-            full = href if href.startswith("http") else urljoin("https://www.primelocation.com", href)
-            if full not in seen:
-                seen.add(full)
-                links.append(full)
+        href_attr = safe_get_attr(a, "href")
+        if href_attr:
+            href = str(href_attr).split("?")[0]
+            if "/for-sale/details/" in href:
+                full = href if href.startswith("http") else urljoin("https://www.primelocation.com", href)
+                if full not in seen:
+                    seen.add(full)
+                    links.append(full)
 
     # 2) JSON-LD entries
     for s in soup.find_all("script", type="application/ld+json"):
         try:
-            j = json.loads(s.string or "{}")
+            script_content = s.get_text() if s else ""
+            j = json.loads(script_content or "{}")
             # if this is a list
             if isinstance(j, list):
                 for obj in j:
@@ -429,15 +440,15 @@ def parse_details(detail_html):
     if not address:
         mt = soup.find("meta", attrs={"property": "og:title"})
         if mt:
-            content = mt.get("content")
+            content = safe_get_attr(mt, "content")
             if content:
-                address = content
+                address = str(content)
     if not address:
         mt = soup.find("meta", attrs={"name": "twitter:title"})
         if mt:
-            content = mt.get("content")
+            content = safe_get_attr(mt, "content")
             if content:
-                address = content
+                address = str(content)
 
     price = extract_price(text)
     bedrooms = extract_first_int(BED_RE, text) or None
@@ -447,15 +458,15 @@ def parse_details(detail_html):
     image_url = None
     og_image = soup.find("meta", attrs={"property": "og:image"})
     if og_image:
-        content = og_image.get("content")
+        content = safe_get_attr(og_image, "content")
         if content:
-            image_url = content
+            image_url = str(content)
     if not image_url:
         imgs = soup.find_all("img")
         for img in imgs:
-            src = img.get("src") or img.get("data-src")
-            if src and src.startswith("http"):
-                image_url = src
+            src = safe_get_attr(img, "src") or safe_get_attr(img, "data-src")
+            if src and str(src).startswith("http"):
+                image_url = str(src)
                 break
 
     desc = None
