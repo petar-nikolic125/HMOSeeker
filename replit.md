@@ -66,6 +66,13 @@ The system includes a basic user management schema for username/password authent
 - **Keywords Removed**: Eliminated HMO keyword filtering from bulk scraper for unrestricted property searches
 - **Application Status**: Fully functional with property search, analysis, and investment calculations working
 
+## Python Scraper Debugging (August 17, 2025)
+- **Type Errors Fixed**: Resolved 15 LSP diagnostics in scraper.py related to BeautifulSoup element handling
+- **Helper Function Added**: Created safe_get_attr() function for robust element attribute access
+- **Timeout Increased**: Extended DEFAULT_TIMEOUT from 3 minutes to 10 minutes for bulk scraping
+- **Resource Optimization**: Reduced max fetch from 400 to 100 properties and workers from 6 to 3
+- **Scraper Stability**: Fixed crashes during property detail collection phase
+
 ## Previous Deployment (August 14, 2025)
 - **Deployment Completed**: Successfully deployed HMO Hunter to Hetzner Cloud server at IP 188.34.176.15
 - **ES Module Issues Resolved**: Fixed CommonJS/ES module conflicts by creating custom HTTP server bypassing Express

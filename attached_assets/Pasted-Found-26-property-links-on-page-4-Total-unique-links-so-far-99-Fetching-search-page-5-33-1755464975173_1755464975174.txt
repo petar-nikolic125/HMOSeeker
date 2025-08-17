@@ -1,0 +1,423 @@
+Found 26 property links on page 4
+    Total unique links so far: 99
+  📄 Fetching search page 5/33: https://www.primelocation.com/for-sale/property/london/?q=London&price_max=1500000&is_auction=include&is_retirement_home=include&is_shared_ownership=include&radius=0&page_size=50&search_source=for-sale&beds_min=1&results_sort=highest_price&pn=5
+    Found 26 property links on page 5
+    Total unique links so far: 125
+  📄 Fetching search page 6/33: https://www.primelocation.com/for-sale/property/london/?q=London&price_max=1500000&is_auction=include&is_retirement_home=include&is_shared_ownership=include&radius=0&page_size=50&search_source=for-sale&beds_min=1&results_sort=highest_price&pn=6
+    Found 26 property links on page 6
+    Total unique links so far: 151
+  📄 Fetching search page 7/33: https://www.primelocation.com/for-sale/property/london/?q=London&price_max=1500000&is_auction=include&is_retirement_home=include&is_shared_ownership=include&radius=0&page_size=50&search_source=for-sale&beds_min=1&results_sort=highest_price&pn=7
+    Found 26 property links on page 7
+    Total unique links so far: 177
+  📄 Fetching search page 8/33: https://www.primelocation.com/for-sale/property/london/?q=London&price_max=1500000&is_auction=include&is_retirement_home=include&is_shared_ownership=include&radius=0&page_size=50&search_source=for-sale&beds_min=1&results_sort=highest_price&pn=8
+    Found 27 property links on page 8
+    Total unique links so far: 204
+  📄 Fetching search page 9/33: https://www.primelocation.com/for-sale/property/london/?q=London&price_max=1500000&is_auction=include&is_retirement_home=include&is_shared_ownership=include&radius=0&page_size=50&search_source=for-sale&beds_min=1&results_sort=highest_price&pn=9
+    Found 25 property links on page 9
+    Total unique links so far: 229
+  📄 Fetching search page 10/33: https://www.primelocation.com/for-sale/property/london/?q=London&price_max=1500000&is_auction=include&is_retirement_home=include&is_shared_ownership=include&radius=0&page_size=50&search_source=for-sale&beds_min=1&results_sort=highest_price&pn=10
+    Found 28 property links on page 10
+    Total unique links so far: 257
+  📄 Fetching search page 11/33: https://www.primelocation.com/for-sale/property/london/?q=London&price_max=1500000&is_auction=include&is_retirement_home=include&is_shared_ownership=include&radius=0&page_size=50&search_source=for-sale&beds_min=1&results_sort=highest_price&pn=11
+    Found 26 property links on page 11
+    Total unique links so far: 282
+  📄 Fetching search page 12/33: https://www.primelocation.com/for-sale/property/london/?q=London&price_max=1500000&is_auction=include&is_retirement_home=include&is_shared_ownership=include&radius=0&page_size=50&search_source=for-sale&beds_min=1&results_sort=highest_price&pn=12
+    Found 25 property links on page 12
+    Total unique links so far: 307
+✅ Collected 307 links; continuing to next search pages for broader coverage...
+  📄 Fetching search page 13/33: https://www.primelocation.com/for-sale/property/london/?q=London&price_max=1500000&is_auction=include&is_retirement_home=include&is_shared_ownership=include&radius=0&page_size=50&search_source=for-sale&beds_min=1&results_sort=highest_price&pn=13
+    Found 27 property links on page 13
+    Total unique links so far: 334
+✅ Collected 334 links; continuing to next search pages for broader coverage...
+  📄 Fetching search page 14/33: https://www.primelocation.com/for-sale/property/london/?q=London&price_max=1500000&is_auction=include&is_retirement_home=include&is_shared_ownership=include&radius=0&page_size=50&search_source=for-sale&beds_min=1&results_sort=highest_price&pn=14
+    Found 24 property links on page 14
+    Total unique links so far: 358
+✅ Collected 358 links; continuing to next search pages for broader coverage...
+  📄 Fetching search page 15/33: https://www.primelocation.com/for-sale/property/london/?q=London&price_max=1500000&is_auction=include&is_retirement_home=include&is_shared_ownership=include&radius=0&page_size=50&search_source=for-sale&beds_min=1&results_sort=highest_price&pn=15
+    Found 28 property links on page 15
+    Total unique links so far: 386
+✅ Collected 386 links; continuing to next search pages for broader coverage...
+  📄 Fetching search page 16/33: https://www.primelocation.com/for-sale/property/london/?q=London&price_max=1500000&is_auction=include&is_retirement_home=include&is_shared_ownership=include&radius=0&page_size=50&search_source=for-sale&beds_min=1&results_sort=highest_price&pn=16
+    Found 28 property links on page 16
+    Total unique links so far: 414
+✅ Collected 414 links; continuing to next search pages for broader coverage...
+  📄 Fetching search page 17/33: https://www.primelocation.com/for-sale/property/london/?q=London&price_max=1500000&is_auction=include&is_retirement_home=include&is_shared_ownership=include&radius=0&page_size=50&search_source=for-sale&beds_min=1&results_sort=highest_price&pn=17
+    Found 27 property links on page 17
+    Total unique links so far: 441
+✅ Collected 441 links; continuing to next search pages for broader coverage...
+  📄 Fetching search page 18/33: https://www.primelocation.com/for-sale/property/london/?q=London&price_max=1500000&is_auction=include&is_retirement_home=include&is_shared_ownership=include&radius=0&page_size=50&search_source=for-sale&beds_min=1&results_sort=highest_price&pn=18
+    Found 28 property links on page 18
+    Total unique links so far: 469
+✅ Collected 469 links; continuing to next search pages for broader coverage...
+  📄 Fetching search page 19/33: https://www.primelocation.com/for-sale/property/london/?q=London&price_max=1500000&is_auction=include&is_retirement_home=include&is_shared_ownership=include&radius=0&page_size=50&search_source=for-sale&beds_min=1&results_sort=highest_price&pn=19
+    Found 27 property links on page 19
+    Total unique links so far: 496
+✅ Collected 496 links; continuing to next search pages for broader coverage...
+  📄 Fetching search page 20/33: https://www.primelocation.com/for-sale/property/london/?q=London&price_max=1500000&is_auction=include&is_retirement_home=include&is_shared_ownership=include&radius=0&page_size=50&search_source=for-sale&beds_min=1&results_sort=highest_price&pn=20
+    Found 28 property links on page 20
+    Total unique links so far: 524
+✅ Collected 524 links; continuing to next search pages for broader coverage...
+  📄 Fetching search page 21/33: https://www.primelocation.com/for-sale/property/london/?q=London&price_max=1500000&is_auction=include&is_retirement_home=include&is_shared_ownership=include&radius=0&page_size=50&search_source=for-sale&beds_min=1&results_sort=highest_price&pn=21
+    Found 27 property links on page 21
+    Total unique links so far: 551
+✅ Collected 551 links; continuing to next search pages for broader coverage...
+  📄 Fetching search page 22/33: https://www.primelocation.com/for-sale/property/london/?q=London&price_max=1500000&is_auction=include&is_retirement_home=include&is_shared_ownership=include&radius=0&page_size=50&search_source=for-sale&beds_min=1&results_sort=highest_price&pn=22
+    Found 27 property links on page 22
+    Total unique links so far: 578
+✅ Collected 578 links; continuing to next search pages for broader coverage...
+  📄 Fetching search page 23/33: https://www.primelocation.com/for-sale/property/london/?q=London&price_max=1500000&is_auction=include&is_retirement_home=include&is_shared_ownership=include&radius=0&page_size=50&search_source=for-sale&beds_min=1&results_sort=highest_price&pn=23
+    Found 28 property links on page 23
+    Total unique links so far: 606
+✅ Collected 606 links; continuing to next search pages for broader coverage...
+  📄 Fetching search page 24/33: https://www.primelocation.com/for-sale/property/london/?q=London&price_max=1500000&is_auction=include&is_retirement_home=include&is_shared_ownership=include&radius=0&page_size=50&search_source=for-sale&beds_min=1&results_sort=highest_price&pn=24
+    Found 26 property links on page 24
+    Total unique links so far: 631
+✅ Collected 631 links; continuing to next search pages for broader coverage...
+  📄 Fetching search page 25/33: https://www.primelocation.com/for-sale/property/london/?q=London&price_max=1500000&is_auction=include&is_retirement_home=include&is_shared_ownership=include&radius=0&page_size=50&search_source=for-sale&beds_min=1&results_sort=highest_price&pn=25
+    Found 24 property links on page 25
+    Total unique links so far: 655
+✅ Collected 655 links; continuing to next search pages for broader coverage...
+  📄 Fetching search page 26/33: https://www.primelocation.com/for-sale/property/london/?q=London&price_max=1500000&is_auction=include&is_retirement_home=include&is_shared_ownership=include&radius=0&page_size=50&search_source=for-sale&beds_min=1&results_sort=highest_price&pn=26
+    Found 27 property links on page 26
+    Total unique links so far: 682
+✅ Collected 682 links; continuing to next search pages for broader coverage...
+  📄 Fetching search page 27/33: https://www.primelocation.com/for-sale/property/london/?q=London&price_max=1500000&is_auction=include&is_retirement_home=include&is_shared_ownership=include&radius=0&page_size=50&search_source=for-sale&beds_min=1&results_sort=highest_price&pn=27
+    Found 28 property links on page 27
+    Total unique links so far: 710
+✅ Collected 710 links; continuing to next search pages for broader coverage...
+  📄 Fetching search page 28/33: https://www.primelocation.com/for-sale/property/london/?q=London&price_max=1500000&is_auction=include&is_retirement_home=include&is_shared_ownership=include&radius=0&page_size=50&search_source=for-sale&beds_min=1&results_sort=highest_price&pn=28
+    Found 26 property links on page 28
+    Total unique links so far: 736
+✅ Collected 736 links; continuing to next search pages for broader coverage...
+  📄 Fetching search page 29/33: https://www.primelocation.com/for-sale/property/london/?q=London&price_max=1500000&is_auction=include&is_retirement_home=include&is_shared_ownership=include&radius=0&page_size=50&search_source=for-sale&beds_min=1&results_sort=highest_price&pn=29
+    Found 20 property links on page 29
+    Total unique links so far: 756
+✅ Collected 756 links; continuing to next search pages for broader coverage...
+  📄 Fetching search page 30/33: https://www.primelocation.com/for-sale/property/london/?q=London&price_max=1500000&is_auction=include&is_retirement_home=include&is_shared_ownership=include&radius=0&page_size=50&search_source=for-sale&beds_min=1&results_sort=highest_price&pn=30
+    Found 20 property links on page 30
+    Total unique links so far: 776
+✅ Collected 776 links; continuing to next search pages for broader coverage...
+  📄 Fetching search page 31/33: https://www.primelocation.com/for-sale/property/?q=London&price_max=1500000&is_auction=include&is_retirement_home=include&is_shared_ownership=include&radius=0&page_size=50&search_source=for-sale&beds_min=1
+    Found 0 property links on page 31
+    Total unique links so far: 776
+✅ Collected 776 links; continuing to next search pages for broader coverage...
+  📄 Fetching search page 32/33: https://www.primelocation.com/for-sale/?q=London&price_max=1500000&is_auction=include&is_retirement_home=include&is_shared_ownership=include&radius=0&page_size=50&search_source=for-sale&beds_min=1
+    Found 0 property links on page 32
+    Total unique links so far: 776
+✅ Collected 776 links; continuing to next search pages for broader coverage...
+  📄 Fetching search page 33/33: https://www.primelocation.com/for-sale/property/london/?q=London&price_max=1500000&is_auction=include&is_retirement_home=include&is_shared_ownership=include&radius=0&page_size=50&search_source=for-sale&beds_min=1
+    Found 26 property links on page 33
+    Total unique links so far: 776
+✅ Collected 776 links; continuing to next search pages for broader coverage...
+🎯 Processing 400 property detail pages (capped from 776 found)
+🏠 Extracting property details with 6 workers...
+    ✏️  Collected: 2 bed flat for sale The Dumont, Albert Embankment, London SE1 - £1,500,000 - 2 beds
+    ✏️  Collected: 3 bed equestrian for sale Cocksure Lane, Sidcup DA14 - £1,500,000 - 3 beds
+    ✏️  Collected: 1 bed flat for sale Coleridge Gardens, Chelsea, London SW10 - £595,000 - 1 beds
+    ✏️  Collected: 2 bed flat for sale Vicarage Gate, High Street Kensington W8 - £1,500,000 - 2 beds
+    ✏️  Collected: 2 bed flat for sale Riverlight Quay, London SW11 - £1,500,000 - 2 beds
+    ✏️  Collected: 2 bed flat for sale Sydenham Road, London SE26 - £350,000 - 2 beds
+    ✏️  Collected: 2 bed flat for sale Exchange Court, London WC2R - £1,500,000 - 2 beds
+    ✏️  Collected: 3 bed flat for sale Ranelagh House, Elystan Place, Chelsea SW3 - £1,500,000 - 3 beds
+    ✏️  Collected: 2 bed flat for sale Marloes Road W8 - £1,500,000 - 2 beds
+    ✏️  Collected: 2 bed flat for sale Damac Tower, Nine Elms, London SW8 - £1,500,000 - 2 beds
+    ✏️  Collected: 2 bed flat for sale Merano Residences, Albert Embankment, London SE1 - £1,500,000 - 2 beds
+    ✏️  Collected: 3 bed flat for sale Carlisle Mansions, Carlisle Place, London SW1P - £1,500,000 - 3 beds
+    ✏️  Collected: 3 bed flat for sale Gladwin Tower, 50 Wandsworth Road SW8 - £1,500,000 - 3 beds
+    ✏️  Collected: 2 bed flat for sale Artillery Row, Westminster, London SW1P - £1,500,000 - 2 beds
+    ✏️  Collected: 1 bed flat for sale Lancelot Place, Knightsbridge SW7 - £1,500,000 - 1 beds
+    ✏️  Collected: 2 bed flat for sale Exchange Court, Covent Garden WC2R - £1,500,000 - 2 beds
+    ✏️  Collected: 5 bed detached house for sale Sylvan Avenue, Emerson Park, Hornchurch RM11 - £1,500,000 - 5 beds
+    ✏️  Collected: 2 bed flat for sale Chiltern Street, Marylebone, London W1U - £1,500,000 - 2 beds
+    ✏️  Collected: 4 bed flat for sale George Street, London W1H - £1,500,000 - 4 beds
+    ✏️  Collected: 4 bed terraced house for sale Leighton Gardens, London NW10 - £1,500,000 - 4 beds
+    ✏️  Collected: 2 bed flat for sale Battersea, London SW11 - £1,500,000 - 2 beds
+    ✏️  Collected: 2 bed flat for sale Merino Wharf, London Dock, Wapping E1W - £1,500,000 - 2 beds
+    ✏️  Collected: 7 bed semi-detached house for sale Torrington Park, North Finchley, London N12 - £1,500,000 - 7 beds
+    ✏️  Collected: 2 bed flat for sale Lillie Square, Fulham SW6 - £1,500,000 - 2 beds
+    ✏️  Collected: 2 bed flat for sale Merino Gardens, Wapping E1W - £1,500,000 - 2 beds
+    ✏️  Collected: 1 bed flat for sale Hetley Road, Shepherds Bush W12 - £400,000 - 1 beds
+    ✏️  Collected: 2 bed flat for sale Lewis Cubitt Square, King's Cross, London N1C. - £1,500,000 - 2 beds
+    ✏️  Collected: 2 bed flat for sale Seymour Street, London W1H - £1,500,000 - 2 beds
+    ✏️  Collected: 2 bed flat for sale Praed Street, London W2 - £895,000 - 2 beds
+    ✏️  Collected: 2 bed flat for sale Cowper Road, London SW19 - £525,000 - 2 beds
+    ✏️  Collected: 2 bed flat for sale Lewis Cubitt Square, Kings Cross, London N1C - £1,500,000 - 2 beds
+    ✏️  Collected: 2 bed flat for sale Lincoln Apartments, Fountain Park Way W12 - £1,500,000 - 2 beds
+    ✏️  Collected: 2 bed flat for sale The Dumont, 27 Albert Embankment, Vauxhall, London SE1 - £1,500,000 - 2 beds
+    ✏️  Collected: 3 bed flat for sale 13-15 St. Petersburgh Place, London W2 - £1,500,000 - 3 beds
+    ✏️  Collected: 3 bed flat for sale Greensward House, Imperial Crescent SW6 - £1,500,000 - 3 beds
+    ✏️  Collected: 6 bed detached house for sale Canons Drive, Edgware HA8 - £1,500,000 - 6 beds
+    ✏️  Collected: 2 bed flat for sale Palgrave Gardens, London NW1 - £1,500,000 - 2 beds
+    ✏️  Collected: 3 bed flat for sale Stanhope Terrace, Hyde Park W2 - £1,500,000 - 3 beds
+    ✏️  Collected: 2 bed flat for sale John Adam Street, Strand WC2N - £1,500,000 - 2 beds
+    ✏️  Collected: 2 bed flat for sale 1 Riverlight Quay, Nine Elms, London SW11 - £1,500,000 - 2 beds
+    ✏️  Collected: 3 bed flat for sale Saffron Hill, London EC1N - £1,500,000 - 3 beds
+    ✏️  Collected: 4 bed end terrace house for sale Terrace Road, London E9 - £1,500,000 - 4 beds
+    ✏️  Collected: 2 bed flat for sale Southwell Gardens, London SW7 - £1,500,000 - 2 beds
+    ✏️  Collected: 3 bed flat for sale Imperial Crescent, London SW6 - £1,500,000 - 3 beds
+    ✏️  Collected: 3 bed flat for sale The Quadrangle, London W2 - £1,500,000 - 3 beds
+    ✏️  Collected: 3 bed flat for sale The Quadrangle, London W2 - £1,500,000 - 3 beds
+    ✏️  Collected: 4 bed maisonette for sale The Avenue, Queen's Park, London NW6 - £1,500,000 - 4 beds
+    ✏️  Collected: 2 bed flat for sale Kidderpore Avenue, London NW3 - £1,500,000 - 2 beds
+    ✏️  Collected: 2 bed flat for sale London SW19 - £450,000 - 2 beds
+    ✏️  Collected: 1 bed flat for sale Saffron Gardens, London Dock, Vaughan Way, London E1W - £750,000 - 1 beds
+    ✏️  Collected: 4 bed detached house for sale Beechwood Avenue, Finchley N3 - £1,500,000 - 4 beds
+    ✏️  Collected: 2 bed flat for sale Seymour Street, Marylebone W1H - £1,500,000 - 2 beds
+    ✏️  Collected: 2 bed flat for sale Valencia Tower, 250 City Road EC1V - £1,500,000 - 2 beds
+    ✏️  Collected: 2 bed flat for sale Hall Road, London NW8 - £1,500,000 - 2 beds
+    ✏️  Collected: 5 bed semi-detached house for sale Shakespeare Road, Hanwell W7 - £1,500,000 - 5 beds
+    ✏️  Collected: 4 bed semi-detached house for sale Copthall Gardens, London NW7 - £1,500,000 - 4 beds
+    ✏️  Collected: 5 bed detached house for sale Dearne Close, Stanmore HA7 - £1,500,000 - 5 beds
+    ✏️  Collected: 3 bed flat for sale Monck Street, Westminster SW1P - £1,500,000 - 3 beds
+    ✏️  Collected: 2 bed flat for sale Artillery Row, Westminster, London SW1P - £1,500,000 - 2 beds
+    ✏️  Collected: 3 bed flat for sale Roehampton House, Vitali Close SW15 - £1,500,000 - 3 beds
+    ✏️  Collected: 2 bed flat for sale Westmark Tower, London W2 - £1,500,000 - 2 beds
+    ✏️  Collected: 7 bed flat for sale Casson Street, London E1 - £1,500,000 - 7 beds
+    ✏️  Collected: 2 bed flat for sale One Crown Place, 19 Sun Street EC2A - £1,500,000 - 2 beds
+    ✏️  Collected: 4 bed property for sale Cadogan Pier, London SW3 - £1,500,000 - 4 beds
+    ✏️  Collected: 2 bed flat for sale St. George Wharf, London SW8 - £1,500,000 - 2 beds
+    ✏️  Collected: 2 bed mews for sale Shrewsbury Mews, London W2 - £1,500,000 - 2 beds
+    ✏️  Collected: 3 bed flat for sale Macaulay Road SW4 - £1,500,000 - 3 beds
+    ✏️  Collected: 3 bed flat for sale Gibbard Mews, Wimbledon Village, London SW19 - £1,500,000 - 3 beds
+    ✏️  Collected: Land for sale Park Avenue, Enfield EN1 - £1,500,000 - 3 beds
+    ✏️  Collected: 4 bed detached house for sale Pursers Cross Road, London, Hammersmith And Fulham SW6 - £1,500,000 - 4 beds
+    ✏️  Collected: 2 bed flat for sale Bickenhall Street, London W1U - £1,500,000 - 2 beds
+    ✏️  Collected: 2 bed flat for sale Bay House, Kidderpore Avenue NW3 - £1,500,000 - 2 beds
+    ✏️  Collected: 2 bed flat for sale Berkeley Street, Mayfair W1J - £1,500,000 - 2 beds
+    ✏️  Collected: 4 bed terraced house for sale Kynaston Road, Thornton Heath CR7 - £500,000 - 4 beds
+    ✏️  Collected: 3 bed flat for sale Queens Gate, London SW7 - £1,000,000 - 3 beds
+    ✏️  Collected: 5 bed terraced house for sale Windsor Road, Forest Gate, London E7 - £1,500,000 - 5 beds
+    ✏️  Collected: 2 bed flat for sale Berkeley Street, Mayfair W1J - £1,500,000 - 2 beds
+    ✏️  Collected: 1 bed flat for sale Academy Gardens, Duchess Of Bedfords Walk, London W8 - £1,500,000 - 1 beds
+    ✏️  Collected: 2 bed flat for sale Lancelot Place, London SW7 - £1,500,000 - 2 beds
+    ✏️  Collected: 2 bed flat for sale Wellington House, 70 Buckingham Gate, Westminster, London SW1E - £1,500,000 - 2 beds
+    ✏️  Collected: 2 bed flat for sale Ebury Street, London SW1W - £1,500,000 - 2 beds
+    ✏️  Collected: 2 bed flat for sale Old Brompton Road, South Kensington, London SW7 - £1,500,000 - 2 beds
+    ✏️  Collected: 4 bed detached house for sale Swanage Road SW18 - £1,500,000 - 4 beds
+    ✏️  Collected: 6 bed detached house for sale Orchard Avenue, Shirley CR0 - £1,500,000 - 6 beds
+    ✏️  Collected: 2 bed flat for sale Sutherland House, Marloes Road, London W8 - £1,500,000 - 2 beds
+    ✏️  Collected: 3 bed flat for sale South Wharf Road, London W2 - £1,500,000 - 3 beds
+    ✏️  Collected: 5 bed semi-detached house for sale Boyne Road, Lewisham, London SE13 - £1,500,000 - 5 beds
+    ✏️  Collected: 4 bed flat for sale Strutton Ground, Westminster, London SW1P - £1,500,000 - 4 beds
+    ✏️  Collected: 2 bed flat for sale Pier Head, London E1W - £1,500,000 - 2 beds
+    ✏️  Collected: 3 bed flat for sale Kew Bridge Road, Brentford TW8 - £1,500,000 - 3 beds
+    ✏️  Collected: 4 bed mews for sale Russell Gardens Mews, Holland Park W14 - £1,500,000 - 4 beds
+    ✏️  Collected: 2 bed flat for sale Rosamond House, Monk Street, Westminster, London SW1P - £1,500,000 - 2 beds
+    ✏️  Collected: 2 bed flat for sale Ebury Street, London SW1W - £1,500,000 - 2 beds
+    ✏️  Collected: 5 bed terraced house for sale Forest Drive East, Leytonstone, London E11 - £1,500,000 - 5 beds
+    ✏️  Collected: 6 bed detached house for sale Dalewood Close, Emerson Park RM11 - £1,500,000 - 6 beds
+    ✏️  Collected: 3 bed flat for sale Elm Park Gardens, London SW10 - £1,500,000 - 3 beds
+    ✏️  Collected: 3 bed flat for sale Cornwall Gardens, South Kensington SW7 - £1,500,000 - 3 beds
+    ✏️  Collected: 3 bed detached house for sale Windermere Road, London N19 - £1,500,000 - 3 beds
+    ✏️  Collected: 2 bed flat for sale Imperial Wharf, Imperial Wharf, London SW6 - £1,500,000 - 2 beds
+    ✏️  Collected: 3 bed end terrace house for sale Streatham Vale, London SW16 - £650,000 - 3 beds
+    ✏️  Collected: 4 bed flat for sale Alvanley Court, Finchley Road NW3 - £1,185,000 - 4 beds
+    ✏️  Collected: 5 bed semi-detached house for sale Purley Avenue, Cricklewood, London NW2 - £1,500,000 - 5 beds
+    ✏️  Collected: 3 bed maisonette for sale Devonport, Southwick Street W2 - £1,500,000 - 3 beds
+    ✏️  Collected: 1 bed flat for sale Wendling, Haverstock Road, Kentish Town NW5 - £350,000 - 1 beds
+    ✏️  Collected: 2 bed flat for sale Merano Residences, 30 Albert Embankment, London SE1 - £1,500,000 - 2 beds
+    ✏️  Collected: 3 bed flat for sale Glentworth Street, Marylebone, London NW1 - £1,500,000 - 3 beds
+    ✏️  Collected: 4 bed detached house for sale Cranes Park Crescent, Surbiton KT5 - £1,500,000 - 4 beds
+    ✏️  Collected: 2 bed flat for sale Berkeley Street, London W1J - £1,500,000 - 2 beds
+    ✏️  Collected: 3 bed flat for sale Glenthorne Road, Hammersmith W6 - £1,500,000 - 3 beds
+    ✏️  Collected: 3 bed detached house for sale Belvedere Road, Crystal Palace, London SE19 - £1,500,000 - 3 beds
+    ✏️  Collected: 3 bed flat for sale York Street, Maylebone W1H - £1,500,000 - 3 beds
+    ✏️  Collected: 3 bed flat for sale Westferry Circus, London E14 - £1,500,000 - 3 beds
+    ✏️  Collected: 3 bed end terrace house for sale De Beauvoir Road, Islington, London N1 - £1,500,000 - 3 beds
+    ✏️  Collected: 2 bed flat for sale Chelsea Creek, Chelsea Creek, London SW6 - £1,500,000 - 2 beds
+    ✏️  Collected: 2 bed flat for sale Pilgrims Lane, Hampstead, London NW3 - £1,500,000 - 2 beds
+    ✏️  Collected: 4 bed detached house for sale Hollydale Drive, Bromley BR2 - £1,500,000 - 4 beds
+    ✏️  Collected: 5 bed detached house for sale Marlings Park Avenue, Chislehurst BR7 - £1,500,000 - 5 beds
+    ✏️  Collected: 2 bed flat for sale Chesham Street, London SW1X - £1,500,000 - 2 beds
+    ✏️  Collected: 3 bed flat for sale Dorset House, Gloucester Place NW1 - £1,500,000 - 3 beds
+    ✏️  Collected: 3 bed flat for sale Queens Wharf, 2 Crisp Road W6 - £1,500,000 - 3 beds
+    ✏️  Collected: 3 bed flat for sale Windsor Court, Moscow Road W2 - £1,500,000 - 3 beds
+    ✏️  Collected: 2 bed flat for sale Beaufort Street, London SW3 - £1,500,000 - 2 beds
+    ✏️  Collected: 3 bed mews for sale Upbrook Mews, London W2 - £1,500,000 - 3 beds
+    ✏️  Collected: 1 bed flat for sale Tite Street, Chelsea SW3 - £1,500,000 - 1 beds
+    ✏️  Collected: 4 bed flat for sale George Street, London W1H - £1,500,000 - 4 beds
+    ✏️  Collected: 2 bed flat for sale Wheathill House, Croydon Road, Anerley, London SE20 - £300,000 - 2 beds
+    ✏️  Collected: 1 bed flat for sale Harley Street, London W1G - £1,000,000 - 1 beds
+    ✏️  Collected: 4 bed flat for sale Blomfield Villas, Little Venice, London W2 - £1,500,000 - 4 beds
+    ✏️  Collected: 3 bed flat for sale Battersea Church Road, London SW11 - £1,050,000 - 3 beds
+    ✏️  Collected: 2 bed flat for sale Ebury Street, Belgravia SW1W - £1,500,000 - 2 beds
+    ✏️  Collected: 3 bed property for sale Glenburnie Road, Tooting, London SW17 - £1,500,000 - 3 beds
+    ✏️  Collected: 2 bed flat for sale Exchange Court, Covent Garden, London WC2R - £1,500,000 - 2 beds
+    ✏️  Collected: 3 bed flat for sale Imperial Crescent SW6 - £1,500,000 - 3 beds
+    ✏️  Collected: 2 bed flat for sale Kings Road Park, Kings Road, London SW6 - £1,500,000 - 2 beds
+    ✏️  Collected: 2 bed flat for sale Baltimore Wharf, Millwall E14 - £1,500,000 - 2 beds
+    ✏️  Collected: 4 bed semi-detached house for sale St Stephens Avenue, Shepherds Bush W12 - £1,500,000 - 4 beds
+    ✏️  Collected: 3 bed detached house for sale Dollis Hill Lane, Dollis Hill, London NW2 - £1,500,000 - 3 beds
+    ✏️  Collected: 2 bed flat for sale Harrington Gardens, South Kensington, London SW7 - £1,500,000 - 2 beds
+    ✏️  Collected: 5 bed detached house for sale Dalkeith Grove, Stanmore HA7 - £1,500,000 - 5 beds
+    ✏️  Collected: 4 bed detached house for sale Chambers Lane, London NW10 - £1,500,000 - 4 beds
+    ✏️  Collected: 3 bed flat for sale Crawford Street, London W1H - £1,500,000 - 3 beds
+    ✏️  Collected: 4 bed flat for sale Cabbell Street, Marylebone NW1 - £1,500,000 - 4 beds
+    ✏️  Collected: 2 bed flat for sale Bondway, Nine Elms SW8 - £1,500,000 - 2 beds
+    ✏️  Collected: 4 bed flat for sale Northwick Terrace, London NW8 - £1,500,000 - 4 beds
+    ✏️  Collected: 5 bed detached house for sale Mospey Crescent, Epsom KT17 - £1,500,000 - 5 beds
+    ✏️  Collected: 3 bed terraced house for sale Bulmer Mews, Notting Hill Gate, London W11 - £1,500,000 - 3 beds
+    ✏️  Collected: 3 bed end terrace house for sale Sidney Square, Whitechapel, London E1 - £1,500,000 - 3 beds
+    ✏️  Collected: 3 bed flat for sale Lauderdale Tower, Barbican EC2Y - £1,500,000 - 3 beds
+    ✏️  Collected: 4 bed semi-detached house for sale Daylesford Avenue, London SW15 - £1,500,000 - 4 beds
+    ✏️  Collected: 5 bed terraced house for sale Arminger Road, London W12 - £1,500,000 - 5 beds
+    ✏️  Collected: 2 bed flat for sale Beaufort Street, London SW3 - £1,500,000 - 2 beds
+    ✏️  Collected: 5 bed terraced house for sale All Souls Avenue, Kensal Rise, London NW10 - £1,350,000 - 5 beds
+    ✏️  Collected: 3 bed flat for sale Hanover Gate Mansions, Park Road, London NW1 - £1,300,000 - 3 beds
+    ✏️  Collected: 2 bed flat for sale St. John's Hill, London SW11 - £300,000 - 2 beds
+    ✏️  Collected: 2 bed flat for sale Portman Mansions, Chiltern Street, London W1U - £1,500,000 - 2 beds
+    ✏️  Collected: 4 bed semi-detached house for sale Petworth Road, London N12 - £1,500,000 - 4 beds
+    ✏️  Collected: 5 bed semi-detached house for sale Purley Avenue, London NW2 - £1,500,000 - 5 beds
+    ✏️  Collected: 3 bed penthouse for sale Charter Quay, Kingston Upon Thames KT1 - £1,500,000 - 3 beds
+    ✏️  Collected: 3 bed flat for sale Jerome Place, Kingston Upon Thames KT1 - £1,500,000 - 3 beds
+    ✏️  Collected: 2 bed flat for sale Fulham Road, London SW10 - £1,500,000 - 2 beds
+    ✏️  Collected: 2 bed flat for sale Garrett Mansions, Edgware Road, London W2 - £1,500,000 - 2 beds
+    ✏️  Collected: 3 bed flat for sale Commodore House, Battersea Reach, Juniper Drive, London SW18 - £1,500,000 - 3 beds
+    ✏️  Collected: 6 bed detached house for sale Chivenor Grove, Kingston Upon Thames KT2 - £1,500,000 - 6 beds
+    ✏️  Collected: 3 bed flat for sale Palgrave Gardens, Marylebone, London NW1 - £1,500,000 - 3 beds
+    ✏️  Collected: 2 bed flat for sale Circus Road West, Battersea SW11 - £1,500,000 - 2 beds
+    ✏️  Collected: 6 bed detached house for sale Wells Road, Chislehurst BR1 - £1,500,000 - 6 beds
+    ✏️  Collected: 4 bed property for sale Marble Hill Close, East Twickenham TW1 - £1,500,000 - 4 beds
+    ✏️  Collected: 3 bed flat for sale New Providence Wharf, 1 Fairmont Avenue, London E14 - £1,500,000 - 3 beds
+    ✏️  Collected: 3 bed flat for sale Warner Street, Clerkenwell, London EC1R - £1,500,000 - 3 beds
+    ✏️  Collected: 2 bed flat for sale Rosebery Avenue, London EC1R - £1,500,000 - 2 beds
+    ✏️  Collected: 4 bed semi-detached house for sale Upper Richmond Road, London SW15 - £1,500,000 - 4 beds
+    ✏️  Collected: 4 bed property for sale Eccles Road, Battersea, London SW11 - £1,500,000 - 4 beds
+    ✏️  Collected: 3 bed flat for sale Hampden Gurney Street, Marylebone, London W1H - £1,500,000 - 3 beds
+    ✏️  Collected: 3 bed flat for sale Aldridge Road Villas, Notting Hill W11 - £1,500,000 - 3 beds
+    ✏️  Collected: 4 bed detached house for sale Manorbrook, London SE3 - £1,500,000 - 4 beds
+    ✏️  Collected: 4 bed terraced house for sale College Road, London NW10 - £1,500,000 - 4 beds
+    ✏️  Collected: 1 bed flat for sale Park Lane, Mayfair W1K - £1,500,000 - 1 beds
+    ✏️  Collected: 6 bed semi-detached house for sale Coombe Lane West, Kingston Upon Thames KT2 - £1,500,000 - 6 beds
+    ✏️  Collected: 3 bed flat for sale Sheldon Square, London W2 - £1,499,999 - 3 beds
+    ✏️  Collected: 2 bed flat for sale Warwick Gardens, Holland Park W14 - £1,500,000 - 2 beds
+    ✏️  Collected: 2 bed flat for sale Halsey Street, Chelsea SW3 - £1,500,000 - 2 beds
+    ✏️  Collected: 3 bed flat for sale Sydney Street, London SW3 - £1,500,000 - 3 beds
+    ✏️  Collected: 9 bed detached house for sale The Grove, Isleworth TW7 - £1,500,000 - 9 beds
+    ✏️  Collected: 5 bed detached house for sale Guibal Road, Lee SE12 - £1,500,000 - 5 beds
+    ✏️  Collected: 3 bed detached house for sale Melville Gardens, Southgate N13 - £1,500,000 - 3 beds
+    ✏️  Collected: 6 bed detached house for sale Gates Green Road, West Wickham BR4 - £1,500,000 - 6 beds
+    ✏️  Collected: 2 bed flat for sale Avantgarde Tower, Shoreditch, London E1 - £1,500,000 - 2 beds
+    ✏️  Collected: 4 bed detached house for sale Mount Park Road, London W5 - £1,500,000 - 4 beds
+    ✏️  Collected: 3 bed flat for sale Rivermead Court, Ranelagh Gardens, London SW6 - £1,500,000 - 3 beds
+    ✏️  Collected: 3 bed flat for sale Galleon House, St George Wharf SW8 - £1,500,000 - 3 beds
+    ✏️  Collected: 5 bed detached house for sale Nelmes Crescent, Hornchurch RM11 - £1,500,000 - 5 beds
+    ✏️  Collected: 3 bed terraced house for sale Childs Place, Earls Court, London SW5 - £1,500,000 - 3 beds
+    ✏️  Collected: 3 bed flat for sale Shakespeare Tower, Barbican EC2Y - £1,500,000 - 3 beds
+    ✏️  Collected: 2 bed flat for sale One Tower Bridge, London SE1 - £1,500,000 - 2 beds
+    ✏️  Collected: 4 bed flat for sale Marylebone Road, London NW1 - £1,500,000 - 4 beds
+    ✏️  Collected: 2 bed flat for sale Berkeley Street, Mayfair, London W1J - £1,500,000 - 2 beds
+    ✏️  Collected: 4 bed flat for sale Prince Of Wales Drive, London SW11 - £1,500,000 - 4 beds
+    ✏️  Collected: 5 bed detached house for sale Main Road, Gidea Park, Romford RM2 - £1,500,000 - 5 beds
+    ✏️  Collected: 2 bed flat for sale Exchange Court, London WC2R - £1,500,000 - 2 beds
+    ✏️  Collected: 6 bed semi-detached house for sale Footscray Road, New Eltham, London SE9 - £1,500,000 - 6 beds
+    ✏️  Collected: 3 bed flat for sale South Wharf Road, London W2 - £1,500,000 - 3 beds
+    ✏️  Collected: 3 bed flat for sale Queen's Gate, London SW7 - £1,500,000 - 3 beds
+    ✏️  Collected: 4 bed town house for sale Springpark Drive, London N4 - £1,500,000 - 4 beds
+    ✏️  Collected: 4 bed flat for sale Barkston Gardens, London SW5 - £1,500,000 - 4 beds
+    ✏️  Collected: 2 bed flat for sale Ambassador Building SW11 - £975,000 - 2 beds
+    ✏️  Collected: 1 bed flat for sale Zodiac Close, Gemini Court HA8 - £299,950 - 1 beds
+    ✏️  Collected: 2 bed flat for sale Ripple Road, Barking IG11 - £145,000 - 2 beds
+    ✏️  Collected: 4 bed terraced house for sale Rylston Road, Fulham, London SW6 - £1,500,000 - 4 beds
+    ✏️  Collected: 2 bed flat for sale Cadogan Gardens, London SW3 - £1,500,000 - 2 beds
+    ✏️  Collected: 3 bed flat for sale Juniper Drive, London SW18 - £1,500,000 - 3 beds
+    ✏️  Collected: 2 bed flat for sale Chesterfield House, Chesterfield Gardens, London W1J - £1,500,000 - 2 beds
+    ✏️  Collected: 3 bed flat for sale Faraday Road, London W10 - £1,500,000 - 3 beds
+    ✏️  Collected: 5 bed detached house for sale Eastcote, Orpington BR6 - £1,500,000 - 5 beds
+    ✏️  Collected: 4 bed town house for sale Fellows Road, Belsize Park NW3 - £1,500,000 - 4 beds
+    ✏️  Collected: 4 bed detached house for sale Dartmouth Hill, London SE10 - £1,500,000 - 4 beds
+    ✏️  Collected: 2 bed flat for sale Rutland Mews, St John's Wood NW8 - £1,500,000 - 2 beds
+    ✏️  Collected: 5 bed terraced house for sale Woodville Gardens, London W5 - £1,500,000 - 5 beds
+    ✏️  Collected: 3 bed terraced house for sale Fellows Road, London NW3 - £1,500,000 - 3 beds
+    ✏️  Collected: 2 bed flat for sale Roberts Court, 43 Barkston Gardens SW5 - £1,500,000 - 2 beds
+    ✏️  Collected: 5 bed semi-detached house for sale The Vale, London NW11 - £1,500,000 - 5 beds
+    ✏️  Collected: 2 bed flat for sale Central Avenue, Fulham, London SW6 - £1,500,000 - 2 beds
+    ✏️  Collected: 3 bed flat for sale Grove Hall Court, Hall Road, London NW8 - £1,500,000 - 3 beds
+    ✏️  Collected: 5 bed detached house for sale Green Lane, Stanmore HA7 - £1,500,000 - 5 beds
+    ✏️  Collected: 3 bed flat for sale Westminster Palace Gardens, Artillery Row SW1P - £1,500,000 - 3 beds
+    ✏️  Collected: 2 bed flat for sale Queen's Gate Place, South Kensington SW7 - £1,500,000 - 2 beds
+    ✏️  Collected: 4 bed terraced house for sale Overstone Road, Hammersmith W6 - £1,500,000 - 4 beds
+    ✏️  Collected: 3 bed flat for sale Rivermead Court, Ranelagh Gardens, Hurlingham, London SW6 - £1,500,000 - 3 beds
+    ✏️  Collected: 3 bed flat for sale Fitzjames Avenue, London W14 - £1,500,000 - 3 beds
+    ✏️  Collected: 4 bed detached house for sale Greenway, Totteridge N20 - £1,500,000 - 4 beds
+    ✏️  Collected: 2 bed flat for sale Hanover Court, Uxbridge Road, Shepherds Bush W12 - £385,000 - 2 beds
+    ✏️  Collected: 2 bed flat for sale Hall Place, London W2 - £500,000 - 2 beds
+    ✏️  Collected: 3 bed flat for sale Sandringham Court, 99 Maida Vale, Maida Vale, London W9 - £1,500,000 - 3 beds
+    ✏️  Collected: 3 bed flat for sale Buckhold Road, London SW18 - £1,500,000 - 3 beds
+    ✏️  Collected: 2 bed flat for sale Caraway Apartments, 2 Cayenne Court, London SE1 - £999,950 - 2 beds
+    ✏️  Collected: 2 bed flat for sale Marloes Road, Kensington W8 - £1,500,000 - 2 beds
+    ✏️  Collected: 5 bed property for sale Anson Road, London NW2 - £1,500,000 - 5 beds
+    ✏️  Collected: 2 bed terraced house for sale Shrewsbury Mews, Notting Hill, London W2 - £1,500,000 - 2 beds
+    ✏️  Collected: 4 bed terraced house for sale Beaumont Road, London W4 - £1,500,000 - 4 beds
+    ✏️  Collected: 2 bed flat for sale Gasholders Building, Kings Cross N1C - £1,500,000 - 2 beds
+    ✏️  Collected: 2 bed flat for sale Gasholders Building, Kings Cross N1C - £1,500,000 - 2 beds
+    ✏️  Collected: 6 bed detached house for sale Regents Drive, Repton Park, Woodford Green, Essex IG8 - £1,500,000 - 6 beds
+    ✏️  Collected: 3 bed flat for sale Bridge House, St George Wharf SW8 - £1,500,000 - 3 beds
+    ✏️  Collected: 3 bed semi-detached house for sale Cranhurst Road, Willesden Green NW2 - £1,500,000 - 3 beds
+    ✏️  Collected: 2 bed flat for sale Hertford Street, Mayfair W1J - £1,500,000 - 2 beds
+    ✏️  Collected: 5 bed detached house for sale Jersey Road, Hounslow, Greater London TW5 - £1,500,000 - 5 beds
+    ✏️  Collected: 6 bed detached house for sale The Warren, Carshalton Beeches SM5 - £1,500,000 - 6 beds
+    ✏️  Collected: 8 bed property for sale Catford Bridge Tavern, Catford, London SE6 - £1,500,000 - 8 beds
+    ✏️  Collected: 4 bed semi-detached house for sale Whitehall Gardens, London W3 - £1,500,000 - 4 beds
+    ✏️  Collected: 3 bed flat for sale Landmark West Tower, 22 Marsh Wall E14 - £1,500,000 - 3 beds
+    ✏️  Collected: 2 bed flat for sale Connaught Street, London W2 - £1,500,000 - 2 beds
+    ✏️  Collected: 3 bed flat for sale Westminster Palace Gardens, Artillery Row SW1P - £1,500,000 - 3 beds
+    ✏️  Collected: 2 bed flat for sale Shad Thames, Shad Thames, London SE1 - £1,500,000 - 2 beds
+    ✏️  Collected: 4 bed terraced house for sale Nasmyth Street, Brackenbury Village, Hammersmith W6 - £1,500,000 - 4 beds
+    ✏️  Collected: 5 bed detached house for sale Coombe Lane, West Wimbledon SW20 - £1,500,000 - 5 beds
+    ✏️  Collected: 3 bed terraced house for sale Upper Brockley Road, Brockley SE4 - £1,500,000 - 3 beds
+    ✏️  Collected: 6 bed detached house for sale Alexandra Crescent, Bromley BR1 - £1,500,000 - 6 beds
+    ✏️  Collected: 3 bed flat for sale St. Martins Court, West Norwood SE27 - £535,000 - 3 beds
+    ✏️  Collected: 2 bed flat for sale Orsett Terrace, Bayswater, London W2 - £1,500,000 - 2 beds
+    ✏️  Collected: 4 bed semi-detached house for sale Locket Road, Harrow HA3 - £625,000 - 4 beds
+    ✏️  Collected: 3 bed flat for sale Clifton Villas, Little Venice W9 - £1,500,000 - 3 beds
+    ✏️  Collected: 5 bed property for sale Letchford Gardens, Kensal Green NW10 - £1,500,000 - 5 beds
+    ✏️  Collected: 4 bed terraced house for sale Lollard Street, London SE11 - £1,500,000 - 4 beds
+    ✏️  Collected: 3 bed flat for sale The Quadrangle, London W2 - £1,500,000 - 3 beds
+    ✏️  Collected: 1 bed flat for sale Hans Place, London SW1X - £1,500,000 - 1 beds
+    ✏️  Collected: 4 bed end terrace house for sale Fabian Road, London SW6 - £1,500,000 - 4 beds
+    ✏️  Collected: 5 bed detached house for sale Bellfield Avenue, Harrow Weald HA3 - £1,500,000 - 5 beds
+    ✏️  Collected: 5 bed property for sale Benson Road, Dulwich SE23 - £1,500,000 - 5 beds
+    ✏️  Collected: 2 bed flat for sale Prince Albert Road, St John's Wood, London NW8 - £1,500,000 - 2 beds
+    ✏️  Collected: 3 bed flat for sale Wandsworth Road, London SW8 - £1,500,000 - 3 beds
+    ✏️  Collected: 3 bed flat for sale Imperial Crescent, London SW6 - £1,500,000 - 3 beds
+    ✏️  Collected: 2 bed flat for sale Queen Anne Street, Marylebone Village, London W1G - £1,500,000 - 2 beds
+    ✏️  Collected: 2 bed flat for sale Hale House, Lindsay Square SW1V - £1,500,000 - 2 beds
+    ✏️  Collected: 3 bed flat for sale South Quay Plaza, Hampton Tower E14 - £1,500,000 - 3 beds
+    ✏️  Collected: 5 bed detached bungalow for sale Embry Way, Stanmore HA7 - £1,500,000 - 5 beds
+    ✏️  Collected: 3 bed property for sale Hamilton Park N5 - £1,500,000 - 3 beds
+    ✏️  Collected: 1 bed flat for sale Milford House, The Strand, London WC2R - £1,500,000 - 1 beds
+    ✏️  Collected: 3 bed flat for sale 3 Tidemill Square, London SE10 - £1,500,000 - 3 beds
+    ✏️  Collected: 2 bed flat for sale Marloes Road, London W8 - £1,500,000 - 2 beds
+    ✏️  Collected: 4 bed flat for sale Brook Green, London W6 - £1,500,000 - 4 beds
+    ✏️  Collected: 2 bed flat for sale Elvaston Place, Kensington, London SW7 - £1,500,000 - 2 beds
+    ✏️  Collected: 4 bed terraced house for sale Minford Gardens, London W14 - £1,500,000 - 4 beds
+    ✏️  Collected: 2 bed mews for sale Stewarts Grove, London SW3 - £1,500,000 - 2 beds
+    ✏️  Collected: 2 bed flat for sale Ellison Road, London SW16 - £475,000 - 2 beds
+    ✏️  Collected: 2 bed flat for sale Southwell Gardens, South Kensington, London SW7 - £1,500,000 - 2 beds
+    ✏️  Collected: 2 bed flat for sale Ebury Street, Belgravia, London SW1W - £1,500,000 - 2 beds
+    ✏️  Collected: 6 bed property for sale Worple Road, Wimbledon SW19 - £1,500,000 - 6 beds
+    ✏️  Collected: 6 bed detached house for sale Edgefield Close, Beckenham, Kent BR3 - £1,500,000 - 6 beds
+    ✏️  Collected: 5 bed terraced house for sale Grove Avenue, Muswell Hill, London N10 - £1,500,000 - 5 beds
+    ✏️  Collected: 5 bed detached house for sale Mount Grace Road, Potters Bar EN6 - £1,500,000 - 5 beds
+    ✏️  Collected: 2 bed flat for sale Wapping Wall, London E1W - £1,500,000 - 2 beds
+    ✏️  Collected: 3 bed flat for sale Hyde Park Place, London W2 - £1,500,000 - 3 beds
+    ✏️  Collected: 6 bed semi-detached house for sale Haydon Park Road, Wimbledon, London SW19 - £1,500,000 - 6 beds
+    ✏️  Collected: 6 bed property for sale Mildenhall Road, Clapton E5 - £1,500,000 - 6 beds
+    ✏️  Collected: 3 bed flat for sale Searles Road, London SE1 - £1,500,000 - 3 beds
+    ✏️  Collected: 3 bed flat for sale Juniper Drive, Battersea, London SW18 - £1,500,000 - 3 beds
+    ✏️  Collected: 5 bed detached house for sale Riverside Close, Kingston Upon Thames KT1 - £1,500,000 - 5 beds
+    ✏️  Collected: 4 bed detached house for sale The Sweet Factory, Greenwich SE10 - £1,500,000 - 4 beds
+    ✏️  Collected: 5 bed detached house for sale Motspur Park, Motspur Park, New Malden KT3 - £1,500,000 - 5 beds
+    ✏️  Collected: 5 bed flat for sale Royal Victoria Patriotic Building, John Archer Way, London SW18 - £1,500,000 - 5 beds
+    ✏️  Collected: 2 bed flat for sale John Adam Street, London WC2N - £1,500,000 - 2 beds
+    ✏️  Collected: 4 bed semi-detached house for sale Ashness Gardens, Greenford UB6 - £1,500,000 - 4 beds
+    ✏️  Collected: 5 bed detached house for sale Church Lane, Ealing W5 - £1,500,000 - 5 beds
+    ✏️  Collected: 4 bed semi-detached house for sale Woodbourne Avenue, London SW16 - £1,500,000 - 4 beds
+    ✏️  Collected: 4 bed semi-detached house for sale Ashness Gardens, Sudbury, Greenford UB6 - £1,500,000 - 4 beds
+
+    at ChildProcess.<anonymous> (/home/runner/workspace/server/services/scraper-manager.ts:352:18)
+    at ChildProcess.emit (node:events:524:28)
+    at maybeClose (node:internal/child_process:1104:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:304:5)
+📍 [2/31] Scraping Birmingham...

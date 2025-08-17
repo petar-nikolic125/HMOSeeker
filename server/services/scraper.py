@@ -564,13 +564,13 @@ def scrape_primelocation(city, min_bedrooms, max_price, keywords_blob):
             continue
 
     # cap how many detail pages to actually fetch
-    max_fetch = as_int(os.getenv("PL_MAX_FETCH", 400), 400)
+    max_fetch = as_int(os.getenv("PL_MAX_FETCH", 100), 100)
     detail_links = all_detail_links[:max_fetch]
     print(f"🎯 Processing {len(detail_links)} property detail pages (capped from {len(all_detail_links)} found)", file=sys.stderr)
 
     # 3) Parallel fetch details
     results = []
-    workers = as_int(os.getenv("PL_WORKERS", 6), 6)
+    workers = as_int(os.getenv("PL_WORKERS", 3), 3)
     print(f"🏠 Extracting property details with {workers} workers...", file=sys.stderr)
 
     def fetch_and_parse(url):
