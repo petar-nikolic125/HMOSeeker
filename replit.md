@@ -58,6 +58,9 @@ The system includes a basic user management schema for username/password authent
 - **Scraper Upgrade**: Integrated v2 scraper removing forced HMO keywords injection
 - **Performance Improvements**: New scraper includes parallel detail fetching, improved link harvesting, and multi-sort optimization
 - **Security Enhanced**: Proper client/server separation maintained throughout migration
+- **Localization Fixed**: Replaced Serbian/Croatian text with English throughout frontend
+- **Data Structure Resolved**: Fixed mismatch between API response format and frontend expectations
+- **Console Logging**: Reduced verbose cache processing logs to prevent chat spam
 - **Application Status**: Fully functional with property search, analysis, and investment calculations working
 
 ## Previous Deployment (August 14, 2025)
