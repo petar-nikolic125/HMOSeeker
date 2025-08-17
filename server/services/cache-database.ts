@@ -52,8 +52,7 @@ export class CacheDatabase {
       const files = await fs.readdir(cityDir);
       const jsonFiles = files.filter(f => f.endsWith('.json'));
       
-      console.log(`📄 Found ${jsonFiles.length} JSON files in ${cityDir}`);
-      console.log(`📂 File list: ${jsonFiles.join(', ')}`);
+      // Reduced verbose logging for performance
       
       let allProperties: any[] = [];
       
@@ -65,7 +64,7 @@ export class CacheDatabase {
           
           if (Array.isArray(properties)) {
             allProperties.push(...properties);
-            console.log(`  📄 ${file}: ${properties.length} properties`);
+            // Reduced per-file logging
           } else {
             console.log(`  📄 ${file}: Invalid format (not array)`);
           }
@@ -79,7 +78,10 @@ export class CacheDatabase {
         arr.findIndex(p => p.property_url === prop.property_url) === index
       );
       
-      console.log(`📊 ${city}: ${allProperties.length} total, ${uniqueProperties.length} unique properties`);
+      // Reduced logging for performance
+      if (uniqueProperties.length > 0) {
+        console.log(`📊 ${city}: ${uniqueProperties.length} unique properties`);
+      }
       
       return uniqueProperties;
       
@@ -104,8 +106,9 @@ export class CacheDatabase {
     article4_filter?: "all" | "non_article4" | "article4_only";
   }): Promise<any[]> {
     
+    // Optimization: Force single city search for performance  
     if (!filters.city) {
-      // Ako nema grada, traži u svim gradovima
+      console.log(`⚡ No city specified, using fast multi-city search`);
       return this.searchAllCities(filters);
     }
     
@@ -220,7 +223,7 @@ export class CacheDatabase {
   }
   
   /**
-   * Pretraži sve gradove
+   * Fast search across top 5 popular cities only (performance optimized)
    */
   static async searchAllCities(filters: {
     min_bedrooms?: number;
@@ -233,94 +236,87 @@ export class CacheDatabase {
   }): Promise<any[]> {
     
     try {
-      const cityDirs = await fs.readdir(this.CACHE_DIR);
+      // Performance optimization: Only search top 5 cities with most data
+      const priorityCities = ['london', 'manchester', 'birmingham', 'liverpool', 'leeds'];
       let allResults: any[] = [];
+      const maxResults = 500; // Limit total results for performance
       
-      for (const cityDir of cityDirs) {
-        const cityProperties = await this.getPropertiesForCity(cityDir);
-        allResults.push(...cityProperties);
+      console.log(`🔧 Fast multi-city search in top ${priorityCities.length} cities (max ${maxResults} results)`);
+      
+      for (const cityName of priorityCities) {
+        if (allResults.length >= maxResults) break;
+        
+        try {
+          const cityProperties = await this.getPropertiesForCity(cityName);
+          // Pre-filter during loading to reduce memory usage
+          let filtered = cityProperties;
+          
+          // Apply filters immediately during city loading
+          if (filters.min_bedrooms) {
+            filtered = filtered.filter(p => (p.bedrooms || 0) >= filters.min_bedrooms!);
+          }
+          if (filters.max_price) {
+            filtered = filtered.filter(p => (p.price || 0) <= filters.max_price!);
+          }
+          
+          // Add only what we need, respect the limit
+          const toAdd = filtered.slice(0, maxResults - allResults.length);
+          allResults.push(...toAdd);
+          
+        } catch (cityError) {
+          console.log(`⚠️ Skipping ${cityName}: ${cityError}`);
+          continue;
+        }
       }
       
-      // Primeni filtere
-      let filtered = allResults;
-      
-      console.log(`🔧 Multi-city applying filters:`, filters);
-      
-      if (filters.min_bedrooms) {
-        const beforeCount = filtered.length;
-        filtered = filtered.filter(p => {
-          const bedrooms = p.bedrooms || 0;
-          return bedrooms >= filters.min_bedrooms!;
-        });
-        console.log(`🛏️  Min bedrooms filter (${filters.min_bedrooms}): ${beforeCount} → ${filtered.length}`);
-      }
-      
-      if (filters.max_price) {
-        const beforeCount = filtered.length;
-        filtered = filtered.filter(p => {
-          const price = p.price || 0;
-          return price <= filters.max_price!;
-        });
-        console.log(`💰 Max price filter (£${filters.max_price}): ${beforeCount} → ${filtered.length}`);
-      }
+      // Apply remaining filters to the pre-filtered subset
+      let finalFiltered = allResults;
       
       if (filters.max_sqm) {
-        const beforeCount = filtered.length;
-        filtered = filtered.filter(p => {
+        finalFiltered = finalFiltered.filter(p => {
           const sqm = p.area_sqm;
-          // If area_sqm is null/undefined, include the property (don't filter out)
-          // Only filter out if we have a valid sqm value that exceeds the limit
           return sqm === null || sqm === undefined || sqm <= filters.max_sqm!;
         });
-        console.log(`📐 Multi-city Max sqm filter (${filters.max_sqm}): ${beforeCount} → ${filtered.length} (includes properties without area data)`);
       }
       
       if (filters.postcode) {
-        const beforeCount = filtered.length;
         const postcodeSearch = filters.postcode.toLowerCase().trim();
-        filtered = filtered.filter(p => {
+        finalFiltered = finalFiltered.filter(p => {
           const postcode = (p.postcode || '').toLowerCase();
           const address = (p.address || '').toLowerCase();
           return postcode.includes(postcodeSearch) || address.includes(postcodeSearch);
         });
-        console.log(`📮 Postcode filter ("${filters.postcode}"): ${beforeCount} → ${filtered.length}`);
       }
       
       if (filters.keywords) {
-        const beforeCount = filtered.length;
         const keywords = filters.keywords.toLowerCase();
-        filtered = filtered.filter(p => 
+        finalFiltered = finalFiltered.filter(p => 
           (p.address || '').toLowerCase().includes(keywords) ||
           (p.description || '').toLowerCase().includes(keywords)
         );
-        console.log(`🔍 Keywords filter ("${keywords}"): ${beforeCount} → ${filtered.length}`);
       }
 
       if (filters.hmo_candidate !== undefined) {
-        const beforeCount = filtered.length;
-        filtered = filtered.filter(p => {
+        finalFiltered = finalFiltered.filter(p => {
           const isCandidate = p.hmo_candidate === true || 
             (p.area_sqm >= 90 && p.article4_area !== true);
           return filters.hmo_candidate ? isCandidate : !isCandidate;
         });
-        console.log(`🏠 Multi-city HMO candidate filter (${filters.hmo_candidate}): ${beforeCount} → ${filtered.length}`);
       }
 
       if (filters.article4_filter && filters.article4_filter !== "all") {
-        const beforeCount = filtered.length;
-        filtered = filtered.filter(p => {
+        finalFiltered = finalFiltered.filter(p => {
           const isArticle4 = p.article4_area === true;
           return filters.article4_filter === "non_article4" ? !isArticle4 : isArticle4;
         });
-        console.log(`📋 Multi-city Article 4 filter ("${filters.article4_filter}"): ${beforeCount} → ${filtered.length}`);
       }
       
-      // Ukloni duplikate
-      const uniqueFiltered = filtered.filter((prop, index, arr) => 
+      // Remove duplicates efficiently  
+      const uniqueFiltered = finalFiltered.filter((prop, index, arr) => 
         arr.findIndex(p => p.property_url === prop.property_url) === index
       );
       
-      console.log(`🔍 Multi-city search: ${allResults.length} total, ${uniqueFiltered.length} after filters`);
+      console.log(`📄 Found ${uniqueFiltered.length} total cached properties`);
       
       return uniqueFiltered;
       
