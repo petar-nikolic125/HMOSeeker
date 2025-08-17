@@ -61,6 +61,9 @@ The system includes a basic user management schema for username/password authent
 - **Localization Fixed**: Replaced Serbian/Croatian text with English throughout frontend
 - **Data Structure Resolved**: Fixed mismatch between API response format and frontend expectations
 - **Console Logging**: Reduced verbose cache processing logs to prevent chat spam
+- **Cache Management**: Cleared all cached property data and updated scraper settings
+- **Scraper Configuration**: Updated MAX_PAGES from 12 to 30 for broader property coverage
+- **Keywords Removed**: Eliminated HMO keyword filtering from bulk scraper for unrestricted property searches
 - **Application Status**: Fully functional with property search, analysis, and investment calculations working
 
 ## Previous Deployment (August 14, 2025)

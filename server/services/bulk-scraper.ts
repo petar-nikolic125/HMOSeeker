@@ -50,13 +50,13 @@ export class BulkScraper {
         console.log(`📍 [${i + 1}/${this.UK_CITIES.length}] Scraping ${city}...`);
 
         try {
-          // Scrapuj grad sa fokusiranjem na HMO nekretnine
+          // Scrapuj grad za sve nekretnine
           const result = await ScraperManager.searchProperties({
             city: city,
             min_bedrooms: 1,
             max_price: 1500000,
-            keywords: "hmo", // Samo HMO oglasi
-            refresh: true // Forsiraj svež scrape za više rezultata
+            keywords: "", // No keywords filter
+            refresh: true // Force fresh scrape for more results
           });
 
           // Ako imamo nove podatke, dodaj ih u cache database (preskače duplikate)
