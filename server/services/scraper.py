@@ -257,7 +257,7 @@ def add_investment_metrics(rec, city):
 def build_search_urls(city, min_beds, max_price, filters):
     city_slug = slug_city(city)
     q = filters.get("postcode") or get_search_query_for_city(city)
-    max_pages = as_int(os.getenv("PL_MAX_PAGES", 30), 30)
+    max_pages = as_int(os.getenv("PL_MAX_PAGES", 100), 100)
     page_size = as_int(os.getenv("PL_PAGE_SIZE", 50), 50)
 
     base_params = {
@@ -515,7 +515,7 @@ def scrape_primelocation(city, min_bedrooms, max_price, keywords_blob):
 
     proxies_env = os.getenv("PROXY_LIST", "")
     proxies_list = [p.strip() for p in proxies_env.split(",") if p.strip()]
-    target_min_results = as_int(os.getenv("PL_MIN_RESULTS", 200), 200)
+    target_min_results = as_int(os.getenv("PL_MIN_RESULTS", 1000), 1000)
 
     # 1) Build search URLs
     urls = build_search_urls(city, min_beds, max_price_int, filters)
@@ -541,7 +541,7 @@ def scrape_primelocation(city, min_bedrooms, max_price, keywords_blob):
             # polite pause
             rand_delay(0.2, 0.6)
             # stop early if we've comfortably exceeded target
-            if len(all_detail_links) >= max(target_min_results, 300):
+            if len(all_detail_links) >= max(target_min_results, 1500):
                 print(f"✅ Collected {len(all_detail_links)} links; continuing to next search pages for broader coverage...", file=sys.stderr)
         except Exception as e:
             failed_attempts += 1
@@ -564,13 +564,13 @@ def scrape_primelocation(city, min_bedrooms, max_price, keywords_blob):
             continue
 
     # cap how many detail pages to actually fetch
-    max_fetch = as_int(os.getenv("PL_MAX_FETCH", 100), 100)
+    max_fetch = as_int(os.getenv("PL_MAX_FETCH", 2000), 2000)
     detail_links = all_detail_links[:max_fetch]
     print(f"🎯 Processing {len(detail_links)} property detail pages (capped from {len(all_detail_links)} found)", file=sys.stderr)
 
     # 3) Parallel fetch details
     results = []
-    workers = as_int(os.getenv("PL_WORKERS", 3), 3)
+    workers = as_int(os.getenv("PL_WORKERS", 8), 8)
     print(f"🏠 Extracting property details with {workers} workers...", file=sys.stderr)
 
     def fetch_and_parse(url):

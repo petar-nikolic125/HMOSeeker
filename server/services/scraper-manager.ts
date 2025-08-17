@@ -35,7 +35,7 @@ export class ScraperManager {
 
    //scraper.py
   private static readonly PYTHON_CMD = process.env.NODE_ENV === 'production' ? 'python3' : 'python3';
-  private static readonly DEFAULT_TIMEOUT = 600000; // 10 minutes
+  private static readonly DEFAULT_TIMEOUT = 1800000; // 30 minutes
 
   static async searchProperties(filters: ExtendedSearchFilters): Promise<ScrapeResult> {
     return this.runPrimeLocationScraper(filters);

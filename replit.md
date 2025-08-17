@@ -70,7 +70,9 @@ The system includes a basic user management schema for username/password authent
 - **Type Errors Fixed**: Resolved 15 LSP diagnostics in scraper.py related to BeautifulSoup element handling
 - **Helper Function Added**: Created safe_get_attr() function for robust element attribute access
 - **Timeout Increased**: Extended DEFAULT_TIMEOUT from 3 minutes to 10 minutes for bulk scraping
-- **Resource Optimization**: Reduced max fetch from 400 to 100 properties and workers from 6 to 3
+- **Resource Optimization**: Enhanced capacity to 2,000 properties per city with 8 parallel workers
+- **Coverage Expansion**: Increased to 100 search pages per city for maximum property discovery
+- **Timeout Extended**: Set 30-minute timeout for comprehensive data collection without speed constraints
 - **Scraper Stability**: Fixed crashes during property detail collection phase
 
 ## Previous Deployment (August 14, 2025)
