@@ -8,11 +8,14 @@ PrimeLocation scraper v2
   * parallel detail page fetching (ThreadPoolExecutor)
   * improved link harvesting (ld+json, anchors, data attributes)
   * safer per-worker sessions and UA rotation
+- DEFAULT FOCUS: Properties around £600k (£400k-£800k range)
+- LIMIT: Max 5000 properties per city, no total limit across cities
 
 Usage remains the same as v1. Environment tweaks (optional):
   PL_PAGE_SIZE=100
   PL_MAX_PAGES=24
-  PL_MIN_RESULTS=5000
+  PL_MIN_RESULTS=5000     # links to collect per city
+  PL_MAX_FETCH=5000       # max properties to process per city (no total limit)
   PL_EXPAND_SORTS=1       # enable trying different sort orders to surface more listings
   PL_WORKERS=8            # number of threads to fetch detail pages
   REFRESH=1               # force refresh
@@ -260,9 +263,14 @@ def build_search_urls(city, min_beds, max_price, filters):
     max_pages = as_int(os.getenv("PL_MAX_PAGES", 100), 100)
     page_size = as_int(os.getenv("PL_PAGE_SIZE", 50), 50)
 
+    # Focus on properties around £600k (range: £400k-£800k)
+    default_max_price = "800000"  # £800k upper bound for ~£600k focus
+    default_min_price = "400000"  # £400k lower bound for ~£600k focus
+    
     base_params = {
         "q": q,
-        "price_max": str(max_price) if max_price else "1500000",
+        "price_min": default_min_price,  # £400k minimum for £600k focus
+        "price_max": str(max_price) if max_price else default_max_price,  # £800k max for £600k focus
         "is_auction": "include",
         "is_retirement_home": "include",
         "is_shared_ownership": "include",
@@ -516,6 +524,8 @@ def scrape_primelocation(city, min_bedrooms, max_price, keywords_blob):
     proxies_env = os.getenv("PROXY_LIST", "")
     proxies_list = [p.strip() for p in proxies_env.split(",") if p.strip()]
     target_min_results = as_int(os.getenv("PL_MIN_RESULTS", 5000), 5000)
+    
+    print(f"🎯 Target: {target_min_results} links per city, max fetch: 5000 properties", file=sys.stderr)
 
     # 1) Build search URLs
     urls = build_search_urls(city, min_beds, max_price_int, filters)
@@ -540,9 +550,9 @@ def scrape_primelocation(city, min_bedrooms, max_price, keywords_blob):
             failed_attempts = 0
             # polite pause
             rand_delay(0.2, 0.6)
-            # stop early if we've comfortably exceeded target
-            if len(all_detail_links) >= max(target_min_results, 5000):
-                print(f"✅ Collected {len(all_detail_links)} links; continuing to next search pages for broader coverage...", file=sys.stderr)
+            # Continue collecting until we have enough links for 5000 properties per city
+            if len(all_detail_links) >= 7000:  # Collect more links to ensure 5000 good properties after filtering
+                print(f"✅ Collected {len(all_detail_links)} links; sufficient for 5000 property target per city", file=sys.stderr)
         except Exception as e:
             failed_attempts += 1
             print(f"❌ Error on search page {i}: {str(e)}", file=sys.stderr)

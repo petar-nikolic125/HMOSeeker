@@ -72,6 +72,8 @@ The system includes a basic user management schema for username/password authent
 - **Application Status**: Fully functional with property search, analysis, investment calculations, and pagination working
 - **Pagination System Complete**: Implemented 50 results per page with "Show More" functionality and total result counts
 - **Filtering Accuracy Verified**: Price filtering working correctly - London shows only 5 properties under £500k with 3+ bedrooms (accurate market data)
+- **£600k Focus Implementation**: Updated scraper to target properties around £600k (£400k-£800k range) with 5000 max per city, no total limit
+- **Price Range Optimization**: Default search now focuses on £400k-£800k bracket to capture investment-grade HMO properties around £600k sweet spot
 
 ## Python Scraper Debugging (August 17, 2025)
 - **Type Errors Fixed**: Resolved 15 LSP diagnostics in scraper.py related to BeautifulSoup element handling
