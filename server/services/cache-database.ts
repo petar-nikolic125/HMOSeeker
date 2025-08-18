@@ -126,13 +126,24 @@ export class CacheDatabase {
         return bedrooms >= filters.min_bedrooms!;
       });
       console.log(`🛏️  Min bedrooms filter (${filters.min_bedrooms}): ${beforeCount} → ${filtered.length}`);
+      
+      // Debug: Show sample of filtered properties
+      if (filtered.length <= 10) {
+        console.log(`🔍 Sample after bedrooms filter:`, filtered.slice(0, 5).map(p => ({
+          price: p.price,
+          bedrooms: p.bedrooms,
+          address: (p.address || '').substring(0, 50)
+        })));
+      }
     }
     
     if (filters.max_price) {
       const beforeCount = filtered.length;
       filtered = filtered.filter(p => {
         const price = p.price || 0;
-        return price <= filters.max_price!;
+        // Only filter out properties with null/undefined prices if they're explicitly 0
+        // Allow properties with valid prices <= max_price
+        return price > 0 && price <= filters.max_price!;
       });
       console.log(`💰 Max price filter (£${filters.max_price}): ${beforeCount} → ${filtered.length}`);
     }
