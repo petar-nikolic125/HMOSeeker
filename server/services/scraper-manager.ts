@@ -173,7 +173,7 @@ export class ScraperManager {
         this.PYTHON_SCRIPT_PATH,
         filters.city,
         (filters.min_bedrooms || 1).toString(),
-        (filters.max_price || 0).toString(),
+        (filters.max_price || 700000).toString(),
         filters.keywords || ""
       ];
 
