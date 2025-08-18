@@ -241,7 +241,7 @@ export class CacheDatabase {
       // Performance optimization: Search top cities but increase limit for better filtering
       const priorityCities = ['london', 'manchester', 'birmingham', 'liverpool', 'leeds'];
       let allResults: any[] = [];
-      const maxResults = 2000; // Increased limit for better results
+      const maxResults = 5000; // Increased limit for better results
       
       console.log(`🔧 Fast multi-city search in top ${priorityCities.length} cities (max ${maxResults} results)`);
       

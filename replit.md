@@ -66,6 +66,7 @@ The system includes a basic user management schema for username/password authent
 - **Keywords Removed**: Eliminated HMO keyword filtering from bulk scraper for unrestricted property searches
 - **Pagination Implementation**: Added smart pagination with 50 results per page and "Show More" functionality
 - **Filter Consistency**: Resolved filtering inconsistencies by increasing search limit from 500 to 2000 properties
+- **Scraper Capacity Increased**: Updated scraper limits to 5000 properties (PL_MIN_RESULTS, PL_MAX_FETCH, cache database)
 - **Performance Optimization**: Improved multi-city search performance while maintaining comprehensive results
 - **Application Status**: Fully functional with property search, analysis, investment calculations, and pagination working
 - **Pagination System Complete**: Implemented 50 results per page with "Show More" functionality and total result counts
