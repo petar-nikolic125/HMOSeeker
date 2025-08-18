@@ -238,15 +238,14 @@ export class CacheDatabase {
   }): Promise<any[]> {
     
     try {
-      // Performance optimization: Search top cities but increase limit for better filtering
+      // Performance optimization: Search top cities with unlimited total but max 5000 per city
       const priorityCities = ['london', 'manchester', 'birmingham', 'liverpool', 'leeds'];
       let allResults: any[] = [];
-      const maxResults = 5000; // Increased limit for better results
+      const maxPerCity = 5000; // Max properties per city
       
-      console.log(`🔧 Fast multi-city search in top ${priorityCities.length} cities (max ${maxResults} results)`);
+      console.log(`🔧 Fast multi-city search in top ${priorityCities.length} cities (max ${maxPerCity} per city, unlimited total)`);
       
       for (const cityName of priorityCities) {
-        if (allResults.length >= maxResults) break;
         
         try {
           const cityProperties = await this.getPropertiesForCity(cityName);
@@ -261,8 +260,8 @@ export class CacheDatabase {
             filtered = filtered.filter(p => (p.price || 0) <= filters.max_price!);
           }
           
-          // Add only what we need, respect the limit
-          const toAdd = filtered.slice(0, maxResults - allResults.length);
+          // Add only what we need per city, respect the per-city limit
+          const toAdd = filtered.slice(0, maxPerCity);
           allResults.push(...toAdd);
           
         } catch (cityError) {
