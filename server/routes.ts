@@ -23,7 +23,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Get cached property listings (Quick cache search - cache je glavna baza!)
   app.get("/api/properties", async (req, res) => {
     try {
-      const { city, max_price, min_bedrooms, min_sqm, max_sqm, postcode, keywords, hmo_candidate, article4_filter } = req.query;
+      const { city, max_price, min_bedrooms, min_sqm, max_sqm, postcode, keywords, hmo_candidate, article4_filter, page, limit } = req.query;
       
       // Konvertuj max_price string u integer (1.5M -> 1500000)
       const parsePrice = (priceStr: string): number => {
@@ -66,15 +66,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (hmo_candidate !== undefined) filters.hmo_candidate = hmo_candidate === 'true';
       if (article4_filter && article4_filter !== "all") filters.article4_filter = article4_filter as "non_article4" | "article4_only";
 
+      // Add pagination parameters
+      const pageNum = parseInt(page as string) || 1;
+      const pageSize = parseInt(limit as string) || 50;
+      const offset = (pageNum - 1) * pageSize;
+
       console.log(`🔍 Searching cache database for: ${JSON.stringify(filters)}`);
+      console.log(`📄 Pagination: page ${pageNum}, showing ${pageSize} results (offset: ${offset})`);
       
-      // Koristi CacheDatabase umesto storage
-      const properties = await CacheDatabase.searchProperties(filters);
+      // Get ALL properties first (for total count)
+      const allProperties = await CacheDatabase.searchProperties(filters);
+      const totalResults = allProperties.length;
       
-      console.log(`📊 Found ${properties.length} properties in cache database`);
+      // Apply pagination to results
+      const paginatedProperties = allProperties.slice(offset, offset + pageSize);
+      
+      console.log(`📊 Found ${totalResults} total properties, showing ${paginatedProperties.length} on page ${pageNum}`);
       
       // Transform properties to match frontend expectations with real calculations
-      const transformedListings = properties.map((prop, index) => {
+      const transformedListings = paginatedProperties.map((prop, index) => {
         // Calculate real metrics for each property
         const propertyData: PropertyData = {
           price: prop.price || 0,
@@ -152,6 +162,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json({
         success: true,
         count: transformedListings.length,
+        total: totalResults,
+        page: pageNum,
+        limit: pageSize,
+        hasMore: (pageNum * pageSize) < totalResults,
         cached: true,
         listings: transformedListings,
       });

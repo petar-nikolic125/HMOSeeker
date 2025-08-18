@@ -15,6 +15,9 @@ interface SearchState {
   isCached: boolean;
   lastRefreshed: Date | null;
   error: string | null;
+  totalResults: number;
+  currentPage: number;
+  hasMore: boolean;
 }
 
 export default function Home() {
@@ -24,6 +27,9 @@ export default function Home() {
     isCached: false,
     lastRefreshed: null,
     error: null,
+    totalResults: 0,
+    currentPage: 1,
+    hasMore: false,
   });
   const [selectedProperty, setSelectedProperty] = useState<PropertyListing | null>(null);
   const [currentFilters, setCurrentFilters] = useState<SearchFilters>({ 
@@ -37,7 +43,7 @@ export default function Home() {
   const [sortedProperties, setSortedProperties] = useState<any[]>([]);
 
   const searchMutation = useMutation({
-    mutationFn: async ({ filters }: { filters: SearchFilters }) => {
+    mutationFn: async ({ filters, page = 1, append = false }: { filters: SearchFilters; page?: number; append?: boolean }) => {
       const params = new URLSearchParams();
       if (filters.city) params.append('city', filters.city);
       if (filters.minRooms) params.append('min_bedrooms', filters.minRooms.toString());
@@ -49,10 +55,14 @@ export default function Home() {
       if (filters.hmo_candidate) params.append('hmo_candidate', 'true');
       if (filters.article4_filter && filters.article4_filter !== 'all') params.append('article4_filter', filters.article4_filter);
       
+      // Add pagination parameters
+      params.append('page', page.toString());
+      params.append('limit', '50');
+      
       // Use cache endpoint instead of search (no scraping)
       const response = await fetch(`/api/properties?${params.toString()}`);
       if (!response.ok) throw new Error('Cache search failed');
-      return response.json();
+      return { ...await response.json(), append };
     },
     onMutate: () => {
       setSearchState(prev => ({ ...prev, isLoading: true, error: null }));
@@ -64,13 +74,16 @@ export default function Home() {
       const properties = data.listings || data.properties || [];
       console.log('Properties count:', properties.length);
       
-      setSearchState({
-        properties: properties,
+      setSearchState(prev => ({
+        properties: data.append ? [...prev.properties, ...properties] : properties,
         isLoading: false,
         isCached: data.cached || true,
         lastRefreshed: new Date(),
         error: null,
-      });
+        totalResults: data.total || properties.length,
+        currentPage: data.page || 1,
+        hasMore: data.hasMore || false,
+      }));
     },
     onError: (error: Error) => {
       setSearchState(prev => ({
@@ -88,8 +101,20 @@ export default function Home() {
     
     setLastSearchTime(now);
     setCurrentFilters(filters);
-    searchMutation.mutate({ filters });
+    // Reset pagination for new searches
+    searchMutation.mutate({ filters, page: 1, append: false });
   }, [searchMutation, lastSearchTime]);
+
+  const handleLoadMore = useCallback(() => {
+    if (!searchState.hasMore || searchState.isLoading) return;
+    
+    const nextPage = searchState.currentPage + 1;
+    searchMutation.mutate({ 
+      filters: currentFilters, 
+      page: nextPage, 
+      append: true 
+    });
+  }, [searchMutation, currentFilters, searchState.hasMore, searchState.isLoading, searchState.currentPage]);
 
   const handleRefresh = useCallback(() => {
     if (currentFilters.city) {
@@ -173,6 +198,9 @@ export default function Home() {
       
       <PropertyResults 
         properties={sortedProperties.length > 0 ? sortedProperties : searchState.properties} 
+        totalResults={searchState.totalResults}
+        hasMore={searchState.hasMore}
+        onLoadMore={handleLoadMore}
         filters={currentFilters}
         onAnalyze={handlePropertyAnalysis}
         onRefresh={handleRefresh}

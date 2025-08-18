@@ -236,10 +236,10 @@ export class CacheDatabase {
   }): Promise<any[]> {
     
     try {
-      // Performance optimization: Only search top 5 cities with most data
+      // Performance optimization: Search top cities but increase limit for better filtering
       const priorityCities = ['london', 'manchester', 'birmingham', 'liverpool', 'leeds'];
       let allResults: any[] = [];
-      const maxResults = 500; // Limit total results for performance
+      const maxResults = 2000; // Increased limit for better results
       
       console.log(`🔧 Fast multi-city search in top ${priorityCities.length} cities (max ${maxResults} results)`);
       

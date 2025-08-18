@@ -1,5 +1,5 @@
-import React from "react";
-import { Clock, Filter, RefreshCw, CheckCircle, Database, AlertCircle } from "lucide-react";
+import React, { useState } from "react";
+import { Clock, Filter, RefreshCw, CheckCircle, Database, AlertCircle, ChevronDown } from "lucide-react";
 import PropertyCard from "./property-card";
 import type { PropertyListing } from "@shared/schema";
 import type { SearchFilters, PropertyWithAnalytics } from "@/lib/types";
@@ -15,6 +15,9 @@ interface SearchState {
 
 interface PropertyResultsProps {
   properties: any[];
+  totalResults?: number;
+  hasMore?: boolean;
+  onLoadMore?: () => void;
   filters: SearchFilters;
   onAnalyze: (property: PropertyListing) => void;
   onRefresh: () => void;
@@ -23,7 +26,7 @@ interface PropertyResultsProps {
   currentSort?: string;
 }
 
-export default function PropertyResults({ properties, filters, onAnalyze, onRefresh, searchState, onSortChange, currentSort }: PropertyResultsProps) {
+export default function PropertyResults({ properties, totalResults = 0, hasMore = false, onLoadMore, filters, onAnalyze, onRefresh, searchState, onSortChange, currentSort }: PropertyResultsProps) {
   const { isLoading, isCached, lastRefreshed, error } = searchState;
   const { toast } = useToast();
 
@@ -62,7 +65,12 @@ export default function PropertyResults({ properties, filters, onAnalyze, onRefr
           </h2>
           <div className="space-y-3">
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Found <span className="font-semibold text-blue-600">{properties.length}</span> properties matching your criteria with high investment potential
+              Found <span className="font-semibold text-blue-600">{totalResults || properties.length}</span> properties matching your criteria
+              {totalResults > properties.length && (
+                <span className="text-sm text-gray-500 block mt-1">
+                  Showing {properties.length} of {totalResults} results
+                </span>
+              )}
             </p>
 
             {/* Search Status */}
@@ -127,16 +135,35 @@ export default function PropertyResults({ properties, filters, onAnalyze, onRefr
             </div>
           </div>
         ) : properties.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-            {properties.map((property, index) => (
-              <PropertyCard 
-                key={property.property_url || index} 
-                property={property} 
-                onAnalyze={onAnalyze}
-                delay={index * 100}
-              />
-            ))}
-          </div>
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+              {properties.map((property, index) => (
+                <PropertyCard 
+                  key={property.property_url || index} 
+                  property={property} 
+                  onAnalyze={onAnalyze}
+                  delay={index * 100}
+                />
+              ))}
+            </div>
+            
+            {/* Show More Button */}
+            {hasMore && onLoadMore && (
+              <div className="text-center mb-8">
+                <button
+                  onClick={onLoadMore}
+                  className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium transition-colors duration-200"
+                  data-testid="button-show-more"
+                >
+                  <span>Show More Properties</span>
+                  <ChevronDown className="w-4 h-4" />
+                </button>
+                <p className="text-sm text-gray-500 mt-2">
+                  Showing {properties.length} of {totalResults} total results
+                </p>
+              </div>
+            )}
+          </>
         ) : (
           <div className="text-center py-12">
             <div className="w-24 h-24 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
@@ -157,10 +184,10 @@ export default function PropertyResults({ properties, filters, onAnalyze, onRefr
         )}
 
         {/* Results Summary */}
-        {properties.length > 0 && (
+        {properties.length > 0 && !hasMore && (
           <div className="text-center">
             <div className="text-sm text-gray-600 mb-4">
-              Showing {properties.length} properties • {isCached ? 'From cache' : 'Fresh from PrimeLocation'}
+              Showing all {properties.length} properties • {isCached ? 'From cache' : 'Fresh from PrimeLocation'}
             </div>
           </div>
         )}
