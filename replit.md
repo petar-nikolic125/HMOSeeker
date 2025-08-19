@@ -66,14 +66,16 @@ The system includes a basic user management schema for username/password authent
 - **Keywords Removed**: Eliminated HMO keyword filtering from bulk scraper for unrestricted property searches
 - **Pagination Implementation**: Added smart pagination with 50 results per page and "Show More" functionality
 - **Filter Consistency**: Resolved filtering inconsistencies by increasing search limit from 500 to 2000 properties
-- **Scraper Capacity Increased**: Updated scraper limits to 5000 properties (PL_MIN_RESULTS, PL_MAX_FETCH, cache database)
-- **Configuration Updated**: Set max price to £1,000,000, per-city limit 5000 properties, unlimited total database storage
+- **Scraper Capacity Tripled**: Updated scraper limits to 15000 properties per city (PL_MIN_RESULTS=15000, PL_MAX_FETCH=15000)
+- **Search Pages Expanded**: Increased PL_MAX_PAGES from 100 to 200, and page size from 50 to 100 properties per page
+- **Configuration Updated**: Set max price to £1,000,000, per-city limit 15000 properties, unlimited total database storage
 - **Performance Optimization**: Improved multi-city search performance while maintaining comprehensive results
 - **Application Status**: Fully functional with property search, analysis, investment calculations, and pagination working
 - **Pagination System Complete**: Implemented 50 results per page with "Show More" functionality and total result counts
 - **Filtering Accuracy Verified**: Price filtering working correctly - London shows only 5 properties under £500k with 3+ bedrooms (accurate market data)
-- **£600k Focus Implementation**: Updated scraper to target properties around £600k (£400k-£800k range) with 5000 max per city, no total limit
+- **£600k Focus Implementation**: Updated scraper to target properties around £600k (£400k-£800k range) with 15000 max per city, no total limit
 - **Price Range Optimization**: Default search now focuses on £400k-£800k bracket to capture investment-grade HMO properties around £600k sweet spot
+- **Enhanced Property Coverage**: Tripled property capacity from 5000 to 15000 per city with expanded search page coverage (200 pages at 100 properties each)
 
 ## Python Scraper Debugging (August 17, 2025)
 - **Type Errors Fixed**: Resolved 15 LSP diagnostics in scraper.py related to BeautifulSoup element handling
