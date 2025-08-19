@@ -238,12 +238,12 @@ export class CacheDatabase {
   }): Promise<any[]> {
     
     try {
-      // Performance optimization: Search top cities with unlimited total but max 5000 per city
+      // Performance optimization: Search top cities with unlimited total and unlimited per city
       const priorityCities = ['london', 'manchester', 'birmingham', 'liverpool', 'leeds'];
       let allResults: any[] = [];
-      const maxPerCity = 5000; // Max properties per city
+      const maxPerCity = Number.MAX_SAFE_INTEGER; // Unlimited properties per city
       
-      console.log(`🔧 Fast multi-city search in top ${priorityCities.length} cities (max ${maxPerCity} per city, unlimited total)`);
+      console.log(`🔧 Fast multi-city search in top ${priorityCities.length} cities (unlimited per city, unlimited total)`);
       
       for (const cityName of priorityCities) {
         
@@ -260,9 +260,8 @@ export class CacheDatabase {
             filtered = filtered.filter(p => (p.price || 0) <= filters.max_price!);
           }
           
-          // Add only what we need per city, respect the per-city limit
-          const toAdd = filtered.slice(0, maxPerCity);
-          allResults.push(...toAdd);
+          // Add all properties per city (no limit)
+          allResults.push(...filtered);
           
         } catch (cityError) {
           console.log(`⚠️ Skipping ${cityName}: ${cityError}`);

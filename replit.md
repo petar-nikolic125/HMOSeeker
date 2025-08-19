@@ -76,6 +76,8 @@ The system includes a basic user management schema for username/password authent
 - **£600k Focus Implementation**: Updated scraper to target properties around £600k (£400k-£800k range) with 15000 max per city, no total limit
 - **Price Range Optimization**: Default search now focuses on £400k-£800k bracket to capture investment-grade HMO properties around £600k sweet spot
 - **Enhanced Property Coverage**: Tripled property capacity from 5000 to 15000 per city with expanded search page coverage (200 pages at 100 properties each)
+- **Performance Optimization**: Improved multi-city search performance while maintaining comprehensive results
+- **Unlimited Database Storage**: Removed 8000 total property limit and 5000 per-city limit for unrestricted property storage
 
 ## Python Scraper Debugging (August 17, 2025)
 - **Type Errors Fixed**: Resolved 15 LSP diagnostics in scraper.py related to BeautifulSoup element handling
