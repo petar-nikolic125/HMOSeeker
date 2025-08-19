@@ -9,13 +9,13 @@ PrimeLocation scraper v2
   * improved link harvesting (ld+json, anchors, data attributes)
   * safer per-worker sessions and UA rotation
 - DEFAULT FOCUS: Properties under £500k (no minimum price), 3+ bedrooms
-- LIMIT: Max 15000 properties per city, no total limit across cities
+- LIMIT: Max 450000 properties total across all cities
 
 Usage remains the same as v1. Environment tweaks (optional):
   PL_PAGE_SIZE=100
-  PL_MAX_PAGES=50
-  PL_MIN_RESULTS=15000    # links to collect per city
-  PL_MAX_FETCH=15000      # max properties to process per city (no total limit)
+  PL_MAX_PAGES=500
+  PL_MIN_RESULTS=450000   # links to collect total
+  PL_MAX_FETCH=450000     # max properties to process total (450k limit)
   PL_EXPAND_SORTS=1       # enable trying different sort orders to surface more listings
   PL_WORKERS=8            # number of threads to fetch detail pages
   REFRESH=1               # force refresh
