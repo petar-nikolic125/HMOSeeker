@@ -8,14 +8,14 @@ PrimeLocation scraper v2
   * parallel detail page fetching (ThreadPoolExecutor)
   * improved link harvesting (ld+json, anchors, data attributes)
   * safer per-worker sessions and UA rotation
-- DEFAULT FOCUS: Properties under £500k (no minimum price), 3+ bedrooms
-- LIMIT: Max 450000 properties total across all cities
+- DEFAULT FOCUS: Properties under £450k (no minimum price), 3+ bedrooms
+- LIMIT: Max 15000 properties per city, no total limit across cities
 
 Usage remains the same as v1. Environment tweaks (optional):
   PL_PAGE_SIZE=100
-  PL_MAX_PAGES=500
-  PL_MIN_RESULTS=450000   # links to collect total
-  PL_MAX_FETCH=450000     # max properties to process total (450k limit)
+  PL_MAX_PAGES=200
+  PL_MIN_RESULTS=15000    # links to collect per city
+  PL_MAX_FETCH=15000      # max properties to process per city (no total limit)
   PL_EXPAND_SORTS=1       # enable trying different sort orders to surface more listings
   PL_WORKERS=8            # number of threads to fetch detail pages
   REFRESH=1               # force refresh
@@ -263,13 +263,13 @@ def build_search_urls(city, min_beds, max_price, filters):
     max_pages = as_int(os.getenv("PL_MAX_PAGES", 200), 200)
     page_size = as_int(os.getenv("PL_PAGE_SIZE", 100), 100)
 
-    # Focus on properties under £500k (no minimum price)
-    default_max_price = "500000"  # £500k upper bound to get more affordable properties
-    default_min_price = None  # No minimum price to get all properties under £500k
+    # Focus on properties under £450k (no minimum price)
+    default_max_price = "450000"  # £450k upper bound to get more affordable properties
+    default_min_price = None  # No minimum price to get all properties under £450k
     
     base_params = {
         "q": q,
-        "price_max": str(max_price) if max_price else default_max_price,  # £500k max for more affordable properties
+        "price_max": str(max_price) if max_price else default_max_price,  # £450k max for more affordable properties
         "is_auction": "include",
         "is_retirement_home": "include",
         "is_shared_ownership": "include",
