@@ -73,8 +73,9 @@ The system includes a basic user management schema for username/password authent
 - **Application Status**: Fully functional with property search, analysis, investment calculations, and pagination working
 - **Pagination System Complete**: Implemented 50 results per page with "Show More" functionality and total result counts
 - **Filtering Accuracy Verified**: Price filtering working correctly - London shows only 5 properties under £500k with 3+ bedrooms (accurate market data)
-- **£450k Focus Implementation**: Updated scraper to target properties under £450k (no minimum price) with 5000 max per city, no total limit
-- **Price Range Optimization**: Default search now focuses on sub-£450k bracket to capture more affordable HMO investment properties
+- **£400k Focus Implementation**: Updated scraper to target properties under £400k (no minimum price) with 5000 max per city, no total limit
+- **Price Range Optimization**: Default search now focuses on sub-£400k bracket to capture more affordable HMO investment properties
+- **UI Simplification**: Removed Article 4 and min sqm filters from hero section for cleaner user interface
 - **Enhanced Property Coverage**: Tripled property capacity from 5000 to 15000 per city with expanded search page coverage (200 pages at 100 properties each)
 - **Performance Optimization**: Improved multi-city search performance while maintaining comprehensive results
 - **Unlimited Database Storage**: Removed 8000 total property limit and 5000 per-city limit for unrestricted property storage

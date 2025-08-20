@@ -6,7 +6,7 @@ import { CacheDatabase } from "./cache-database";
  */
 export class BulkScraper {
   
-  // Lista glavnih UK gradova za scraping - optimized for £450k max, 3+ bedrooms
+  // Lista glavnih UK gradova za scraping - optimized for £400k max, 3+ bedrooms
   private static readonly UK_CITIES = [
     "London", "Birmingham", "Greater Manchester", "Liverpool", "Leeds", "Sheffield", 
     "Bristol", "Newcastle", "Nottingham", "Leicester", "Portsmouth", "Southampton",
@@ -54,7 +54,7 @@ export class BulkScraper {
           const result = await ScraperManager.searchProperties({
             city: city,
             min_bedrooms: 3,
-            max_price: 450000,
+            max_price: 400000,
             keywords: "", // No keywords filter
             refresh: true // Force fresh scrape for more results
           });
