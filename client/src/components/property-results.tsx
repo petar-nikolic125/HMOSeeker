@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Clock, Filter, RefreshCw, CheckCircle, Database, AlertCircle, ChevronDown } from "lucide-react";
+import { Clock, Filter, RefreshCw, CheckCircle, Database, AlertCircle, ChevronLeft, ChevronRight, Shuffle } from "lucide-react";
 import PropertyCard from "./property-card";
 import type { PropertyListing } from "@shared/schema";
 import type { SearchFilters, PropertyWithAnalytics } from "@/lib/types";
@@ -11,22 +11,111 @@ interface SearchState {
   isCached: boolean;
   lastRefreshed: Date | null;
   error: string | null;
+  currentPage?: number;
 }
 
 interface PropertyResultsProps {
   properties: any[];
   totalResults?: number;
   hasMore?: boolean;
-  onLoadMore?: () => void;
+  onLoadMore?: (page: number) => void;
   filters: SearchFilters;
   onAnalyze: (property: PropertyListing) => void;
   onRefresh: () => void;
+  onShuffle?: () => void;
   searchState: SearchState;
   onSortChange?: (sortBy: string) => void;
   currentSort?: string;
 }
 
-export default function PropertyResults({ properties, totalResults = 0, hasMore = false, onLoadMore, filters, onAnalyze, onRefresh, searchState, onSortChange, currentSort }: PropertyResultsProps) {
+// Pagination component
+function PaginationControls({ currentPage, totalResults, pageSize, onPageChange }: {
+  currentPage: number;
+  totalResults: number;
+  pageSize: number;
+  onPageChange: (page: number) => void;
+}) {
+  const totalPages = Math.ceil(totalResults / pageSize);
+  const maxVisiblePages = 7;
+  
+  let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+  let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+  
+  if (endPage - startPage + 1 < maxVisiblePages) {
+    startPage = Math.max(1, endPage - maxVisiblePages + 1);
+  }
+  
+  const pages = [];
+  for (let i = startPage; i <= endPage; i++) {
+    pages.push(i);
+  }
+  
+  return (
+    <div className="flex items-center justify-center gap-2 mb-8">
+      <button
+        onClick={() => onPageChange(currentPage - 1)}
+        disabled={currentPage <= 1}
+        className="inline-flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        <ChevronLeft className="w-4 h-4" />
+        Previous
+      </button>
+      
+      {startPage > 1 && (
+        <>
+          <button
+            onClick={() => onPageChange(1)}
+            className="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-gray-700"
+          >
+            1
+          </button>
+          {startPage > 2 && <span className="px-2 text-gray-500">...</span>}
+        </>
+      )}
+      
+      {pages.map((page) => (
+        <button
+          key={page}
+          onClick={() => onPageChange(page)}
+          className={`px-3 py-2 text-sm font-medium rounded-lg ${
+            page === currentPage
+              ? 'text-blue-600 bg-blue-50 border border-blue-300'
+              : 'text-gray-500 bg-white border border-gray-300 hover:bg-gray-50 hover:text-gray-700'
+          }`}
+        >
+          {page}
+        </button>
+      ))}
+      
+      {endPage < totalPages && (
+        <>
+          {endPage < totalPages - 1 && <span className="px-2 text-gray-500">...</span>}
+          <button
+            onClick={() => onPageChange(totalPages)}
+            className="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-gray-700"
+          >
+            {totalPages}
+          </button>
+        </>
+      )}
+      
+      <button
+        onClick={() => onPageChange(currentPage + 1)}
+        disabled={currentPage >= totalPages}
+        className="inline-flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        Next
+        <ChevronRight className="w-4 h-4" />
+      </button>
+      
+      <div className="ml-4 text-sm text-gray-600">
+        Page {currentPage} of {totalPages} • {totalResults} total results
+      </div>
+    </div>
+  );
+}
+
+export default function PropertyResults({ properties, totalResults = 0, hasMore = false, onLoadMore, filters, onAnalyze, onRefresh, onShuffle, searchState, onSortChange, currentSort }: PropertyResultsProps) {
   const { isLoading, isCached, lastRefreshed, error } = searchState;
   const { toast } = useToast();
 
@@ -109,6 +198,16 @@ export default function PropertyResults({ properties, totalResults = 0, hasMore 
               <Filter className="w-4 h-4" />
               More Filters
             </button>
+            {onShuffle && (
+              <button 
+                onClick={onShuffle}
+                className="flex items-center gap-2 text-gray-600 hover:text-green-600 text-sm"
+                data-testid="button-shuffle"
+              >
+                <Shuffle className="w-4 h-4" />
+                Shuffle Results
+              </button>
+            )}
           </div>
           <div className="flex items-center gap-2 text-sm text-gray-600">
             <Clock className="w-4 h-4" />
@@ -147,21 +246,14 @@ export default function PropertyResults({ properties, totalResults = 0, hasMore 
               ))}
             </div>
             
-            {/* Show More Button */}
-            {hasMore && onLoadMore && (
-              <div className="text-center mb-8">
-                <button
-                  onClick={onLoadMore}
-                  className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium transition-colors duration-200"
-                  data-testid="button-show-more"
-                >
-                  <span>Show More Properties</span>
-                  <ChevronDown className="w-4 h-4" />
-                </button>
-                <p className="text-sm text-gray-500 mt-2">
-                  Showing {properties.length} of {totalResults} total results
-                </p>
-              </div>
+            {/* Pagination Controls */}
+            {totalResults > 50 && onLoadMore && (
+              <PaginationControls 
+                currentPage={searchState.currentPage || 1}
+                totalResults={totalResults}
+                pageSize={50}
+                onPageChange={onLoadMore}
+              />
             )}
           </>
         ) : (

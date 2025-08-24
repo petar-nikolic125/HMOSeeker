@@ -43,7 +43,7 @@ export default function Home() {
   const [sortedProperties, setSortedProperties] = useState<any[]>([]);
 
   const searchMutation = useMutation({
-    mutationFn: async ({ filters, page = 1, append = false }: { filters: SearchFilters; page?: number; append?: boolean }) => {
+    mutationFn: async ({ filters, page = 1, append = false, shuffle = false }: { filters: SearchFilters; page?: number; append?: boolean; shuffle?: boolean }) => {
       const params = new URLSearchParams();
       if (filters.city) params.append('city', filters.city);
       if (filters.minRooms) params.append('min_bedrooms', filters.minRooms.toString());
@@ -58,6 +58,9 @@ export default function Home() {
       // Add pagination parameters
       params.append('page', page.toString());
       params.append('limit', '50');
+      
+      // Add shuffle parameter
+      if (shuffle) params.append('shuffle', 'true');
       
       // Use cache endpoint instead of search (no scraping)
       const response = await fetch(`/api/properties?${params.toString()}`);
@@ -105,16 +108,15 @@ export default function Home() {
     searchMutation.mutate({ filters, page: 1, append: false });
   }, [searchMutation, lastSearchTime]);
 
-  const handleLoadMore = useCallback(() => {
-    if (!searchState.hasMore || searchState.isLoading) return;
+  const handlePageChange = useCallback((page: number) => {
+    if (searchState.isLoading || page === searchState.currentPage) return;
     
-    const nextPage = searchState.currentPage + 1;
     searchMutation.mutate({ 
       filters: currentFilters, 
-      page: nextPage, 
-      append: true 
+      page, 
+      append: false  // Always replace results for pagination, not append
     });
-  }, [searchMutation, currentFilters, searchState.hasMore, searchState.isLoading, searchState.currentPage]);
+  }, [searchMutation, currentFilters, searchState.isLoading, searchState.currentPage]);
 
   const handleRefresh = useCallback(() => {
     if (currentFilters.city) {
@@ -176,6 +178,17 @@ export default function Home() {
     setSortBy(sortType);
   };
 
+  const handleShuffle = useCallback(() => {
+    if (searchState.isLoading) return;
+    
+    searchMutation.mutate({ 
+      filters: currentFilters, 
+      page: 1,  // Reset to first page when shuffling
+      append: false,
+      shuffle: true
+    });
+  }, [searchMutation, currentFilters, searchState.isLoading]);
+
   const handleLocationChange = (location: string) => {
     const newFilters = { ...currentFilters, city: location };
     setCurrentFilters(newFilters);
@@ -200,7 +213,8 @@ export default function Home() {
         properties={sortedProperties.length > 0 ? sortedProperties : searchState.properties} 
         totalResults={searchState.totalResults}
         hasMore={searchState.hasMore}
-        onLoadMore={handleLoadMore}
+        onLoadMore={handlePageChange}
+        onShuffle={handleShuffle}
         filters={currentFilters}
         onAnalyze={handlePropertyAnalysis}
         onRefresh={handleRefresh}

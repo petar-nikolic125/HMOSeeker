@@ -23,7 +23,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Get cached property listings (Quick cache search - cache je glavna baza!)
   app.get("/api/properties", async (req, res) => {
     try {
-      const { city, max_price, min_bedrooms, min_sqm, max_sqm, postcode, keywords, hmo_candidate, article4_filter, page, limit } = req.query;
+      const { city, max_price, min_bedrooms, min_sqm, max_sqm, postcode, keywords, hmo_candidate, article4_filter, page, limit, shuffle } = req.query;
       
       // Konvertuj max_price string u integer (1.5M -> 1500000)
       const parsePrice = (priceStr: string): number => {
@@ -75,8 +75,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
       console.log(`📄 Pagination: page ${pageNum}, showing ${pageSize} results (offset: ${offset})`);
       
       // Get ALL properties first (for total count)
-      const allProperties = await CacheDatabase.searchProperties(filters);
+      let allProperties = await CacheDatabase.searchProperties(filters);
       const totalResults = allProperties.length;
+      
+      // Shuffle properties if requested
+      if (shuffle === 'true') {
+        console.log(`🎲 Shuffling ${allProperties.length} properties...`);
+        // Fisher-Yates shuffle algorithm
+        for (let i = allProperties.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [allProperties[i], allProperties[j]] = [allProperties[j], allProperties[i]];
+        }
+        console.log(`✅ Properties shuffled successfully`);
+      }
       
       // Apply pagination to results
       const paginatedProperties = allProperties.slice(offset, offset + pageSize);
