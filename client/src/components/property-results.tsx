@@ -235,7 +235,7 @@ export default function PropertyResults({ properties, totalResults = 0, hasMore 
           </div>
         ) : properties.length > 0 ? (
           <>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            <div className="space-y-3 mb-8">
               {properties.map((property, index) => (
                 <PropertyCard 
                   key={property.property_url || index} 
@@ -247,11 +247,11 @@ export default function PropertyResults({ properties, totalResults = 0, hasMore 
             </div>
             
             {/* Pagination Controls */}
-            {totalResults > 50 && onLoadMore && (
+            {totalResults > 20 && onLoadMore && (
               <PaginationControls 
                 currentPage={searchState.currentPage || 1}
                 totalResults={totalResults}
-                pageSize={50}
+                pageSize={20}
                 onPageChange={onLoadMore}
               />
             )}

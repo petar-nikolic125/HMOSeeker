@@ -57,7 +57,7 @@ export default function Home() {
       
       // Add pagination parameters
       params.append('page', page.toString());
-      params.append('limit', '50');
+      params.append('limit', '20');
       
       // Add shuffle parameter
       if (shuffle) params.append('shuffle', 'true');

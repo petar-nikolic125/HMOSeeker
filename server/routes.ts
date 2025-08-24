@@ -68,7 +68,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Add pagination parameters
       const pageNum = parseInt(page as string) || 1;
-      const pageSize = parseInt(limit as string) || 50;
+      const pageSize = parseInt(limit as string) || 20;
       const offset = (pageNum - 1) * pageSize;
 
       console.log(`🔍 Searching cache database for: ${JSON.stringify(filters)}`);
