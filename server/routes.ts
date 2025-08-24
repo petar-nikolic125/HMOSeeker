@@ -122,13 +122,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
             return article4A ? 1 : -1; // non-Article 4 (false) comes first
           }
           
-          // Tertiary sort: proximity to 90 sqm (closer to 90 sqm comes first)
-          const sqmA = a.area_sqm || a.predicted_sqm || 0;
-          const sqmB = b.area_sqm || b.predicted_sqm || 0;
+          // Tertiary sort: proximity to 90 sqm (90 sqm first, then closest to 90)
+          const sqmA = a.area_sqm || a.predicted_sqm || 75; // fallback to typical 3-bed size
+          const sqmB = b.area_sqm || b.predicted_sqm || 75;
+          
+          // Calculate distance from ideal 90 sqm
           const distanceA = Math.abs(sqmA - 90);
           const distanceB = Math.abs(sqmB - 90);
+          
           if (distanceA !== distanceB) {
-            return distanceA - distanceB;
+            return distanceA - distanceB; // Closer to 90 sqm comes first
+          }
+          
+          // If same distance from 90, prefer the larger property (e.g., 91 over 89)
+          if (distanceA === distanceB && sqmA !== sqmB) {
+            return sqmB - sqmA;
           }
           
           // Final sort: by gross yield (higher yield first)
