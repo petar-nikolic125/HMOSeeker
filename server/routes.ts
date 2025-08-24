@@ -102,8 +102,59 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }
       };
 
-      // Sort properties by type preference (houses first), then by proximity to 90 sqm, then non-Article 4 areas
-      if (shuffle !== 'true') {
+      // Intelligent sorting and shuffling logic
+      if (shuffle === 'true') {
+        console.log(`🎲 Smart shuffling ${allProperties.length} properties (good properties prioritized)...`);
+        
+        // First, sort to identify quality tiers
+        allProperties.sort((a, b) => {
+          const typeA = getPropertyTypeFromTitle(a.address || a.title || '');
+          const typeB = getPropertyTypeFromTitle(b.address || b.title || '');
+          const priorityA = getPropertyTypePriority(typeA);
+          const priorityB = getPropertyTypePriority(typeB);
+          
+          // Quality score calculation
+          const getQualityScore = (prop: any, type: string, priority: number) => {
+            const isHouse = priority <= 2; // detached or house
+            const isNonArticle4 = !prop.article4_area;
+            const sqm = prop.area_sqm || prop.predicted_sqm || 75;
+            const distanceFrom90 = Math.abs(sqm - 90);
+            const yield_score = prop.gross_yield_pct || 0;
+            
+            let score = 0;
+            if (isHouse) score += 100;
+            if (isNonArticle4) score += 50;
+            score += Math.max(0, 40 - distanceFrom90); // More points for closer to 90sqm
+            score += yield_score * 2; // Yield bonus
+            
+            return score;
+          };
+          
+          const scoreA = getQualityScore(a, typeA, priorityA);
+          const scoreB = getQualityScore(b, typeB, priorityB);
+          return scoreB - scoreA; // Higher scores first
+        });
+        
+        // Take top 40% as premium properties
+        const premiumCount = Math.floor(allProperties.length * 0.4);
+        const premiumProps = allProperties.slice(0, premiumCount);
+        const regularProps = allProperties.slice(premiumCount);
+        
+        // Shuffle within tiers
+        const shuffleArray = (arr: any[]) => {
+          for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+          }
+          return arr;
+        };
+        
+        // Combine: shuffled premium props first, then shuffled regular props
+        allProperties = [...shuffleArray([...premiumProps]), ...shuffleArray([...regularProps])];
+        console.log(`✅ Smart shuffle: ${premiumCount} premium properties first, then ${regularProps.length} others`);
+        
+      } else {
+        // Standard intelligent sorting (optimal HMO)
         allProperties.sort((a, b) => {
           const typeA = getPropertyTypeFromTitle(a.address || a.title || '');
           const typeB = getPropertyTypeFromTitle(b.address || b.title || '');
@@ -145,17 +196,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
           return yieldB - yieldA;
         });
         console.log(`🏠 Properties sorted by: 1) Houses first 2) Non-Article 4 areas 3) Proximity to 90 sqm 4) Gross yield`);
-      }
-
-      // Shuffle properties if requested (after type sorting)
-      if (shuffle === 'true') {
-        console.log(`🎲 Shuffling ${allProperties.length} properties...`);
-        // Fisher-Yates shuffle algorithm
-        for (let i = allProperties.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [allProperties[i], allProperties[j]] = [allProperties[j], allProperties[i]];
-        }
-        console.log(`✅ Properties shuffled successfully`);
       }
       
       // Apply pagination to results

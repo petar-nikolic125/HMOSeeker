@@ -157,6 +157,8 @@ export default function Home() {
     if (searchState.properties.length > 0) {
       const sorted = sortProperties(searchState.properties, sortBy);
       setSortedProperties(sorted);
+    } else {
+      setSortedProperties([]);
     }
   }, [searchState.properties, sortBy, sortProperties]);
 
@@ -181,6 +183,15 @@ export default function Home() {
 
   const handleSortChange = (sortType: string) => {
     setSortBy(sortType);
+    // Trigger a fresh search when sorting changes to get new results
+    if (currentFilters.city) {
+      searchMutation.mutate({ 
+        filters: currentFilters, 
+        page: 1, 
+        append: false,
+        shuffle: sortType !== "optimal_hmo" // Shuffle for all sorts except optimal HMO
+      });
+    }
   };
 
   const handleShuffle = useCallback(() => {
