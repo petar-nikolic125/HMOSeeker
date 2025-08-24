@@ -39,7 +39,7 @@ export default function Home() {
     article4_filter: "all"
   });
   const [lastSearchTime, setLastSearchTime] = useState<number>(0);
-  const [sortBy, setSortBy] = useState<string>("yield_desc");
+  const [sortBy, setSortBy] = useState<string>("optimal_hmo");
   const [sortedProperties, setSortedProperties] = useState<any[]>([]);
 
   const searchMutation = useMutation({
@@ -128,6 +128,9 @@ export default function Home() {
   const sortProperties = useCallback((properties: any[], sortType: string) => {
     const sorted = [...properties].sort((a, b) => {
       switch (sortType) {
+        case "optimal_hmo":
+          // Don't sort - respect backend ordering (houses first, non-Article 4, proximity to 90 sqm)
+          return 0;
         case "yield_desc":
           return (b.grossYield || 0) - (a.grossYield || 0);
         case "yield_asc":
@@ -141,7 +144,7 @@ export default function Home() {
         case "bedrooms_desc":
           return (b.bedrooms || 0) - (a.bedrooms || 0);
         default:
-          return (b.grossYield || 0) - (a.grossYield || 0);
+          return 0; // Default to backend ordering
       }
     });
     return sorted;

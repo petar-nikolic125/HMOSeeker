@@ -182,11 +182,12 @@ export default function PropertyResults({ properties, totalResults = 0, hasMore 
         <div className="mb-8 flex flex-wrap items-center justify-between gap-4 p-4 bg-gray-50 rounded-2xl">
           <div className="flex items-center gap-4">
             <select 
-              value={currentSort || "yield_desc"}
+              value={currentSort || "optimal_hmo"}
               onChange={(e) => onSortChange?.(e.target.value)}
               className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               data-testid="select-sort"
             >
+              <option value="optimal_hmo">Sort by: Best HMO Properties (Houses near 90m²)</option>
               <option value="yield_desc">Sort by: Yield (High to Low)</option>
               <option value="yield_asc">Sort by: Yield (Low to High)</option>
               <option value="price_asc">Sort by: Price (Low to High)</option>
