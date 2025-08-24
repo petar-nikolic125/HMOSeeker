@@ -34,6 +34,14 @@ export interface PropertyWithAnalytics extends PropertyListing {
   agentPhone?: string; // Maps to agent_phone
   agentEmail?: string; // Not in schema but can be added
   coordinates?: [number, number]; // Maps to latitude/longitude
+  size?: number; // Property size in sqm (from area_sqm or predicted)
+  
+  // Size prediction fields
+  predictedSqm?: number;
+  predictedSqft?: number;
+  sizePredictionConfidence?: 'low' | 'medium' | 'high';
+  sizePredictionBasis?: string;
+  areaEstimated?: boolean;
 }
 
 export interface CacheEntry {

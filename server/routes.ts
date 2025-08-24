@@ -7,6 +7,7 @@ import { SyncScraper } from "./services/sync-scraper";
 import { PropertyAnalyzer } from "./services/property-analyzer";
 import { CacheDatabase } from "./services/cache-database";
 import { estimatePropertyMetrics, scenarioReport, type PropertyData, type Assumptions } from "./services/property-estimation";
+import { predictPropertySize } from "./services/property-size-predictor";
 import { searchFiltersSchema } from "@shared/schema";
 import { z } from "zod";
 
@@ -124,6 +125,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
         const monthlyRent = quickMetrics.estimated_monthly_rent || 400;
         const roi = quickMetrics.cash_on_cash_pct || 0;
 
+        // Predict size if missing
+        let areaSqm = prop.area_sqm;
+        let predictedSqm, predictedSqft, sizePredictionConfidence, sizePredictionBasis, areaEstimated;
+        
+        if (!areaSqm || areaSqm === 0) {
+          const prediction = predictPropertySize({
+            bedrooms: prop.bedrooms || 0,
+            bathrooms: prop.bathrooms,
+            price: prop.price || 0,
+            city: prop.city || '',
+            propertyType: prop.property_type,
+            address: prop.address || ''
+          });
+          
+          areaSqm = prediction.predictedSqm;
+          predictedSqm = prediction.predictedSqm;
+          predictedSqft = prediction.predictedSqft;
+          sizePredictionConfidence = prediction.confidence;
+          sizePredictionBasis = prediction.basis;
+          areaEstimated = true;
+        }
+
         return {
           id: `cache-${Date.now()}-${index}`,
           source: 'primelocation',
@@ -140,8 +163,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
           city: prop.city || filters.city,
           
           // Enhanced HMO and Article 4 fields
-          area_sqm: prop.area_sqm || null,
-          area_estimated: prop.area_estimated || false,
+          area_sqm: areaSqm,
+          area_estimated: areaEstimated || prop.area_estimated || false,
           article4_area: prop.article4_area || false,
           article4_status: prop.article4_status || "None",
           hmo_candidate: prop.hmo_candidate || false,
@@ -166,7 +189,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
           propertyUrl: prop.property_url,
           coordinates: [0, 0],
           // Include rent calculation method for debugging
-          rentMethod: quickMetrics.rent_method_used
+          rentMethod: quickMetrics.rent_method_used,
+          
+          // Size-related fields
+          size: areaSqm,
+          predictedSqm,
+          predictedSqft, 
+          sizePredictionConfidence,
+          sizePredictionBasis,
+          areaEstimated: areaEstimated || prop.area_estimated || false
         };
       });
       
