@@ -3,6 +3,7 @@ import { X, Calculator, TrendingUp, Percent, Coins, CheckCircle, PoundSterling }
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import type { PropertyListing } from "@shared/schema";
+import "./slider-styles.css";
 // Analysis type will be inferred from API response
 
 interface PropertyAnalysisModalProps {
@@ -43,14 +44,16 @@ export default function PropertyAnalysisModal({ property, onClose }: PropertyAna
     analysisMutation.mutate();
   }, [property.id, renovationCostPerRoom, rentPerBedroom]);
 
-  // Auto-refetch analysis when parameters change
+  // Real-time parameter updates
   const handleRenovationCostChange = (newCost: number) => {
     setRenovationCostPerRoom(newCost);
+    // Trigger immediate re-fetch for real-time updates
     analysisMutation.mutate();
   };
 
   const handleRentChange = (newRent: number) => {
     setRentPerBedroom(newRent);
+    // Trigger immediate re-fetch for real-time updates
     analysisMutation.mutate();
   };
 
@@ -114,7 +117,10 @@ export default function PropertyAnalysisModal({ property, onClose }: PropertyAna
                         value={renovationCostPerRoom}
                         step="1000"
                         onChange={(e) => handleRenovationCostChange(parseInt(e.target.value))}
-                        className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                        className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
+                        style={{
+                          background: `linear-gradient(to right, #f97316 0%, #f97316 ${((renovationCostPerRoom - 10000) / (30000 - 10000)) * 100}%, #e5e7eb ${((renovationCostPerRoom - 10000) / (30000 - 10000)) * 100}%, #e5e7eb 100%)`
+                        }}
                       />
                       <div className="text-center">
                         <span className="inline-block bg-gray-100 border border-gray-300 rounded px-3 py-1 text-sm font-semibold">
@@ -138,7 +144,10 @@ export default function PropertyAnalysisModal({ property, onClose }: PropertyAna
                         value={rentPerBedroom}
                         step="50"
                         onChange={(e) => handleRentChange(parseInt(e.target.value))}
-                        className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                        className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
+                        style={{
+                          background: `linear-gradient(to right, #10b981 0%, #10b981 ${((rentPerBedroom - 400) / (1200 - 400)) * 100}%, #e5e7eb ${((rentPerBedroom - 400) / (1200 - 400)) * 100}%, #e5e7eb 100%)`
+                        }}
                       />
                       <div className="text-center">
                         <span className="inline-block bg-gray-100 border border-gray-300 rounded px-3 py-1 text-sm font-semibold">

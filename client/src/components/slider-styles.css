@@ -1,0 +1,49 @@
+/* Custom slider styles for property analysis modal */
+.slider::-webkit-slider-thumb {
+  appearance: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  border: 2px solid #3b82f6;
+}
+
+.slider::-moz-range-thumb {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  border: 2px solid #3b82f6;
+  appearance: none;
+}
+
+.slider::-ms-thumb {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  border: 2px solid #3b82f6;
+  appearance: none;
+}
+
+.slider:focus {
+  outline: none;
+}
+
+.slider:focus::-webkit-slider-thumb {
+  border-color: #1d4ed8;
+}
+
+.slider:focus::-moz-range-thumb {
+  border-color: #1d4ed8;
+}
+
+.slider:focus::-ms-thumb {
+  border-color: #1d4ed8;
+}
