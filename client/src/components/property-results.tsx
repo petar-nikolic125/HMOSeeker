@@ -36,80 +36,91 @@ function PaginationControls({ currentPage, totalResults, pageSize, onPageChange 
   onPageChange: (page: number) => void;
 }) {
   const totalPages = Math.ceil(totalResults / pageSize);
-  const maxVisiblePages = 7;
   
-  let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
-  let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
-  
-  if (endPage - startPage + 1 < maxVisiblePages) {
-    startPage = Math.max(1, endPage - maxVisiblePages + 1);
-  }
-  
-  const pages = [];
-  for (let i = startPage; i <= endPage; i++) {
-    pages.push(i);
-  }
-  
-  return (
-    <div className="flex items-center justify-center gap-2 mb-8">
-      <button
-        onClick={() => onPageChange(currentPage - 1)}
-        disabled={currentPage <= 1}
-        className="inline-flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
-      >
-        <ChevronLeft className="w-4 h-4" />
-        Previous
-      </button>
-      
-      {startPage > 1 && (
-        <>
-          <button
-            onClick={() => onPageChange(1)}
-            className="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-gray-700"
-          >
-            1
-          </button>
-          {startPage > 2 && <span className="px-2 text-gray-500">...</span>}
-        </>
-      )}
-      
-      {pages.map((page) => (
+  const renderPageButtons = () => {
+    const buttons = [];
+    
+    // Always show first page
+    if (currentPage > 3) {
+      buttons.push(
         <button
-          key={page}
-          onClick={() => onPageChange(page)}
-          className={`px-3 py-2 text-sm font-medium rounded-lg ${
-            page === currentPage
-              ? 'text-blue-600 bg-blue-50 border border-blue-300'
-              : 'text-gray-500 bg-white border border-gray-300 hover:bg-gray-50 hover:text-gray-700'
+          key={1}
+          onClick={() => onPageChange(1)}
+          className="w-10 h-10 text-sm font-medium text-gray-700 bg-white border border-gray-300 hover:bg-gray-50"
+        >
+          1
+        </button>
+      );
+      
+      if (currentPage > 4) {
+        buttons.push(
+          <span key="dots1" className="px-2 text-gray-500">...</span>
+        );
+      }
+    }
+    
+    // Show pages around current page
+    const startPage = Math.max(1, currentPage - 2);
+    const endPage = Math.min(totalPages, currentPage + 2);
+    
+    for (let i = startPage; i <= endPage; i++) {
+      buttons.push(
+        <button
+          key={i}
+          onClick={() => onPageChange(i)}
+          className={`w-10 h-10 text-sm font-medium border ${
+            i === currentPage
+              ? 'text-white bg-black border-black'
+              : 'text-gray-700 bg-white border-gray-300 hover:bg-gray-50'
           }`}
         >
-          {page}
+          {i}
         </button>
-      ))}
+      );
+    }
+    
+    // Always show last page
+    if (currentPage < totalPages - 2) {
+      if (currentPage < totalPages - 3) {
+        buttons.push(
+          <span key="dots2" className="px-2 text-gray-500">...</span>
+        );
+      }
       
-      {endPage < totalPages && (
-        <>
-          {endPage < totalPages - 1 && <span className="px-2 text-gray-500">...</span>}
-          <button
-            onClick={() => onPageChange(totalPages)}
-            className="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-gray-700"
-          >
-            {totalPages}
-          </button>
-        </>
-      )}
-      
-      <button
-        onClick={() => onPageChange(currentPage + 1)}
-        disabled={currentPage >= totalPages}
-        className="inline-flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
-      >
-        Next
-        <ChevronRight className="w-4 h-4" />
-      </button>
-      
-      <div className="ml-4 text-sm text-gray-600">
-        Page {currentPage} of {totalPages} • {totalResults} total results
+      buttons.push(
+        <button
+          key={totalPages}
+          onClick={() => onPageChange(totalPages)}
+          className="w-10 h-10 text-sm font-medium text-gray-700 bg-white border border-gray-300 hover:bg-gray-50"
+        >
+          {totalPages}
+        </button>
+      );
+    }
+    
+    return buttons;
+  };
+  
+  return (
+    <div className="flex items-center justify-center mb-8">
+      <div className="flex items-center bg-white border border-gray-300 rounded-lg overflow-hidden shadow-sm">
+        <button
+          onClick={() => onPageChange(currentPage - 1)}
+          disabled={currentPage <= 1}
+          className="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed border-r border-gray-300"
+        >
+          ← Back
+        </button>
+        
+        {renderPageButtons()}
+        
+        <button
+          onClick={() => onPageChange(currentPage + 1)}
+          disabled={currentPage >= totalPages}
+          className="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed border-l border-gray-300"
+        >
+          Next →
+        </button>
       </div>
     </div>
   );
@@ -121,17 +132,6 @@ export default function PropertyResults({ properties, totalResults = 0, hasMore 
 
   // Show toast when no results due to filters
   const hasActiveFilters = filters.maxPrice || filters.minRooms || filters.keywords;
-  
-  React.useEffect(() => {
-    if (!isLoading && properties.length === 0 && hasActiveFilters && !error) {
-      toast({
-        title: "No results for current filters",
-        description: `Found 0 properties in ${filters.city} matching your criteria. Try adjusting filters or changing the city.`,
-        variant: "destructive",
-        duration: 4000,
-      });
-    }
-  }, [isLoading, properties.length, hasActiveFilters, filters.city, error, toast]);
 
   const formatTime = (date: Date | null) => {
     if (!date) return 'Never';
