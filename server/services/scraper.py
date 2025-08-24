@@ -231,6 +231,119 @@ def extract_postcode(text):
     return m.group(1).upper() if m else None
 
 
+# ---------- Article 4 Detection ----------
+
+# Comprehensive Article 4 areas - properties in these locations cannot be converted to HMOs without planning permission
+ARTICLE4_BOROUGHS = {
+    # London boroughs with Article 4 Directions for C3 to C4 conversions
+    "Barking and Dagenham", "Barnet", "Bexley", "Brent", "Croydon", "Enfield",
+    "Greenwich", "Havering", "Hounslow", "Newham", "Redbridge", "Tower Hamlets",
+    "Waltham Forest", "Hillingdon", "Ealing", "Haringey", "Southwark", "Lewisham",
+    "Merton", "Bromley", "Kingston upon Thames", "Sutton", "Richmond upon Thames",
+    "Wandsworth", "Lambeth", "Camden", "Islington", "Hackney", "Hammersmith and Fulham",
+    "Kensington and Chelsea", "Westminster"
+}
+
+ARTICLE4_CITIES = {
+    # Cities outside London with HMO Article 4 Directions
+    "Manchester", "Leeds", "Nottingham", "Birmingham", "Oxford", "Brighton", 
+    "Brighton and Hove", "Liverpool", "Bristol", "Sheffield", "Newcastle",
+    "Newcastle upon Tyne", "Cardiff", "Edinburgh", "Glasgow", "Canterbury",
+    "Bath", "York", "Durham", "Preston", "Exeter", "Reading", "Winchester"
+}
+
+# Postcode areas with known Article 4 restrictions
+ARTICLE4_POSTCODES = {
+    # London postcodes with widespread Article 4 coverage
+    "E1", "E2", "E3", "E8", "E9", "E10", "E11", "E12", "E13", "E15", "E16", "E17",
+    "N1", "N4", "N5", "N7", "N8", "N15", "N16", "N17", "N18", "N19", "N22",
+    "SE1", "SE8", "SE14", "SE15", "SE16", "SE22", "SE23",
+    "SW2", "SW4", "SW8", "SW9", "SW16", "SW17", "TW3", "TW7", "TW8",
+    "CR0", "CR4", "CR7", "BR1", "BR2", "BR3", "DA1", "DA5", "DA6", "DA7", "DA8",
+    "EN1", "EN2", "EN3", "EN4", "HA0", "HA1", "HA2", "HA3", "HA4", "HA5", "HA8", "HA9",
+    "IG1", "IG2", "IG3", "IG4", "IG5", "IG6", "IG8", "IG11", "KT1", "KT2", "KT3", "KT4", "KT5", "KT6",
+    "RM1", "RM2", "RM3", "RM6", "RM7", "RM8", "RM9", "RM10", "RM11", "RM12", "RM13", "RM14",
+    "SM1", "SM2", "SM3", "SM4", "SM5", "SM6", "UB1", "UB2", "UB3", "UB4", "UB5", "UB6", "UB7", "UB8", "UB10",
+    # Major city centers with Article 4
+    "M1", "M2", "M3", "M4", "M8", "M9", "M11", "M12", "M13", "M14", "M15", "M16", "M18", "M19", "M20", "M21", "M22", "M23",
+    "LS1", "LS2", "LS3", "LS4", "LS5", "LS6", "LS7", "LS8", "LS9", "LS11", "LS12", "LS13", "LS17",
+    "B1", "B2", "B3", "B4", "B5", "B6", "B7", "B8", "B9", "B10", "B11", "B12", "B13", "B14", "B15", "B16", "B17", "B18", "B19", "B20", "B21",
+    "NG1", "NG2", "NG3", "NG5", "NG7", "NG8", "NG9", "NG11", "NG15", "NG16", "NG17",
+    "L1", "L2", "L3", "L4", "L5", "L6", "L7", "L8", "L13", "L15", "L17", "L18", "L19", "L20", "L21", "L22", "L23", "L24", "L25",
+    "OX1", "OX2", "OX3", "OX4", "BN1", "BN2", "BN3", "NE1", "NE2", "NE4", "NE6", "NE7", "NE8", "NE12", "NE13", "NE15"
+}
+
+def is_article4_area(address, postcode=None):
+    """
+    Determine if a property is in an Article 4 area (HMO planning restrictions).
+    Returns True if property IS in Article 4 area (should be filtered out).
+    """
+    if not address:
+        return False
+        
+    addr_lower = address.lower()
+    
+    # Extract postcode from address if not provided
+    if not postcode:
+        postcode_match = POSTCODE_RE.search(address)
+        if postcode_match:
+            postcode = postcode_match.group(1)
+    
+    # Check postcode areas first (most specific)
+    if postcode:
+        postcode_area = re.match(r"^([A-Z]{1,2}\d+)", postcode.upper())
+        if postcode_area:
+            area_code = postcode_area.group(1)
+            if area_code in ARTICLE4_POSTCODES:
+                return True
+    
+    # Check for London boroughs
+    for borough in ARTICLE4_BOROUGHS:
+        if re.search(rf"\b{re.escape(borough.lower())}\b", addr_lower):
+            return True
+    
+    # Check for cities with Article 4 restrictions
+    for city in ARTICLE4_CITIES:
+        if re.search(rf"\b{re.escape(city.lower())}\b", addr_lower):
+            return True
+    
+    # Special case: if address contains "london" but no specific borough identified,
+    # assume it might be in an Article 4 area (safer to exclude)
+    if " london" in addr_lower:
+        return True
+    
+    return False
+
+def parse_london_borough(address):
+    """Extract London borough from address for more precise Article 4 detection."""
+    if not address:
+        return None
+        
+    addr_lower = address.lower()
+    
+    # Look for specific borough mentions
+    for borough in ARTICLE4_BOROUGHS:
+        if re.search(rf"\b{re.escape(borough.lower())}\b", addr_lower):
+            return borough
+    
+    # Try to infer from postcode
+    postcode_match = POSTCODE_RE.search(address)
+    if postcode_match:
+        postcode = postcode_match.group(1).upper()
+        area = re.match(r"^([A-Z]{1,2})", postcode)
+        if area:
+            area_code = area.group(1)
+            # Map postcode areas to boroughs
+            postcode_to_borough = {
+                "EN": "Enfield", "HA": "Harrow", "UB": "Hillingdon", 
+                "KT": "Kingston upon Thames", "SM": "Sutton", "CR": "Croydon", 
+                "BR": "Bromley", "DA": "Bexley", "RM": "Havering", 
+                "IG": "Redbridge", "TW": "Hounslow"
+            }
+            return postcode_to_borough.get(area_code)
+    
+    return None
+
 # ---------- Investment calcs ----------
 
 def estimate_monthly_rent(city, address, bedrooms):
@@ -622,6 +735,13 @@ def scrape_primelocation(city, min_bedrooms, max_price, keywords_blob):
                     if rec["bathrooms"] < int(filters["baths_min"]):
                         print(f"    ⏭️  Skipped {url}: only {rec['bathrooms']} baths", file=sys.stderr)
                         continue
+                
+                # Article 4 filtering - exclude properties in Article 4 areas
+                property_address = rec.get("address", "")
+                property_postcode = rec.get("postcode", "")
+                if is_article4_area(property_address, property_postcode):
+                    print(f"    🚫 Skipped {url}: Article 4 area (HMO restrictions)", file=sys.stderr)
+                    continue
                 if not rec.get("description"):
                     rec["description"] = f"{property_beds or min_beds}-bed property in {city}."
                 add_investment_metrics(rec, city)

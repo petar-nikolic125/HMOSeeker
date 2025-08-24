@@ -22,18 +22,23 @@ from bs4 import BeautifulSoup
 from urllib.parse import urlencode, quote_plus
 from datetime import datetime
 
-# Define known Article 4 areas for quick lookup
+# Define comprehensive Article 4 areas for HMO filtering
 ARTICLE4_BOROUGHS = {
-    # London boroughs with any Article 4 Direction for small HMOs (full or partial coverage)
+    # London boroughs with Article 4 Directions for C3 to C4 conversions
     "Barking and Dagenham", "Barnet", "Bexley", "Brent", "Croydon", "Enfield",
     "Greenwich", "Havering", "Hounslow", "Newham", "Redbridge", "Tower Hamlets",
     "Waltham Forest", "Hillingdon", "Ealing", "Haringey", "Southwark", "Lewisham",
-    "Merton", "Bromley", "Kingston upon Thames", "Sutton"
+    "Merton", "Bromley", "Kingston upon Thames", "Sutton", "Richmond upon Thames",
+    "Wandsworth", "Lambeth", "Camden", "Islington", "Hackney", "Hammersmith and Fulham",
+    "Kensington and Chelsea", "Westminster"
 }
 
 ARTICLE4_CITIES = {
-    # Known cities (outside London) with city-wide HMO Article 4 Directions
-    "Manchester", "Leeds", "Nottingham", "Birmingham", "Oxford", "Brighton", "Liverpool"
+    # Cities outside London with HMO Article 4 Directions
+    "Manchester", "Leeds", "Nottingham", "Birmingham", "Oxford", "Brighton", 
+    "Brighton and Hove", "Liverpool", "Bristol", "Sheffield", "Newcastle",
+    "Newcastle upon Tyne", "Cardiff", "Edinburgh", "Glasgow", "Canterbury",
+    "Bath", "York", "Durham", "Preston", "Exeter", "Reading", "Winchester"
 }
 
 def is_article4_area(address, london_borough=None):
@@ -73,7 +78,9 @@ def parse_london_location(address):
         outcode_match = re.search(r"\b([A-Z]{1,2}\d{1,2}[A-Z]?)\b", addr_clean, flags=re.IGNORECASE)
         if outcode_match:
             postcode_district = outcode_match.group(1).upper()
-            postcode_area = re.match(r"^[A-Z]+", postcode_district).group(0)
+            area_match = re.match(r"^[A-Z]+", postcode_district)
+            if area_match:
+                postcode_area = area_match.group(0)
     
     # London boroughs
     borough_names = [
@@ -340,6 +347,10 @@ def extract_property_from_card(card, city, max_sqm=None):
     # Determine Article 4 status
     article4_status = is_article4_area(address, london_borough)
     article4_area = article4_status != "None"
+    
+    # Filter out Article 4 properties - we only want non-Article 4 properties
+    if article4_area:
+        return None
     
     # Extract property details
     details = extract_property_details(title, description)
