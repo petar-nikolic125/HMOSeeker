@@ -79,7 +79,51 @@ export async function registerRoutes(app: Express): Promise<Server> {
       let allProperties = await CacheDatabase.searchProperties(filters);
       const totalResults = allProperties.length;
       
-      // Shuffle properties if requested
+      // Helper functions for property type extraction and sorting
+      const getPropertyTypeFromTitle = (title: string): string => {
+        const titleLower = title.toLowerCase();
+        // Check for semi-detached first (more specific than detached)
+        if (titleLower.includes('semi-detached') || titleLower.includes('semi detached')) return 'semi-detached';  
+        if (titleLower.includes('detached house')) return 'detached';
+        if (titleLower.includes('terraced house') || titleLower.includes('terrace house') || titleLower.includes('end terrace')) return 'terraced';
+        if (titleLower.includes('house')) return 'house';
+        if (titleLower.includes('flat') || titleLower.includes('apartment') || titleLower.includes('maisonette')) return 'flat';
+        return 'unknown';
+      };
+
+      const getPropertyTypePriority = (type: string): number => {
+        switch(type) {
+          case 'detached': return 1;
+          case 'house': return 2; 
+          case 'terraced': return 3;
+          case 'semi-detached': return 4;
+          case 'flat': return 5;
+          default: return 6;
+        }
+      };
+
+      // Sort properties by type preference (houses first, flats last)
+      if (shuffle !== 'true') {
+        allProperties.sort((a, b) => {
+          const typeA = getPropertyTypeFromTitle(a.address || a.title || '');
+          const typeB = getPropertyTypeFromTitle(b.address || b.title || '');
+          const priorityA = getPropertyTypePriority(typeA);
+          const priorityB = getPropertyTypePriority(typeB);
+          
+          // Primary sort: by property type priority
+          if (priorityA !== priorityB) {
+            return priorityA - priorityB;
+          }
+          
+          // Secondary sort: by gross yield (higher yield first within same type)
+          const yieldA = a.gross_yield_pct || 0;
+          const yieldB = b.gross_yield_pct || 0;
+          return yieldB - yieldA;
+        });
+        console.log(`🏠 Properties sorted by type preference: houses first, flats last`);
+      }
+
+      // Shuffle properties if requested (after type sorting)
       if (shuffle === 'true') {
         console.log(`🎲 Shuffling ${allProperties.length} properties...`);
         // Fisher-Yates shuffle algorithm
@@ -124,6 +168,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
         const grossYield = quickMetrics.gross_yield_pct || 0;
         const monthlyRent = quickMetrics.estimated_monthly_rent || 400;
         const roi = quickMetrics.cash_on_cash_pct || 0;
+
+        // Extract and enhance property type from title
+        const extractedPropertyType = getPropertyTypeFromTitle(prop.address || prop.title || '');
+        const finalPropertyType = extractedPropertyType !== 'unknown' ? extractedPropertyType : prop.property_type || 'unknown';
 
         // Predict size if missing
         let areaSqm = prop.area_sqm;
@@ -173,7 +221,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           postcode_district: prop.postcode_district || null,
           postcode_area: prop.postcode_area || null,
           property_category: prop.property_category || "residential",
-          property_type: prop.property_type || "unknown",
+          property_type: finalPropertyType,
           flat_floor: prop.flat_floor || null,
           has_garden: prop.has_garden || false,
           has_parking: prop.has_parking || false,
