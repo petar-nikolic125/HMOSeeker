@@ -102,7 +102,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }
       };
 
-      // Sort properties by type preference (houses first, flats last)
+      // Sort properties by type preference (houses first), then by proximity to 90 sqm, then non-Article 4 areas
       if (shuffle !== 'true') {
         allProperties.sort((a, b) => {
           const typeA = getPropertyTypeFromTitle(a.address || a.title || '');
@@ -110,17 +110,33 @@ export async function registerRoutes(app: Express): Promise<Server> {
           const priorityA = getPropertyTypePriority(typeA);
           const priorityB = getPropertyTypePriority(typeB);
           
-          // Primary sort: by property type priority
+          // Primary sort: by property type priority (houses first)
           if (priorityA !== priorityB) {
             return priorityA - priorityB;
           }
           
-          // Secondary sort: by gross yield (higher yield first within same type)
+          // Secondary sort: non-Article 4 areas first
+          const article4A = a.article4_area || false;
+          const article4B = b.article4_area || false;
+          if (article4A !== article4B) {
+            return article4A ? 1 : -1; // non-Article 4 (false) comes first
+          }
+          
+          // Tertiary sort: proximity to 90 sqm (closer to 90 sqm comes first)
+          const sqmA = a.area_sqm || a.predicted_sqm || 0;
+          const sqmB = b.area_sqm || b.predicted_sqm || 0;
+          const distanceA = Math.abs(sqmA - 90);
+          const distanceB = Math.abs(sqmB - 90);
+          if (distanceA !== distanceB) {
+            return distanceA - distanceB;
+          }
+          
+          // Final sort: by gross yield (higher yield first)
           const yieldA = a.gross_yield_pct || 0;
           const yieldB = b.gross_yield_pct || 0;
           return yieldB - yieldA;
         });
-        console.log(`🏠 Properties sorted by type preference: houses first, flats last`);
+        console.log(`🏠 Properties sorted by: 1) Houses first 2) Non-Article 4 areas 3) Proximity to 90 sqm 4) Gross yield`);
       }
 
       // Shuffle properties if requested (after type sorting)

@@ -103,6 +103,18 @@ export default function PropertyCard({ property, onAnalyze, delay = 0 }: Propert
               {property.hmo_candidate && (
                 <span className="bg-green-100 text-green-700 px-1.5 py-0.5 rounded text-xs font-medium">HMO</span>
               )}
+              {!property.article4_area && (
+                <span className="bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded text-xs font-medium" title="Non-Article 4 area - No planning restrictions for HMO conversion">
+                  <CheckCircle className="w-3 h-3 inline mr-0.5" />
+                  Non-A4
+                </span>
+              )}
+              {property.article4_area && (
+                <span className="bg-orange-100 text-orange-700 px-1.5 py-0.5 rounded text-xs font-medium" title="Article 4 area - Planning permission required for HMO conversion">
+                  <AlertTriangle className="w-3 h-3 inline mr-0.5" />
+                  Article 4
+                </span>
+              )}
               <span className={`${getYieldColor(estimatedYield) === 'from-emerald-500 to-green-500' ? 'bg-green-100 text-green-700' : 
                                getYieldColor(estimatedYield) === 'from-yellow-500 to-orange-500' ? 'bg-yellow-100 text-yellow-700' :
                                'bg-red-100 text-red-700'} px-1.5 py-0.5 rounded text-xs font-medium`}>
