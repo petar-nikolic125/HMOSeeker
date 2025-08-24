@@ -158,32 +158,37 @@ export const PropertyCard = ({ property, delay = 0 }: PropertyCardProps) => {
                 </div>
               )}
               
-              {(property.size || property.predictedSqm) && (
-                <div 
-                  className="flex items-center gap-2 text-gray-700"
-                  data-testid="text-area"
-                >
-                  <div className="p-2 bg-purple-50 rounded-xl">
-                    <Square className="w-5 h-5 text-purple-600" />
-                  </div>
-                  <div className="flex flex-col">
-                    <div className="flex items-center gap-2">
-                      <span className="font-semibold">{property.size || property.predictedSqm}</span>
-                      <span className="text-sm text-gray-500">m²</span>
-                      {property.areaEstimated && (
-                        <span className="text-xs bg-orange-100 text-orange-700 px-2 py-0.5 rounded-full font-medium">
-                          predicted
-                        </span>
-                      )}
-                    </div>
-                    {property.areaEstimated && property.predictedSqft && (
-                      <span className="text-xs text-gray-400">
-                        ~{property.predictedSqft} sqft
+              <div 
+                className="flex items-center gap-2 text-gray-700"
+                data-testid="text-area"
+              >
+                <div className="p-2 bg-purple-50 rounded-xl">
+                  <Square className="w-5 h-5 text-purple-600" />
+                </div>
+                <div className="flex flex-col">
+                  <div className="flex items-center gap-2">
+                    <span className="font-semibold">
+                      {property.size || property.predictedSqm || 'N/A'}
+                    </span>
+                    <span className="text-sm text-gray-500">m²</span>
+                    {property.areaEstimated && (
+                      <span className="text-xs bg-orange-100 text-orange-700 px-2 py-0.5 rounded-full font-medium">
+                        predicted
                       </span>
                     )}
                   </div>
+                  {property.areaEstimated && property.predictedSqft && (
+                    <span className="text-xs text-gray-400">
+                      ~{property.predictedSqft} sqft
+                    </span>
+                  )}
+                  {!property.areaEstimated && property.size && (
+                    <span className="text-xs text-gray-400">
+                      actual size
+                    </span>
+                  )}
                 </div>
-              )}
+              </div>
             </div>
           </div>
 
