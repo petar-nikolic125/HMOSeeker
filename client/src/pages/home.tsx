@@ -126,11 +126,13 @@ export default function Home() {
 
   // Sorting functionality
   const sortProperties = useCallback((properties: any[], sortType: string) => {
+    // For optimal HMO sorting, don't re-sort - just return the backend-ordered array
+    if (sortType === "optimal_hmo") {
+      return [...properties]; // Return copy without sorting
+    }
+    
     const sorted = [...properties].sort((a, b) => {
       switch (sortType) {
-        case "optimal_hmo":
-          // Don't sort - respect backend ordering (houses first, non-Article 4, proximity to 90 sqm)
-          return 0;
         case "yield_desc":
           return (b.grossYield || 0) - (a.grossYield || 0);
         case "yield_asc":
@@ -144,7 +146,7 @@ export default function Home() {
         case "bedrooms_desc":
           return (b.bedrooms || 0) - (a.bedrooms || 0);
         default:
-          return 0; // Default to backend ordering
+          return 0;
       }
     });
     return sorted;
