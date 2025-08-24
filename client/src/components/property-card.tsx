@@ -87,6 +87,15 @@ export default function PropertyCard({ property, onAnalyze, delay = 0 }: Propert
                     {property.bathrooms}
                   </span>
                 )}
+                {(property.area_sqm || property.predicted_sqm) && (
+                  <span className="flex items-center gap-1">
+                    <Square className="w-3 h-3" />
+                    {property.area_sqm || property.predicted_sqm}m²
+                    {property.area_estimated && (
+                      <span className="text-gray-400 ml-0.5" title="Estimated size based on bedrooms, location and property type">~</span>
+                    )}
+                  </span>
+                )}
               </div>
             </div>
             
