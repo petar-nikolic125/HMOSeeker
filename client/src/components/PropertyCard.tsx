@@ -158,7 +158,7 @@ export const PropertyCard = ({ property, delay = 0 }: PropertyCardProps) => {
                 </div>
               )}
               
-{(property.size || property.predictedSqm) && (
+              {(property.size || property.predictedSqm) && (
                 <div 
                   className="flex items-center gap-2 text-gray-700"
                   data-testid="text-area"
