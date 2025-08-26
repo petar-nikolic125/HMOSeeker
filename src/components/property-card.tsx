@@ -135,8 +135,8 @@ export default function PropertyCard({ property, onAnalyze, delay = 0 }: Propert
             
             {property.bathrooms && (
               <div className="flex items-center gap-2 text-gray-700">
-                <div className="p-2 bg-emerald-50 rounded-xl">
-                  <Bath className="w-5 h-5 text-emerald-600" />
+                <div className="p-2 bg-blue-50 rounded-xl">
+                  <Bath className="w-5 h-5 text-blue-600" />
                 </div>
                 <span className="font-semibold">{property.bathrooms}</span>
                 <span className="text-sm text-gray-500">baths</span>
@@ -145,8 +145,8 @@ export default function PropertyCard({ property, onAnalyze, delay = 0 }: Propert
             
             {(property.area_sqm || property.sqm_range_min || property.size) && (
               <div className="flex items-center gap-2 text-gray-700">
-                <div className="p-2 bg-purple-50 rounded-xl">
-                  <Square className="w-5 h-5 text-purple-600" />
+                <div className="p-2 bg-blue-50 rounded-xl">
+                  <Square className="w-5 h-5 text-blue-600" />
                 </div>
                 <span className="font-semibold">
                   {/* DEBUG: Always show range if available */}
@@ -158,7 +158,7 @@ export default function PropertyCard({ property, onAnalyze, delay = 0 }: Propert
                 </span>
                 <span className="text-sm text-gray-500">m²</span>
                 {property.area_estimated && (
-                  <span className="text-xs bg-orange-100 text-orange-700 px-2 py-0.5 rounded-full font-medium">
+                  <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full font-medium">
                     estimated
                   </span>
                 )}
@@ -179,12 +179,12 @@ export default function PropertyCard({ property, onAnalyze, delay = 0 }: Propert
             </div>
           </div>
           
-          <div className="bg-gradient-to-br from-emerald-50 to-green-50 p-4 rounded-2xl border border-emerald-100/60">
+          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-4 rounded-2xl border border-blue-100/60">
             <div className="flex items-center gap-2 mb-2">
-              <Percent className="w-5 h-5 text-emerald-600" />
-              <span className="text-sm font-semibold text-emerald-900">Yield</span>
+              <Percent className="w-5 h-5 text-blue-600" />
+              <span className="text-sm font-semibold text-blue-900">Yield</span>
             </div>
-            <div className="text-2xl font-bold text-emerald-800">
+            <div className="text-2xl font-bold text-blue-800">
               {estimatedYield.toFixed(1)}%
             </div>
           </div>

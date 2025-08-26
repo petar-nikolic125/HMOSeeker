@@ -27,7 +27,7 @@
   }
   .custom-scrollbar{
     scrollbar-width:thin;
-    scrollbar-color:rgba(59,130,246,.5) transparent
+    scrollbar-color:rgba(37,99,235,.5) transparent
   }
   .custom-scrollbar::-webkit-scrollbar{
     width:6px;
@@ -37,11 +37,11 @@
     background:transparent
   }
   .custom-scrollbar::-webkit-scrollbar-thumb{
-    background:rgba(59,130,246,.5);
+    background:rgba(37,99,235,.5);
     border-radius:10px
   }
   .custom-scrollbar::-webkit-scrollbar-thumb:hover{
-    background:rgba(59,130,246,.7)
+    background:rgba(37,99,235,.7)
   }
   
   .property-grid-enter{
@@ -55,7 +55,7 @@
   }
   
   .bg-hero-gradient{
-    background:linear-gradient(135deg,#1e3a8a 0%,#3b82f6 25%,#06b6d4 75%,#0891b2 100%);
+    background:linear-gradient(135deg,#1e3a8a 0%,#2563eb 25%,#3b82f6 75%,#1d4ed8 100%);
     position:relative;
     overflow:hidden
   }
@@ -107,18 +107,18 @@
   .cloud-5::before{width:55px;height:55px;top:-28px;left:18px}
   .cloud-5::after{width:75px;height:48px;top:-19px;right:12px}
   
-  /* City lights */
-  .city-light{position:absolute;width:3px;height:3px;background:#ffd700;border-radius:50%;box-shadow:0 0 6px #ffd700,0 0 12px #ffd700}
+  /* City lights - Blue theme */
+  .city-light{position:absolute;width:3px;height:3px;background:#3b82f6;border-radius:50%;box-shadow:0 0 6px #3b82f6,0 0 12px #3b82f6}
   .city-light-1{top:70%;left:15%}
-  .city-light-2{top:65%;left:25%;background:#00bfff;box-shadow:0 0 6px #00bfff,0 0 12px #00bfff}
+  .city-light-2{top:65%;left:25%;background:#2563eb;box-shadow:0 0 6px #2563eb,0 0 12px #2563eb}
   .city-light-3{top:72%;left:35%}
-  .city-light-4{top:68%;left:45%;background:#ff6b6b;box-shadow:0 0 6px #ff6b6b,0 0 12px #ff6b6b}
+  .city-light-4{top:68%;left:45%;background:#1d4ed8;box-shadow:0 0 6px #1d4ed8,0 0 12px #1d4ed8}
   .city-light-5{top:74%;left:55%}
-  .city-light-6{top:69%;left:65%;background:#00bfff;box-shadow:0 0 6px #00bfff,0 0 12px #00bfff}
+  .city-light-6{top:69%;left:65%;background:#2563eb;box-shadow:0 0 6px #2563eb,0 0 12px #2563eb}
   .city-light-7{top:71%;left:75%}
-  .city-light-8{top:67%;left:85%;background:#ff6b6b;box-shadow:0 0 6px #ff6b6b,0 0 12px #ff6b6b}
+  .city-light-8{top:67%;left:85%;background:#1d4ed8;box-shadow:0 0 6px #1d4ed8,0 0 12px #1d4ed8}
   .city-light-9{top:73%;left:95%}
-  .city-light-10{top:66%;left:5%;background:#00bfff;box-shadow:0 0 6px #00bfff,0 0 12px #00bfff}
+  .city-light-10{top:66%;left:5%;background:#2563eb;box-shadow:0 0 6px #2563eb,0 0 12px #2563eb}
   
   /* Floating particles */
   .particle{position:absolute;width:2px;height:2px;background:rgba(255,255,255,.8);border-radius:50%}

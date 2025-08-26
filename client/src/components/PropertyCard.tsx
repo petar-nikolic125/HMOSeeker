@@ -55,14 +55,14 @@ export const PropertyCard = ({ property, delay = 0 }: PropertyCardProps) => {
 
   const getProfitabilityColor = (score: string | undefined) => {
     const normalized = (score || '').toLowerCase();
-    if (normalized === 'high') return 'from-emerald-500 to-green-500';
-    if (normalized === 'medium') return 'from-yellow-500 to-orange-500';
+    if (normalized === 'high') return 'from-blue-500 to-indigo-500';
+    if (normalized === 'medium') return 'from-blue-400 to-blue-500';
     return 'from-gray-400 to-gray-500';
   };
 
   const getYieldColor = (yieldPercent: number | undefined) => {
     const yield_val = yieldPercent || 0;
-    if (yield_val >= 8) return 'from-purple-600 to-blue-600';
+    if (yield_val >= 8) return 'from-blue-600 to-indigo-600';
     if (yield_val >= 5) return 'from-blue-500 to-indigo-500';
     return 'from-slate-500 to-gray-500';
   };
@@ -87,7 +87,7 @@ export const PropertyCard = ({ property, delay = 0 }: PropertyCardProps) => {
           
           {/* Modern gradient overlays */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/70" />
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-indigo-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           
           {/* Floating badges */}
           <div className="absolute top-5 left-5 flex flex-col gap-2">
@@ -150,8 +150,8 @@ export const PropertyCard = ({ property, delay = 0 }: PropertyCardProps) => {
                   className="flex items-center gap-2 text-gray-700"
                   data-testid="text-bathrooms"
                 >
-                  <div className="p-2 bg-emerald-50 rounded-xl">
-                    <Bath className="w-5 h-5 text-emerald-600" />
+                  <div className="p-2 bg-blue-50 rounded-xl">
+                    <Bath className="w-5 h-5 text-blue-600" />
                   </div>
                   <span className="font-semibold">{property.bathrooms}</span>
                   <span className="text-sm text-gray-500">baths</span>
@@ -163,8 +163,8 @@ export const PropertyCard = ({ property, delay = 0 }: PropertyCardProps) => {
                 className="flex items-center gap-2 text-gray-700"
                 data-testid="text-area"
               >
-                <div className="p-2 bg-purple-50 rounded-xl">
-                  <Square className="w-5 h-5 text-purple-600" />
+                <div className="p-2 bg-blue-50 rounded-xl">
+                  <Square className="w-5 h-5 text-blue-600" />
                 </div>
                 <div className="flex flex-col">
                   <div className="flex items-center gap-2">
@@ -178,7 +178,7 @@ export const PropertyCard = ({ property, delay = 0 }: PropertyCardProps) => {
                     </span>
                     <span className="text-sm text-gray-500">m²</span>
                     {(property.areaEstimated || property.area_estimated) && (
-                      <span className="text-xs bg-orange-100 text-orange-700 px-2 py-0.5 rounded-full font-medium">
+                      <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full font-medium">
                         estimated
                       </span>
                     )}
@@ -216,13 +216,13 @@ export const PropertyCard = ({ property, delay = 0 }: PropertyCardProps) => {
               </div>
             </div>
             
-            <div className="bg-gradient-to-br from-emerald-50 to-green-50 p-4 rounded-2xl border border-emerald-100/60">
+            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-4 rounded-2xl border border-blue-100/60">
               <div className="flex items-center gap-2 mb-2">
-                <Percent className="w-5 h-5 text-emerald-600" />
-                <span className="text-sm font-semibold text-emerald-900">Yield</span>
+                <Percent className="w-5 h-5 text-blue-600" />
+                <span className="text-sm font-semibold text-blue-900">Yield</span>
               </div>
               <div 
-                className="text-2xl font-bold text-emerald-800"
+                className="text-2xl font-bold text-blue-800"
                 data-testid="text-yield"
               >
                 {formatPercentage(property.grossYield)}
@@ -248,7 +248,7 @@ export const PropertyCard = ({ property, delay = 0 }: PropertyCardProps) => {
             {/* Primary View Property Button - Centered */}
             <Button 
               onClick={() => window.open(getPortalUrl(), '_blank')}
-              className="w-full h-14 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold text-lg rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] flex items-center justify-center gap-3"
+              className="w-full h-14 bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white font-bold text-lg rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] flex items-center justify-center gap-3"
               data-testid="button-view"
             >
               <span>{isDemoProperty() ? 'Search Similar Properties' : 'View Property'}</span>
@@ -268,7 +268,7 @@ export const PropertyCard = ({ property, delay = 0 }: PropertyCardProps) => {
             {/* Secondary Analyze Button - Smaller and Below */}
             <Button 
               onClick={() => setIsAnalysisOpen(true)}
-              className="w-full h-10 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold text-sm rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02] flex items-center justify-center gap-2"
+              className="w-full h-10 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold text-sm rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02] flex items-center justify-center gap-2"
               data-testid="button-analyze"
             >
               <Calculator className="w-4 h-4" />

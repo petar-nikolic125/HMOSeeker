@@ -74,7 +74,7 @@ export default function HeroSection({ onSearch, isLoading, searchResults }: Hero
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `linear-gradient(135deg, rgba(99, 102, 241, 0.9) 0%, rgba(168, 85, 247, 0.8) 50%, rgba(244, 114, 182, 0.7) 100%), url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&h=1080')`,
+          backgroundImage: `linear-gradient(135deg, rgba(30, 58, 138, 0.9) 0%, rgba(37, 99, 235, 0.8) 50%, rgba(59, 130, 246, 0.7) 100%), url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&h=1080')`,
           backgroundAttachment: 'fixed'
         }}
       >
@@ -84,20 +84,20 @@ export default function HeroSection({ onSearch, isLoading, searchResults }: Hero
       {/* Floating particles */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute w-1 h-1 bg-blue-400 rounded-full animate-float opacity-60" style={{left: '10%', top: '20%', animationDelay: '0s'}}></div>
-        <div className="absolute w-1 h-1 bg-purple-400 rounded-full animate-float opacity-60" style={{left: '80%', top: '30%', animationDelay: '2s'}}></div>
-        <div className="absolute w-1 h-1 bg-pink-400 rounded-full animate-float opacity-60" style={{left: '60%', top: '60%', animationDelay: '1s'}}></div>
+        <div className="absolute w-1 h-1 bg-blue-400 rounded-full animate-float opacity-60" style={{left: '80%', top: '30%', animationDelay: '2s'}}></div>
+        <div className="absolute w-1 h-1 bg-indigo-400 rounded-full animate-float opacity-60" style={{left: '60%', top: '60%', animationDelay: '1s'}}></div>
         <div className="absolute w-2 h-2 bg-blue-300 rounded-full animate-float opacity-40" style={{left: '30%', top: '70%', animationDelay: '3s'}}></div>
       </div>
 
       <div className="relative container mx-auto px-4 z-10">
         <div className="text-center mb-12 animate-fade-in">
           <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm font-medium border border-white/30 shadow-lg hover:bg-white/30 transition-all duration-300">
-            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+            <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
             Live HMO Property Finder
           </div>
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight tracking-tight">
             Find Your Next
-            <span className="block text-transparent bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text animate-gradient">
+            <span className="block text-transparent bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text animate-gradient">
               HMO Investment
             </span>
           </h1>
@@ -155,13 +155,13 @@ export default function HeroSection({ onSearch, isLoading, searchResults }: Hero
 
               <div>
                 <label className="block text-sm font-semibold text-gray-800 mb-3 flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                   Max Price (£)
                 </label>
                 <select 
                   value={maxPrice}
                   onChange={(e) => setMaxPrice(parseInt(e.target.value))}
-                  className="w-full h-12 text-base border-2 border-gray-200 hover:border-green-400 focus:border-green-500 transition-colors rounded-xl px-4 bg-white"
+                  className="w-full h-12 text-base border-2 border-gray-200 hover:border-blue-400 focus:border-blue-500 transition-colors rounded-xl px-4 bg-white"
                 >
                   <option value={250000}>£250k</option>
                   <option value={300000}>£300k</option>
@@ -197,7 +197,7 @@ export default function HeroSection({ onSearch, isLoading, searchResults }: Hero
 
               <div>
                 <label className="block text-sm font-semibold text-gray-800 mb-3 flex items-center gap-2">
-                  <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                   Postcode
                 </label>
                 <input 
@@ -205,7 +205,7 @@ export default function HeroSection({ onSearch, isLoading, searchResults }: Hero
                   value={postcode}
                   onChange={(e) => setPostcode(e.target.value)}
                   placeholder="e.g. SW1A 1AA"
-                  className="w-full h-12 text-base border-2 border-gray-200 hover:border-red-400 focus:border-red-500 transition-colors rounded-xl px-4 bg-white"
+                  className="w-full h-12 text-base border-2 border-gray-200 hover:border-blue-400 focus:border-blue-500 transition-colors rounded-xl px-4 bg-white"
                 />
               </div>
             </div>
@@ -228,7 +228,7 @@ export default function HeroSection({ onSearch, isLoading, searchResults }: Hero
               <button 
                 onClick={handleSearch}
                 disabled={!city || isLoading}
-                className="w-full sm:w-auto h-14 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 disabled:from-gray-400 disabled:to-gray-500 text-white text-base sm:text-lg font-semibold shadow-xl hover:shadow-2xl transform hover:scale-105 disabled:transform-none disabled:scale-100 transition-all duration-300 rounded-xl flex items-center justify-center gap-3 px-8 sm:px-12"
+                className="w-full sm:w-auto h-14 bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 disabled:from-gray-400 disabled:to-gray-500 text-white text-base sm:text-lg font-semibold shadow-xl hover:shadow-2xl transform hover:scale-105 disabled:transform-none disabled:scale-100 transition-all duration-300 rounded-xl flex items-center justify-center gap-3 px-8 sm:px-12"
                 data-testid="button-search"
               >
                 {isLoading ? (
