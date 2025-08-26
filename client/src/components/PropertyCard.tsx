@@ -158,7 +158,7 @@ export const PropertyCard = ({ property, delay = 0 }: PropertyCardProps) => {
                 </div>
               )}
               
-              {/* Size Information - Always Visible */}
+              {/* Enhanced Size Information - Always Visible */}
               <div 
                 className="flex items-center gap-2 text-gray-700"
                 data-testid="text-area"
@@ -169,33 +169,68 @@ export const PropertyCard = ({ property, delay = 0 }: PropertyCardProps) => {
                 <div className="flex flex-col">
                   <div className="flex items-center gap-2">
                     <span className="font-semibold">
-                      {/* Show range if available, otherwise single value */}
-                      {property.sqm_range_min && property.sqm_range_max ? (
+                      {/* Priority order: range -> single values -> predicted -> fallback */}
+                      {property.sqm_range_min && property.sqm_range_max && property.sqm_range_min > 0 ? (
                         `${property.sqm_range_min}-${property.sqm_range_max}`
-                      ) : (
-                        property.size || property.predictedSqm || property.area_sqm || 'N/A'
-                      )}
+                      ) : property.area_sqm ? (
+                        property.area_sqm
+                      ) : property.size ? (
+                        property.size
+                      ) : property.predictedSqm ? (
+                        `~${property.predictedSqm}`
+                      ) : 'N/A'}
                     </span>
                     <span className="text-sm text-gray-500">m²</span>
+                    
+                    {/* Show estimation badges */}
                     {(property.areaEstimated || property.area_estimated) && (
                       <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full font-medium">
                         estimated
                       </span>
                     )}
+                    
+                    {/* Show confidence level if available */}
+                    {property.sizePredictionConfidence && (
+                      <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${
+                        property.sizePredictionConfidence === 'high' ? 'bg-green-100 text-green-700' :
+                        property.sizePredictionConfidence === 'medium' ? 'bg-yellow-100 text-yellow-700' :
+                        'bg-red-100 text-red-700'
+                      }`}>
+                        {property.sizePredictionConfidence}
+                      </span>
+                    )}
                   </div>
-                  {(property.areaEstimated || property.area_estimated) && property.sqft_range_min && property.sqft_range_max ? (
-                    <span className="text-xs text-gray-400">
-                      {property.sqft_range_min}-{property.sqft_range_max} sqft
-                    </span>
-                  ) : (property.areaEstimated || property.area_estimated) && property.predictedSqft ? (
-                    <span className="text-xs text-gray-400">
-                      ~{property.predictedSqft} sqft
-                    </span>
-                  ) : !(property.areaEstimated || property.area_estimated) && (property.size || property.area_sqm) ? (
-                    <span className="text-xs text-gray-400">
-                      actual size
-                    </span>
-                  ) : null}
+                  
+                  {/* Additional size information */}
+                  <div className="text-xs text-gray-400 space-y-0.5">
+                    {/* Show sqft equivalent for ranges */}
+                    {property.sqft_range_min && property.sqft_range_max && (
+                      <div>
+                        {property.sqft_range_min}-{property.sqft_range_max} sqft
+                      </div>
+                    )}
+                    
+                    {/* Show predicted sqft if available */}
+                    {!property.sqft_range_min && property.predictedSqft && (
+                      <div>
+                        ~{property.predictedSqft} sqft
+                      </div>
+                    )}
+                    
+                    {/* Show prediction basis if available */}
+                    {property.sizePredictionBasis && (
+                      <div className="truncate max-w-32" title={property.sizePredictionBasis}>
+                        based on {property.sizePredictionBasis}
+                      </div>
+                    )}
+                    
+                    {/* Show actual size indicator */}
+                    {!property.areaEstimated && !property.area_estimated && (property.size || property.area_sqm) && (
+                      <div>
+                        actual size
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>

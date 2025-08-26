@@ -36,7 +36,7 @@ export interface PropertyWithAnalytics extends PropertyListing {
   coordinates?: [number, number]; // Maps to latitude/longitude
   size?: number; // Property size in sqm (from area_sqm or predicted)
   
-  // Size prediction fields
+  // Size prediction and estimation fields
   predictedSqm?: number;
   predictedSqft?: number;
   sqm_range_min?: number;
@@ -46,6 +46,7 @@ export interface PropertyWithAnalytics extends PropertyListing {
   sizePredictionConfidence?: 'low' | 'medium' | 'high';
   sizePredictionBasis?: string;
   areaEstimated?: boolean;
+  area_estimated?: boolean; // Alternative field name for compatibility
 }
 
 export interface CacheEntry {
