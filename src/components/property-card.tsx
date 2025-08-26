@@ -149,7 +149,8 @@ export default function PropertyCard({ property, onAnalyze, delay = 0 }: Propert
                   <Square className="w-5 h-5 text-purple-600" />
                 </div>
                 <span className="font-semibold">
-                  {property.sqm_range_min && property.sqm_range_max ? (
+                  {/* DEBUG: Always show range if available */}
+                  {(property.sqm_range_min != null && property.sqm_range_max != null && property.sqm_range_min > 0) ? (
                     `${property.sqm_range_min}-${property.sqm_range_max}`
                   ) : (
                     property.area_sqm || property.size || 'N/A'
