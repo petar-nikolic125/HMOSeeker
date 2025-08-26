@@ -358,6 +358,65 @@ export const PropertyAnalysis = ({ property, isOpen, onClose }: PropertyAnalysis
                       </Card>
                     </div>
 
+                    {/* Property Size Analysis */}
+                    {(property.area_sqm || property.predicted_sqm || property.sqm_range_min) && (
+                      <Card>
+                        <CardHeader>
+                          <CardTitle className="flex items-center gap-2">
+                            <Home className="w-5 h-5 text-indigo-500" />
+                            Property Size Analysis
+                          </CardTitle>
+                        </CardHeader>
+                        <CardContent className="space-y-3">
+                          {property.area_sqm ? (
+                            <div className="flex justify-between text-sm">
+                              <span>Actual Size:</span>
+                              <span className="font-semibold">{property.area_sqm}m² ({Math.round(property.area_sqm * 10.764)}sqft)</span>
+                            </div>
+                          ) : property.predicted_sqm ? (
+                            <div className="flex justify-between text-sm">
+                              <span>Predicted Size:</span>
+                              <span className="font-semibold">{property.predicted_sqm}m² ({Math.round(property.predicted_sqm * 10.764)}sqft)</span>
+                            </div>
+                          ) : null}
+                          
+                          {property.sqm_range_min && property.sqm_range_max && (
+                            <div className="flex justify-between text-sm">
+                              <span>Size Range:</span>
+                              <span className="font-semibold">
+                                {property.sqm_range_min}-{property.sqm_range_max}m²
+                                ({Math.round(property.sqm_range_min * 10.764)}-{Math.round(property.sqm_range_max * 10.764)}sqft)
+                              </span>
+                            </div>
+                          )}
+                          
+                          {property.size_prediction_confidence && (
+                            <div className="flex justify-between text-sm">
+                              <span>Prediction Confidence:</span>
+                              <Badge variant="outline" className="text-xs">
+                                {property.size_prediction_confidence}
+                              </Badge>
+                            </div>
+                          )}
+                          
+                          {property.size_prediction_basis && (
+                            <div className="text-xs text-gray-500 mt-2">
+                              <span className="font-medium">Basis:</span> {property.size_prediction_basis}
+                            </div>
+                          )}
+                          
+                          {property.area_estimated && (
+                            <div className="text-xs text-blue-600 bg-blue-50 p-2 rounded">
+                              <span className="inline-flex items-center gap-1">
+                                <Calculator className="w-3 h-3" />
+                                Size estimated using property characteristics and location data
+                              </span>
+                            </div>
+                          )}
+                        </CardContent>
+                      </Card>
+                    )}
+
                     {/* Investment Summary */}
                     <Card className="bg-gradient-to-r from-blue-50 to-purple-50">
                       <CardHeader>

@@ -17,16 +17,16 @@ export interface PropertyWithAnalytics extends PropertyListing {
   roi?: number;
   grossYield?: number;
   profitabilityScore?: string;
-  
+
   // LHA and rental data
   lhaWeekly?: number;
   lhaMonthly?: number;
-  
+
   // Property URLs for different portals
   rightmoveUrl?: string;
   zooplaUrl?: string;
   primeLocationUrl?: string;
-  
+
   // UI properties that map to schema fields
   imageUrl?: string;  // Maps to image_url
   propertyUrl?: string; // Maps to property_url
@@ -35,17 +35,18 @@ export interface PropertyWithAnalytics extends PropertyListing {
   agentEmail?: string; // Not in schema but can be added
   coordinates?: [number, number]; // Maps to latitude/longitude
   size?: number; // Property size in sqm (from area_sqm or predicted)
-  
-  // Size prediction fields
-  predictedSqm?: number;
-  predictedSqft?: number;
+
+  // Property size fields
+  area_sqm?: number;
+  predicted_sqm?: number;
+  predicted_sqft?: number;
+  area_estimated?: boolean;
   sqm_range_min?: number;
   sqm_range_max?: number;
   sqft_range_min?: number;
   sqft_range_max?: number;
-  sizePredictionConfidence?: 'low' | 'medium' | 'high';
-  sizePredictionBasis?: string;
-  areaEstimated?: boolean;
+  size_prediction_confidence?: string;
+  size_prediction_basis?: string;
 }
 
 export interface CacheEntry {
