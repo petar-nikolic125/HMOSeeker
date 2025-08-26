@@ -139,7 +139,7 @@ function getPriceModifier(price: number, city: string): number {
 /**
  * Extract number of receptions from title or address
  */
-function extractReceptionsFromText(title: string, address: string): number | undefined {
+export function extractReceptionsFromText(title: string, address: string): number | undefined {
   const text = `${title} ${address}`.toLowerCase();
   
   // Look for reception room patterns
@@ -333,13 +333,9 @@ export function predictPropertySize(params: PropertySizePredictionParams): Prope
 
 /**
  * Convenience function for use in property processing
+ * Always generates range data, regardless of whether area_sqm exists
  */
 export function addSizePrediction(property: any): any {
-  // Only predict if area is missing or zero
-  if (property.area_sqm && property.area_sqm > 0) {
-    return property;
-  }
-  
   const prediction = predictPropertySize({
     bedrooms: property.bedrooms || 3,
     bathrooms: property.bathrooms,
@@ -350,16 +346,23 @@ export function addSizePrediction(property: any): any {
     address: property.address || property.title || ''
   });
   
-  return {
+  // Always add range data
+  const result = {
     ...property,
-    predicted_sqm: prediction.predictedSqm,
-    predicted_sqft: prediction.predictedSqft,
     sqm_range_min: prediction.sqmRange.min,
     sqm_range_max: prediction.sqmRange.max,
     sqft_range_min: prediction.sqftRange.min,
     sqft_range_max: prediction.sqftRange.max,
     size_prediction_confidence: prediction.confidence,
-    size_prediction_basis: prediction.basis,
-    area_estimated: true
+    size_prediction_basis: prediction.basis
   };
+  
+  // Only add predicted values if area is missing or zero
+  if (!property.area_sqm || property.area_sqm <= 0) {
+    result.predicted_sqm = prediction.predictedSqm;
+    result.predicted_sqft = prediction.predictedSqft;
+    result.area_estimated = true;
+  }
+  
+  return result;
 }

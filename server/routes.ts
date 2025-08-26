@@ -7,7 +7,7 @@ import { SyncScraper } from "./services/sync-scraper";
 import { PropertyAnalyzer } from "./services/property-analyzer";
 import { CacheDatabase } from "./services/cache-database";
 import { estimatePropertyMetrics, scenarioReport, type PropertyData, type Assumptions } from "./services/property-estimation";
-import { predictPropertySize } from "./services/property-size-predictor";
+import { predictPropertySize, extractReceptionsFromText } from "./services/property-size-predictor";
 import { searchFiltersSchema } from "@shared/schema";
 import { z } from "zod";
 
@@ -237,25 +237,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
         const extractedPropertyType = getPropertyTypeFromTitle(prop.address || prop.title || '');
         const finalPropertyType = extractedPropertyType !== 'unknown' ? extractedPropertyType : prop.property_type || 'unknown';
 
-        // Predict size if missing
-        let areaSqm = prop.area_sqm;
-        let predictedSqm, predictedSqft, sizePredictionConfidence, sizePredictionBasis, areaEstimated;
+        // Always generate size prediction with ranges
+        const prediction = predictPropertySize({
+          bedrooms: prop.bedrooms || 0,
+          bathrooms: prop.bathrooms,
+          receptions: extractReceptionsFromText(prop.title || '', prop.address || ''),
+          price: prop.price || 0,
+          city: prop.city || '',
+          propertyType: finalPropertyType,
+          address: prop.address || ''
+        });
         
+        let areaSqm = prop.area_sqm;
+        let predictedSqm, predictedSqft, areaEstimated;
+        
+        // Only use predicted values if actual area is missing
         if (!areaSqm || areaSqm === 0) {
-          const prediction = predictPropertySize({
-            bedrooms: prop.bedrooms || 0,
-            bathrooms: prop.bathrooms,
-            price: prop.price || 0,
-            city: prop.city || '',
-            propertyType: prop.property_type,
-            address: prop.address || ''
-          });
-          
           areaSqm = prediction.predictedSqm;
           predictedSqm = prediction.predictedSqm;
           predictedSqft = prediction.predictedSqft;
-          sizePredictionConfidence = prediction.confidence;
-          sizePredictionBasis = prediction.basis;
           areaEstimated = true;
         }
 
@@ -303,12 +303,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
           // Include rent calculation method for debugging
           rentMethod: quickMetrics.rent_method_used,
           
-          // Size-related fields
+          // Size-related fields with ranges
           size: areaSqm,
           predictedSqm,
-          predictedSqft, 
-          sizePredictionConfidence,
-          sizePredictionBasis,
+          predictedSqft,
+          sqm_range_min: prediction.sqmRange.min,
+          sqm_range_max: prediction.sqmRange.max,
+          sqft_range_min: prediction.sqftRange.min,
+          sqft_range_max: prediction.sqftRange.max,
+          sizePredictionConfidence: prediction.confidence,
+          sizePredictionBasis: prediction.basis,
           areaEstimated: areaEstimated || prop.area_estimated || false
         };
       });
