@@ -71,7 +71,10 @@ export const Footer = () => {
               <a href="#" className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-colors">
                 <Twitter className="w-5 h-5" />
               </a>
-              <a href="#" className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-colors">
+              <a href="https://www.linkedin.com/in/petar-nikolic-957875345" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-colors" title="Petar Nikolic - LinkedIn">
+                <Linkedin className="w-5 h-5" />
+              </a>
+              <a href="https://www.linkedin.com/in/vasilije-stankovic-9b7127372" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-colors" title="Vasilije Stankovic - LinkedIn">
                 <Linkedin className="w-5 h-5" />
               </a>
               <a href="#" className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gray-700 transition-colors">
@@ -147,6 +150,7 @@ export const Footer = () => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-6 text-sm text-gray-400">
               <span>© 2024 HMO Hunter. All rights reserved.</span>
+              <span>Built by Petar Nikolic & Vasilije Stankovic</span>
               <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
               <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
               <a href="#" className="hover:text-white transition-colors">Cookie Policy</a>
