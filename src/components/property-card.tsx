@@ -143,13 +143,24 @@ export default function PropertyCard({ property, onAnalyze, delay = 0 }: Propert
               </div>
             )}
             
-            {property.area_sqm && (
+            {(property.area_sqm || property.sqm_range_min || property.size) && (
               <div className="flex items-center gap-2 text-gray-700">
                 <div className="p-2 bg-purple-50 rounded-xl">
                   <Square className="w-5 h-5 text-purple-600" />
                 </div>
-                <span className="font-semibold">{property.area_sqm}</span>
+                <span className="font-semibold">
+                  {property.sqm_range_min && property.sqm_range_max ? (
+                    `${property.sqm_range_min}-${property.sqm_range_max}`
+                  ) : (
+                    property.area_sqm || property.size || 'N/A'
+                  )}
+                </span>
                 <span className="text-sm text-gray-500">m²</span>
+                {property.area_estimated && (
+                  <span className="text-xs bg-orange-100 text-orange-700 px-2 py-0.5 rounded-full font-medium">
+                    estimated
+                  </span>
+                )}
               </div>
             )}
           </div>
