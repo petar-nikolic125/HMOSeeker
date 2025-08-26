@@ -39,6 +39,10 @@ export interface PropertyWithAnalytics extends PropertyListing {
   // Size prediction fields
   predictedSqm?: number;
   predictedSqft?: number;
+  sqm_range_min?: number;
+  sqm_range_max?: number;
+  sqft_range_min?: number;
+  sqft_range_max?: number;
   sizePredictionConfidence?: 'low' | 'medium' | 'high';
   sizePredictionBasis?: string;
   areaEstimated?: boolean;

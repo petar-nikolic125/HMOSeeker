@@ -169,25 +169,33 @@ export const PropertyCard = ({ property, delay = 0 }: PropertyCardProps) => {
                 <div className="flex flex-col">
                   <div className="flex items-center gap-2">
                     <span className="font-semibold">
-                      {property.size || property.predictedSqm || property.area_sqm || 'N/A'}
+                      {/* Show range if available, otherwise single value */}
+                      {property.sqm_range_min && property.sqm_range_max ? (
+                        `${property.sqm_range_min}-${property.sqm_range_max}`
+                      ) : (
+                        property.size || property.predictedSqm || property.area_sqm || 'N/A'
+                      )}
                     </span>
                     <span className="text-sm text-gray-500">m²</span>
                     {(property.areaEstimated || property.area_estimated) && (
                       <span className="text-xs bg-orange-100 text-orange-700 px-2 py-0.5 rounded-full font-medium">
-                        predicted
+                        estimated
                       </span>
                     )}
                   </div>
-                  {(property.areaEstimated || property.area_estimated) && property.predictedSqft && (
+                  {(property.areaEstimated || property.area_estimated) && property.sqft_range_min && property.sqft_range_max ? (
+                    <span className="text-xs text-gray-400">
+                      {property.sqft_range_min}-{property.sqft_range_max} sqft
+                    </span>
+                  ) : (property.areaEstimated || property.area_estimated) && property.predictedSqft ? (
                     <span className="text-xs text-gray-400">
                       ~{property.predictedSqft} sqft
                     </span>
-                  )}
-                  {!(property.areaEstimated || property.area_estimated) && (property.size || property.area_sqm) && (
+                  ) : !(property.areaEstimated || property.area_estimated) && (property.size || property.area_sqm) ? (
                     <span className="text-xs text-gray-400">
                       actual size
                     </span>
-                  )}
+                  ) : null}
                 </div>
               </div>
             </div>
