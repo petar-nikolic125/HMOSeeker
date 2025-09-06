@@ -51,6 +51,13 @@ The system includes a basic user management schema for username/password authent
 
 # Recent Updates
 
+## Critical Bug Fixes and Improvements (September 6, 2025)
+- **Article 4 Filtering Enhanced**: Fixed critical issue where properties in Article 4 areas were still being displayed despite restrictions. Replaced hardcoded Article 4 lists with comprehensive database integration using the official 4,368-area JSON database from planning.data.gov.uk
+- **Location Accuracy Improved**: Enhanced geocoding system to prioritize precise street-level coordinates over approximate postcode fallbacks. Properties now show accurate locations within 1-2 addresses instead of being 1-3 roads away
+- **Database Integration**: Integrated Article 4 service with property cache filtering to ensure real-time checking against comprehensive restriction zones
+- **Geocoding Strategy Enhanced**: Implemented multi-query geocoding with street name verification to ensure precise address matching using Nominatim and Postcodes.io APIs
+- **Performance Optimized**: Added proper postcode extraction and validation for faster Article 4 lookups while maintaining accuracy
+
 ## Migration to Replit Environment (August 18, 2025)
 - **Migration Completed**: Successfully migrated HMO Hunter from Replit Agent to standard Replit environment
 - **Dependencies Installed**: All required packages properly configured and working
