@@ -210,13 +210,15 @@ export class CacheDatabase {
       console.log(`📐 Min sqm filter (${filters.min_sqm}): ${beforeCount} → ${filtered.length} (includes properties without area data)`);
     }
 
-    if (filters.article4_filter && filters.article4_filter !== "all") {
+    // Default Article 4 filtering: Always exclude Article 4 properties unless explicitly requested
+    if (!filters.article4_filter || filters.article4_filter === "non_article4") {
       const beforeCount = filtered.length;
-      filtered = filtered.filter(p => {
-        const isArticle4 = p.article4_area === true;
-        return filters.article4_filter === "non_article4" ? !isArticle4 : isArticle4;
-      });
-      console.log(`📋 Article 4 filter ("${filters.article4_filter}"): ${beforeCount} → ${filtered.length}`);
+      filtered = filtered.filter(p => p.article4_area !== true);
+      console.log(`📋 Article 4 filter (default non-article4): ${beforeCount} → ${filtered.length}`);
+    } else if (filters.article4_filter === "article4_only") {
+      const beforeCount = filtered.length;
+      filtered = filtered.filter(p => p.article4_area === true);
+      console.log(`📋 Article 4 filter (article4_only): ${beforeCount} → ${filtered.length}`);
     }
     
     console.log(`🔍 Cache search: ${properties.length} total, ${filtered.length} after filters`);

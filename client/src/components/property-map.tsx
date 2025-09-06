@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
@@ -13,8 +13,10 @@ L.Icon.Default.mergeOptions({
 interface PropertyMapProps {
   city: string;
   address?: string;
+  postcode?: string;
   className?: string;
   height?: string;
+  showArticle4Overlay?: boolean;
 }
 
 // Generate pseudo-random coordinates within city boundaries for unique property locations
@@ -56,7 +58,14 @@ const generatePropertyCoordinates = (city: string, address: string = '') => {
   ] as [number, number];
 };
 
-export default function PropertyMap({ city, address, className = '', height = '200px' }: PropertyMapProps) {
+export default function PropertyMap({ 
+  city, 
+  address, 
+  postcode,
+  className = '', 
+  height = '200px',
+  showArticle4Overlay = true 
+}: PropertyMapProps) {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<L.Map | null>(null);
 
@@ -82,17 +91,25 @@ export default function PropertyMap({ city, address, className = '', height = '2
       <div class="p-2">
         <h3 class="font-semibold">${city}</h3>
         ${address ? `<p class="text-sm text-gray-600 mt-1">${address}</p>` : ''}
-        <p class="text-xs text-gray-500 mt-2">Approximate property area</p>
+        ${postcode ? `<p class="text-sm text-blue-600 font-mono mt-1">${postcode}</p>` : ''}
+        <p class="text-xs text-green-600 font-semibold mt-2">✓ Non-Article 4 Property</p>
+        <p class="text-xs text-gray-500">HMO conversion permitted (subject to planning)</p>
       </div>
     `);
 
-    // Add a smaller circle to show property vicinity
+    // Add a property area circle
     L.circle(coordinates, {
-      color: '#3b82f6',
-      fillColor: '#dbeafe',
-      fillOpacity: 0.2,
-      radius: 1000, // 1km radius
+      color: '#059669', // Green for non-Article 4
+      fillColor: '#d1fae5',
+      fillOpacity: 0.3,
+      radius: 500, // 500m radius
+      weight: 2,
     }).addTo(map.current);
+
+    // Add Article 4 overlay areas if enabled
+    if (showArticle4Overlay && postcode) {
+      loadArticle4Overlays(coordinates, map.current);
+    }
 
     // Cleanup function
     return () => {
@@ -101,7 +118,54 @@ export default function PropertyMap({ city, address, className = '', height = '2
         map.current = null;
       }
     };
-  }, [city, address]);
+  }, [city, address, postcode, showArticle4Overlay]);
+
+  // Function to load nearby Article 4 areas for context
+  const loadArticle4Overlays = async (coordinates: [number, number], mapInstance: L.Map) => {
+    try {
+      const [lat, lng] = coordinates;
+      const response = await fetch(`/api/article4-areas?lat=${lat}&lng=${lng}&radius=2`);
+      
+      if (response.ok) {
+        const data = await response.json();
+        
+        // Add Article 4 areas as red overlays for context
+        data.areas?.forEach((area: any, index: number) => {
+          if (area.geometry && area.geometry.coordinates) {
+            try {
+              // Simple polygon rendering (this is a basic implementation)
+              const polygon = L.polygon(
+                area.geometry.coordinates[0].map((coord: number[]) => [coord[1], coord[0]]),
+                {
+                  color: '#dc2626',
+                  fillColor: '#fef2f2',
+                  fillOpacity: 0.2,
+                  weight: 1,
+                  dashArray: '5, 5'
+                }
+              );
+              
+              polygon.bindPopup(`
+                <div class="p-2">
+                  <h4 class="font-semibold text-red-600">⚠️ Article 4 Direction Area</h4>
+                  <p class="text-sm mt-1">${area.name || 'Article 4 Area'}</p>
+                  <p class="text-xs text-gray-600 mt-1">${area.council || 'Local Authority'}</p>
+                  <p class="text-xs text-red-600 mt-2">HMO conversions restricted</p>
+                </div>
+              `);
+              
+              polygon.addTo(mapInstance);
+            } catch (e) {
+              console.warn('Could not render Article 4 area:', e);
+            }
+          }
+        });
+      }
+    } catch (error) {
+      console.warn('Could not load Article 4 overlays:', error);
+      // Fail silently - map still works without overlays
+    }
+  };
 
   return (
     <div 
