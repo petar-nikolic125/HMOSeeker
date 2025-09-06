@@ -47,39 +47,62 @@ const extractPostcodeFromAddress = (address: string): string | null => {
 const geocodeAddress = async (address: string, postcode?: string): Promise<[number, number] | null> => {
   console.log(`🔍 Starting geocoding for: "${address}" with postcode: "${postcode || 'none'}"`);
   
-  // Strategy 1: Try precise address geocoding with Nominatim (OpenStreetMap)
+  // Strategy 1: Try precise address geocoding with Nominatim (OpenStreetMap) - Enhanced for accuracy
   const tryPreciseAddress = async (fullAddress: string): Promise<[number, number] | null> => {
     try {
       // Clean and format the address for UK geocoding
       const cleanAddress = fullAddress
-        .replace(/\d+\s+bed\s+(detached|link\s+detached|semi-detached|terraced)\s+house\s+for\s+sale\s+/i, '')
+        .replace(/\d+\s+bed\s+(detached|link\s+detached|semi-detached|terraced|end\s+terrace)\s+house\s+for\s+sale\s+/i, '')
+        .replace(/\d+\s+bed\s+(flat|apartment)\s+for\s+sale\s+/i, '')
         .replace(/,\s*(UK|England)$/i, '')
         .trim();
       
       console.log(`🎯 Trying precise address: "${cleanAddress}"`);
       
-      const encodedAddress = encodeURIComponent(`${cleanAddress}, UK`);
-      const response = await fetch(
-        `https://nominatim.openstreetmap.org/search?q=${encodedAddress}&format=json&limit=1&countrycodes=gb&addressdetails=1`,
-        {
-          headers: {
-            'User-Agent': 'HMO-Hunter/1.0 (Property Investment Platform)'
-          }
-        }
-      );
+      // Try multiple geocoding queries for better accuracy
+      const queries = [
+        `${cleanAddress}, UK`,
+        `${cleanAddress}, England`, 
+        `${cleanAddress}` // Sometimes adding country can be less precise
+      ];
       
-      if (response.ok) {
-        const data = await response.json();
-        if (data && data.length > 0) {
-          const result = data[0];
-          const lat = parseFloat(result.lat);
-          const lon = parseFloat(result.lon);
-          
-          if (!isNaN(lat) && !isNaN(lon)) {
-            console.log(`✅ Precise geocoded "${cleanAddress}": ${lat}, ${lon} (${result.display_name})`);
-            return [lat, lon];
+      for (const query of queries) {
+        const encodedAddress = encodeURIComponent(query);
+        const response = await fetch(
+          `https://nominatim.openstreetmap.org/search?q=${encodedAddress}&format=json&limit=3&countrycodes=gb&addressdetails=1&extratags=1`,
+          {
+            headers: {
+              'User-Agent': 'HMO-Hunter/1.0 (Property Investment Platform)'
+            }
+          }
+        );
+        
+        if (response.ok) {
+          const data = await response.json();
+          if (data && data.length > 0) {
+            // Prioritize results with exact street matches and house numbers
+            for (const result of data) {
+              const lat = parseFloat(result.lat);
+              const lon = parseFloat(result.lon);
+              
+              if (!isNaN(lat) && !isNaN(lon)) {
+                // Check if this is a precise street-level result
+                const displayName = result.display_name || '';
+                const addressParts = cleanAddress.toLowerCase().split(',');
+                const streetName = addressParts[0]?.trim();
+                
+                // Verify this result contains the actual street name for accuracy
+                if (streetName && displayName.toLowerCase().includes(streetName)) {
+                  console.log(`✅ Precise geocoded "${cleanAddress}": ${lat}, ${lon} (${result.display_name})`);
+                  return [lat, lon];
+                }
+              }
+            }
           }
         }
+        
+        // Small delay between requests to be respectful to the service
+        await new Promise(resolve => setTimeout(resolve, 100));
       }
     } catch (error) {
       console.warn(`❌ Nominatim geocoding failed:`, error);
@@ -194,7 +217,7 @@ const geocodeAddress = async (address: string, postcode?: string): Promise<[numb
   }
   
   // Remove duplicates and try each extracted postcode
-  const uniquePostcodes = [...new Set(extractedPostcodes)];
+  const uniquePostcodes = Array.from(new Set(extractedPostcodes));
   for (const extractedPc of uniquePostcodes) {
     if (extractedPc !== postcode) {
       console.log(`🔍 Trying extracted postcode: ${extractedPc}`);
