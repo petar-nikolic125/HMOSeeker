@@ -47,7 +47,47 @@ const extractPostcodeFromAddress = (address: string): string | null => {
 const geocodeAddress = async (address: string, postcode?: string): Promise<[number, number] | null> => {
   console.log(`🔍 Starting geocoding for: "${address}" with postcode: "${postcode || 'none'}"`);
   
-  // Strategy 1: Try direct postcode lookup
+  // Strategy 1: Try precise address geocoding with Nominatim (OpenStreetMap)
+  const tryPreciseAddress = async (fullAddress: string): Promise<[number, number] | null> => {
+    try {
+      // Clean and format the address for UK geocoding
+      const cleanAddress = fullAddress
+        .replace(/\d+\s+bed\s+(detached|link\s+detached|semi-detached|terraced)\s+house\s+for\s+sale\s+/i, '')
+        .replace(/,\s*(UK|England)$/i, '')
+        .trim();
+      
+      console.log(`🎯 Trying precise address: "${cleanAddress}"`);
+      
+      const encodedAddress = encodeURIComponent(`${cleanAddress}, UK`);
+      const response = await fetch(
+        `https://nominatim.openstreetmap.org/search?q=${encodedAddress}&format=json&limit=1&countrycodes=gb&addressdetails=1`,
+        {
+          headers: {
+            'User-Agent': 'HMO-Hunter/1.0 (Property Investment Platform)'
+          }
+        }
+      );
+      
+      if (response.ok) {
+        const data = await response.json();
+        if (data && data.length > 0) {
+          const result = data[0];
+          const lat = parseFloat(result.lat);
+          const lon = parseFloat(result.lon);
+          
+          if (!isNaN(lat) && !isNaN(lon)) {
+            console.log(`✅ Precise geocoded "${cleanAddress}": ${lat}, ${lon} (${result.display_name})`);
+            return [lat, lon];
+          }
+        }
+      }
+    } catch (error) {
+      console.warn(`❌ Nominatim geocoding failed:`, error);
+    }
+    return null;
+  };
+
+  // Strategy 2: Try direct postcode lookup
   const tryPostcode = async (pc: string): Promise<[number, number] | null> => {
     try {
       const cleanPostcode = pc.replace(/\s+/g, '').toUpperCase();
@@ -123,13 +163,17 @@ const geocodeAddress = async (address: string, postcode?: string): Promise<[numb
 
   // Execute geocoding strategies in order
   
-  // 1. Try provided postcode
+  // 1. Try precise address geocoding first (most accurate)
+  const preciseResult = await tryPreciseAddress(address);
+  if (preciseResult) return preciseResult;
+  
+  // 2. Try provided postcode
   if (postcode && postcode.length > 2) {
     const result = await tryPostcode(postcode);
     if (result) return result;
   }
 
-  // 2. Try extracted postcodes from address
+  // 3. Try extracted postcodes from address
   const postcodePatterns = [
     // Full postcodes like SW1A 1AA, SE18 1AA, RM11 1AA, BR6 9AA, HA0 3AA
     /\b([A-Z]{1,2}[0-9][A-Z0-9]?\s?[0-9][A-Z]{2})\b/i,
@@ -159,7 +203,7 @@ const geocodeAddress = async (address: string, postcode?: string): Promise<[numb
     }
   }
 
-  // 3. Try area-specific geocoding
+  // 4. Try area-specific geocoding
   const areaResult = await tryAreaSpecificGeocoding(address);
   if (areaResult) return areaResult;
 
