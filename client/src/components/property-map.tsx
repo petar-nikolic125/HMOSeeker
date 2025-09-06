@@ -23,10 +23,14 @@ interface PropertyMapProps {
 const extractPostcodeFromAddress = (address: string): string | null => {
   // Enhanced UK postcode regex - more comprehensive patterns
   const postcodePatterns = [
-    // Full postcodes like SW1A 1AA, SE18 1AA, RM11 1AA
+    // Full postcodes like SW1A 1AA, SE18 1AA, RM11 1AA, BR6 9AA, HA0 3AA
     /\b([A-Z]{1,2}[0-9][A-Z0-9]?\s?[0-9][A-Z]{2})\b/i,
-    // Partial postcodes like SE18, RM11, SW1A, etc.
-    /\b([A-Z]{1,2}[0-9][A-Z0-9]?)\b/i
+    // Partial postcodes like SE18, RM11, SW1A, BR6, HA0, etc.
+    /\b([A-Z]{1,2}[0-9][A-Z0-9]?)\b/i,
+    // Extract from property titles like "Wayne Close, Orpington BR6" -> BR6
+    /,\s*([A-Z]+\s+[A-Z]{1,2}[0-9][A-Z0-9]?)\b/i,
+    // Extract from addresses like "Rugby Avenue, Wembley HA0" -> HA0  
+    /\b(BR[0-9]|HA[0-9]|SE[0-9]+|SW[0-9]+|N[0-9]+|E[0-9]+|W[0-9]+|NW[0-9]+|CR[0-9]+|RM[0-9]+|DA[0-9]+|IG[0-9]+|UB[0-9]+|EN[0-9]+|KT[0-9]+|SM[0-9]+)\b/i
   ];
   
   for (const pattern of postcodePatterns) {
@@ -39,60 +43,127 @@ const extractPostcodeFromAddress = (address: string): string | null => {
   return null;
 };
 
-// Geocode address using PostCodes.io API with enhanced error handling
+// Multiple geocoding strategies with comprehensive fallbacks
 const geocodeAddress = async (address: string, postcode?: string): Promise<[number, number] | null> => {
+  console.log(`🔍 Starting geocoding for: "${address}" with postcode: "${postcode || 'none'}"`);
+  
+  // Strategy 1: Try direct postcode lookup
   const tryPostcode = async (pc: string): Promise<[number, number] | null> => {
     try {
       const cleanPostcode = pc.replace(/\s+/g, '').toUpperCase();
+      console.log(`📮 Trying postcode: ${cleanPostcode}`);
       
       // Try full postcode first
       let response = await fetch(`https://api.postcodes.io/postcodes/${cleanPostcode}`);
       if (response.ok) {
         const data = await response.json();
         if (data.result) {
-          console.log(`✅ Geocoded ${cleanPostcode}: ${data.result.latitude}, ${data.result.longitude}`);
+          console.log(`✅ Direct geocoded ${cleanPostcode}: ${data.result.latitude}, ${data.result.longitude} (${data.result.admin_district})`);
           return [data.result.latitude, data.result.longitude];
         }
       }
       
-      // If full postcode fails, try partial postcode (district only)
-      if (cleanPostcode.length > 3) {
-        const partialPostcode = cleanPostcode.substring(0, cleanPostcode.length - 3);
+      // If full postcode fails, try partial postcode lookup
+      if (cleanPostcode.length > 2) {
+        const partialPostcode = cleanPostcode.substring(0, Math.min(4, cleanPostcode.length));
+        console.log(`📮 Trying partial postcode: ${partialPostcode}`);
+        
         response = await fetch(`https://api.postcodes.io/postcodes/${partialPostcode}/autocomplete`);
         if (response.ok) {
           const data = await response.json();
           if (data.result && data.result.length > 0) {
-            // Use the first suggested postcode for location
-            const suggestionResponse = await fetch(`https://api.postcodes.io/postcodes/${data.result[0]}`);
-            if (suggestionResponse.ok) {
-              const suggestionData = await suggestionResponse.json();
-              if (suggestionData.result) {
-                console.log(`✅ Geocoded via suggestion ${data.result[0]}: ${suggestionData.result.latitude}, ${suggestionData.result.longitude}`);
-                return [suggestionData.result.latitude, suggestionData.result.longitude];
+            // Try the first few suggestions
+            for (let i = 0; i < Math.min(3, data.result.length); i++) {
+              const suggestion = data.result[i];
+              const suggestionResponse = await fetch(`https://api.postcodes.io/postcodes/${suggestion}`);
+              if (suggestionResponse.ok) {
+                const suggestionData = await suggestionResponse.json();
+                if (suggestionData.result) {
+                  console.log(`✅ Autocomplete geocoded ${suggestion}: ${suggestionData.result.latitude}, ${suggestionData.result.longitude} (${suggestionData.result.admin_district})`);
+                  return [suggestionData.result.latitude, suggestionData.result.longitude];
+                }
               }
             }
           }
         }
       }
     } catch (error) {
-      console.warn(`PostCodes.io geocoding failed for ${pc}:`, error);
+      console.warn(`❌ PostCodes.io failed for ${pc}:`, error);
     }
     return null;
   };
 
-  // First try with provided postcode
-  if (postcode) {
+  // Strategy 2: Extract and try area-specific postcodes
+  const tryAreaSpecificGeocoding = async (addr: string): Promise<[number, number] | null> => {
+    const areaMatches = [
+      // Specific area patterns
+      { pattern: /orpington\s+br6?/i, postcodes: ['BR6 0AA', 'BR6 7AA', 'BR5 1AA'] },
+      { pattern: /wembley\s+ha0?/i, postcodes: ['HA0 1AA', 'HA0 2AA', 'HA9 0AA'] },
+      { pattern: /sidcup\s+da14?/i, postcodes: ['DA14 4AA', 'DA14 6AA', 'DA15 7AA'] },
+      { pattern: /dagenham\s+rm[89]?/i, postcodes: ['RM8 1AA', 'RM9 4AA', 'RM10 7AA'] },
+      { pattern: /romford\s+rm[67]?/i, postcodes: ['RM7 0AA', 'RM6 6AA', 'RM1 1AA'] },
+      { pattern: /croydon\s+cr[057]?/i, postcodes: ['CR0 0AA', 'CR7 6AA', 'CR5 1AA'] },
+      { pattern: /harrow\s+ha[0-3]?/i, postcodes: ['HA3 0AA', 'HA1 1AA', 'HA2 6AA'] },
+      { pattern: /woolwich\s+se18?/i, postcodes: ['SE18 1AA', 'SE18 6AA'] },
+      { pattern: /erith\s+da8?/i, postcodes: ['DA8 1AA', 'DA8 3AA'] },
+      { pattern: /bromley\s+br[12]?/i, postcodes: ['BR1 1AA', 'BR2 0AA'] }
+    ];
+
+    for (const area of areaMatches) {
+      if (area.pattern.test(addr)) {
+        console.log(`🎯 Matched area pattern: ${area.pattern.source}`);
+        for (const testPostcode of area.postcodes) {
+          const result = await tryPostcode(testPostcode);
+          if (result) return result;
+        }
+      }
+    }
+    return null;
+  };
+
+  // Execute geocoding strategies in order
+  
+  // 1. Try provided postcode
+  if (postcode && postcode.length > 2) {
     const result = await tryPostcode(postcode);
     if (result) return result;
   }
 
-  // Try to extract postcode from address
-  const extractedPostcode = extractPostcodeFromAddress(address);
-  if (extractedPostcode && extractedPostcode !== postcode) {
-    const result = await tryPostcode(extractedPostcode);
-    if (result) return result;
+  // 2. Try extracted postcodes from address
+  const postcodePatterns = [
+    // Full postcodes like SW1A 1AA, SE18 1AA, RM11 1AA, BR6 9AA, HA0 3AA
+    /\b([A-Z]{1,2}[0-9][A-Z0-9]?\s?[0-9][A-Z]{2})\b/i,
+    // Partial postcodes like SE18, RM11, SW1A, BR6, HA0, etc.
+    /\b([A-Z]{1,2}[0-9][A-Z0-9]?)\b/i,
+    // Extract from property titles like "Wayne Close, Orpington BR6" -> BR6
+    /,\s*([A-Z]+\s+[A-Z]{1,2}[0-9][A-Z0-9]?)\b/i,
+    // Extract from addresses like "Rugby Avenue, Wembley HA0" -> HA0  
+    /\b(BR[0-9]|HA[0-9]|SE[0-9]+|SW[0-9]+|N[0-9]+|E[0-9]+|W[0-9]+|NW[0-9]+|CR[0-9]+|RM[0-9]+|DA[0-9]+|IG[0-9]+|UB[0-9]+|EN[0-9]+|KT[0-9]+|SM[0-9]+)\b/i
+  ];
+
+  const extractedPostcodes = [];
+  for (const pattern of postcodePatterns) {
+    const match = address.match(pattern);
+    if (match && match[1]) {
+      extractedPostcodes.push(match[1].replace(/\s+/g, '').toUpperCase());
+    }
+  }
+  
+  // Remove duplicates and try each extracted postcode
+  const uniquePostcodes = [...new Set(extractedPostcodes)];
+  for (const extractedPc of uniquePostcodes) {
+    if (extractedPc !== postcode) {
+      console.log(`🔍 Trying extracted postcode: ${extractedPc}`);
+      const result = await tryPostcode(extractedPc);
+      if (result) return result;
+    }
   }
 
+  // 3. Try area-specific geocoding
+  const areaResult = await tryAreaSpecificGeocoding(address);
+  if (areaResult) return areaResult;
+
+  console.warn(`❌ All geocoding strategies failed for: "${address}"`);
   return null;
 };
 
