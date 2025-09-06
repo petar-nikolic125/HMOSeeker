@@ -38,7 +38,7 @@ class Article4Service {
   private readonly CACHE_TTL_HOURS = 24; // Refresh daily
   private readonly CACHE_FILE_PATH = path.join(process.cwd(), 'cache', 'article4-areas.json');
   private readonly GEOJSON_URL = process.env.ARTICLE4_GEOJSON_URL || 
-    'https://raw.githubusercontent.com/digital-land/article-4-direction-area-collection/main/collection/article-4-direction-area.geojson';
+    'https://files.planning.data.gov.uk/dataset/article-4-direction-area.geojson';
 
   constructor() {
     this.initializeCache();

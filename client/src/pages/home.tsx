@@ -2,6 +2,7 @@ import NavigationHeader from "@/components/navigation-header";
 import HeroSection from "@/components/hero-section";
 import PropertyResults from "@/components/property-results";
 import PropertyAnalysisModal from "@/components/property-analysis-modal";
+import Article4Checker from "@/components/article4-checker";
 import { Footer } from "@/components/Footer";
 import { useState, useCallback, useEffect } from "react";
 import { useMutation } from "@tanstack/react-query";
@@ -238,6 +239,22 @@ export default function Home() {
         onSortChange={handleSortChange}
         currentSort={sortBy}
       />
+      
+      {/* Article 4 Direction Checker Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Article 4 Direction Checker
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Check if a postcode falls within an Article 4 direction area that may restrict HMO conversions. 
+              Free tool using official government data.
+            </p>
+          </div>
+          <Article4Checker />
+        </div>
+      </section>
       
       <Footer />
       
