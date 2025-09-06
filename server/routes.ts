@@ -8,6 +8,7 @@ import { PropertyAnalyzer } from "./services/property-analyzer";
 import { CacheDatabase } from "./services/cache-database";
 import { estimatePropertyMetrics, scenarioReport, type PropertyData, type Assumptions } from "./services/property-estimation";
 import { predictPropertySize, extractReceptionsFromText } from "./services/property-size-predictor";
+import { article4Service } from "./services/article4-service";
 import { searchFiltersSchema } from "@shared/schema";
 import { z } from "zod";
 
@@ -19,6 +20,80 @@ export async function registerRoutes(app: Express): Promise<Server> {
       timestamp: new Date().toISOString(),
       service: "HMO Hunter API"
     });
+  });
+
+  // Article 4 check endpoint
+  app.get("/api/check", async (req, res) => {
+    try {
+      const { postcode } = req.query;
+
+      if (!postcode || typeof postcode !== 'string') {
+        return res.status(400).json({
+          success: false,
+          error: "Postcode parameter is required"
+        });
+      }
+
+      // Validate postcode format
+      const postcodeRegex = /^[A-Z]{1,2}[0-9][A-Z0-9]?\s?[0-9][A-Z]{2}$/i;
+      if (!postcodeRegex.test(postcode.trim())) {
+        return res.status(400).json({
+          success: false,
+          error: "Invalid postcode format"
+        });
+      }
+
+      // Set cache headers for 60s CDN caching
+      res.set({
+        'Cache-Control': 'public, max-age=60, s-maxage=60',
+        'Vary': 'Accept-Encoding'
+      });
+
+      const result = await article4Service.checkArticle4(postcode.trim());
+      
+      res.json({
+        success: true,
+        ...result
+      });
+    } catch (error) {
+      console.error("Article 4 check failed:", error);
+      res.status(500).json({
+        success: false,
+        error: error instanceof Error ? error.message : "Failed to check Article 4 status"
+      });
+    }
+  });
+
+  // Enhanced health endpoint with Article 4 cache info
+  app.get("/api/health", async (req, res) => {
+    try {
+      const cacheInfo = article4Service.getCacheInfo();
+      const postcodesIoHealth = await article4Service.checkPostcodesIoHealth();
+
+      res.json({
+        success: true,
+        status: "healthy",
+        timestamp: new Date().toISOString(),
+        service: "HMO Hunter API",
+        article4Cache: {
+          age_hours: cacheInfo.age,
+          areas_count: cacheInfo.count,
+          last_refresh: cacheInfo.lastRefresh?.toISOString() || null,
+          status: cacheInfo.age >= 0 && cacheInfo.count > 0 ? "healthy" : "needs_refresh"
+        },
+        postcodesIo: {
+          reachable: postcodesIoHealth,
+          status: postcodesIoHealth ? "healthy" : "unavailable"
+        }
+      });
+    } catch (error) {
+      console.error("Health check failed:", error);
+      res.status(500).json({
+        success: false,
+        status: "unhealthy",
+        error: "Health check failed"
+      });
+    }
   });
 
   // Get cached property listings (Quick cache search - cache je glavna baza!)
