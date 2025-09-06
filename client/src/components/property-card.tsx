@@ -169,6 +169,7 @@ export default function PropertyCard({ property, onAnalyze, delay = 0 }: Propert
         <PropertyMap 
           city={property.city || 'London'} 
           address={property.address || property.title}
+          postcode={property.postcode}
           height="120px"
           className="border-t mt-2 pt-2"
         />

@@ -96,6 +96,62 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Article 4 areas API endpoint for map overlays
+  app.get("/api/article4-areas", async (req, res) => {
+    try {
+      const { lat, lng, radius } = req.query;
+      
+      if (!lat || !lng) {
+        return res.status(400).json({
+          success: false,
+          error: "Latitude and longitude parameters are required"
+        });
+      }
+
+      const latitude = parseFloat(lat as string);
+      const longitude = parseFloat(lng as string);
+      const radiusKm = parseFloat(radius as string) || 2; // Default 2km radius
+
+      if (isNaN(latitude) || isNaN(longitude) || latitude < -90 || latitude > 90 || longitude < -180 || longitude > 180) {
+        return res.status(400).json({
+          success: false,
+          error: "Invalid latitude or longitude values"
+        });
+      }
+
+      // Set cache headers for longer caching since Article 4 areas don't change frequently
+      res.set({
+        'Cache-Control': 'public, max-age=3600, s-maxage=3600', // 1 hour cache
+        'Vary': 'Accept-Encoding'
+      });
+
+      // Get Article 4 areas in the specified region (this method needs to be added to the service)
+      const areas = article4Service.getCacheInfo().count > 0 ? 
+        await getArticle4AreasForRegion(latitude, longitude, radiusKm) : [];
+      
+      res.json({
+        success: true,
+        count: areas.length,
+        areas: areas,
+        center: { lat: latitude, lng: longitude },
+        radius_km: radiusKm
+      });
+    } catch (error) {
+      console.error("Article 4 areas request failed:", error);
+      res.status(500).json({
+        success: false,
+        error: "Failed to fetch Article 4 areas"
+      });
+    }
+  });
+
+  // Helper function to get Article 4 areas in a region (simplified implementation)
+  async function getArticle4AreasForRegion(lat: number, lng: number, radiusKm: number) {
+    // For now, return an empty array since we need proper spatial indexing for production
+    // In a production system, you would implement proper spatial queries
+    return [];
+  }
+
   // Get cached property listings (Quick cache search - cache je glavna baza!)
   app.get("/api/properties", async (req, res) => {
     try {
