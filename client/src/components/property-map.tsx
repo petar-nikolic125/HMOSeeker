@@ -19,48 +19,78 @@ interface PropertyMapProps {
   showArticle4Overlay?: boolean;
 }
 
-// Extract postcode from address text
+// Extract postcode from address text - enhanced version
 const extractPostcodeFromAddress = (address: string): string | null => {
-  // UK postcode regex - matches most UK postcode formats
-  const postcodeRegex = /([A-Z]{1,2}[0-9][A-Z0-9]?\s?[0-9][A-Z]{2})/i;
-  const match = address.match(postcodeRegex);
-  return match ? match[1].replace(/\s+/g, '').toUpperCase() : null;
+  // Enhanced UK postcode regex - more comprehensive patterns
+  const postcodePatterns = [
+    // Full postcodes like SW1A 1AA, SE18 1AA, RM11 1AA
+    /\b([A-Z]{1,2}[0-9][A-Z0-9]?\s?[0-9][A-Z]{2})\b/i,
+    // Partial postcodes like SE18, RM11, SW1A, etc.
+    /\b([A-Z]{1,2}[0-9][A-Z0-9]?)\b/i
+  ];
+  
+  for (const pattern of postcodePatterns) {
+    const match = address.match(pattern);
+    if (match) {
+      return match[1].replace(/\s+/g, '').toUpperCase();
+    }
+  }
+  
+  return null;
 };
 
-// Geocode address using PostCodes.io API
+// Geocode address using PostCodes.io API with enhanced error handling
 const geocodeAddress = async (address: string, postcode?: string): Promise<[number, number] | null> => {
-  // First try with postcode if available
-  if (postcode) {
+  const tryPostcode = async (pc: string): Promise<[number, number] | null> => {
     try {
-      const cleanPostcode = postcode.replace(/\s+/g, '').toUpperCase();
-      const response = await fetch(`https://api.postcodes.io/postcodes/${cleanPostcode}`);
+      const cleanPostcode = pc.replace(/\s+/g, '').toUpperCase();
+      
+      // Try full postcode first
+      let response = await fetch(`https://api.postcodes.io/postcodes/${cleanPostcode}`);
       if (response.ok) {
         const data = await response.json();
         if (data.result) {
+          console.log(`✅ Geocoded ${cleanPostcode}: ${data.result.latitude}, ${data.result.longitude}`);
           return [data.result.latitude, data.result.longitude];
         }
       }
-    } catch (error) {
-      console.warn('PostCodes.io geocoding failed:', error);
-    }
-  }
-
-  // Try to extract postcode from address if not provided
-  if (!postcode) {
-    const extractedPostcode = extractPostcodeFromAddress(address);
-    if (extractedPostcode) {
-      try {
-        const response = await fetch(`https://api.postcodes.io/postcodes/${extractedPostcode}`);
+      
+      // If full postcode fails, try partial postcode (district only)
+      if (cleanPostcode.length > 3) {
+        const partialPostcode = cleanPostcode.substring(0, cleanPostcode.length - 3);
+        response = await fetch(`https://api.postcodes.io/postcodes/${partialPostcode}/autocomplete`);
         if (response.ok) {
           const data = await response.json();
-          if (data.result) {
-            return [data.result.latitude, data.result.longitude];
+          if (data.result && data.result.length > 0) {
+            // Use the first suggested postcode for location
+            const suggestionResponse = await fetch(`https://api.postcodes.io/postcodes/${data.result[0]}`);
+            if (suggestionResponse.ok) {
+              const suggestionData = await suggestionResponse.json();
+              if (suggestionData.result) {
+                console.log(`✅ Geocoded via suggestion ${data.result[0]}: ${suggestionData.result.latitude}, ${suggestionData.result.longitude}`);
+                return [suggestionData.result.latitude, suggestionData.result.longitude];
+              }
+            }
           }
         }
-      } catch (error) {
-        console.warn('PostCodes.io geocoding with extracted postcode failed:', error);
       }
+    } catch (error) {
+      console.warn(`PostCodes.io geocoding failed for ${pc}:`, error);
     }
+    return null;
+  };
+
+  // First try with provided postcode
+  if (postcode) {
+    const result = await tryPostcode(postcode);
+    if (result) return result;
+  }
+
+  // Try to extract postcode from address
+  const extractedPostcode = extractPostcodeFromAddress(address);
+  if (extractedPostcode && extractedPostcode !== postcode) {
+    const result = await tryPostcode(extractedPostcode);
+    if (result) return result;
   }
 
   return null;
