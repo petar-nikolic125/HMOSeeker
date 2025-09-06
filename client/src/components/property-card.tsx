@@ -1,6 +1,7 @@
 import { Star, Percent, TrendingUp, Bath, Bed, Square, ExternalLink, Calculator, CheckCircle, AlertTriangle } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import type { PropertyListing } from "@shared/schema";
+import PropertyMap from "./property-map";
 
 interface PropertyCardProps {
   property: any; // Using any to handle the scraper's data format
@@ -161,6 +162,16 @@ export default function PropertyCard({ property, onAnalyze, delay = 0 }: Propert
             </div>
           </div>
         </div>
+      </div>
+      
+      {/* City Map Section */}
+      <div className="px-3 pb-3">
+        <PropertyMap 
+          city={property.city || 'London'} 
+          address={property.address || property.title}
+          height="120px"
+          className="border-t mt-2 pt-2"
+        />
       </div>
     </div>
   );
