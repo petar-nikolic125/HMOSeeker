@@ -59,17 +59,34 @@ const geocodeAddress = async (address: string, postcode?: string): Promise<[numb
       
       console.log(`🎯 Trying precise address: "${cleanAddress}"`);
       
-      // Try multiple geocoding queries for better accuracy
+      // Extract street name and area for targeted geocoding
+      const addressParts = cleanAddress.split(',').map(part => part.trim());
+      const streetName = addressParts[0] || '';
+      const area = addressParts[1] || '';
+      const postcodePart = addressParts[addressParts.length - 1] || '';
+      
+      console.log(`📍 Parsed address: Street="${streetName}", Area="${area}", Postcode="${postcodePart}"`);
+      
+      // Build highly specific queries prioritizing exact street name
       const queries = [
+        // Most specific: Street + Area + Postcode + UK
+        `${streetName}, ${area}, ${postcodePart}, UK`,
+        // Street + Area + UK
+        `${streetName}, ${area}, UK`,
+        // Street + Postcode + UK  
+        `${streetName}, ${postcodePart}, UK`,
+        // Just street and area
+        `${streetName}, ${area}`,
+        // Original clean address
         `${cleanAddress}, UK`,
-        `${cleanAddress}, England`, 
-        `${cleanAddress}` // Sometimes adding country can be less precise
-      ];
+        `${cleanAddress}`
+      ].filter(query => query.length > 5); // Remove empty queries
       
       for (const query of queries) {
+        console.log(`🎯 Trying specific query: "${query}"`);
         const encodedAddress = encodeURIComponent(query);
         const response = await fetch(
-          `https://nominatim.openstreetmap.org/search?q=${encodedAddress}&format=json&limit=3&countrycodes=gb&addressdetails=1&extratags=1`,
+          `https://nominatim.openstreetmap.org/search?q=${encodedAddress}&format=json&limit=5&countrycodes=gb&addressdetails=1&extratags=1`,
           {
             headers: {
               'User-Agent': 'HMO-Hunter/1.0 (Property Investment Platform)'
@@ -80,20 +97,32 @@ const geocodeAddress = async (address: string, postcode?: string): Promise<[numb
         if (response.ok) {
           const data = await response.json();
           if (data && data.length > 0) {
-            // Prioritize results with exact street matches and house numbers
+            // Prioritize results with exact street matches
             for (const result of data) {
               const lat = parseFloat(result.lat);
               const lon = parseFloat(result.lon);
               
               if (!isNaN(lat) && !isNaN(lon)) {
-                // Check if this is a precise street-level result
                 const displayName = result.display_name || '';
-                const addressParts = cleanAddress.toLowerCase().split(',');
-                const streetName = addressParts[0]?.trim();
+                const resultClass = result.class || '';
+                const resultType = result.type || '';
                 
-                // Verify this result contains the actual street name for accuracy
-                if (streetName && displayName.toLowerCase().includes(streetName)) {
-                  console.log(`✅ Precise geocoded "${cleanAddress}": ${lat}, ${lon} (${result.display_name})`);
+                // Strict verification for street-level accuracy
+                const streetNameLower = streetName.toLowerCase();
+                const displayNameLower = displayName.toLowerCase();
+                
+                // Check if this is a street-level result (not just an area or postcode)
+                const isStreetLevel = 
+                  displayNameLower.includes(streetNameLower) && 
+                  (resultClass === 'highway' || resultType === 'residential' || 
+                   resultType === 'service' || resultType === 'primary' || 
+                   resultType === 'secondary' || resultType === 'tertiary' ||
+                   displayNameLower.includes('road') || displayNameLower.includes('street') ||
+                   displayNameLower.includes('avenue') || displayNameLower.includes('place') ||
+                   displayNameLower.includes('crescent') || displayNameLower.includes('close'));
+                
+                if (isStreetLevel) {
+                  console.log(`✅ Precise geocoded "${streetName}": ${lat}, ${lon} (${result.display_name})`);
                   return [lat, lon];
                 }
               }
@@ -102,7 +131,7 @@ const geocodeAddress = async (address: string, postcode?: string): Promise<[numb
         }
         
         // Small delay between requests to be respectful to the service
-        await new Promise(resolve => setTimeout(resolve, 100));
+        await new Promise(resolve => setTimeout(resolve, 150));
       }
     } catch (error) {
       console.warn(`❌ Nominatim geocoding failed:`, error);
@@ -186,25 +215,33 @@ const geocodeAddress = async (address: string, postcode?: string): Promise<[numb
 
   // Execute geocoding strategies in order
   
-  // 1. Try precise address geocoding first (most accurate)
+  // 1. Try precise address geocoding first (most accurate) - ONLY if we get exact street match
   const preciseResult = await tryPreciseAddress(address);
   if (preciseResult) return preciseResult;
   
-  // 2. Try provided postcode
+  console.log(`⚠️ No precise street-level geocoding found for "${address}"`);
+  
+  // If no precise street location found, return null to use city fallback instead of inaccurate postcode coordinates
+  // This prevents showing properties 1-3 roads away from the actual location
+  
+  console.log(`❌ Could not find precise street-level coordinates for "${address}"`);
+  console.log(`🏙️ Will use city-level fallback coordinates to avoid incorrect pin placement`);
+  
+  // COMMENTED OUT: Postcode fallbacks that cause inaccurate locations
+  // We'd rather show the property in the general city area than pin it to the wrong street
+  
+  /*
+  // 2. Try provided postcode (DISABLED - causes 1-3 road inaccuracy)
   if (postcode && postcode.length > 2) {
     const result = await tryPostcode(postcode);
     if (result) return result;
   }
 
-  // 3. Try extracted postcodes from address
+  // 3. Try extracted postcodes from address (DISABLED - causes 1-3 road inaccuracy)
   const postcodePatterns = [
-    // Full postcodes like SW1A 1AA, SE18 1AA, RM11 1AA, BR6 9AA, HA0 3AA
     /\b([A-Z]{1,2}[0-9][A-Z0-9]?\s?[0-9][A-Z]{2})\b/i,
-    // Partial postcodes like SE18, RM11, SW1A, BR6, HA0, etc.
     /\b([A-Z]{1,2}[0-9][A-Z0-9]?)\b/i,
-    // Extract from property titles like "Wayne Close, Orpington BR6" -> BR6
     /,\s*([A-Z]+\s+[A-Z]{1,2}[0-9][A-Z0-9]?)\b/i,
-    // Extract from addresses like "Rugby Avenue, Wembley HA0" -> HA0  
     /\b(BR[0-9]|HA[0-9]|SE[0-9]+|SW[0-9]+|N[0-9]+|E[0-9]+|W[0-9]+|NW[0-9]+|CR[0-9]+|RM[0-9]+|DA[0-9]+|IG[0-9]+|UB[0-9]+|EN[0-9]+|KT[0-9]+|SM[0-9]+)\b/i
   ];
 
@@ -216,7 +253,6 @@ const geocodeAddress = async (address: string, postcode?: string): Promise<[numb
     }
   }
   
-  // Remove duplicates and try each extracted postcode
   const uniquePostcodes = Array.from(new Set(extractedPostcodes));
   for (const extractedPc of uniquePostcodes) {
     if (extractedPc !== postcode) {
@@ -226,9 +262,10 @@ const geocodeAddress = async (address: string, postcode?: string): Promise<[numb
     }
   }
 
-  // 4. Try area-specific geocoding
+  // 4. Try area-specific geocoding (DISABLED - causes inaccurate locations)
   const areaResult = await tryAreaSpecificGeocoding(address);
   if (areaResult) return areaResult;
+  */
 
   console.warn(`❌ All geocoding strategies failed for: "${address}"`);
   return null;
