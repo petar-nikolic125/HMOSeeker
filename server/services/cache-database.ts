@@ -1,6 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 import { PropertyListing } from '@shared/schema';
+import { article4Service } from './article4-service';
 
 /**
  * Cache-based Database - koristi JSON fajlove kao glavnu bazu podataka
@@ -213,12 +214,68 @@ export class CacheDatabase {
     // Default Article 4 filtering: Always exclude Article 4 properties unless explicitly requested
     if (!filters.article4_filter || filters.article4_filter === "non_article4") {
       const beforeCount = filtered.length;
-      filtered = filtered.filter(p => p.article4_area !== true);
-      console.log(`📋 Article 4 filter (default non-article4): ${beforeCount} → ${filtered.length}`);
+      
+      // Use comprehensive Article 4 database checking
+      const article4FilteredProperties: any[] = [];
+      
+      for (const property of filtered) {
+        try {
+          // Extract postcode from property address or postcode field
+          const postcode = CacheDatabase.extractPostcodeFromProperty(property);
+          
+          if (postcode) {
+            // Check against comprehensive Article 4 database
+            const article4Result = await article4Service.checkArticle4(postcode);
+            if (!article4Result.inArticle4) {
+              article4FilteredProperties.push(property);
+            }
+          } else {
+            // If no postcode found, fall back to the old article4_area flag  
+            if (property.article4_area !== true) {
+              article4FilteredProperties.push(property);
+            }
+          }
+        } catch (error) {
+          // If Article 4 check fails, fall back to the old flag
+          if (property.article4_area !== true) {
+            article4FilteredProperties.push(property);
+          }
+        }
+      }
+      
+      filtered = article4FilteredProperties;
+      console.log(`📋 Article 4 filter (comprehensive database): ${beforeCount} → ${filtered.length}`);
     } else if (filters.article4_filter === "article4_only") {
       const beforeCount = filtered.length;
-      filtered = filtered.filter(p => p.article4_area === true);
-      console.log(`📋 Article 4 filter (article4_only): ${beforeCount} → ${filtered.length}`);
+      
+      // Use comprehensive Article 4 database checking for Article 4 only filter
+      const article4OnlyProperties: any[] = [];
+      
+      for (const property of filtered) {
+        try {
+          const postcode = CacheDatabase.extractPostcodeFromProperty(property);
+          
+          if (postcode) {
+            const article4Result = await article4Service.checkArticle4(postcode);
+            if (article4Result.inArticle4) {
+              article4OnlyProperties.push(property);
+            }
+          } else {
+            // Fall back to old flag
+            if (property.article4_area === true) {
+              article4OnlyProperties.push(property);
+            }
+          }
+        } catch (error) {
+          // Fall back to old flag
+          if (property.article4_area === true) {
+            article4OnlyProperties.push(property);
+          }
+        }
+      }
+      
+      filtered = article4OnlyProperties;
+      console.log(`📋 Article 4 filter (article4_only - comprehensive): ${beforeCount} → ${filtered.length}`);
     }
     
     console.log(`🔍 Cache search: ${properties.length} total, ${filtered.length} after filters`);
@@ -394,5 +451,36 @@ export class CacheDatabase {
     } catch (error) {
       return [];
     }
+  }
+
+  /**
+   * Extract UK postcode from property data
+   */
+  static extractPostcodeFromProperty(property: any): string | null {
+    // First try the dedicated postcode field
+    if (property.postcode) {
+      const cleaned = property.postcode.trim().toUpperCase();
+      if (this.isValidUKPostcode(cleaned)) {
+        return cleaned;
+      }
+    }
+
+    // Then try extracting from address
+    if (property.address) {
+      const postcodeMatch = property.address.match(/\b([A-Z]{1,2}\d{1,2}[A-Z]?\s*\d[A-Z]{2})\b/i);
+      if (postcodeMatch) {
+        return postcodeMatch[1].toUpperCase().replace(/\s+/g, ' ');
+      }
+    }
+
+    return null;
+  }
+
+  /**
+   * Validate UK postcode format
+   */
+  static isValidUKPostcode(postcode: string): boolean {
+    const ukPostcodeRegex = /^([A-Z]{1,2}\d{1,2}[A-Z]?\s*\d[A-Z]{2})$/i;
+    return ukPostcodeRegex.test(postcode);
   }
 }
