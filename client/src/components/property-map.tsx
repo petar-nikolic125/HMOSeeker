@@ -221,51 +221,105 @@ const geocodeAddress = async (address: string, postcode?: string): Promise<[numb
   
   console.log(`⚠️ No precise street-level geocoding found for "${address}"`);
   
-  // If no precise street location found, return null to use city fallback instead of inaccurate postcode coordinates
-  // This prevents showing properties 1-3 roads away from the actual location
+  // If precise street geocoding failed, try more aggressive street search strategies
+  console.log(`⚠️ No precise street-level geocoding found, trying alternative strategies...`);
   
-  console.log(`❌ Could not find precise street-level coordinates for "${address}"`);
-  console.log(`🏙️ Will use city-level fallback coordinates to avoid incorrect pin placement`);
-  
-  // COMMENTED OUT: Postcode fallbacks that cause inaccurate locations
-  // We'd rather show the property in the general city area than pin it to the wrong street
-  
-  /*
-  // 2. Try provided postcode (DISABLED - causes 1-3 road inaccuracy)
-  if (postcode && postcode.length > 2) {
-    const result = await tryPostcode(postcode);
-    if (result) return result;
-  }
-
-  // 3. Try extracted postcodes from address (DISABLED - causes 1-3 road inaccuracy)
-  const postcodePatterns = [
-    /\b([A-Z]{1,2}[0-9][A-Z0-9]?\s?[0-9][A-Z]{2})\b/i,
-    /\b([A-Z]{1,2}[0-9][A-Z0-9]?)\b/i,
-    /,\s*([A-Z]+\s+[A-Z]{1,2}[0-9][A-Z0-9]?)\b/i,
-    /\b(BR[0-9]|HA[0-9]|SE[0-9]+|SW[0-9]+|N[0-9]+|E[0-9]+|W[0-9]+|NW[0-9]+|CR[0-9]+|RM[0-9]+|DA[0-9]+|IG[0-9]+|UB[0-9]+|EN[0-9]+|KT[0-9]+|SM[0-9]+)\b/i
-  ];
-
-  const extractedPostcodes = [];
-  for (const pattern of postcodePatterns) {
-    const match = address.match(pattern);
-    if (match && match[1]) {
-      extractedPostcodes.push(match[1].replace(/\s+/g, '').toUpperCase());
+  // Strategy 2: Try with simplified address components
+  const tryAlternativeStreetSearch = async (): Promise<[number, number] | null> => {
+    const addressParts = address.toLowerCase().split(',').map(part => part.trim());
+    const streetName = addressParts[0]?.replace(/\d+\s+bed\s+.*?house\s+for\s+sale\s+/i, '').trim();
+    
+    if (streetName.length > 3) {
+      // Try variations of street search
+      const streetQueries = [
+        streetName,
+        `${streetName}, London, UK`,
+        `${streetName}, UK`,
+        `${streetName} London`
+      ];
+      
+      for (const query of streetQueries) {
+        console.log(`🔍 Alternative street search: "${query}"`);
+        try {
+          const response = await fetch(
+            `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=3&countrycodes=gb&addressdetails=1`,
+            {
+              headers: {
+                'User-Agent': 'HMO-Hunter/1.0 (Property Investment Platform)'
+              }
+            }
+          );
+          
+          if (response.ok) {
+            const data = await response.json();
+            if (data && data.length > 0) {
+              for (const result of data) {
+                const lat = parseFloat(result.lat);
+                const lon = parseFloat(result.lon);
+                
+                if (!isNaN(lat) && !isNaN(lon)) {
+                  const displayName = result.display_name || '';
+                  if (displayName.toLowerCase().includes(streetName.toLowerCase())) {
+                    console.log(`✅ Alternative street geocoded "${streetName}": ${lat}, ${lon} (${displayName})`);
+                    return [lat, lon];
+                  }
+                }
+              }
+            }
+          }
+        } catch (error) {
+          console.warn(`❌ Alternative street search failed for "${query}":`, error);
+        }
+        
+        await new Promise(resolve => setTimeout(resolve, 200));
+      }
     }
-  }
+    return null;
+  };
   
-  const uniquePostcodes = Array.from(new Set(extractedPostcodes));
-  for (const extractedPc of uniquePostcodes) {
-    if (extractedPc !== postcode) {
-      console.log(`🔍 Trying extracted postcode: ${extractedPc}`);
-      const result = await tryPostcode(extractedPc);
-      if (result) return result;
+  const alternativeResult = await tryAlternativeStreetSearch();
+  if (alternativeResult) return alternativeResult;
+  
+  // Strategy 3: Smart postcode fallback (only for general area, not precise location)
+  const trySmartPostcodeFallback = async (): Promise<[number, number] | null> => {
+    // Extract postcode patterns but use them only as broad area indicators
+    const postcodePatterns = [
+      /\b([A-Z]{1,2}[0-9][A-Z0-9]?\s?[0-9][A-Z]{2})\b/i, // Full postcode
+      /\b([A-Z]{1,2}[0-9][A-Z0-9]?)\b/i // Partial postcode
+    ];
+    
+    for (const pattern of postcodePatterns) {
+      const match = address.match(pattern);
+      if (match && match[1]) {
+        const postcode = match[1].replace(/\s+/g, '').toUpperCase();
+        console.log(`📮 Smart postcode area lookup: ${postcode}`);
+        
+        try {
+          const response = await fetch(`https://api.postcodes.io/postcodes/${postcode}`);
+          if (response.ok) {
+            const data = await response.json();
+            if (data.result) {
+              // Add small random offset to avoid all properties showing exact same location
+              const baseLatOffset = (Math.random() - 0.5) * 0.008; // ~400m variation
+              const baseLonOffset = (Math.random() - 0.5) * 0.008;
+              
+              const lat = data.result.latitude + baseLatOffset;
+              const lon = data.result.longitude + baseLonOffset;
+              
+              console.log(`✅ Smart postcode area "${postcode}": ${lat}, ${lon} (${data.result.admin_district}) +offset`);
+              return [lat, lon];
+            }
+          }
+        } catch (error) {
+          console.warn(`❌ Smart postcode lookup failed for ${postcode}:`, error);
+        }
+      }
     }
-  }
-
-  // 4. Try area-specific geocoding (DISABLED - causes inaccurate locations)
-  const areaResult = await tryAreaSpecificGeocoding(address);
-  if (areaResult) return areaResult;
-  */
+    return null;
+  };
+  
+  const postcodeResult = await trySmartPostcodeFallback();
+  if (postcodeResult) return postcodeResult;
 
   console.warn(`❌ All geocoding strategies failed for: "${address}"`);
   return null;
