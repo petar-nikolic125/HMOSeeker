@@ -363,67 +363,91 @@ export default function PropertyMap({
     if (!mapContainer.current) return;
 
     const initializeMap = async () => {
-      setIsGeocoding(true);
-      
-      // Try to geocode the actual property address
-      let propertyCoords: [number, number] | null = null;
-      
-      if (address) {
-        propertyCoords = await geocodeAddress(address, postcode);
-      }
-      
-      // Fallback to city coordinates if geocoding fails
-      if (!propertyCoords) {
-        propertyCoords = getCityFallbackCoords(city);
-        console.warn(`Geocoding failed for "${address || 'no address'}", using city fallback for ${city}`);
-      }
-      
-      setCoordinates(propertyCoords);
-      setIsGeocoding(false);
-      
-      // Initialize map with the determined coordinates
-      if (map.current) {
-        map.current.remove();
-      }
-      
-      if (!mapContainer.current) return;
-      
-      map.current = L.map(mapContainer.current).setView(propertyCoords, 14);
+      try {
+        setIsGeocoding(true);
+        
+        // Try to geocode the actual property address
+        let propertyCoords: [number, number] | null = null;
+        
+        if (address) {
+          propertyCoords = await geocodeAddress(address, postcode);
+        }
+        
+        // Fallback to city coordinates if geocoding fails
+        if (!propertyCoords) {
+          propertyCoords = getCityFallbackCoords(city);
+          console.warn(`Geocoding failed for "${address || 'no address'}", using city fallback for ${city}`);
+        }
+        
+        setCoordinates(propertyCoords);
+        
+        // Initialize map with the determined coordinates
+        if (map.current) {
+          map.current.remove();
+        }
+        
+        if (!mapContainer.current) {
+          setIsGeocoding(false);
+          return;
+        }
+        
+        map.current = L.map(mapContainer.current).setView(propertyCoords, 14);
 
-      // Add OpenStreetMap tiles
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        maxZoom: 19,
-      }).addTo(map.current);
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+          maxZoom: 19,
+        }).addTo(map.current);
 
-      // Add marker for the property location
-      const marker = L.marker(propertyCoords).addTo(map.current);
+        // Add marker for the property location
+        const marker = L.marker(propertyCoords).addTo(map.current);
+        
+        // Extract postcode from address if not provided separately
+        const displayPostcode = postcode || extractPostcodeFromAddress(address || '') || '';
+        
+        marker.bindPopup(`
+          <div class="p-2">
+            <h3 class="font-semibold text-sm">${city}</h3>
+            ${address ? `<p class="text-xs text-gray-600 mt-1">${address}</p>` : ''}
+            ${displayPostcode ? `<p class="text-xs text-blue-600 font-mono mt-1">${displayPostcode}</p>` : ''}
+            <p class="text-xs text-green-600 font-semibold mt-2">✓ Non-Article 4 Property</p>
+            <p class="text-xs text-gray-500">HMO conversion permitted (subject to planning)</p>
+          </div>
+        `);
+
+        // Add a property area circle
+        L.circle(propertyCoords, {
+          color: '#059669', // Green for non-Article 4
+          fillColor: '#d1fae5',
+          fillOpacity: 0.3,
+          radius: 300, // 300m radius
+          weight: 2,
+        }).addTo(map.current);
+
+        // Add Article 4 overlay areas if enabled
+        if (showArticle4Overlay && (postcode || displayPostcode)) {
+          loadArticle4Overlays(propertyCoords, map.current);
+        }
+        
+        // Ensure loading state is cleared
+        setIsGeocoding(false);
       
-      // Extract postcode from address if not provided separately
-      const displayPostcode = postcode || extractPostcodeFromAddress(address || '') || '';
-      
-      marker.bindPopup(`
-        <div class="p-2">
-          <h3 class="font-semibold text-sm">${city}</h3>
-          ${address ? `<p class="text-xs text-gray-600 mt-1">${address}</p>` : ''}
-          ${displayPostcode ? `<p class="text-xs text-blue-600 font-mono mt-1">${displayPostcode}</p>` : ''}
-          <p class="text-xs text-green-600 font-semibold mt-2">✓ Non-Article 4 Property</p>
-          <p class="text-xs text-gray-500">HMO conversion permitted (subject to planning)</p>
-        </div>
-      `);
-
-      // Add a property area circle
-      L.circle(propertyCoords, {
-        color: '#059669', // Green for non-Article 4
-        fillColor: '#d1fae5',
-        fillOpacity: 0.3,
-        radius: 300, // 300m radius
-        weight: 2,
-      }).addTo(map.current);
-
-      // Add Article 4 overlay areas if enabled
-      if (showArticle4Overlay && (postcode || displayPostcode)) {
-        loadArticle4Overlays(propertyCoords, map.current);
+      } catch (error) {
+        console.error('Error initializing map:', error);
+        setIsGeocoding(false);
+        
+        // Still try to initialize basic map even if there are errors
+        if (mapContainer.current && !map.current) {
+          try {
+            const fallbackCoords = getCityFallbackCoords(city);
+            map.current = L.map(mapContainer.current).setView(fallbackCoords, 10);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+              attribution: '© OpenStreetMap contributors'
+            }).addTo(map.current);
+          } catch (mapError) {
+            console.error('Failed to initialize fallback map:', mapError);
+          }
+        }
       }
     };
     

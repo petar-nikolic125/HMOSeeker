@@ -226,6 +226,22 @@ export default function Home() {
         searchResults={{ count: searchState.properties.length, error: searchState.error || undefined }}
       />
       
+      {/* Article 4 Direction Checker Section - Moved above property listings */}
+      <section className="py-8 bg-white border-b">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-3">
+              Article 4 Direction Checker
+            </h2>
+            <p className="text-sm text-gray-600 max-w-2xl mx-auto">
+              Check if a postcode falls within an Article 4 direction area that may restrict HMO conversions. 
+              Free tool using official government data.
+            </p>
+          </div>
+          <Article4Checker />
+        </div>
+      </section>
+      
       <PropertyResults 
         properties={sortedProperties.length > 0 ? sortedProperties : searchState.properties} 
         totalResults={searchState.totalResults}
@@ -239,22 +255,6 @@ export default function Home() {
         onSortChange={handleSortChange}
         currentSort={sortBy}
       />
-      
-      {/* Article 4 Direction Checker Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Article 4 Direction Checker
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Check if a postcode falls within an Article 4 direction area that may restrict HMO conversions. 
-              Free tool using official government data.
-            </p>
-          </div>
-          <Article4Checker />
-        </div>
-      </section>
       
       <Footer />
       
