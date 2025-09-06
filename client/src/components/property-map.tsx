@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
@@ -19,8 +19,55 @@ interface PropertyMapProps {
   showArticle4Overlay?: boolean;
 }
 
-// Generate pseudo-random coordinates within city boundaries for unique property locations
-const generatePropertyCoordinates = (city: string, address: string = '') => {
+// Extract postcode from address text
+const extractPostcodeFromAddress = (address: string): string | null => {
+  // UK postcode regex - matches most UK postcode formats
+  const postcodeRegex = /([A-Z]{1,2}[0-9][A-Z0-9]?\s?[0-9][A-Z]{2})/i;
+  const match = address.match(postcodeRegex);
+  return match ? match[1].replace(/\s+/g, '').toUpperCase() : null;
+};
+
+// Geocode address using PostCodes.io API
+const geocodeAddress = async (address: string, postcode?: string): Promise<[number, number] | null> => {
+  // First try with postcode if available
+  if (postcode) {
+    try {
+      const cleanPostcode = postcode.replace(/\s+/g, '').toUpperCase();
+      const response = await fetch(`https://api.postcodes.io/postcodes/${cleanPostcode}`);
+      if (response.ok) {
+        const data = await response.json();
+        if (data.result) {
+          return [data.result.latitude, data.result.longitude];
+        }
+      }
+    } catch (error) {
+      console.warn('PostCodes.io geocoding failed:', error);
+    }
+  }
+
+  // Try to extract postcode from address if not provided
+  if (!postcode) {
+    const extractedPostcode = extractPostcodeFromAddress(address);
+    if (extractedPostcode) {
+      try {
+        const response = await fetch(`https://api.postcodes.io/postcodes/${extractedPostcode}`);
+        if (response.ok) {
+          const data = await response.json();
+          if (data.result) {
+            return [data.result.latitude, data.result.longitude];
+          }
+        }
+      } catch (error) {
+        console.warn('PostCodes.io geocoding with extracted postcode failed:', error);
+      }
+    }
+  }
+
+  return null;
+};
+
+// Fallback coordinates for cities when geocoding fails
+const getCityFallbackCoords = (city: string): [number, number] => {
   const baseCityCoords: Record<string, [number, number]> = {
     'London': [51.5074, -0.1278],
     'Manchester': [53.4808, -2.2426],
@@ -37,25 +84,7 @@ const generatePropertyCoordinates = (city: string, address: string = '') => {
     'Belfast': [54.5973, -5.9301],
   };
 
-  const baseCoords = baseCityCoords[city] || baseCityCoords['London'];
-  
-  // Create a simple hash from the address to ensure consistent positioning
-  let hash = 0;
-  const text = address + city;
-  for (let i = 0; i < text.length; i++) {
-    const char = text.charCodeAt(i);
-    hash = ((hash << 5) - hash) + char;
-    hash = hash & hash; // Convert to 32-bit integer
-  }
-  
-  // Use hash to generate consistent but different offsets within the city
-  const latOffset = ((hash % 200) - 100) / 10000; // ±0.01 degrees (roughly ±1km)
-  const lonOffset = (((hash * 7) % 200) - 100) / 10000;
-  
-  return [
-    baseCoords[0] + latOffset,
-    baseCoords[1] + lonOffset
-  ] as [number, number];
+  return baseCityCoords[city] || baseCityCoords['London'];
 };
 
 export default function PropertyMap({ 
@@ -68,48 +97,78 @@ export default function PropertyMap({
 }: PropertyMapProps) {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<L.Map | null>(null);
+  const [coordinates, setCoordinates] = useState<[number, number] | null>(null);
+  const [isGeocoding, setIsGeocoding] = useState(true);
 
   useEffect(() => {
     if (!mapContainer.current) return;
 
-    // Get unique coordinates for this property
-    const coordinates = generatePropertyCoordinates(city, address || '');
+    const initializeMap = async () => {
+      setIsGeocoding(true);
+      
+      // Try to geocode the actual property address
+      let propertyCoords: [number, number] | null = null;
+      
+      if (address) {
+        propertyCoords = await geocodeAddress(address, postcode);
+      }
+      
+      // Fallback to city coordinates if geocoding fails
+      if (!propertyCoords) {
+        propertyCoords = getCityFallbackCoords(city);
+        console.warn(`Geocoding failed for "${address || 'no address'}", using city fallback for ${city}`);
+      }
+      
+      setCoordinates(propertyCoords);
+      setIsGeocoding(false);
+      
+      // Initialize map with the determined coordinates
+      if (map.current) {
+        map.current.remove();
+      }
+      
+      if (!mapContainer.current) return;
+      
+      map.current = L.map(mapContainer.current).setView(propertyCoords, 14);
+
+      // Add OpenStreetMap tiles
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        maxZoom: 19,
+      }).addTo(map.current);
+
+      // Add marker for the property location
+      const marker = L.marker(propertyCoords).addTo(map.current);
+      
+      // Extract postcode from address if not provided separately
+      const displayPostcode = postcode || extractPostcodeFromAddress(address || '') || '';
+      
+      marker.bindPopup(`
+        <div class="p-2">
+          <h3 class="font-semibold text-sm">${city}</h3>
+          ${address ? `<p class="text-xs text-gray-600 mt-1">${address}</p>` : ''}
+          ${displayPostcode ? `<p class="text-xs text-blue-600 font-mono mt-1">${displayPostcode}</p>` : ''}
+          <p class="text-xs text-green-600 font-semibold mt-2">✓ Non-Article 4 Property</p>
+          <p class="text-xs text-gray-500">HMO conversion permitted (subject to planning)</p>
+        </div>
+      `);
+
+      // Add a property area circle
+      L.circle(propertyCoords, {
+        color: '#059669', // Green for non-Article 4
+        fillColor: '#d1fae5',
+        fillOpacity: 0.3,
+        radius: 300, // 300m radius
+        weight: 2,
+      }).addTo(map.current);
+
+      // Add Article 4 overlay areas if enabled
+      if (showArticle4Overlay && (postcode || displayPostcode)) {
+        loadArticle4Overlays(propertyCoords, map.current);
+      }
+    };
     
-    // Initialize map
-    map.current = L.map(mapContainer.current).setView(coordinates, 13);
-
-    // Add OpenStreetMap tiles
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-      maxZoom: 19,
-    }).addTo(map.current);
-
-    // Add marker for the property location
-    const marker = L.marker(coordinates).addTo(map.current);
-    
-    marker.bindPopup(`
-      <div class="p-2">
-        <h3 class="font-semibold">${city}</h3>
-        ${address ? `<p class="text-sm text-gray-600 mt-1">${address}</p>` : ''}
-        ${postcode ? `<p class="text-sm text-blue-600 font-mono mt-1">${postcode}</p>` : ''}
-        <p class="text-xs text-green-600 font-semibold mt-2">✓ Non-Article 4 Property</p>
-        <p class="text-xs text-gray-500">HMO conversion permitted (subject to planning)</p>
-      </div>
-    `);
-
-    // Add a property area circle
-    L.circle(coordinates, {
-      color: '#059669', // Green for non-Article 4
-      fillColor: '#d1fae5',
-      fillOpacity: 0.3,
-      radius: 500, // 500m radius
-      weight: 2,
-    }).addTo(map.current);
-
-    // Add Article 4 overlay areas if enabled
-    if (showArticle4Overlay && postcode) {
-      loadArticle4Overlays(coordinates, map.current);
-    }
+    initializeMap();
 
     // Cleanup function
     return () => {
@@ -168,10 +227,20 @@ export default function PropertyMap({
   };
 
   return (
-    <div 
-      ref={mapContainer} 
-      className={`w-full rounded-lg border ${className}`}
-      style={{ height }}
-    />
+    <div className={`relative w-full rounded-lg border ${className}`} style={{ height }}>
+      {isGeocoding && (
+        <div className="absolute inset-0 bg-gray-100 rounded-lg flex items-center justify-center z-10">
+          <div className="flex items-center gap-2 text-sm text-gray-600">
+            <div className="w-4 h-4 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+            Loading map...
+          </div>
+        </div>
+      )}
+      <div 
+        ref={mapContainer} 
+        className="w-full h-full rounded-lg"
+        style={{ opacity: isGeocoding ? 0 : 1 }}
+      />
+    </div>
   );
 }
