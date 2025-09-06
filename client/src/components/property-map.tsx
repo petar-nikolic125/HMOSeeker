@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
@@ -17,21 +17,43 @@ interface PropertyMapProps {
   height?: string;
 }
 
-// City coordinates for UK cities
-const CITY_COORDINATES: Record<string, [number, number]> = {
-  'London': [51.5074, -0.1278],
-  'Manchester': [53.4808, -2.2426],
-  'Birmingham': [52.4862, -1.8904],
-  'Liverpool': [53.4084, -2.9916],
-  'Leeds': [53.8008, -1.5491],
-  'Sheffield': [53.3811, -1.4701],
-  'Bristol': [51.4545, -2.5879],
-  'Newcastle': [54.9783, -1.6178],
-  'Nottingham': [52.9548, -1.1581],
-  'Glasgow': [55.8642, -4.2518],
-  'Edinburgh': [55.9533, -3.1883],
-  'Cardiff': [51.4816, -3.1791],
-  'Belfast': [54.5973, -5.9301],
+// Generate pseudo-random coordinates within city boundaries for unique property locations
+const generatePropertyCoordinates = (city: string, address: string = '') => {
+  const baseCityCoords: Record<string, [number, number]> = {
+    'London': [51.5074, -0.1278],
+    'Manchester': [53.4808, -2.2426],
+    'Birmingham': [52.4862, -1.8904],
+    'Liverpool': [53.4084, -2.9916],
+    'Leeds': [53.8008, -1.5491],
+    'Sheffield': [53.3811, -1.4701],
+    'Bristol': [51.4545, -2.5879],
+    'Newcastle': [54.9783, -1.6178],
+    'Nottingham': [52.9548, -1.1581],
+    'Glasgow': [55.8642, -4.2518],
+    'Edinburgh': [55.9533, -3.1883],
+    'Cardiff': [51.4816, -3.1791],
+    'Belfast': [54.5973, -5.9301],
+  };
+
+  const baseCoords = baseCityCoords[city] || baseCityCoords['London'];
+  
+  // Create a simple hash from the address to ensure consistent positioning
+  let hash = 0;
+  const text = address + city;
+  for (let i = 0; i < text.length; i++) {
+    const char = text.charCodeAt(i);
+    hash = ((hash << 5) - hash) + char;
+    hash = hash & hash; // Convert to 32-bit integer
+  }
+  
+  // Use hash to generate consistent but different offsets within the city
+  const latOffset = ((hash % 200) - 100) / 10000; // ±0.01 degrees (roughly ±1km)
+  const lonOffset = (((hash * 7) % 200) - 100) / 10000;
+  
+  return [
+    baseCoords[0] + latOffset,
+    baseCoords[1] + lonOffset
+  ] as [number, number];
 };
 
 export default function PropertyMap({ city, address, className = '', height = '200px' }: PropertyMapProps) {
@@ -41,11 +63,11 @@ export default function PropertyMap({ city, address, className = '', height = '2
   useEffect(() => {
     if (!mapContainer.current) return;
 
-    // Get city coordinates
-    const coordinates = CITY_COORDINATES[city] || CITY_COORDINATES['London'];
+    // Get unique coordinates for this property
+    const coordinates = generatePropertyCoordinates(city, address || '');
     
     // Initialize map
-    map.current = L.map(mapContainer.current).setView(coordinates, 11);
+    map.current = L.map(mapContainer.current).setView(coordinates, 13);
 
     // Add OpenStreetMap tiles
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -53,23 +75,23 @@ export default function PropertyMap({ city, address, className = '', height = '2
       maxZoom: 19,
     }).addTo(map.current);
 
-    // Add marker for the city center
+    // Add marker for the property location
     const marker = L.marker(coordinates).addTo(map.current);
     
     marker.bindPopup(`
       <div class="p-2">
         <h3 class="font-semibold">${city}</h3>
         ${address ? `<p class="text-sm text-gray-600 mt-1">${address}</p>` : ''}
-        <p class="text-xs text-gray-500 mt-2">Property location area</p>
+        <p class="text-xs text-gray-500 mt-2">Approximate property area</p>
       </div>
     `);
 
-    // Add a circle to show the general area
+    // Add a smaller circle to show property vicinity
     L.circle(coordinates, {
       color: '#3b82f6',
       fillColor: '#dbeafe',
       fillOpacity: 0.2,
-      radius: 5000, // 5km radius
+      radius: 1000, // 1km radius
     }).addTo(map.current);
 
     // Cleanup function
