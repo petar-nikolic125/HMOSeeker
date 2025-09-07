@@ -289,6 +289,8 @@
   body {
     @apply font-sans antialiased bg-background text-foreground;
     font-family: var(--font-sans);
+    zoom: 75%;
+    transform-origin: top left;
   }
 
   html {

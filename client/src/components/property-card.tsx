@@ -51,76 +51,87 @@ export default function PropertyCard({ property, onAnalyze, delay = 0 }: Propert
   };
 
   return (
-    <div className="group bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-gray-200 hover:border-blue-300">
+    <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:border-blue-400 hover:-translate-y-2 backdrop-blur-sm">
       
       {/* Header section with property title and badges */}
-      <div className="p-3 pb-2 border-b border-gray-100">
+      <div className="p-6 pb-4 border-b border-gray-100 bg-gradient-to-r from-gray-50 to-white">
         <div className="flex items-start justify-between mb-2">
           <div className="flex-1 min-w-0">
-            <h3 className="font-semibold text-gray-900 text-lg leading-tight mb-1">
+            <h3 className="font-bold text-gray-900 text-xl leading-tight mb-3">
               {property.address || property.title || `Property in ${property.city || 'Unknown'}`}
             </h3>
-            <div className="flex items-center gap-3 text-sm text-gray-600">
-              <span className="flex items-center gap-1">
-                <Bed className="w-4 h-4" />
-                {property.bedrooms || 4}
+            <div className="flex items-center gap-6 text-base text-gray-700">
+              <span className="flex items-center gap-2 bg-blue-50 px-3 py-2 rounded-lg">
+                <Bed className="w-5 h-5 text-blue-600" />
+                <span className="font-semibold">{property.bedrooms || 4}</span>
+                <span className="text-sm text-gray-500">beds</span>
               </span>
               {property.bathrooms && (
-                <span className="flex items-center gap-1">
-                  <Bath className="w-4 h-4" />
-                  {property.bathrooms}
+                <span className="flex items-center gap-2 bg-green-50 px-3 py-2 rounded-lg">
+                  <Bath className="w-5 h-5 text-green-600" />
+                  <span className="font-semibold">{property.bathrooms}</span>
+                  <span className="text-sm text-gray-500">baths</span>
                 </span>
               )}
               {(property.area_sqm || property.predicted_sqm) && (
-                <span className="flex items-center gap-1">
-                  <Square className="w-4 h-4" />
-                  {property.area_sqm || property.predicted_sqm}m²
+                <span className="flex items-center gap-2 bg-purple-50 px-3 py-2 rounded-lg">
+                  <Square className="w-5 h-5 text-purple-600" />
+                  <span className="font-semibold">{property.area_sqm || property.predicted_sqm}m²</span>
                   {property.area_estimated && (
-                    <span className="text-gray-400 ml-0.5" title="Estimated size based on bedrooms, location and property type">~</span>
+                    <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded-full" title="Estimated size based on bedrooms, location and property type">est</span>
                   )}
                 </span>
               )}
             </div>
           </div>
           
-          <div className="flex gap-2 ml-4">
+          <div className="flex gap-3 ml-6">
             {property.hmo_candidate && (
-              <span className="bg-green-100 text-green-700 px-2 py-1 rounded text-sm font-medium">HMO</span>
+              <span className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-2 rounded-lg text-sm font-bold shadow-lg">HMO Ready</span>
             )}
             {!property.article4_area && (
-              <span className="bg-green-100 text-green-700 px-2 py-1 rounded text-sm font-medium" title="Non-Article 4 area - No planning restrictions for HMO conversion">
-                <CheckCircle className="w-4 h-4 inline mr-1" />
+              <span className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-2 rounded-lg text-sm font-bold shadow-lg flex items-center gap-1" title="Non-Article 4 area - No planning restrictions for HMO conversion">
+                <CheckCircle className="w-4 h-4" />
                 Non-A4
               </span>
             )}
             {property.article4_area && (
-              <span className="bg-orange-100 text-orange-700 px-2 py-1 rounded text-sm font-medium" title="Article 4 area - Planning permission required for HMO conversion">
-                <AlertTriangle className="w-4 h-4 inline mr-1" />
+              <span className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-lg text-sm font-bold shadow-lg flex items-center gap-1" title="Article 4 area - Planning permission required for HMO conversion">
+                <AlertTriangle className="w-4 h-4" />
                 Article 4
               </span>
             )}
-            <span className={`${getYieldColor(estimatedYield) === 'from-emerald-500 to-green-500' ? 'bg-green-100 text-green-700' : 
-                             getYieldColor(estimatedYield) === 'from-yellow-500 to-orange-500' ? 'bg-yellow-100 text-yellow-700' :
-                             'bg-red-100 text-red-700'} px-2 py-1 rounded text-sm font-medium`}>
-              {getYieldLabel(estimatedYield)}
+            <span className={`px-4 py-2 rounded-lg text-sm font-bold shadow-lg text-white ${
+              getYieldColor(estimatedYield) === 'from-emerald-500 to-green-500' ? 'bg-gradient-to-r from-emerald-500 to-green-500' : 
+              getYieldColor(estimatedYield) === 'from-yellow-500 to-orange-500' ? 'bg-gradient-to-r from-yellow-500 to-orange-500' :
+              'bg-gradient-to-r from-red-500 to-pink-500'}`}>
+              {getYieldLabel(estimatedYield)} Yield
             </span>
           </div>
         </div>
       </div>
 
       {/* Main content area with image and map side by side */}
-      <div className="flex h-64">
+      <div className="flex h-80">
         {/* Property Image - Left side */}
         <div className="relative flex-1 overflow-hidden">
           <img 
             src={property.image_url || "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop&crop=entropy&q=80"}
             alt={property.title}
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 filter group-hover:brightness-105"
           />
           
-          {/* Price overlay */}
-          <div className="absolute bottom-3 left-3 bg-black/75 text-white px-3 py-2 rounded text-lg font-bold">
-            £{(property.price || 0).toLocaleString()}
+          {/* Modern gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/70" />
+          
+          {/* Modern price overlay */}
+          <div className="absolute bottom-6 left-6 right-6">
+            <div className="text-4xl font-black text-white drop-shadow-2xl mb-2 tracking-tight">
+              £{(property.price || 0).toLocaleString()}
+            </div>
+            <div className="text-white/90 text-lg font-medium">
+              {property.property_type || 'Property'}
+            </div>
           </div>
         </div>
 
@@ -136,40 +147,41 @@ export default function PropertyCard({ property, onAnalyze, delay = 0 }: Propert
         </div>
       </div>
 
-      {/* Metrics and Action buttons */}
-      <div className="p-3 pt-2 flex items-center justify-between">
-        <div className="flex gap-6">
-          <div className="text-center">
-            <div className="text-blue-600 font-bold text-lg">{estimatedYield.toFixed(1)}%</div>
-            <div className="text-sm text-gray-500">Yield</div>
+      {/* Enhanced Metrics and Action buttons */}
+      <div className="p-6 pt-4 space-y-6">
+        {/* Investment Metrics Grid */}
+        <div className="grid grid-cols-3 gap-4">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-xl border border-blue-200 text-center">
+            <div className="text-blue-700 font-black text-2xl mb-1">{estimatedYield.toFixed(1)}%</div>
+            <div className="text-sm font-semibold text-blue-600">Gross Yield</div>
           </div>
-          <div className="text-center">
-            <div className="text-green-600 font-bold text-lg">£{monthlyRent.toLocaleString()}</div>
-            <div className="text-sm text-gray-500">Month</div>
+          <div className="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-xl border border-green-200 text-center">
+            <div className="text-green-700 font-black text-2xl mb-1">£{monthlyRent.toLocaleString()}</div>
+            <div className="text-sm font-semibold text-green-600">Monthly Rent</div>
           </div>
-          <div className="text-center">
-            <div className="text-purple-600 font-bold text-lg">{estimatedRoi.toFixed(1)}%</div>
-            <div className="text-sm text-gray-500">ROI</div>
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-xl border border-purple-200 text-center">
+            <div className="text-purple-700 font-black text-2xl mb-1">{estimatedRoi.toFixed(1)}%</div>
+            <div className="text-sm font-semibold text-purple-600">Est. ROI</div>
           </div>
         </div>
         
-        {/* Action buttons */}
-        <div className="flex gap-2">
+        {/* Modern Action buttons */}
+        <div className="flex gap-3">
           <button 
             onClick={handleViewProperty}
             disabled={!property.property_url}
-            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white text-sm font-medium rounded transition-colors duration-200 flex items-center gap-2"
+            className="flex-1 px-6 py-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 disabled:from-gray-400 disabled:to-gray-500 text-white text-lg font-bold rounded-xl transition-all duration-300 hover:shadow-lg hover:-translate-y-1 flex items-center justify-center gap-3"
           >
-            <ExternalLink className="w-4 h-4" />
-            View
+            <ExternalLink className="w-5 h-5" />
+            View Property
           </button>
           
           <button 
             onClick={() => onAnalyze(property)}
-            className="px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white text-sm font-medium rounded transition-colors duration-200 flex items-center gap-2"
+            className="flex-1 px-6 py-4 bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white text-lg font-bold rounded-xl transition-all duration-300 hover:shadow-lg hover:-translate-y-1 flex items-center justify-center gap-3"
           >
-            <Calculator className="w-4 h-4" />
-            Analyze
+            <Calculator className="w-5 h-5" />
+            Analyze Deal
           </button>
         </div>
       </div>
