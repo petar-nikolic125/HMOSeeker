@@ -34,8 +34,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
 
-      // Validate postcode format - accepts both full postcodes (SW1A 1AA) and partial postcodes (SW1A, UB4)
-      const postcodeRegex = /^[A-Z]{1,2}[0-9][A-Z0-9]?(\s?[0-9][A-Z]{2})?$/i;
+      // Validate postcode format - accepts both full postcodes (SW1A 1AA) and partial postcodes (SW1A, UB4, DA14)
+      const postcodeRegex = /^[A-Z]{1,2}[0-9]{1,2}[A-Z]?(\s?[0-9][A-Z]{2})?$/i;
       if (!postcodeRegex.test(postcode.trim())) {
         return res.status(400).json({
           success: false,

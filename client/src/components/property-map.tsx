@@ -425,6 +425,14 @@ export default function PropertyMap({
           return;
         }
         
+        // Add a small delay to ensure DOM is fully ready
+        await new Promise(resolve => setTimeout(resolve, 100));
+        
+        if (!mapContainer.current) {
+          setIsGeocoding(false);
+          return;
+        }
+        
         map.current = L.map(mapContainer.current).setView(propertyCoords, 14);
 
         // Add OpenStreetMap tiles
@@ -473,11 +481,16 @@ export default function PropertyMap({
         // Still try to initialize basic map even if there are errors
         if (mapContainer.current && !map.current) {
           try {
-            const fallbackCoords = getCityFallbackCoords(city);
-            map.current = L.map(mapContainer.current).setView(fallbackCoords, 10);
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-              attribution: '© OpenStreetMap contributors'
-            }).addTo(map.current);
+            // Additional delay for fallback initialization
+            await new Promise(resolve => setTimeout(resolve, 200));
+            
+            if (mapContainer.current) {
+              const fallbackCoords = getCityFallbackCoords(city);
+              map.current = L.map(mapContainer.current).setView(fallbackCoords, 10);
+              L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+              }).addTo(map.current);
+            }
           } catch (mapError) {
             console.error('Failed to initialize fallback map:', mapError);
           }

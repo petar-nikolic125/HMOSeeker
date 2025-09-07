@@ -160,21 +160,39 @@ class Article4Service {
   public async geocodePostcode(postcode: string): Promise<{ lat: number; lon: number } | null> {
     try {
       const cleanPostcode = postcode.replace(/\s/g, '').toUpperCase();
-      const response = await fetch(`https://api.postcodes.io/postcodes/${cleanPostcode}`);
       
-      if (!response.ok) {
-        console.log(`⚠️ Postcode ${postcode} not found`);
-        return null;
+      // Try exact postcode first
+      let response = await fetch(`https://api.postcodes.io/postcodes/${cleanPostcode}`);
+      
+      if (response.ok) {
+        const data: PostcodeResponse = await response.json();
+        if (data.result) {
+          return {
+            lat: data.result.latitude,
+            lon: data.result.longitude
+          };
+        }
       }
 
-      const data: PostcodeResponse = await response.json();
-      if (data.result) {
-        return {
-          lat: data.result.latitude,
-          lon: data.result.longitude
-        };
+      // If full postcode fails, try as partial postcode (outcode lookup)
+      // This handles cases like DA14, SW1A, etc.
+      if (cleanPostcode.match(/^[A-Z]{1,2}[0-9]{1,2}[A-Z]?$/)) {
+        console.log(`🔍 Trying postcode area lookup for: ${cleanPostcode}`);
+        response = await fetch(`https://api.postcodes.io/outcodes/${cleanPostcode}`);
+        
+        if (response.ok) {
+          const data = await response.json();
+          if (data.result && data.result.latitude && data.result.longitude) {
+            console.log(`✅ Found postcode area: ${cleanPostcode} -> ${data.result.latitude}, ${data.result.longitude}`);
+            return {
+              lat: data.result.latitude,
+              lon: data.result.longitude
+            };
+          }
+        }
       }
-      
+
+      console.log(`⚠️ Postcode ${postcode} not found`);
       return null;
     } catch (error) {
       console.error('❌ Postcode geocoding failed:', error);
