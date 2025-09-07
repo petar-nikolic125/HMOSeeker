@@ -45,7 +45,7 @@ const extractPostcodeFromAddress = (address: string): string | null => {
 
 // Global rate limiter for API requests
 let geocodingQueue: Promise<any> = Promise.resolve();
-const queueGeocoding = <T>(fn: () => Promise<T>): Promise<T> => {
+const queueGeocoding = <T,>(fn: () => Promise<T>): Promise<T> => {
   geocodingQueue = geocodingQueue.then(fn);
   return geocodingQueue;
 };
