@@ -400,6 +400,16 @@ export default function PropertyMap({
       try {
         setIsGeocoding(true);
         
+        // Clean up any existing map first
+        if (map.current) {
+          try {
+            map.current.remove();
+            map.current = null;
+          } catch (e) {
+            console.warn('Map cleanup warning:', e);
+          }
+        }
+        
         // Try to geocode the actual property address
         let propertyCoords: [number, number] | null = null;
         
@@ -415,25 +425,36 @@ export default function PropertyMap({
         
         setCoordinates(propertyCoords);
         
-        // Initialize map with the determined coordinates
-        if (map.current) {
-          map.current.remove();
-        }
+        // Ensure DOM container is ready and stable
+        await new Promise(resolve => setTimeout(resolve, 150));
         
-        if (!mapContainer.current) {
+        // Double-check container exists and is visible
+        if (!mapContainer.current || !document.contains(mapContainer.current)) {
+          console.warn('Map container not ready, skipping initialization');
           setIsGeocoding(false);
           return;
         }
         
-        // Add a small delay to ensure DOM is fully ready
-        await new Promise(resolve => setTimeout(resolve, 100));
-        
-        if (!mapContainer.current) {
-          setIsGeocoding(false);
-          return;
+        // Check if container has dimensions
+        const rect = mapContainer.current.getBoundingClientRect();
+        if (rect.width === 0 || rect.height === 0) {
+          console.warn('Map container has no dimensions, retrying...');
+          await new Promise(resolve => setTimeout(resolve, 200));
+          if (!mapContainer.current) {
+            setIsGeocoding(false);
+            return;
+          }
         }
         
-        map.current = L.map(mapContainer.current).setView(propertyCoords, 14);
+        // Initialize map with proper error handling
+        map.current = L.map(mapContainer.current, {
+          zoomControl: true,
+          attributionControl: true,
+          preferCanvas: false,
+          fadeAnimation: false,
+          zoomAnimation: false,
+          markerZoomAnimation: false
+        }).setView(propertyCoords, 14);
 
         // Add OpenStreetMap tiles
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -479,20 +500,34 @@ export default function PropertyMap({
         setIsGeocoding(false);
         
         // Still try to initialize basic map even if there are errors
-        if (mapContainer.current && !map.current) {
+        if (mapContainer.current && !map.current && document.contains(mapContainer.current)) {
           try {
             // Additional delay for fallback initialization
-            await new Promise(resolve => setTimeout(resolve, 200));
+            await new Promise(resolve => setTimeout(resolve, 300));
             
-            if (mapContainer.current) {
-              const fallbackCoords = getCityFallbackCoords(city);
-              map.current = L.map(mapContainer.current).setView(fallbackCoords, 10);
-              L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© OpenStreetMap contributors'
-              }).addTo(map.current);
+            // Final check before fallback
+            if (mapContainer.current && document.contains(mapContainer.current)) {
+              const rect = mapContainer.current.getBoundingClientRect();
+              if (rect.width > 0 && rect.height > 0) {
+                const fallbackCoords = getCityFallbackCoords(city);
+                map.current = L.map(mapContainer.current, {
+                  zoomControl: true,
+                  attributionControl: true,
+                  preferCanvas: false,
+                  fadeAnimation: false,
+                  zoomAnimation: false,
+                  markerZoomAnimation: false
+                }).setView(fallbackCoords, 10);
+                
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                  attribution: '© OpenStreetMap contributors',
+                  maxZoom: 19
+                }).addTo(map.current);
+              }
             }
           } catch (mapError) {
             console.error('Failed to initialize fallback map:', mapError);
+            // Completely silent failure - don't throw
           }
         }
       }
