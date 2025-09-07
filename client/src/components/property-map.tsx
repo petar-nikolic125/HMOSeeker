@@ -425,13 +425,22 @@ export default function PropertyMap({
           return;
         }
         
-        // Add a small delay to ensure DOM is fully ready
-        await new Promise(resolve => setTimeout(resolve, 100));
+        // Add a longer delay to ensure DOM is fully ready and container is mounted
+        await new Promise(resolve => setTimeout(resolve, 500));
         
-        if (!mapContainer.current) {
-          setIsGeocoding(false);
-          return;
+        // Double-check container exists and has dimensions
+        if (!mapContainer.current || mapContainer.current.offsetWidth === 0) {
+          console.log('Map container not ready, waiting longer...');
+          await new Promise(resolve => setTimeout(resolve, 300));
+          if (!mapContainer.current) {
+            setIsGeocoding(false);
+            return;
+          }
         }
+        
+        // Ensure container has proper dimensions before map creation
+        mapContainer.current.style.minHeight = height;
+        mapContainer.current.style.minWidth = '200px';
         
         map.current = L.map(mapContainer.current).setView(propertyCoords, 14);
 
@@ -481,8 +490,8 @@ export default function PropertyMap({
         // Still try to initialize basic map even if there are errors
         if (mapContainer.current && !map.current) {
           try {
-            // Additional delay for fallback initialization
-            await new Promise(resolve => setTimeout(resolve, 200));
+            // Additional longer delay for fallback initialization
+            await new Promise(resolve => setTimeout(resolve, 800));
             
             if (mapContainer.current) {
               const fallbackCoords = getCityFallbackCoords(city);
