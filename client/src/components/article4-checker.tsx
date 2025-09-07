@@ -71,7 +71,7 @@ export default function Article4Checker() {
       <CardContent className="space-y-4">
         <div className="flex gap-2">
           <Input
-            placeholder="Enter postcode (e.g., SW1A 1AA)"
+            placeholder="Enter postcode (e.g., SW1A, UB4, or SW1A 1AA)"
             value={postcode}
             onChange={(e) => setPostcode(e.target.value.toUpperCase())}
             onKeyDown={handleKeyDown}
