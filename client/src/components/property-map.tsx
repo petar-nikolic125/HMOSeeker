@@ -43,6 +43,13 @@ const extractPostcodeFromAddress = (address: string): string | null => {
   return null;
 };
 
+// Global rate limiter for API requests
+let geocodingQueue: Promise<any> = Promise.resolve();
+const queueGeocoding = <T>(fn: () => Promise<T>): Promise<T> => {
+  geocodingQueue = geocodingQueue.then(fn);
+  return geocodingQueue;
+};
+
 // Multiple geocoding strategies with comprehensive fallbacks
 const geocodeAddress = async (address: string, postcode?: string): Promise<[number, number] | null> => {
   console.log(`🔍 Starting geocoding for: "${address}" with postcode: "${postcode || 'none'}"`);
@@ -85,14 +92,15 @@ const geocodeAddress = async (address: string, postcode?: string): Promise<[numb
       for (const query of queries) {
         console.log(`🎯 Trying specific query: "${query}"`);
         const encodedAddress = encodeURIComponent(query);
-        const response = await fetch(
+        const response = await queueGeocoding(() => fetch(
           `https://nominatim.openstreetmap.org/search?q=${encodedAddress}&format=json&limit=5&countrycodes=gb&addressdetails=1&extratags=1`,
           {
             headers: {
               'User-Agent': 'HMO-Hunter/1.0 (Property Investment Platform)'
-            }
+            },
+            signal: AbortSignal.timeout(8000) // 8 second timeout
           }
-        );
+        ));
         
         if (response.ok) {
           const data = await response.json();
@@ -131,10 +139,15 @@ const geocodeAddress = async (address: string, postcode?: string): Promise<[numb
         }
         
         // Small delay between requests to be respectful to the service
-        await new Promise(resolve => setTimeout(resolve, 150));
+        await new Promise(resolve => setTimeout(resolve, 300));
       }
     } catch (error) {
-      console.warn(`❌ Nominatim geocoding failed:`, error);
+      // Silently handle network errors to avoid console spam
+      if (error instanceof Error && (error.name === 'AbortError' || error.message.includes('fetch'))) {
+        console.log(`⚠️ Geocoding service temporarily unavailable`);
+      } else {
+        console.warn(`❌ Nominatim geocoding failed:`, error);
+      }
     }
     return null;
   };
@@ -146,7 +159,9 @@ const geocodeAddress = async (address: string, postcode?: string): Promise<[numb
       console.log(`📮 Trying postcode: ${cleanPostcode}`);
       
       // Try full postcode first
-      let response = await fetch(`https://api.postcodes.io/postcodes/${cleanPostcode}`);
+      let response = await queueGeocoding(() => fetch(`https://api.postcodes.io/postcodes/${cleanPostcode}`, {
+        signal: AbortSignal.timeout(5000) // 5 second timeout
+      }));
       if (response.ok) {
         const data = await response.json();
         if (data.result) {
@@ -160,14 +175,18 @@ const geocodeAddress = async (address: string, postcode?: string): Promise<[numb
         const partialPostcode = cleanPostcode.substring(0, Math.min(4, cleanPostcode.length));
         console.log(`📮 Trying partial postcode: ${partialPostcode}`);
         
-        response = await fetch(`https://api.postcodes.io/postcodes/${partialPostcode}/autocomplete`);
+        response = await fetch(`https://api.postcodes.io/postcodes/${partialPostcode}/autocomplete`, {
+          signal: AbortSignal.timeout(5000) // 5 second timeout
+        });
         if (response.ok) {
           const data = await response.json();
           if (data.result && data.result.length > 0) {
             // Try the first few suggestions
-            for (let i = 0; i < Math.min(3, data.result.length); i++) {
+            for (let i = 0; i < Math.min(2, data.result.length); i++) {
               const suggestion = data.result[i];
-              const suggestionResponse = await fetch(`https://api.postcodes.io/postcodes/${suggestion}`);
+              const suggestionResponse = await fetch(`https://api.postcodes.io/postcodes/${suggestion}`, {
+                signal: AbortSignal.timeout(5000) // 5 second timeout
+              });
               if (suggestionResponse.ok) {
                 const suggestionData = await suggestionResponse.json();
                 if (suggestionData.result) {
@@ -180,7 +199,12 @@ const geocodeAddress = async (address: string, postcode?: string): Promise<[numb
         }
       }
     } catch (error) {
-      console.warn(`❌ PostCodes.io failed for ${pc}:`, error);
+      // Silently handle network errors to avoid console spam
+      if (error instanceof Error && (error.name === 'AbortError' || error.message.includes('fetch'))) {
+        console.log(`⚠️ PostCodes.io service temporarily unavailable for ${pc}`);
+      } else {
+        console.warn(`❌ PostCodes.io failed for ${pc}:`, error);
+      }
     }
     return null;
   };
@@ -213,7 +237,7 @@ const geocodeAddress = async (address: string, postcode?: string): Promise<[numb
     return null;
   };
 
-  // Execute geocoding strategies in order
+  // Execute geocoding strategies in order (limit concurrent requests)
   
   // 1. Try precise address geocoding first (most accurate) - ONLY if we get exact street match
   const preciseResult = await tryPreciseAddress(address);
@@ -221,21 +245,16 @@ const geocodeAddress = async (address: string, postcode?: string): Promise<[numb
   
   console.log(`⚠️ No precise street-level geocoding found for "${address}"`);
   
-  // If precise street geocoding failed, try more aggressive street search strategies
-  console.log(`⚠️ No precise street-level geocoding found, trying alternative strategies...`);
-  
-  // Strategy 2: Try with simplified address components
+  // Strategy 2: Try with simplified address components (reduced aggressive searching)
   const tryAlternativeStreetSearch = async (): Promise<[number, number] | null> => {
     const addressParts = address.toLowerCase().split(',').map(part => part.trim());
     const streetName = addressParts[0]?.replace(/\d+\s+bed\s+.*?house\s+for\s+sale\s+/i, '').trim();
     
-    if (streetName.length > 3) {
-      // Try variations of street search
+    if (streetName.length > 5) { // Only try if street name is meaningful
+      // Try only the most effective queries to reduce API load
       const streetQueries = [
-        streetName,
-        `${streetName}, London, UK`,
         `${streetName}, UK`,
-        `${streetName} London`
+        streetName
       ];
       
       for (const query of streetQueries) {
@@ -246,7 +265,8 @@ const geocodeAddress = async (address: string, postcode?: string): Promise<[numb
             {
               headers: {
                 'User-Agent': 'HMO-Hunter/1.0 (Property Investment Platform)'
-              }
+              },
+              signal: AbortSignal.timeout(6000) // 6 second timeout
             }
           );
           
@@ -268,17 +288,24 @@ const geocodeAddress = async (address: string, postcode?: string): Promise<[numb
             }
           }
         } catch (error) {
-          console.warn(`❌ Alternative street search failed for "${query}":`, error);
+          // Silently handle network errors to avoid console spam
+          if (error instanceof Error && (error.name === 'AbortError' || error.message.includes('fetch'))) {
+            console.log(`⚠️ Geocoding service temporarily unavailable for "${query}"`);
+          } else {
+            console.warn(`❌ Alternative street search failed for "${query}":`, error);
+          }
         }
         
-        await new Promise(resolve => setTimeout(resolve, 200));
+        await new Promise(resolve => setTimeout(resolve, 800)); // Longer delay to respect rate limits
       }
     }
     return null;
   };
   
-  const alternativeResult = await tryAlternativeStreetSearch();
-  if (alternativeResult) return alternativeResult;
+  // Skip alternative search to reduce API load - go straight to reliable postcode fallback
+  console.log(`⚠️ Skipping alternative street search to reduce API load`);
+  
+  // Use rate-limited postcode fallback instead
   
   // Strategy 3: Smart postcode fallback (only for general area, not precise location)
   const trySmartPostcodeFallback = async (): Promise<[number, number] | null> => {
@@ -295,7 +322,9 @@ const geocodeAddress = async (address: string, postcode?: string): Promise<[numb
         console.log(`📮 Smart postcode area lookup: ${postcode}`);
         
         try {
-          const response = await fetch(`https://api.postcodes.io/postcodes/${postcode}`);
+          const response = await fetch(`https://api.postcodes.io/postcodes/${postcode}`, {
+            signal: AbortSignal.timeout(5000) // 5 second timeout
+          });
           if (response.ok) {
             const data = await response.json();
             if (data.result) {
@@ -311,14 +340,19 @@ const geocodeAddress = async (address: string, postcode?: string): Promise<[numb
             }
           }
         } catch (error) {
-          console.warn(`❌ Smart postcode lookup failed for ${postcode}:`, error);
+          // Silently handle network errors
+          if (error instanceof Error && (error.name === 'AbortError' || error.message.includes('fetch'))) {
+            console.log(`⚠️ PostCodes.io service temporarily unavailable for ${postcode}`);
+          } else {
+            console.warn(`❌ Smart postcode lookup failed for ${postcode}:`, error);
+          }
         }
       }
     }
     return null;
   };
   
-  const postcodeResult = await trySmartPostcodeFallback();
+  const postcodeResult = await queueGeocoding(() => trySmartPostcodeFallback());
   if (postcodeResult) return postcodeResult;
 
   console.warn(`❌ All geocoding strategies failed for: "${address}"`);
