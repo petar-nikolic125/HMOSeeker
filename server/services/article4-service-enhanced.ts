@@ -66,7 +66,7 @@ interface CityWideDirections {
 class EnhancedArticle4Service {
   private article4Areas: Article4Area[] = [];
   private cacheTimestamp: Date | null = null;
-  private readonly CACHE_TTL_HOURS = 12; // Refresh twice daily for accuracy
+  private readonly CACHE_TTL_HOURS = 24; // Daily refresh (reduced for performance)
   private readonly CACHE_FILE_PATH = path.join(process.cwd(), 'cache', 'enhanced-article4-areas.json');
   private readonly BACKUP_CACHE_PATH = path.join(process.cwd(), 'cache', 'article4-backup.json');
   
@@ -419,7 +419,12 @@ class EnhancedArticle4Service {
     const searchPoint = point([lon, lat]);
     const dataSources: string[] = [source];
 
-    // Find overlapping Article 4 areas
+    // OPTIMIZATION: Fast city-wide check first
+    const cityWideAreas = this.article4Areas.filter(area => 
+      area.name.includes('CITY WIDE') || area.name.includes('City Wide')
+    );
+
+    // Find overlapping Article 4 areas (optimized)
     const overlappingAreas: Array<{
       name: string;
       council: string;
@@ -430,21 +435,12 @@ class EnhancedArticle4Service {
       confidence: number;
     }> = [];
 
-    for (const area of this.article4Areas) {
+    // Check city-wide areas first (fast path)
+    for (const area of cityWideAreas) {
       try {
         const isInside = booleanPointInPolygon(searchPoint, area.geometry);
         if (isInside) {
-          // Calculate confidence based on data quality and accuracy
-          let confidence = 0.85; // Base confidence
-          if (accuracy === 'exact') confidence = 0.95;
-          else if (accuracy === 'partial') confidence = 0.85;
-          else if (accuracy === 'district') confidence = 0.70;
-          
-          // Boost confidence for city-wide directions
-          if (area.name.includes('CITY WIDE') || area.name.includes('City Wide')) {
-            confidence = Math.min(0.99, confidence + 0.10);
-          }
-
+          let confidence = accuracy === 'exact' ? 0.99 : 0.95;
           overlappingAreas.push({
             name: area.name,
             council: area.council,
@@ -456,8 +452,38 @@ class EnhancedArticle4Service {
           });
         }
       } catch (error) {
-        console.warn(`⚠️ Skipping invalid geometry for area: ${area.name}`);
         continue;
+      }
+    }
+
+    // Only check other areas if no city-wide match (performance optimization)
+    if (overlappingAreas.length === 0) {
+      const otherAreas = this.article4Areas.filter(area => 
+        !area.name.includes('CITY WIDE') && !area.name.includes('City Wide')
+      );
+
+      for (const area of otherAreas) {
+        try {
+          const isInside = booleanPointInPolygon(searchPoint, area.geometry);
+          if (isInside) {
+            let confidence = 0.85;
+            if (accuracy === 'exact') confidence = 0.95;
+            else if (accuracy === 'partial') confidence = 0.85;
+            else if (accuracy === 'district') confidence = 0.70;
+
+            overlappingAreas.push({
+              name: area.name,
+              council: area.council,
+              reference: area.reference,
+              status: area.status,
+              dateImplemented: area.dateImplemented,
+              restrictions: area.restrictions,
+              confidence: Math.round(confidence * 100) / 100
+            });
+          }
+        } catch (error) {
+          continue;
+        }
       }
     }
 

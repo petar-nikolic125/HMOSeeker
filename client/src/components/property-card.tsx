@@ -1,7 +1,6 @@
 import { Star, Percent, TrendingUp, Bath, Bed, Square, ExternalLink, Calculator, CheckCircle, AlertTriangle } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import type { PropertyListing } from "@shared/schema";
-import PropertyMap from "./property-map";
 
 interface PropertyCardProps {
   property: any; // Using any to handle the scraper's data format
@@ -111,39 +110,25 @@ export default function PropertyCard({ property, onAnalyze, delay = 0 }: Propert
         </div>
       </div>
 
-      {/* Main content area with image and map side by side */}
-      <div className="flex h-80">
-        {/* Property Image - Left side */}
-        <div className="relative flex-1 overflow-hidden">
-          <img 
-            src={property.image_url || "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop&crop=entropy&q=80"}
-            alt={property.title}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 filter group-hover:brightness-105"
-          />
-          
-          {/* Modern gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/70" />
-          
-          {/* Modern price overlay */}
-          <div className="absolute bottom-6 left-6 right-6">
-            <div className="text-4xl font-black text-white drop-shadow-2xl mb-2 tracking-tight">
-              £{(property.price || 0).toLocaleString()}
-            </div>
-            <div className="text-white/90 text-lg font-medium">
-              {property.property_type || 'Property'}
-            </div>
+      {/* Property Image - Full width without map */}
+      <div className="relative h-80 overflow-hidden">
+        <img 
+          src={property.image_url || "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop&crop=entropy&q=80"}
+          alt={property.title}
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 filter group-hover:brightness-105"
+        />
+        
+        {/* Modern gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/70" />
+        
+        {/* Modern price overlay */}
+        <div className="absolute bottom-6 left-6 right-6">
+          <div className="text-4xl font-black text-white drop-shadow-2xl mb-2 tracking-tight">
+            £{(property.price || 0).toLocaleString()}
           </div>
-        </div>
-
-        {/* Map Section - Right side */}
-        <div className="flex-1 relative">
-          <PropertyMap 
-            city={property.city || 'London'} 
-            address={property.address || property.title}
-            postcode={property.postcode}
-            height="100%"
-            className="h-full"
-          />
+          <div className="text-white/90 text-lg font-medium">
+            {property.property_type || 'Property'}
+          </div>
         </div>
       </div>
 
