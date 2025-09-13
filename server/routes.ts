@@ -8,7 +8,7 @@ import { PropertyAnalyzer } from "./services/property-analyzer";
 import { CacheDatabase } from "./services/cache-database";
 import { estimatePropertyMetrics, scenarioReport, type PropertyData, type Assumptions } from "./services/property-estimation";
 import { predictPropertySize, extractReceptionsFromText } from "./services/property-size-predictor";
-import { article4Service } from "./services/article4-service";
+import { enhancedArticle4Service } from "./services/article4-service-enhanced";
 import { searchFiltersSchema } from "@shared/schema";
 import { z } from "zod";
 
@@ -49,7 +49,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         'Vary': 'Accept-Encoding'
       });
 
-      const result = await article4Service.checkArticle4(postcode.trim());
+      const result = await enhancedArticle4Service.enhancedArticle4Check(postcode.trim());
       
       res.json({
         success: true,
@@ -67,24 +67,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Enhanced health endpoint with Article 4 cache info
   app.get("/api/health", async (req, res) => {
     try {
-      const cacheInfo = article4Service.getCacheInfo();
-      const postcodesIoHealth = await article4Service.checkPostcodesIoHealth();
+      const cacheInfo = enhancedArticle4Service.getEnhancedCacheInfo();
+      const systemHealth = await enhancedArticle4Service.checkSystemHealth();
 
       res.json({
         success: true,
         status: "healthy",
         timestamp: new Date().toISOString(),
         service: "HMO Hunter API",
-        article4Cache: {
+        enhancedArticle4Cache: {
           age_hours: cacheInfo.age,
-          areas_count: cacheInfo.count,
+          total_areas: cacheInfo.count,
+          city_wide_areas: cacheInfo.cityWideCount,
           last_refresh: cacheInfo.lastRefresh?.toISOString() || null,
-          status: cacheInfo.age >= 0 && cacheInfo.count > 0 ? "healthy" : "needs_refresh"
+          version: cacheInfo.version,
+          status: cacheInfo.status
         },
-        postcodesIo: {
-          reachable: postcodesIoHealth,
-          status: postcodesIoHealth ? "healthy" : "unavailable"
-        }
+        systemHealth
       });
     } catch (error) {
       console.error("Health check failed:", error);
@@ -125,8 +124,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         'Vary': 'Accept-Encoding'
       });
 
-      // Get Article 4 areas in the specified region (this method needs to be added to the service)
-      const areas = article4Service.getCacheInfo().count > 0 ? 
+      // Get Article 4 areas in the specified region (simplified for now)
+      const areas = enhancedArticle4Service.getEnhancedCacheInfo().count > 0 ? 
         await getArticle4AreasForRegion(latitude, longitude, radiusKm) : [];
       
       res.json({
