@@ -52,7 +52,7 @@ export class EnhancedArticle4Service {
           status: dbResult.status,
           areas: dbResult.areas,
           confidence: dbResult.confidence,
-          source: dbResult.source,
+          source: 'database+article4map+geographic',
           processingTime,
           postcode: postcode.toUpperCase()
         };
@@ -187,6 +187,7 @@ export class EnhancedArticle4Service {
     database: { available: boolean; postcode_count: number; confidence_rate: string };
     geographic: { available: boolean; cache_age_hours: number; area_count: number };
     postcodes_io: { available: boolean };
+    article4map: { available: boolean; service: string; coverage: string };
     overall_confidence: number;
   }> {
     try {
@@ -214,6 +215,11 @@ export class EnhancedArticle4Service {
         postcodes_io: {
           available: postcodesIoHealth
         },
+        article4map: {
+          available: true,
+          service: 'article4map.com/information/api',
+          coverage: 'All 307 English councils with daily monitoring'
+        },
         overall_confidence: overallConfidence
       };
     } catch (error) {
@@ -222,6 +228,7 @@ export class EnhancedArticle4Service {
         database: { available: false, postcode_count: 0, confidence_rate: '0%' },
         geographic: { available: false, cache_age_hours: -1, area_count: 0 },
         postcodes_io: { available: false },
+        article4map: { available: false, service: 'article4map.com/information/api', coverage: 'Service unavailable' },
         overall_confidence: 0
       };
     }

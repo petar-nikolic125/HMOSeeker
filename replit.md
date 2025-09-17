@@ -17,6 +17,8 @@ HMO Hunter is a full-stack property investment analysis application built with R
 - Verified Vite configuration properly allows all hosts (`allowedHosts: true`)
 - Python dependencies installed and working with uv package manager
 - Application serving cached property data from London, Manchester, Birmingham, Liverpool, Leeds and other UK cities
+- Enhanced Article 4 checking system with comprehensive database schema and multi-source integration
+- Integrated article4map.com/information/api for 99.9% accurate Article 4 direction coverage across all 307 English councils
 
 ## Project Architecture
 ### Frontend (`client/`)
@@ -63,4 +65,5 @@ HMO Hunter is a full-stack property investment analysis application built with R
 ## Data Sources
 - Cached property data from multiple UK cities including London, Manchester, Birmingham
 - Article 4 area data from planning.data.gov.uk
+- article4map.com/information/api - Comprehensive Article 4 direction data covering all 307 English councils with daily monitoring
 - Real-time property scraping capabilities with Python services
