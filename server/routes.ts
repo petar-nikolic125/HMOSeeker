@@ -8,7 +8,7 @@ import { PropertyAnalyzer } from "./services/property-analyzer";
 import { CacheDatabase } from "./services/cache-database";
 import { estimatePropertyMetrics, scenarioReport, type PropertyData, type Assumptions } from "./services/property-estimation";
 import { predictPropertySize, extractReceptionsFromText } from "./services/property-size-predictor";
-import { enhancedArticle4Service } from "./services/article4-service-enhanced";
+import { enhancedArticle4Service } from "./services/enhanced-article4-service";
 import { searchFiltersSchema } from "@shared/schema";
 import { z } from "zod";
 
@@ -49,7 +49,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         'Vary': 'Accept-Encoding'
       });
 
-      const result = await enhancedArticle4Service.enhancedArticle4Check(postcode.trim());
+      const result = await enhancedArticle4Service.checkArticle4Status(postcode.trim());
       
       res.json({
         success: true,
@@ -67,22 +67,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Enhanced health endpoint with Article 4 cache info
   app.get("/api/health", async (req, res) => {
     try {
-      const cacheInfo = enhancedArticle4Service.getEnhancedCacheInfo();
-      const systemHealth = await enhancedArticle4Service.checkSystemHealth();
+      const systemHealth = await enhancedArticle4Service.getSystemHealth();
 
       res.json({
         success: true,
         status: "healthy",
         timestamp: new Date().toISOString(),
         service: "HMO Hunter API",
-        enhancedArticle4Cache: {
-          age_hours: cacheInfo.age,
-          total_areas: cacheInfo.count,
-          city_wide_areas: cacheInfo.cityWideCount,
-          last_refresh: cacheInfo.lastRefresh?.toISOString() || null,
-          version: cacheInfo.version,
-          status: cacheInfo.status
-        },
         systemHealth
       });
     } catch (error) {
@@ -125,7 +116,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
 
       // Get Article 4 areas in the specified region (simplified for now)
-      const areas = enhancedArticle4Service.getEnhancedCacheInfo().count > 0 ? 
+      const systemHealth = await enhancedArticle4Service.getSystemHealth();
+      const areas = systemHealth.geographic.available ? 
         await getArticle4AreasForRegion(latitude, longitude, radiusKm) : [];
       
       res.json({
