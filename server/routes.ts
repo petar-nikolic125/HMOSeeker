@@ -136,6 +136,82 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Initialize comprehensive postcode database
+  app.post("/api/admin/initialize-postcodes", async (req, res) => {
+    try {
+      console.log('🚀 Starting comprehensive postcode database initialization...');
+      
+      const result = await enhancedArticle4Service.initializePostcodeDatabase();
+      
+      if (result.success) {
+        res.json({
+          success: true,
+          message: "Comprehensive postcode database initialized successfully",
+          stats: result.stats
+        });
+      } else {
+        res.status(500).json({
+          success: false,
+          error: "Failed to initialize postcode database",
+          details: result.stats
+        });
+      }
+    } catch (error) {
+      console.error("❌ Postcode database initialization failed:", error);
+      res.status(500).json({
+        success: false,
+        error: error instanceof Error ? error.message : "Database initialization failed"
+      });
+    }
+  });
+
+  // Batch check multiple postcodes for Article 4 status
+  app.post("/api/check-batch", async (req, res) => {
+    try {
+      const { postcodes } = req.body;
+
+      if (!postcodes || !Array.isArray(postcodes) || postcodes.length === 0) {
+        return res.status(400).json({
+          success: false,
+          error: "Postcodes array is required"
+        });
+      }
+
+      if (postcodes.length > 100) {
+        return res.status(400).json({
+          success: false,
+          error: "Maximum 100 postcodes per batch request"
+        });
+      }
+
+      // Validate postcode formats
+      const postcodeRegex = /^[A-Z]{1,2}[0-9]{1,2}[A-Z]?(\s?[0-9][A-Z]{2})?$/i;
+      const invalidPostcodes = postcodes.filter(pc => !postcodeRegex.test(pc.trim()));
+      
+      if (invalidPostcodes.length > 0) {
+        return res.status(400).json({
+          success: false,
+          error: "Invalid postcode format",
+          invalid_postcodes: invalidPostcodes
+        });
+      }
+
+      const results = await enhancedArticle4Service.checkMultiplePostcodes(postcodes);
+      
+      res.json({
+        success: true,
+        count: results.length,
+        results
+      });
+    } catch (error) {
+      console.error("❌ Batch Article 4 check failed:", error);
+      res.status(500).json({
+        success: false,
+        error: error instanceof Error ? error.message : "Batch check failed"
+      });
+    }
+  });
+
   // Helper function to get Article 4 areas in a region (simplified implementation)
   async function getArticle4AreasForRegion(lat: number, lng: number, radiusKm: number) {
     // For now, return an empty array since we need proper spatial indexing for production
