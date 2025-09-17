@@ -117,6 +117,7 @@ export class MemStorage implements IStorage {
         latitude: listingData.latitude ?? null,
         longitude: listingData.longitude ?? null,
         date_listed: listingData.date_listed ?? null,
+        hmo_candidate: listingData.hmo_candidate ?? false,
       };
       this.propertyListings.set(id, listing);
       created.push(listing);
