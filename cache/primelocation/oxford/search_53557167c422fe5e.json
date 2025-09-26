@@ -1,0 +1,30 @@
+[
+  {
+    "address": "3 bed maisonette for sale Kendall Crescent OX2",
+    "postcode": null,
+    "price": 315000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/e7d217d2ed8c1a5b90ac5d8937692d331d83ce25.jpg",
+    "description": "3-bed property in Oxford.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70584967/",
+    "city": "Oxford",
+    "monthly_rent": 495,
+    "annual_rent": 5940,
+    "gross_yield": 1.89
+  },
+  {
+    "address": "3 bed flat for sale Stanway Road, Risinghurst OX3",
+    "postcode": null,
+    "price": 300000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/c33463b639b874f4a4a113e3e2ce9fc1454fd6f0.jpg",
+    "description": "3-bed property in Oxford.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71020859/",
+    "city": "Oxford",
+    "monthly_rent": 495,
+    "annual_rent": 5940,
+    "gross_yield": 1.98
+  }
+]

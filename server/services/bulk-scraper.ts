@@ -54,7 +54,7 @@ export class BulkScraper {
           const result = await ScraperManager.searchProperties({
             city: city,
             min_bedrooms: 3,
-            max_price: 440000,
+            max_price: 430000,
             keywords: "", // No keywords filter
             refresh: true // Force fresh scrape for more results
           });
