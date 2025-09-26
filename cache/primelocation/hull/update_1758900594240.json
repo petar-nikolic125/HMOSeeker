@@ -1,0 +1,72 @@
+[
+  {
+    "address": "3 bed semi-detached house for sale Kirk Rise, Kirk Ella, Hull HU10",
+    "price": 300000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "description": "3-bed property in Hull.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71395944/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/0903f4a5cbcf07640ac91bc0245a7fc5a5507175.jpg",
+    "postcode": "",
+    "city": "Hull",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.32
+  },
+  {
+    "address": "3 bed detached house for sale Sovereign Way, Kingswood, Hull, East Riding Of Yorkshire HU7",
+    "price": 220000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "description": "3-bed property in Hull.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70402429/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/1734b569a57ecbc12c0b310a58e04d7315d7e513.jpg",
+    "postcode": "",
+    "city": "Hull",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.8
+  },
+  {
+    "address": "4 bed detached house for sale Grosvenor Road, Kingswood, Hull, East Riding Of Yorkshire HU7",
+    "price": 370000,
+    "bedrooms": 4,
+    "bathrooms": 2,
+    "description": "4-bed property in Hull.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70533677/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/f3e0183c6950097fc0345d167a323727fc5af08a.jpg",
+    "postcode": "",
+    "city": "Hull",
+    "monthly_rent": 440,
+    "annual_rent": 5280,
+    "gross_yield": 1.43
+  },
+  {
+    "address": "4 bed semi-detached house for sale Beverley Road, Hull HU6",
+    "price": 425000,
+    "bedrooms": 4,
+    "bathrooms": 1,
+    "description": "4-bed property in Hull.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71112599/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/32578d95ac1513a74e0cec90e97b8464921c68ed.jpg",
+    "postcode": "",
+    "city": "Hull",
+    "monthly_rent": 440,
+    "annual_rent": 5280,
+    "gross_yield": 1.24
+  },
+  {
+    "address": "5 bed detached house for sale Cragdale Close, Hull HU8",
+    "price": 420000,
+    "bedrooms": 5,
+    "bathrooms": 2,
+    "description": "5-bed property in Hull.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71120735/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/b80b983a0f173b8c5a5f26939856413fdc1795eb.jpg",
+    "postcode": "",
+    "city": "Hull",
+    "monthly_rent": 550,
+    "annual_rent": 6600,
+    "gross_yield": 1.57
+  }
+]

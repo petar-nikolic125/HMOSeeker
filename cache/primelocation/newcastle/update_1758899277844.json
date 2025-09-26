@@ -1,0 +1,58 @@
+[
+  {
+    "address": "4 bed detached house for sale Corver Crescent, Hazlerigg NE13",
+    "price": 425000,
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "description": "4-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71176877/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/bd1e33703fb233d650ed03b795b2b2f89a0a0fd6.jpg",
+    "postcode": "",
+    "city": "Newcastle",
+    "monthly_rent": 380,
+    "annual_rent": 4560,
+    "gross_yield": 1.07
+  },
+  {
+    "address": "4 bed detached house for sale Stable Close, Moorfields NE12",
+    "price": 425000,
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "description": "4-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71127047/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/21a5cf090c2dd92b8bc83c331608e8b65f59bb6d.jpg",
+    "postcode": "",
+    "city": "Newcastle",
+    "monthly_rent": 380,
+    "annual_rent": 4560,
+    "gross_yield": 1.07
+  },
+  {
+    "address": "4 bed detached house for sale The Oldbury, Hartford Street, Heaton NE6",
+    "price": 424995,
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "description": "4-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71115331/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/6b634ed4d2ee872634b73cbbb8b06e986fa36fb0.jpg",
+    "postcode": "",
+    "city": "Newcastle",
+    "monthly_rent": 380,
+    "annual_rent": 4560,
+    "gross_yield": 1.07
+  },
+  {
+    "address": "3 bed flat for sale Sixth Avenue, Heaton NE6",
+    "price": 160000,
+    "bedrooms": 3,
+    "bathrooms": 0,
+    "description": "3-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70538400/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/89e44cfac7996af5a0565c1f69752a09a42482bc.jpg",
+    "postcode": "",
+    "city": "Newcastle",
+    "monthly_rent": 285,
+    "annual_rent": 3420,
+    "gross_yield": 2.14
+  }
+]
