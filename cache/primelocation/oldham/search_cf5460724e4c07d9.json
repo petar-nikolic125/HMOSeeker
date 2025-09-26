@@ -1,0 +1,72 @@
+[
+  {
+    "address": "3 bed semi-detached house for sale Lea View, Royton, Oldham OL2",
+    "postcode": null,
+    "price": 259950,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/058dd86d1fa9ba8c1f1e7be8b1d6b2d23e1fde6b.jpg",
+    "description": "3-bed property in Oldham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71077467/",
+    "city": "Oldham",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.52
+  },
+  {
+    "address": "4 bed terraced house for sale Kimberley Street, Oldham OL8",
+    "postcode": null,
+    "price": 247000,
+    "bedrooms": 4,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/b4b52f70d596b2e7b129fc255ba76fe88deeb39e.jpg",
+    "description": "4-bed property in Oldham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70652178/",
+    "city": "Oldham",
+    "monthly_rent": 440,
+    "annual_rent": 5280,
+    "gross_yield": 2.14
+  },
+  {
+    "address": "3 bed semi-detached house for sale Mulmount Close, Oldham OL8",
+    "postcode": null,
+    "price": 245000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/29f605c590b693b4885cfe9cac080355500808b5.jpg",
+    "description": "3-bed property in Oldham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/68058330/",
+    "city": "Oldham",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.62
+  },
+  {
+    "address": "3 bed semi-detached house for sale Copster Avenue, Hathershaw, Oldham OL8",
+    "postcode": null,
+    "price": 200000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/a79af054e854a740f2e97870af19818953983e25.jpg",
+    "description": "3-bed property in Oldham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70862130/",
+    "city": "Oldham",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.98
+  },
+  {
+    "address": "3 bed terraced house for sale Oldham Road, Springhead, Saddleworth OL4",
+    "postcode": null,
+    "price": 180000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/d9a4f4d47daf58cd4089d68207e06cb80d620880.jpg",
+    "description": "3-bed property in Oldham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70472825/",
+    "city": "Oldham",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 2.2
+  }
+]
