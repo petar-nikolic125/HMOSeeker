@@ -24,9 +24,12 @@ interface Article4Result {
   lat: number;
   lon: number;
   postcode?: string;
-  geocodeAccuracy: string;
-  dataSource: string[];
-  lastChecked: string;
+  geocodeAccuracy?: string;
+  source: string;
+  processingTime?: number;
+  fallback?: boolean;
+  confidence?: number;
+  status: string;
   suggestions?: string[];
 }
 
@@ -159,10 +162,16 @@ export default function Article4Checker() {
                     </p>
                     <div className="flex items-center gap-2 text-sm text-gray-600">
                       <MapPin className="h-3 w-3" />
-                      <span>Lat: {result.lat.toFixed(4)}, Lon: {result.lon.toFixed(4)}</span>
-                      <Badge variant="outline" className="text-xs">
-                        {result.geocodeAccuracy} match
-                      </Badge>
+                      {result.lat && result.lon ? (
+                        <span>Lat: {result.lat.toFixed(4)}, Lon: {result.lon.toFixed(4)}</span>
+                      ) : (
+                        <span>Location verified</span>
+                      )}
+                      {result.confidence && (
+                        <Badge variant="outline" className="text-xs">
+                          {Math.round(result.confidence * 100)}% confidence
+                        </Badge>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -179,12 +188,20 @@ export default function Article4Checker() {
               <div className="flex items-center gap-4 text-xs text-gray-500 border-t pt-2">
                 <div className="flex items-center gap-1">
                   <Database className="h-3 w-3" />
-                  <span>Sources: {result.dataSource.join(", ")}</span>
+                  <span>Source: {result.source}</span>
                 </div>
-                <div className="flex items-center gap-1">
-                  <Clock className="h-3 w-3" />
-                  <span>Checked: {new Date(result.lastChecked).toLocaleTimeString()}</span>
-                </div>
+                {result.processingTime && (
+                  <div className="flex items-center gap-1">
+                    <Clock className="h-3 w-3" />
+                    <span>Processed in: {result.processingTime}ms</span>
+                  </div>
+                )}
+                {result.fallback && (
+                  <div className="flex items-center gap-1">
+                    <Info className="h-3 w-3" />
+                    <span>Fallback mode used</span>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -265,12 +282,14 @@ export default function Article4Checker() {
               </div>
             )}
 
-            <Article4Map
-              lat={result.lat}
-              lon={result.lon}
-              postcode={result.postcode}
-              article4Areas={result.areas}
-            />
+            {result.lat && result.lon && typeof result.lat === 'number' && typeof result.lon === 'number' && (
+              <Article4Map
+                lat={result.lat}
+                lon={result.lon}
+                postcode={result.postcode}
+                article4Areas={result.areas}
+              />
+            )}
 
             <Alert>
               <Info className="h-4 w-4" />
