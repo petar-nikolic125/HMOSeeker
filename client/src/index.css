@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=DM+Sans:wght@300;400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -186,25 +186,50 @@
 }
 
 :root {
+  /* Enhanced neutral gray palette for professional property sites */
   --background: hsl(0 0% 100%);
-  --foreground: hsl(210 25% 7.8431%);
-  --card: hsl(180 6.6667% 97.0588%);
-  --card-foreground: hsl(210 25% 7.8431%);
+  --foreground: hsl(210 11% 15%);
+  --card: hsl(210 6% 98%);
+  --card-foreground: hsl(210 11% 15%);
   --popover: hsl(0 0% 100%);
-  --popover-foreground: hsl(210 25% 7.8431%);
-  --primary: hsl(203.8863 88.2845% 53.1373%);
+  --popover-foreground: hsl(210 11% 15%);
+  
+  /* Professional accent color - elegant blue-gray */
+  --primary: hsl(211 84% 49%);
   --primary-foreground: hsl(0 0% 100%);
-  --secondary: hsl(210 25% 7.8431%);
-  --secondary-foreground: hsl(0 0% 100%);
-  --muted: hsl(240 1.9608% 90%);
-  --muted-foreground: hsl(210 25% 7.8431%);
-  --accent: hsl(211.5789 51.3514% 92.7451%);
-  --accent-foreground: hsl(203.8863 88.2845% 53.1373%);
-  --destructive: hsl(356.3033 90.5579% 54.3137%);
+  
+  /* Neutral grays with subtle warmth */
+  --secondary: hsl(210 6% 96%);
+  --secondary-foreground: hsl(210 11% 15%);
+  --muted: hsl(210 6% 95%);
+  --muted-foreground: hsl(215 9% 40%);
+  --accent: hsl(210 6% 96%);
+  --accent-foreground: hsl(210 11% 15%);
+  
+  /* Semantic colors */
+  --destructive: hsl(0 72% 51%);
   --destructive-foreground: hsl(0 0% 100%);
-  --border: hsl(201.4286 30.4348% 90.9804%);
-  --input: hsl(200 23.0769% 97.4510%);
-  --ring: hsl(202.8169 89.1213% 53.1373%);
+  --success: hsl(142 69% 41%);
+  --success-foreground: hsl(0 0% 100%);
+  --warning: hsl(38 92% 50%);
+  --warning-foreground: hsl(0 0% 100%);
+  
+  /* Interface elements */
+  --border: hsl(210 6% 91%);
+  --input: hsl(210 6% 98%);
+  --ring: hsl(211 84% 49%);
+  
+  /* Additional neutral grays for professional design */
+  --neutral-50: hsl(210 6% 98%);
+  --neutral-100: hsl(210 6% 95%);
+  --neutral-200: hsl(210 6% 91%);
+  --neutral-300: hsl(210 6% 84%);
+  --neutral-400: hsl(215 9% 61%);
+  --neutral-500: hsl(215 9% 40%);
+  --neutral-600: hsl(215 14% 34%);
+  --neutral-700: hsl(215 25% 27%);
+  --neutral-800: hsl(215 28% 17%);
+  --neutral-900: hsl(210 11% 15%);
   --chart-1: hsl(203.8863 88.2845% 53.1373%);
   --chart-2: hsl(159.7826 100% 36.0784%);
   --chart-3: hsl(42.0290 92.8251% 56.2745%);
@@ -218,7 +243,7 @@
   --sidebar-accent-foreground: hsl(203.8863 88.2845% 53.1373%);
   --sidebar-border: hsl(205.0000 25.0000% 90.5882%);
   --sidebar-ring: hsl(202.8169 89.1213% 53.1373%);
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-sans: 'DM Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   --font-serif: Georgia, serif;
   --font-mono: Menlo, monospace;
   --radius: 1.3rem;
@@ -235,25 +260,50 @@
 }
 
 .dark {
-  --background: hsl(0 0% 0%);
-  --foreground: hsl(200 6.6667% 91.1765%);
-  --card: hsl(228 9.8039% 10%);
-  --card-foreground: hsl(0 0% 85.0980%);
-  --popover: hsl(0 0% 0%);
-  --popover-foreground: hsl(200 6.6667% 91.1765%);
-  --primary: hsl(203.7736 87.6033% 52.5490%);
-  --primary-foreground: hsl(0 0% 100%);
-  --secondary: hsl(195.0000 15.3846% 94.9020%);
-  --secondary-foreground: hsl(210 25% 7.8431%);
-  --muted: hsl(0 0% 9.4118%);
-  --muted-foreground: hsl(210 3.3898% 46.2745%);
-  --accent: hsl(205.7143 70% 7.8431%);
-  --accent-foreground: hsl(203.7736 87.6033% 52.5490%);
-  --destructive: hsl(356.3033 90.5579% 54.3137%);
-  --destructive-foreground: hsl(0 0% 100%);
-  --border: hsl(210 5.2632% 14.9020%);
-  --input: hsl(207.6923 27.6596% 18.4314%);
-  --ring: hsl(202.8169 89.1213% 53.1373%);
+  /* Enhanced dark mode palette for professional property sites */
+  --background: hsl(210 11% 4%);
+  --foreground: hsl(210 6% 95%);
+  --card: hsl(210 11% 7%);
+  --card-foreground: hsl(210 6% 95%);
+  --popover: hsl(210 11% 4%);
+  --popover-foreground: hsl(210 6% 95%);
+  
+  /* Professional accent color - elegant blue-gray */
+  --primary: hsl(211 84% 55%);
+  --primary-foreground: hsl(210 11% 4%);
+  
+  /* Neutral grays with subtle warmth for dark mode */
+  --secondary: hsl(210 11% 10%);
+  --secondary-foreground: hsl(210 6% 95%);
+  --muted: hsl(210 11% 8%);
+  --muted-foreground: hsl(215 9% 61%);
+  --accent: hsl(210 11% 10%);
+  --accent-foreground: hsl(210 6% 95%);
+  
+  /* Semantic colors for dark mode */
+  --destructive: hsl(0 72% 58%);
+  --destructive-foreground: hsl(210 11% 4%);
+  --success: hsl(142 69% 48%);
+  --success-foreground: hsl(210 11% 4%);
+  --warning: hsl(38 92% 55%);
+  --warning-foreground: hsl(210 11% 4%);
+  
+  /* Interface elements */
+  --border: hsl(210 11% 15%);
+  --input: hsl(210 11% 10%);
+  --ring: hsl(211 84% 55%);
+  
+  /* Additional neutral grays for professional dark design */
+  --neutral-50: hsl(210 11% 15%);
+  --neutral-100: hsl(210 11% 12%);
+  --neutral-200: hsl(210 11% 10%);
+  --neutral-300: hsl(210 11% 8%);
+  --neutral-400: hsl(215 14% 34%);
+  --neutral-500: hsl(215 9% 40%);
+  --neutral-600: hsl(215 9% 61%);
+  --neutral-700: hsl(210 6% 84%);
+  --neutral-800: hsl(210 6% 91%);
+  --neutral-900: hsl(210 6% 95%);
   --chart-1: hsl(203.8863 88.2845% 53.1373%);
   --chart-2: hsl(159.7826 100% 36.0784%);
   --chart-3: hsl(42.0290 92.8251% 56.2745%);
@@ -267,7 +317,7 @@
   --sidebar-accent-foreground: hsl(203.7736 87.6033% 52.5490%);
   --sidebar-border: hsl(205.7143 15.7895% 26.0784%);
   --sidebar-ring: hsl(202.8169 89.1213% 53.1373%);
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-sans: 'DM Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   --font-serif: Georgia, serif;
   --font-mono: Menlo, monospace;
   --radius: 1.3rem;
@@ -299,6 +349,51 @@
 }
 
 @layer utilities {
+  /* Typography Scale - Professional Property Site Aesthetic */
+  .text-body {
+    font-size: 1rem; /* 16px */
+    line-height: 1.5; /* 24px */
+    font-weight: 400;
+  }
+  
+  .text-section-title {
+    font-size: 1.25rem; /* 20px */
+    line-height: 1.4; /* 28px */
+    font-weight: 600;
+  }
+  
+  .text-heading-sm {
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.444; /* 26px */
+    font-weight: 600;
+  }
+  
+  .text-heading-md {
+    font-size: 1.5rem; /* 24px */
+    line-height: 1.333; /* 32px */
+    font-weight: 700;
+  }
+  
+  .text-heading-lg {
+    font-size: 2rem; /* 32px */
+    line-height: 1.25; /* 40px */
+    font-weight: 700;
+  }
+  
+  .text-caption {
+    font-size: 0.875rem; /* 14px */
+    line-height: 1.286; /* 18px */
+    font-weight: 400;
+    color: hsl(var(--muted-foreground));
+  }
+  
+  .text-small {
+    font-size: 0.75rem; /* 12px */
+    line-height: 1.333; /* 16px */
+    font-weight: 400;
+    color: hsl(var(--muted-foreground));
+  }
+  
   .line-clamp-3 {
     display: -webkit-box;
     -webkit-line-clamp: 3;
@@ -427,12 +522,51 @@ input[type="range"]::-moz-range-thumb {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* Focus states for accessibility */
+/* Enhanced focus states for WCAG-AA accessibility */
 button:focus-visible,
 input:focus-visible,
-select:focus-visible {
+select:focus-visible,
+textarea:focus-visible,
+a:focus-visible,
+[role="button"]:focus-visible,
+[role="link"]:focus-visible,
+[tabindex]:focus-visible {
   outline: 2px solid hsl(var(--ring));
   outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* High contrast focus indicators */
+@media (prefers-contrast: high) {
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  a:focus-visible,
+  [role="button"]:focus-visible,
+  [role="link"]:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 3px solid currentColor;
+    outline-offset: 3px;
+  }
+}
+
+/* Skip link for accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  padding: 8px;
+  z-index: 1000;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  top: 6px;
 }
 
 /* High contrast mode support */
