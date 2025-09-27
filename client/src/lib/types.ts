@@ -12,7 +12,7 @@ export interface SearchFilters {
   article4_filter?: "all" | "non_article4" | "article4_only";
 }
 
-export interface PropertyWithAnalytics extends PropertyListing {
+export interface PropertyWithAnalytics extends Omit<PropertyListing, 'area_estimated'> {
   // Investment analytics
   roi?: number;
   grossYield?: number;
@@ -45,8 +45,8 @@ export interface PropertyWithAnalytics extends PropertyListing {
   sqft_range_max?: number;
   sizePredictionConfidence?: 'low' | 'medium' | 'high';
   sizePredictionBasis?: string;
-  areaEstimated?: boolean;
-  area_estimated?: boolean; // Alternative field name for compatibility
+  areaEstimated?: boolean | null;
+  area_estimated?: boolean | null; // Alternative field name for compatibility
 }
 
 export interface CacheEntry {

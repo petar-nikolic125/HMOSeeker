@@ -1,4 +1,4 @@
-import NavigationHeader from "@/components/navigation-header";
+import StickyHeader from "@/components/StickyHeader";
 import HeroSection from "@/components/hero-section";
 import PropertyResults from "@/components/property-results";
 import PropertyAnalysisModal from "@/components/property-analysis-modal";
@@ -42,6 +42,7 @@ export default function Home() {
   const [lastSearchTime, setLastSearchTime] = useState<number>(0);
   const [sortBy, setSortBy] = useState<string>("optimal_hmo");
   const [sortedProperties, setSortedProperties] = useState<any[]>([]);
+  const [viewMode, setViewMode] = useState<'map' | 'list'>('list');
 
   const searchMutation = useMutation({
     mutationFn: async ({ filters, page = 1, append = false, shuffle = false }: { filters: SearchFilters; page?: number; append?: boolean; shuffle?: boolean }) => {
@@ -216,47 +217,54 @@ export default function Home() {
 
   return (
     <div className="bg-gray-50 min-h-screen">
-      <NavigationHeader 
-        onLocationChange={handleLocationChange}
-        currentLocation={currentFilters.city}
-      />
-      <HeroSection 
-        onSearch={handleSearch} 
+      <StickyHeader 
+        onSearch={handleSearch}
+        currentFilters={currentFilters}
         isLoading={searchState.isLoading}
-        searchResults={{ count: searchState.properties.length, error: searchState.error || undefined }}
+        searchResultsCount={searchState.properties.length}
+        onViewModeChange={setViewMode}
+        currentViewMode={viewMode}
       />
-      
-      {/* Article 4 Direction Checker Section - Moved above property listings */}
-      <section className="py-8 bg-white border-b">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-3">
-              Article 4 Direction Checker
-            </h2>
-            <p className="text-sm text-gray-600 max-w-2xl mx-auto">
-              Check if a postcode falls within an Article 4 direction area that may restrict HMO conversions. 
-              Free tool using official government data.
-            </p>
+      {/* Add padding top to account for sticky header */}
+      <main id="main-content" className="pt-16">
+        <HeroSection 
+          onSearch={handleSearch} 
+          isLoading={searchState.isLoading}
+          searchResults={{ count: searchState.properties.length, error: searchState.error || undefined }}
+        />
+        
+        {/* Article 4 Direction Checker Section - Moved above property listings */}
+        <section className="py-8 bg-white border-b">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-3">
+                Article 4 Direction Checker
+              </h2>
+              <p className="text-sm text-gray-600 max-w-2xl mx-auto">
+                Check if a postcode falls within an Article 4 direction area that may restrict HMO conversions. 
+                Free tool using official government data.
+              </p>
+            </div>
+            <Article4Checker />
           </div>
-          <Article4Checker />
-        </div>
-      </section>
-      
-      <PropertyResults 
-        properties={sortedProperties.length > 0 ? sortedProperties : searchState.properties} 
-        totalResults={searchState.totalResults}
-        hasMore={searchState.hasMore}
-        onLoadMore={handlePageChange}
-        onShuffle={handleShuffle}
-        filters={currentFilters}
-        onAnalyze={handlePropertyAnalysis}
-        onRefresh={handleRefresh}
-        searchState={searchState}
-        onSortChange={handleSortChange}
-        currentSort={sortBy}
-      />
-      
-      <Footer />
+        </section>
+        
+        <PropertyResults 
+          properties={sortedProperties.length > 0 ? sortedProperties : searchState.properties} 
+          totalResults={searchState.totalResults}
+          hasMore={searchState.hasMore}
+          onLoadMore={handlePageChange}
+          onShuffle={handleShuffle}
+          filters={currentFilters}
+          onAnalyze={handlePropertyAnalysis}
+          onRefresh={handleRefresh}
+          searchState={searchState}
+          onSortChange={handleSortChange}
+          currentSort={sortBy}
+        />
+        
+        <Footer />
+      </main>
       
       {selectedProperty && (
         <PropertyAnalysisModal 
