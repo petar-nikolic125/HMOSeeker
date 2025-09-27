@@ -1,0 +1,45 @@
+The above error occurred in the <Home> component:
+
+    at Home (https://1245be21-4f1e-4ce9-8495-3dd4650d3a98-00-x66qvcdoulkr.worf.replit.dev/src/pages/home.tsx?t=1758996648840:26:41)
+    at Route (https://1245be21-4f1e-4ce9-8495-3dd4650d3a98-00-x66qvcdoulkr.worf.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=7df4363e:323:16)
+    at Switch (https://1245be21-4f1e-4ce9-8495-3dd4650d3a98-00-x66qvcdoulkr.worf.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=7df4363e:379:17)
+    at Router
+    at Provider (https://1245be21-4f1e-4ce9-8495-3dd4650d3a98-00-x66qvcdoulkr.worf.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-YNVQRCZ5.js?v=7df4363e:39:15)
+    at TooltipProvider (https://1245be21-4f1e-4ce9-8495-3dd4650d3a98-00-x66qvcdoulkr.worf.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=7df4363e:2249:5)
+    at QueryClientProvider (https://1245be21-4f1e-4ce9-8495-3dd4650d3a98-00-x66qvcdoulkr.worf.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@tanstack_react-query.js?v=7df4363e:2805:3)
+    at App
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+MapList is not defined
+[vite] hot updated: /src/pages/home.tsx
+[vite] hot updated: /src/index.css?v=v5A_IpmIy0vxjipzUYScK
+MapList is not defined
+MapList is not defined
+The above error occurred in the <Home> component:
+
+    at Home (https://1245be21-4f1e-4ce9-8495-3dd4650d3a98-00-x66qvcdoulkr.worf.replit.dev/src/pages/home.tsx?t=1758996662984:26:41)
+    at Route (https://1245be21-4f1e-4ce9-8495-3dd4650d3a98-00-x66qvcdoulkr.worf.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=7df4363e:323:16)
+    at Switch (https://1245be21-4f1e-4ce9-8495-3dd4650d3a98-00-x66qvcdoulkr.worf.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=7df4363e:379:17)
+    at Router
+    at Provider (https://1245be21-4f1e-4ce9-8495-3dd4650d3a98-00-x66qvcdoulkr.worf.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-YNVQRCZ5.js?v=7df4363e:39:15)
+    at TooltipProvider (https://1245be21-4f1e-4ce9-8495-3dd4650d3a98-00-x66qvcdoulkr.worf.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=7df4363e:2249:5)
+    at QueryClientProvider (https://1245be21-4f1e-4ce9-8495-3dd4650d3a98-00-x66qvcdoulkr.worf.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@tanstack_react-query.js?v=7df4363e:2805:3)
+    at App
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+MapList is not defined
+[vite] hot updated: /src/pages/home.tsx
+[vite] hot updated: /src/index.css?v=v5A_IpmIy0vxjipzUYScK
+Search API response: 
+Object {success: true, count: 20, total: 4696, page: 1, limit: 20, …}
+Properties count: 0
+Properties count: 20
+Search API response: 
+Object {success: true, count: 20, total: 2963, page: 1, limit: 20, …}
+Properties count: 0
+Properties count: 20
+[hmr] Failed to reload /src/components/map-list.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above)
+[vite] hot updated: /src/components/map-list.tsx
+[vite] hot updated: /src/index.css?v=v5A_IpmIy0vxjipzUYScK
