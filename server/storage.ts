@@ -121,7 +121,17 @@ export class MemStorage implements IStorage {
         longitude: listingData.longitude ?? null,
         date_listed: listingData.date_listed ?? null,
         area_estimated: listingData.area_estimated ?? false,
+        article4_area: listingData.article4_area ?? false,
+        article4_status: listingData.article4_status ?? null,
         hmo_candidate: listingData.hmo_candidate ?? false,
+        london_borough: listingData.london_borough ?? null,
+        london_district: listingData.london_district ?? null,
+        postcode_district: listingData.postcode_district ?? null,
+        postcode_area: listingData.postcode_area ?? null,
+        flat_floor: listingData.flat_floor ?? null,
+        has_garden: listingData.has_garden ?? false,
+        has_parking: listingData.has_parking ?? false,
+        property_age: listingData.property_age ?? null,
       };
       this.propertyListings.set(id, listing);
       created.push(listing);
@@ -263,8 +273,8 @@ export class DatabaseStorage implements IStorage {
       query = query.where(and(...conditions));
     }
 
-    const listings = await query.orderBy(desc(propertyListings.scraped_at));
-    return listings;
+    const result = await query.orderBy(desc(propertyListings.scraped_at));
+    return result;
   }
 
   async getPropertyListing(id: string): Promise<PropertyListing | undefined> {
