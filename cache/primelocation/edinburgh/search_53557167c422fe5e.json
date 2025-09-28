@@ -1,0 +1,44 @@
+[
+  {
+    "address": "3 bed flat for sale Flat 5, 13 South Oswald Road, Blackford EH9",
+    "postcode": null,
+    "price": 400000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/4973641d39968843879d2dd35f7a9932c4e446ba.jpg",
+    "description": "3-bed property in Edinburgh.",
+    "property_url": "https://www.primelocation.com/for-sale/details/69870995/",
+    "city": "Edinburgh",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 0.99
+  },
+  {
+    "address": "3 bed terraced house for sale 7 Hermiston Steading, Hermiston, Currie EH14",
+    "postcode": null,
+    "price": 399000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/5e33def7d5bb06231603b0f842c94f386f7d22f7.jpg",
+    "description": "3-bed property in Edinburgh.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70568088/",
+    "city": "Edinburgh",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 0.99
+  },
+  {
+    "address": "4 bed semi-detached house for sale Nether Currie Road, Currie, Midlothian EH14",
+    "postcode": null,
+    "price": 395000,
+    "bedrooms": 4,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/da7b8d30fedc09e97fbedd381f2e2f020c3f8ff9.jpg",
+    "description": "4-bed property in Edinburgh.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71358913/",
+    "city": "Edinburgh",
+    "monthly_rent": 440,
+    "annual_rent": 5280,
+    "gross_yield": 1.34
+  }
+]
