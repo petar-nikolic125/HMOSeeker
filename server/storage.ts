@@ -1,5 +1,7 @@
-import { type User, type InsertUser, type PropertyListing, type InsertPropertyListing, type SearchQuery, type InsertSearchQuery, type CacheEntry, type SearchFilters } from "@shared/schema";
+import { type User, type InsertUser, type PropertyListing, type InsertPropertyListing, type SearchQuery, type InsertSearchQuery, type CacheEntry, type SearchFilters, users, propertyListings, searchQueries, cacheEntries } from "@shared/schema";
 import { randomUUID } from "crypto";
+import { db } from "./db";
+import { eq, and, like, lte, gte, desc, isNull, or } from "drizzle-orm";
 
 export interface IStorage {
   // User methods
@@ -109,6 +111,7 @@ export class MemStorage implements IStorage {
         image_url: listingData.image_url ?? null,
         listing_id: listingData.listing_id ?? null,
         property_type: listingData.property_type ?? null,
+        property_category: listingData.property_category ?? null,
         tenure: listingData.tenure ?? null,
         postcode: listingData.postcode ?? null,
         agent_name: listingData.agent_name ?? null,
@@ -117,6 +120,7 @@ export class MemStorage implements IStorage {
         latitude: listingData.latitude ?? null,
         longitude: listingData.longitude ?? null,
         date_listed: listingData.date_listed ?? null,
+        area_estimated: listingData.area_estimated ?? false,
         hmo_candidate: listingData.hmo_candidate ?? false,
       };
       this.propertyListings.set(id, listing);
@@ -213,4 +217,126 @@ export class MemStorage implements IStorage {
   }
 }
 
-export const storage = new MemStorage();
+export class DatabaseStorage implements IStorage {
+  // User methods
+  async getUser(id: string): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.id, id));
+    return user || undefined;
+  }
+
+  async getUserByUsername(username: string): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.username, username));
+    return user || undefined;
+  }
+
+  async createUser(insertUser: InsertUser): Promise<User> {
+    const [user] = await db.insert(users).values(insertUser).returning();
+    return user;
+  }
+
+  // Property listing methods
+  async getPropertyListings(filters?: Partial<SearchFilters>): Promise<PropertyListing[]> {
+    let query = db.select().from(propertyListings);
+    const conditions: any[] = [];
+
+    if (filters) {
+      if (filters.city) {
+        conditions.push(like(propertyListings.address, `%${filters.city}%`));
+      }
+      if (filters.max_price) {
+        conditions.push(lte(propertyListings.price, filters.max_price));
+      }
+      if (filters.min_bedrooms) {
+        conditions.push(gte(propertyListings.bedrooms, filters.min_bedrooms));
+      }
+      if (filters.keywords) {
+        conditions.push(
+          or(
+            like(propertyListings.title, `%${filters.keywords}%`),
+            like(propertyListings.description, `%${filters.keywords}%`)
+          )
+        );
+      }
+    }
+
+    if (conditions.length > 0) {
+      query = query.where(and(...conditions));
+    }
+
+    const listings = await query.orderBy(desc(propertyListings.scraped_at));
+    return listings;
+  }
+
+  async getPropertyListing(id: string): Promise<PropertyListing | undefined> {
+    const [listing] = await db.select().from(propertyListings).where(eq(propertyListings.id, id));
+    return listing || undefined;
+  }
+
+  async createPropertyListings(listings: InsertPropertyListing[]): Promise<PropertyListing[]> {
+    const created = await db.insert(propertyListings).values(listings).returning();
+    return created;
+  }
+
+  async deleteOldListings(olderThan: Date): Promise<void> {
+    await db.delete(propertyListings).where(lte(propertyListings.scraped_at, olderThan));
+  }
+
+  // Search query methods
+  async createSearchQuery(query: InsertSearchQuery): Promise<SearchQuery> {
+    const [searchQuery] = await db.insert(searchQueries).values(query).returning();
+    return searchQuery;
+  }
+
+  async getSearchQuery(id: string): Promise<SearchQuery | undefined> {
+    const [query] = await db.select().from(searchQueries).where(eq(searchQueries.id, id));
+    return query || undefined;
+  }
+
+  async updateSearchQuery(id: string, updates: Partial<SearchQuery>): Promise<SearchQuery | undefined> {
+    const [updated] = await db
+      .update(searchQueries)
+      .set({ ...updates, updated_at: new Date() })
+      .where(eq(searchQueries.id, id))
+      .returning();
+    return updated || undefined;
+  }
+
+  async getActiveSearchQueries(): Promise<SearchQuery[]> {
+    const queries = await db
+      .select()
+      .from(searchQueries)
+      .where(or(eq(searchQueries.status, 'pending'), eq(searchQueries.status, 'running')));
+    return queries;
+  }
+
+  // Cache methods
+  async getCacheEntry(key: string): Promise<CacheEntry | undefined> {
+    const [entry] = await db
+      .select()
+      .from(cacheEntries)
+      .where(and(eq(cacheEntries.cache_key, key), gte(cacheEntries.expires_at, new Date())));
+    return entry || undefined;
+  }
+
+  async setCacheEntry(key: string, data: any, expiresAt: Date): Promise<CacheEntry> {
+    const [entry] = await db
+      .insert(cacheEntries)
+      .values({
+        cache_key: key,
+        data,
+        expires_at: expiresAt,
+      })
+      .returning();
+    return entry;
+  }
+
+  async deleteCacheEntry(key: string): Promise<void> {
+    await db.delete(cacheEntries).where(eq(cacheEntries.cache_key, key));
+  }
+
+  async cleanExpiredCache(): Promise<void> {
+    await db.delete(cacheEntries).where(lte(cacheEntries.expires_at, new Date()));
+  }
+}
+
+export const storage = new DatabaseStorage();
