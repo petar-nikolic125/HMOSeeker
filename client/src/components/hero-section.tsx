@@ -17,7 +17,7 @@ export default function HeroSection({ onSearch, isLoading, searchResults }: Hero
   const [maxSqm, setMaxSqm] = useState<number | undefined>(undefined);
   const [postcode, setPostcode] = useState<string>("");
 
-  const [article4Filter, setArticle4Filter] = useState<"all" | "non_article4" | "article4_only">("all");
+  const [article4Filter, setArticle4Filter] = useState<"all" | "non_article4" | "article4_only">("non_article4");
   const { toast } = useToast();
   const [lastSearchFilters, setLastSearchFilters] = useState<SearchFilters | null>(null);
 
@@ -111,7 +111,7 @@ export default function HeroSection({ onSearch, isLoading, searchResults }: Hero
 
         <div className="max-w-5xl mx-auto animate-slide-up">
           <div className="bg-white/95 backdrop-blur-sm rounded-3xl p-4 md:p-8 shadow-2xl border border-white/20 hover:shadow-3xl transition-all duration-500">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8">
               <div>
                 <label className="block text-sm font-semibold text-gray-800 mb-3 flex items-center gap-2">
                   <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
@@ -208,6 +208,36 @@ export default function HeroSection({ onSearch, isLoading, searchResults }: Hero
                   className="w-full h-12 text-base border-2 border-gray-200 hover:border-blue-400 focus:border-blue-500 transition-colors rounded-xl px-4 bg-white"
                 />
               </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-gray-800 mb-3 flex items-center gap-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  Article 4 Filter
+                </label>
+                <select 
+                  value={article4Filter}
+                  onChange={(e) => setArticle4Filter(e.target.value as "all" | "non_article4" | "article4_only")}
+                  className="w-full h-12 text-base border-2 border-gray-200 hover:border-green-400 focus:border-green-500 transition-colors rounded-xl px-4 bg-white"
+                >
+                  <option value="non_article4">✓ Only Good Areas (No Article 4)</option>
+                  <option value="all">All Properties</option>
+                  <option value="article4_only">⚠️ Article 4 Areas Only</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-gray-800 mb-3 flex items-center gap-2">
+                  <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                  Min Area (sqm)
+                </label>
+                <input 
+                  type="number"
+                  value={minSqm}
+                  onChange={(e) => setMinSqm(e.target.value === '' ? '' : parseInt(e.target.value))}
+                  placeholder="Optional"
+                  className="w-full h-12 text-base border-2 border-gray-200 hover:border-purple-400 focus:border-purple-500 transition-colors rounded-xl px-4 bg-white"
+                />
+              </div>
             </div>
 
             <div className="grid grid-cols-1 gap-4 mb-6">
@@ -248,15 +278,21 @@ export default function HeroSection({ onSearch, isLoading, searchResults }: Hero
             <div className="mt-6 text-center space-y-2">
               <div className="flex justify-center items-center gap-6 text-sm text-gray-600">
                 <span className="flex items-center gap-1">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-                  Large Properties Filter
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                  {article4Filter === "non_article4" ? "✓ Article 4 Safe Areas Only" : article4Filter === "article4_only" ? "⚠️ Article 4 Areas Only" : "All Areas"}
                 </span>
+                {minBedrooms >= 4 && (
+                  <span className="flex items-center gap-1">
+                    <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
+                    Large Properties (4+)
+                  </span>
+                )}
               </div>
               <p className="text-xs text-gray-500">
-                Last updated: <span>{new Date().toLocaleTimeString()}</span> • UK property data compliance
+                Last updated: <span>{new Date().toLocaleTimeString()}</span> • Powered by article4map.com API
               </p>
-              <p className="text-xs text-amber-600 font-medium">
-                ⚖️ All property URLs comply with UK data protection laws
+              <p className="text-xs text-blue-600 font-medium">
+                🏠 Real-time HMO investment opportunities with Article 4 direction checking
               </p>
             </div>
           </div>

@@ -69,17 +69,25 @@ export default function Article4Checker() {
   };
 
   return (
-    <Card className="w-full max-w-2xl mx-auto">
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <MapPin className="h-5 w-5 text-blue-600" />
-          Article 4 Direction Check
-        </CardTitle>
-        <CardDescription>
-          Check if a postcode falls within an Article 4 direction area that restricts HMO conversions. Free tool using official government data.
-        </CardDescription>
+    <Card className="w-full max-w-2xl mx-auto bg-gradient-to-br from-blue-50 via-white to-blue-50 border-blue-200">
+      <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-t-lg">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="bg-white/20 p-2 rounded-lg">
+              <MapPin className="h-6 w-6 text-white" />
+            </div>
+            <div>
+              <CardTitle className="text-white text-xl">
+                Article 4 Direction Checker
+              </CardTitle>
+              <CardDescription className="text-blue-100">
+                Powered by article4map.com API • 307 English councils monitored daily
+              </CardDescription>
+            </div>
+          </div>
+        </div>
       </CardHeader>
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-4 pt-6">
         <div className="space-y-3">
           <div className="flex gap-2">
             <Input
@@ -87,13 +95,13 @@ export default function Article4Checker() {
               value={postcode}
               onChange={(e) => setPostcode(e.target.value.toUpperCase())}
               onKeyDown={handleKeyDown}
-              className="flex-1"
+              className="flex-1 border-blue-300 focus:border-blue-500 focus:ring-blue-500"
               disabled={isLoading}
             />
             <Button 
               onClick={handleCheck} 
               disabled={isLoading || !postcode.trim()}
-              className="shrink-0"
+              className="shrink-0 bg-blue-600 hover:bg-blue-700 text-white"
               data-testid="button-check"
             >
               {isLoading ? (
@@ -106,24 +114,24 @@ export default function Article4Checker() {
           </div>
           
           <div className="flex flex-wrap gap-2 text-sm text-gray-600">
-            <span className="text-xs">Quick examples:</span>
+            <span className="text-xs text-blue-600 font-medium">Quick examples:</span>
             <button 
               onClick={() => setPostcode('B5 5SE')} 
-              className="px-2 py-1 bg-blue-50 hover:bg-blue-100 rounded text-blue-700 text-xs transition-colors"
+              className="px-3 py-1 bg-blue-100 hover:bg-blue-200 rounded-md text-blue-700 text-xs transition-colors font-medium"
               data-testid="button-example"
             >
               B5 5SE (Birmingham)
             </button>
             <button 
               onClick={() => setPostcode('SW1A 1AA')} 
-              className="px-2 py-1 bg-blue-50 hover:bg-blue-100 rounded text-blue-700 text-xs transition-colors"
+              className="px-3 py-1 bg-blue-100 hover:bg-blue-200 rounded-md text-blue-700 text-xs transition-colors font-medium"
               data-testid="button-example"
             >
               SW1A 1AA (London)
             </button>
             <button 
               onClick={() => setPostcode('M1 1AA')} 
-              className="px-2 py-1 bg-blue-50 hover:bg-blue-100 rounded text-blue-700 text-xs transition-colors"
+              className="px-3 py-1 bg-blue-100 hover:bg-blue-200 rounded-md text-blue-700 text-xs transition-colors font-medium"
               data-testid="button-example"
             >
               M1 1AA (Manchester)
@@ -148,19 +156,23 @@ export default function Article4Checker() {
         {result && !isLoading && (
           <div className="space-y-4">
             {/* Main Result Card */}
-            <div className="p-4 bg-gradient-to-r from-gray-50 to-gray-100 border rounded-lg" data-testid="result-main">
+            <div className="p-5 bg-gradient-to-r from-blue-50 to-blue-100 border-2 border-blue-200 rounded-xl shadow-sm" data-testid="result-main">
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-3">
                   {result.inArticle4 ? (
-                    <AlertTriangle className="h-6 w-6 text-amber-600" />
+                    <div className="bg-red-100 p-2 rounded-lg">
+                      <AlertTriangle className="h-6 w-6 text-red-600" />
+                    </div>
                   ) : (
-                    <CheckCircle className="h-6 w-6 text-green-600" />
+                    <div className="bg-green-100 p-2 rounded-lg">
+                      <CheckCircle className="h-6 w-6 text-green-600" />
+                    </div>
                   )}
                   <div>
-                    <p className="font-semibold text-lg" data-testid="text-postcode">
+                    <p className="font-bold text-xl text-blue-900" data-testid="text-postcode">
                       {result.postcode}
                     </p>
-                    <div className="flex items-center gap-2 text-sm text-gray-600">
+                    <div className="flex items-center gap-2 text-sm text-blue-700">
                       <MapPin className="h-3 w-3" />
                       {result.lat && result.lon ? (
                         <span>Lat: {result.lat.toFixed(4)}, Lon: {result.lon.toFixed(4)}</span>
@@ -168,7 +180,7 @@ export default function Article4Checker() {
                         <span>Location verified</span>
                       )}
                       {result.confidence && (
-                        <Badge variant="outline" className="text-xs">
+                        <Badge variant="outline" className="text-xs bg-blue-100 text-blue-700 border-blue-300">
                           {Math.round(result.confidence * 100)}% confidence
                         </Badge>
                       )}
@@ -177,29 +189,29 @@ export default function Article4Checker() {
                 </div>
                 <Badge 
                   variant={result.inArticle4 ? "destructive" : "default"}
-                  className={result.inArticle4 ? "bg-amber-100 text-amber-800 hover:bg-amber-100" : "bg-green-100 text-green-800 hover:bg-green-100"}
+                  className={result.inArticle4 ? "bg-red-500 text-white hover:bg-red-600 px-4 py-2 text-sm" : "bg-green-500 text-white hover:bg-green-600 px-4 py-2 text-sm"}
                   data-testid="badge-status"
                 >
-                  {result.inArticle4 ? "Article 4 Area" : "No Restrictions"}
+                  {result.inArticle4 ? "⚠️ Article 4 Area" : "✓ No Restrictions"}
                 </Badge>
               </div>
               
               {/* Data Quality Indicators */}
-              <div className="flex items-center gap-4 text-xs text-gray-500 border-t pt-2">
-                <div className="flex items-center gap-1">
+              <div className="flex items-center gap-4 text-xs text-blue-600 border-t border-blue-200 pt-3 mt-3">
+                <div className="flex items-center gap-1 bg-white/50 px-2 py-1 rounded">
                   <Database className="h-3 w-3" />
-                  <span>Source: {result.source}</span>
+                  <span className="font-medium">article4map.com API</span>
                 </div>
                 {result.processingTime && (
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-1 bg-white/50 px-2 py-1 rounded">
                     <Clock className="h-3 w-3" />
-                    <span>Processed in: {result.processingTime}ms</span>
+                    <span>{result.processingTime}ms</span>
                   </div>
                 )}
                 {result.fallback && (
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-1 bg-white/50 px-2 py-1 rounded">
                     <Info className="h-3 w-3" />
-                    <span>Fallback mode used</span>
+                    <span>Fallback mode</span>
                   </div>
                 )}
               </div>
@@ -207,16 +219,18 @@ export default function Article4Checker() {
 
             {/* Enhanced Suggestions */}
             {result.suggestions && result.suggestions.length > 0 && (
-              <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg" data-testid="suggestions">
+              <div className="p-5 bg-gradient-to-br from-blue-100 to-blue-50 border-2 border-blue-300 rounded-xl" data-testid="suggestions">
                 <div className="flex items-center gap-2 mb-3">
-                  <Lightbulb className="h-4 w-4 text-blue-600" />
-                  <h4 className="font-medium text-blue-900">Key Insights</h4>
+                  <div className="bg-blue-600 p-1.5 rounded-lg">
+                    <Lightbulb className="h-4 w-4 text-white" />
+                  </div>
+                  <h4 className="font-bold text-blue-900">Key Insights</h4>
                 </div>
                 <div className="space-y-2">
                   {result.suggestions.map((suggestion, index) => (
                     <div key={index} className="flex items-start gap-2 text-sm text-blue-800">
-                      <span className="text-blue-400 mt-0.5">•</span>
-                      <span>{suggestion}</span>
+                      <span className="text-blue-600 mt-0.5 font-bold">•</span>
+                      <span className="font-medium">{suggestion}</span>
                     </div>
                   ))}
                 </div>
@@ -303,12 +317,18 @@ export default function Article4Checker() {
           </div>
         )}
 
-        <div className="text-xs text-gray-500 space-y-1 bg-gray-50 p-3 rounded border">
-          <p className="font-medium text-gray-700 mb-1">Data Sources & Accuracy:</p>
-          <p>• Enhanced multi-source data from planning.data.gov.uk, postcodes.io, and verified city-wide databases</p>
-          <p>• Real-time geocoding with multiple fallback strategies for maximum coverage</p>
-          <p>• City-wide Article 4 directions verified and updated regularly</p>
-          <p className="text-amber-600 font-medium pt-1">⚠️ This tool provides guidance only - always verify with local planning authorities before making investment decisions</p>
+        <div className="text-xs text-blue-700 space-y-1 bg-gradient-to-r from-blue-50 to-blue-100 p-4 rounded-lg border-2 border-blue-200">
+          <div className="flex items-center gap-2 mb-2">
+            <Database className="h-4 w-4 text-blue-600" />
+            <p className="font-bold text-blue-900">Powered by article4map.com API</p>
+          </div>
+          <p className="font-medium">• 307 English councils monitored with daily updates</p>
+          <p className="font-medium">• Multi-source verification from planning.data.gov.uk and official council databases</p>
+          <p className="font-medium">• Real-time geocoding with precision location matching</p>
+          <p className="text-red-600 font-bold pt-2 flex items-start gap-1">
+            <span>⚠️</span>
+            <span>Always verify with local planning authorities before making investment decisions</span>
+          </p>
         </div>
       </CardContent>
     </Card>
