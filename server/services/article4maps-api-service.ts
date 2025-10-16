@@ -26,7 +26,7 @@ export class Article4MapsApiService {
   
   constructor() {
     this.apiKey = process.env.ARTICLE4MAPS_API_KEY;
-    this.apiBaseUrl = process.env.ARTICLE4MAPS_API_URL || 'https://api.article4map.com/v1';
+    this.apiBaseUrl = process.env.ARTICLE4MAPS_API_URL || 'https://api.article4map.com';
     
     // Debug log - prikaži da li je API ključ učitan
     if (this.apiKey) {
@@ -54,16 +54,12 @@ export class Article4MapsApiService {
     try {
       const cleanPostcode = postcode.replace(/\s/g, '').toUpperCase();
       
-      const response = await fetch(`${this.apiBaseUrl}/check`, {
-        method: 'POST',
+      // Article4Maps API uses GET request with postcode as query parameter
+      const response = await fetch(`${this.apiBaseUrl}?postcode=${encodeURIComponent(cleanPostcode)}`, {
+        method: 'GET',
         headers: {
           'Authorization': this.apiKey!,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          postcode: cleanPostcode,
-          include_upcoming: true
-        })
+        }
       });
 
       if (!response.ok) {
@@ -93,6 +89,27 @@ export class Article4MapsApiService {
    * Batch check multiple postcodes
    */
   public async checkMultiple(postcodes: string[]): Promise<Article4MapsApiResponse[]> {
+    if (!this.isConfigured()) {
+      throw new Error('Article4Maps API key not configured');
+    }
+
+    try {
+      const cleanPostcodes = postcodes.map(p => p.replace(/\s/g, '').toUpperCase());
+      
+      // Check each postcode individually since batch endpoint may not be available
+      const results = await Promise.all(
+        cleanPostcodes.map(postcode => this.checkArticle4(postcode))
+      );
+      
+      return results;
+    } catch (error) {
+      console.error('❌ Article4Maps batch check error:', error);
+      throw error;
+    }
+  }
+
+  // Old implementation commented out - batch endpoint may not exist
+  private async checkMultiple_OLD(postcodes: string[]): Promise<Article4MapsApiResponse[]> {
     if (!this.isConfigured()) {
       throw new Error('Article4Maps API key not configured');
     }
@@ -173,7 +190,8 @@ export class Article4MapsApiService {
     }
 
     try {
-      const response = await fetch(`${this.apiBaseUrl}/usage`, {
+      // Root endpoint returns quota info
+      const response = await fetch(`${this.apiBaseUrl}/`, {
         method: 'GET',
         headers: {
           'Authorization': this.apiKey!,
@@ -181,7 +199,17 @@ export class Article4MapsApiService {
       });
 
       if (response.ok) {
-        return await response.json();
+        const data = await response.json();
+        // Transform response to match expected format
+        if (Array.isArray(data) && data[0]) {
+          const quota = data[0];
+          return {
+            calls_remaining: quota.quotamonth - quota.countmonth,
+            calls_used: quota.countmonth,
+            reset_date: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 1).toISOString()
+          };
+        }
+        return null;
       }
       
       return null;
