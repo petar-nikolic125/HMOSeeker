@@ -86,7 +86,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Article 4 areas API endpoint for map overlays
+  // Article 4 areas API endpoint for map overlays (simplified - no geographic data available)
   app.get("/api/article4-areas", async (req, res) => {
     try {
       const { lat, lng, radius } = req.query;
@@ -115,17 +115,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
         'Vary': 'Accept-Encoding'
       });
 
-      // Get Article 4 areas in the specified region (simplified for now)
-      const systemHealth = await enhancedArticle4Service.getSystemHealth();
-      const areas = systemHealth.geographic.available ? 
-        await getArticle4AreasForRegion(latitude, longitude, radiusKm) : [];
-      
+      // No geographic data available - return empty array
       res.json({
         success: true,
-        count: areas.length,
-        areas: areas,
+        count: 0,
+        areas: [],
         center: { lat: latitude, lng: longitude },
-        radius_km: radiusKm
+        radius_km: radiusKm,
+        message: "Geographic Article 4 data not available. Use /api/check endpoint for postcode-based checks."
       });
     } catch (error) {
       console.error("Article 4 areas request failed:", error);
@@ -136,33 +133,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Initialize comprehensive postcode database
+  // Initialize comprehensive postcode database (removed - not available in simplified service)
   app.post("/api/admin/initialize-postcodes", async (req, res) => {
-    try {
-      console.log('🚀 Starting comprehensive postcode database initialization...');
-      
-      const result = await enhancedArticle4Service.initializePostcodeDatabase();
-      
-      if (result.success) {
-        res.json({
-          success: true,
-          message: "Comprehensive postcode database initialized successfully",
-          stats: result.stats
-        });
-      } else {
-        res.status(500).json({
-          success: false,
-          error: "Failed to initialize postcode database",
-          details: result.stats
-        });
-      }
-    } catch (error) {
-      console.error("❌ Postcode database initialization failed:", error);
-      res.status(500).json({
-        success: false,
-        error: error instanceof Error ? error.message : "Database initialization failed"
-      });
-    }
+    res.status(501).json({
+      success: false,
+      error: "Postcode database initialization not available. Using Article4Maps API only."
+    });
   });
 
   // Batch check multiple postcodes for Article 4 status
