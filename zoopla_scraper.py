@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 """
-Enhanced Zoopla Property Scraper with HMO Detection and Article 4 Filtering
+Enhanced Zoopla Property Scraper with HMO Detection
 Usage: python zoopla_scraper.py <city> <min_bedrooms> <max_price> <keywords> [postcode] [max_sqm]
 
-New Features:
+Features:
 - Excludes existing HMOs (listings with "HMO" in title/description)
-- Flags HMO candidates (90+ sqm in non-Article 4 areas)
-- Article 4 area detection for London boroughs and other cities
+- Flags HMO candidates (90+ sqm properties)
 - Enhanced property details extraction
 - London borough and district identification
 - Optional postcode and max_sqm filtering
@@ -21,43 +20,6 @@ import random
 from bs4 import BeautifulSoup
 from urllib.parse import urlencode, quote_plus
 from datetime import datetime
-
-# Define comprehensive Article 4 areas for HMO filtering
-ARTICLE4_BOROUGHS = {
-    # London boroughs with Article 4 Directions for C3 to C4 conversions
-    "Barking and Dagenham", "Barnet", "Bexley", "Brent", "Croydon", "Enfield",
-    "Greenwich", "Havering", "Hounslow", "Newham", "Redbridge", "Tower Hamlets",
-    "Waltham Forest", "Hillingdon", "Ealing", "Haringey", "Southwark", "Lewisham",
-    "Merton", "Bromley", "Kingston upon Thames", "Sutton", "Richmond upon Thames",
-    "Wandsworth", "Lambeth", "Camden", "Islington", "Hackney", "Hammersmith and Fulham",
-    "Kensington and Chelsea", "Westminster"
-}
-
-ARTICLE4_CITIES = {
-    # Cities outside London with HMO Article 4 Directions
-    "Manchester", "Leeds", "Nottingham", "Birmingham", "Oxford", "Brighton", 
-    "Brighton and Hove", "Liverpool", "Bristol", "Sheffield", "Newcastle",
-    "Newcastle upon Tyne", "Cardiff", "Edinburgh", "Glasgow", "Canterbury",
-    "Bath", "York", "Durham", "Preston", "Exeter", "Reading", "Winchester"
-}
-
-def is_article4_area(address, london_borough=None):
-    """Determine if the address is in an Article 4 area (HMO planning restrictions)."""
-    addr_lower = address.lower()
-    if london_borough:
-        # If we identified a London borough, use that
-        article4_status = london_borough in ARTICLE4_BOROUGHS
-        return "Full" if article4_status else "None"
-    
-    # If in London but borough not identified, assume no Article 4 by default
-    if " london" in addr_lower:
-        return "None"
-    
-    # For non-London addresses, check if any known Article 4 city name appears
-    for city in ARTICLE4_CITIES:
-        if re.search(rf"\b{city.lower()}\b", addr_lower):
-            return "Full"
-    return "None"
 
 def parse_london_location(address):
     """Parse London address to identify borough, district, and postcode area."""
@@ -344,20 +306,12 @@ def extract_property_from_card(card, city, max_sqm=None):
     if city.lower() == "london" or "london" in address.lower():
         london_borough, london_district, postcode_area, postcode_district = parse_london_location(address)
     
-    # Determine Article 4 status
-    article4_status = is_article4_area(address, london_borough)
-    article4_area = article4_status != "None"
-    
-    # Filter out Article 4 properties - we only want non-Article 4 properties
-    if article4_area:
-        return None
-    
     # Extract property details
     details = extract_property_details(title, description)
     
     # Determine HMO candidate status
     hmo_candidate = False
-    if area_sqm and area_sqm >= 90 and not article4_area:
+    if area_sqm and area_sqm >= 90:
         hmo_candidate = True
     
     # Build property data
@@ -376,8 +330,8 @@ def extract_property_from_card(card, city, max_sqm=None):
         # New enhanced fields
         "area_sqm": area_sqm,
         "area_estimated": area_estimated,
-        "article4_area": article4_area,
-        "article4_status": article4_status,
+        "article4_area": False,
+        "article4_status": "None",
         "hmo_candidate": hmo_candidate,
         
         # London-specific fields
