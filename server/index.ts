@@ -2,7 +2,6 @@ import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import { PythonSetup } from "./services/python-setup";
-import { article4Service } from "./services/article4-service";
 
 const app = express();
 app.use(express.json());
@@ -45,13 +44,6 @@ app.use((req, res, next) => {
     await PythonSetup.ensurePythonDependencies();
   } catch (error) {
     console.warn("⚠️ Python setup greška na startup (može se pokušati kasnije):", error);
-  }
-
-  // Initialize Article 4 service
-  try {
-    await article4Service.refreshCache();
-  } catch (error) {
-    console.warn("⚠️ Article 4 service startup warning (will continue with cached data):", error);
   }
 
   const server = await registerRoutes(app);

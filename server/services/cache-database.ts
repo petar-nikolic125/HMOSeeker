@@ -1,7 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
 import { PropertyListing } from '@shared/schema';
-import { article4Service } from './article4-service';
 
 /**
  * Cache-based Database - koristi JSON fajlove kao glavnu bazu podataka
@@ -211,71 +210,15 @@ export class CacheDatabase {
       console.log(`📐 Min sqm filter (${filters.min_sqm}): ${beforeCount} → ${filtered.length} (includes properties without area data)`);
     }
 
-    // Default Article 4 filtering: Always exclude Article 4 properties unless explicitly requested
+    // Simplified Article 4 filtering: Use property article4_area flag
     if (!filters.article4_filter || filters.article4_filter === "non_article4") {
       const beforeCount = filtered.length;
-      
-      // Use comprehensive Article 4 database checking
-      const article4FilteredProperties: any[] = [];
-      
-      for (const property of filtered) {
-        try {
-          // Extract postcode from property address or postcode field
-          const postcode = CacheDatabase.extractPostcodeFromProperty(property);
-          
-          if (postcode) {
-            // Check against comprehensive Article 4 database
-            const article4Result = await article4Service.checkArticle4(postcode);
-            if (!article4Result.inArticle4) {
-              article4FilteredProperties.push(property);
-            }
-          } else {
-            // If no postcode found, fall back to the old article4_area flag  
-            if (property.article4_area !== true) {
-              article4FilteredProperties.push(property);
-            }
-          }
-        } catch (error) {
-          // If Article 4 check fails, fall back to the old flag
-          if (property.article4_area !== true) {
-            article4FilteredProperties.push(property);
-          }
-        }
-      }
-      
-      filtered = article4FilteredProperties;
-      console.log(`📋 Article 4 filter (comprehensive database): ${beforeCount} → ${filtered.length}`);
+      filtered = filtered.filter(p => p.article4_area !== true);
+      console.log(`📋 Article 4 filter (non-article4): ${beforeCount} → ${filtered.length}`);
     } else if (filters.article4_filter === "article4_only") {
       const beforeCount = filtered.length;
-      
-      // Use comprehensive Article 4 database checking for Article 4 only filter
-      const article4OnlyProperties: any[] = [];
-      
-      for (const property of filtered) {
-        try {
-          const postcode = CacheDatabase.extractPostcodeFromProperty(property);
-          
-          if (postcode) {
-            const article4Result = await article4Service.checkArticle4(postcode);
-            if (article4Result.inArticle4) {
-              article4OnlyProperties.push(property);
-            }
-          } else {
-            // Fall back to old flag
-            if (property.article4_area === true) {
-              article4OnlyProperties.push(property);
-            }
-          }
-        } catch (error) {
-          // Fall back to old flag
-          if (property.article4_area === true) {
-            article4OnlyProperties.push(property);
-          }
-        }
-      }
-      
-      filtered = article4OnlyProperties;
-      console.log(`📋 Article 4 filter (article4_only - comprehensive): ${beforeCount} → ${filtered.length}`);
+      filtered = filtered.filter(p => p.article4_area === true);
+      console.log(`📋 Article 4 filter (article4_only): ${beforeCount} → ${filtered.length}`);
     }
     
     console.log(`🔍 Cache search: ${properties.length} total, ${filtered.length} after filters`);
