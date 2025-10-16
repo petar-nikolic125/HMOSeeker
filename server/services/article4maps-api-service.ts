@@ -57,7 +57,7 @@ export class Article4MapsApiService {
       const response = await fetch(`${this.apiBaseUrl}/check`, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${this.apiKey}`,
+          'Authorization': this.apiKey!,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
@@ -103,7 +103,7 @@ export class Article4MapsApiService {
       const response = await fetch(`${this.apiBaseUrl}/batch`, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${this.apiKey}`,
+          'Authorization': this.apiKey!,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
@@ -176,7 +176,7 @@ export class Article4MapsApiService {
       const response = await fetch(`${this.apiBaseUrl}/usage`, {
         method: 'GET',
         headers: {
-          'Authorization': `Bearer ${this.apiKey}`,
+          'Authorization': this.apiKey!,
         }
       });
 
