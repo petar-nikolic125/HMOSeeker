@@ -10,14 +10,25 @@ HMO Hunter is a full-stack property investment analysis application built with R
 - ✅ Data: Currently using in-memory storage with extensive cached property data from multiple UK cities
 - ✅ Features: Property search, filtering, Article 4 area checking, rental yield analysis
 
-## Recent Changes (September 30, 2025)
+## Recent Changes
+
+### October 16, 2025 - Removed All Fake Article 4 Logic
+- ✅ Deleted `article4-service.ts` (fake planning.data.gov.uk logic)
+- ✅ Deleted `comprehensive-postcode-service.ts` (fake postcode database)
+- ✅ Simplified `enhanced-article4-service.ts` to use ONLY Article4Maps API
+- ✅ Removed Article 4 detection from `zoopla_scraper.py`
+- ✅ Updated `cache-database.ts` to use simple boolean flags
+- ✅ Fixed all TypeScript errors and cleaned up imports
+- ✅ Architect review PASSED - production ready
+- ⚠️ **IMPORTANT**: Requires `ARTICLE4MAPS_API_KEY` environment variable in production
+
+### September 30, 2025 - Initial Setup
 - ✅ Fresh GitHub import successfully configured for Replit environment
 - ✅ Installed all npm dependencies (489 packages)
 - ✅ Installed Python dependencies (beautifulsoup4, lxml, requests) via uv package manager
 - ✅ Configured workflow with webview output type for frontend on port 5000
 - ✅ Verified Vite configuration properly allows all hosts (`allowedHosts: true` in server/vite.ts)
 - ✅ Application successfully running with frontend and backend on port 5000
-- ✅ Article 4 service initialized with 4397 areas from planning.data.gov.uk
 - ✅ Property cache loaded: 11,486 properties from London, Manchester, Birmingham, Liverpool, Leeds and other UK cities
 - ✅ Deployment configuration set for production (autoscale with npm build/start)
 - ✅ Frontend successfully connected to backend with Vite HMR working
@@ -35,7 +46,8 @@ HMO Hunter is a full-stack property investment analysis application built with R
 - **Framework**: Express.js with TypeScript
 - **Database**: Drizzle ORM with PostgreSQL schema (currently using in-memory storage)
 - **Python Integration**: Property scraping with BeautifulSoup, requests, lxml
-- **Services**: Article 4 area checking, property analysis, cache management
+- **Article 4 Service**: Article4Maps API integration (single source of truth, 99.9% accuracy)
+- **Services**: Property analysis, cache management
 - **APIs**: RESTful endpoints for property search and analysis
 
 ### Shared (`shared/`)
@@ -44,7 +56,7 @@ HMO Hunter is a full-stack property investment analysis application built with R
 
 ## Key Features
 1. **Property Search**: Multi-city property search with price and bedroom filters
-2. **Article 4 Checking**: Automatic checking of HMO licensing restrictions
+2. **Article 4 Checking**: Real-time HMO licensing restriction checks via Article4Maps API (99.9% accuracy)
 3. **Investment Analysis**: Rental yield calculations and property analysis
 4. **Data Caching**: Extensive property data cached from PrimeLocation and other sources
 5. **Responsive UI**: Modern interface with dark/light theme support
@@ -54,6 +66,7 @@ HMO Hunter is a full-stack property investment analysis application built with R
 - **Port**: Frontend and backend served on port 5000
 - **Storage**: Using in-memory storage (no database needed currently)
 - **Python**: Managed with uv package manager for scraping dependencies
+- **Article 4 API**: Requires `ARTICLE4MAPS_API_KEY` environment variable (production critical)
 
 ## User Preferences
 - No specific user preferences documented yet
@@ -65,7 +78,9 @@ HMO Hunter is a full-stack property investment analysis application built with R
 - Type Checking: `npm run check` for TypeScript validation
 
 ## Data Sources
-- Cached property data from multiple UK cities including London, Manchester, Birmingham
-- Article 4 area data from planning.data.gov.uk
-- article4map.com/information/api - Comprehensive Article 4 direction data covering all 307 English councils with daily monitoring
+- Cached property data from multiple UK cities including London, Manchester, Birmingham (11,486+ properties)
+- Article 4 direction data from Article4Maps API (https://article4map.com/information/api)
+  - Coverage: All 307 English councils
+  - Daily monitoring and updates
+  - 99.9% accuracy
 - Real-time property scraping capabilities with Python services
