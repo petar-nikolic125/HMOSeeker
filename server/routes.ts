@@ -195,6 +195,86 @@ export async function registerRoutes(app: Express): Promise<Server> {
     return [];
   }
 
+  // Helper function to automatically enrich properties with Article 4 status
+  async function enrichPropertiesWithArticle4Status(properties: any[]): Promise<any[]> {
+    // Helper function to extract postcode from address
+    const extractPostcodeFromAddress = (address: string): string | null => {
+      if (!address) return null;
+      
+      // UK postcode regex - matches patterns like SW1A 1AA, W1A 0AX, M1 1AE, B33 8TH, etc.
+      const postcodeRegex = /\b([A-Z]{1,2}[0-9]{1,2}[A-Z]?)\s?([0-9][A-Z]{2})?\b/i;
+      const match = address.match(postcodeRegex);
+      
+      if (match) {
+        // Return full postcode if both parts exist, otherwise partial
+        return match[2] ? `${match[1]} ${match[2]}` : match[1];
+      }
+      
+      return null;
+    };
+
+    // Extract unique postcodes from properties (try postcode field first, then extract from address)
+    const uniquePostcodes = Array.from(new Set(
+      properties
+        .map(p => p.postcode || extractPostcodeFromAddress(p.address || p.title))
+        .filter(pc => pc && pc.trim().length > 0)
+    )) as string[];
+
+    if (uniquePostcodes.length === 0) {
+      console.log('⚠️ No postcodes found in properties, skipping Article 4 check');
+      return properties;
+    }
+
+    console.log(`🔍 Checking Article 4 status for ${uniquePostcodes.length} unique postcodes...`);
+
+    try {
+      // Check Article 4 status for all unique postcodes
+      const article4Results = await enhancedArticle4Service.checkMultiplePostcodes(uniquePostcodes);
+      
+      // Create a map of postcode -> Article 4 status for quick lookup
+      const article4Map = new Map<string, any>();
+      article4Results.forEach((result, index) => {
+        const postcode = uniquePostcodes[index];
+        article4Map.set(postcode.toUpperCase().replace(/\s/g, ''), result);
+      });
+
+      // Enrich each property with Article 4 status
+      const enrichedProperties = properties.map(prop => {
+        // Get postcode from field or extract from address
+        const postcode = prop.postcode || extractPostcodeFromAddress(prop.address || prop.title);
+        
+        if (!postcode || postcode.trim().length === 0) {
+          return prop;
+        }
+
+        const cleanPostcode = postcode.toUpperCase().replace(/\s/g, '');
+        const article4Info = article4Map.get(cleanPostcode);
+
+        if (article4Info) {
+          return {
+            ...prop,
+            postcode: postcode, // Update postcode if it was extracted
+            article4_area: article4Info.in_article4 || false,
+            article4_status: article4Info.status || 'None'
+          };
+        }
+
+        return {
+          ...prop,
+          postcode: postcode // Update postcode even if no Article 4 info found
+        };
+      });
+
+      console.log(`✅ Article 4 check complete - enriched ${enrichedProperties.length} properties`);
+      return enrichedProperties;
+
+    } catch (error) {
+      console.error('❌ Article 4 enrichment failed:', error);
+      // Return original properties if enrichment fails
+      return properties;
+    }
+  }
+
   // Get cached property listings (Quick cache search - cache je glavna baza!)
   app.get("/api/properties", async (req, res) => {
     try {
@@ -230,6 +310,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return parseInt(cleaned) || 0;
       };
 
+      // Prepare filters (article4_filter will be applied AFTER enrichment, not during cache search)
       const filters: any = {};
       if (city) filters.city = city as string;
       if (max_price) filters.max_price = parsePrice(max_price as string);
@@ -239,7 +320,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (postcode) filters.postcode = postcode as string;
       if (keywords) filters.keywords = keywords as string;
       if (hmo_candidate !== undefined) filters.hmo_candidate = hmo_candidate === 'true';
-      if (article4_filter && article4_filter !== "all") filters.article4_filter = article4_filter as "non_article4" | "article4_only";
+      
+      // Force "all" for CacheDatabase to skip article4_filter (we'll apply it after enrichment)
+      filters.article4_filter = "all";
+      const requestedArticle4Filter = (article4_filter && article4_filter !== "all") ? article4_filter as "non_article4" | "article4_only" : null;
 
       // Add pagination parameters
       const pageNum = parseInt(page as string) || 1;
@@ -249,9 +333,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       console.log(`🔍 Searching cache database for: ${JSON.stringify(filters)}`);
       console.log(`📄 Pagination: page ${pageNum}, showing ${pageSize} results (offset: ${offset})`);
       
-      // Get ALL properties first (for total count)
+      // Get ALL properties first (without article4_filter - will apply after enrichment)
       let allProperties = await CacheDatabase.searchProperties(filters);
-      const totalResults = allProperties.length;
       
       // Helper functions for property type extraction and sorting
       const getPropertyTypeFromTitle = (title: string): string => {
@@ -373,9 +456,32 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
       
       // Apply pagination to results
-      const paginatedProperties = allProperties.slice(offset, offset + pageSize);
+      let paginatedProperties = allProperties.slice(offset, offset + pageSize);
       
-      console.log(`📊 Found ${totalResults} total properties, showing ${paginatedProperties.length} on page ${pageNum}`);
+      // Enrich ONLY paginated properties with Article 4 status (performance optimization)
+      paginatedProperties = await enrichPropertiesWithArticle4Status(paginatedProperties);
+      
+      // Re-apply article4_filter after enrichment (if specified)
+      if (requestedArticle4Filter === "non_article4") {
+        const beforeFilter = paginatedProperties.length;
+        paginatedProperties = paginatedProperties.filter(p => !p.article4_area);
+        if (beforeFilter !== paginatedProperties.length) {
+          console.log(`📋 Re-filtered after enrichment: ${beforeFilter} → ${paginatedProperties.length} (removed ${beforeFilter - paginatedProperties.length} Article 4 properties)`);
+        }
+      } else if (requestedArticle4Filter === "article4_only") {
+        const beforeFilter = paginatedProperties.length;
+        paginatedProperties = paginatedProperties.filter(p => p.article4_area);
+        if (beforeFilter !== paginatedProperties.length) {
+          console.log(`📋 Re-filtered after enrichment: ${beforeFilter} → ${paginatedProperties.length} (kept only ${paginatedProperties.length} Article 4 properties)`);
+        }
+      }
+      
+      // Calculate totalResults based on enriched data (this is an approximation since we only enriched one page)
+      // For accurate totals, we'd need to enrich all properties, but that's a performance trade-off
+      const totalResults = allProperties.length; // Pre-enrichment total
+      const actualResultsOnPage = paginatedProperties.length;
+      
+      console.log(`📊 Found ~${totalResults} total properties (pre-enrichment), showing ${actualResultsOnPage} on page ${pageNum}`);
       
       // Transform properties to match frontend expectations with real calculations
       const transformedListings = paginatedProperties.map((prop, index) => {
