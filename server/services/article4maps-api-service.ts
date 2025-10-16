@@ -29,10 +29,14 @@ export class Article4MapsApiService {
     this.apiBaseUrl = process.env.ARTICLE4MAPS_API_URL || 'https://api.article4map.com';
     
     // Debug log - prikaži da li je API ključ učitan
+    console.log('🔍 Environment:', process.env.NODE_ENV);
+    console.log('🔍 All env keys:', Object.keys(process.env).filter(k => k.includes('ARTICLE')));
+    
     if (this.apiKey) {
       console.log(`🔑 Article4Maps API key configured: ${this.apiKey.substring(0, 8)}...${this.apiKey.substring(this.apiKey.length - 4)}`);
     } else {
-      console.log('⚠️ Article4Maps API key NOT configured - check ARTICLE4MAPS_API_KEY in Secrets');
+      console.warn('⚠️ Article4Maps API key NOT configured in production!');
+      console.warn('⚠️ Check Deployment Secrets, not just Replit IDE Secrets');
     }
   }
 
