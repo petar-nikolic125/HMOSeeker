@@ -30,7 +30,7 @@ export default function Home() {
     city: "London",
     minRooms: 3,
     hmo_candidate: false,
-    article4_filter: "article4_only"
+    article4_filter: "all"
   });
   const [lastSearchTime, setLastSearchTime] = useState<number>(0);
   const [sortBy, setSortBy] = useState<string>("yield_desc");
@@ -46,6 +46,7 @@ export default function Home() {
       if (filters.minSqm) params.append('min_sqm', filters.minSqm.toString());
       if (filters.maxSqm) params.append('max_sqm', filters.maxSqm.toString());
       if (filters.postcode) params.append('postcode', filters.postcode);
+      if (filters.radius) params.append('radius', filters.radius.toString());
       if (filters.hmo_candidate) params.append('hmo_candidate', 'true');
       if (filters.article4_filter && filters.article4_filter !== 'all') params.append('article4_filter', filters.article4_filter);
       

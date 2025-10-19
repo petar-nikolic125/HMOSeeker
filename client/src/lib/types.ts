@@ -7,6 +7,7 @@ export interface SearchFilters {
   minSqm?: number;
   maxSqm?: number;
   postcode?: string;
+  radius?: number;
   keywords?: string;
   hmo_candidate?: boolean;
   article4_filter?: "all" | "non_article4" | "article4_only";

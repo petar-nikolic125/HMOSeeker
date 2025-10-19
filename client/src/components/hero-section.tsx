@@ -16,8 +16,9 @@ export default function HeroSection({ onSearch, isLoading, searchResults }: Hero
   const [minSqm, setMinSqm] = useState<number | ''>('');
   const [maxSqm, setMaxSqm] = useState<number | undefined>(undefined);
   const [postcode, setPostcode] = useState<string>("");
+  const [radius, setRadius] = useState<number | undefined>(undefined);
 
-  const [article4Filter, setArticle4Filter] = useState<"all" | "non_article4" | "article4_only">("article4_only");
+  const [article4Filter, setArticle4Filter] = useState<"all" | "non_article4" | "article4_only">("all");
   const { toast } = useToast();
   const [lastSearchFilters, setLastSearchFilters] = useState<SearchFilters | null>(null);
 
@@ -31,6 +32,7 @@ export default function HeroSection({ onSearch, isLoading, searchResults }: Hero
       minSqm: typeof minSqm === 'number' ? minSqm : undefined,
       maxSqm: maxSqm,
       postcode: postcode.trim() || undefined,
+      radius: radius,
       hmo_candidate: false,
       article4_filter: article4Filter,
     };
@@ -47,7 +49,7 @@ export default function HeroSection({ onSearch, isLoading, searchResults }: Hero
       }, 300); // Debounce by 300ms
       return () => clearTimeout(timer);
     }
-  }, [city, maxPrice, minBedrooms, minSqm, maxSqm, postcode, article4Filter]);
+  }, [city, maxPrice, minBedrooms, minSqm, maxSqm, postcode, radius, article4Filter]);
 
   // Show popup when search completes with no results
   useEffect(() => {
@@ -203,10 +205,39 @@ export default function HeroSection({ onSearch, isLoading, searchResults }: Hero
                 <input 
                   type="text"
                   value={postcode}
-                  onChange={(e) => setPostcode(e.target.value)}
-                  placeholder="e.g. SW1A 1AA"
-                  className="w-full h-12 text-base border-2 border-gray-200 hover:border-blue-400 focus:border-blue-500 transition-colors rounded-xl px-4 bg-white"
+                  onChange={(e) => setPostcode(e.target.value.toUpperCase())}
+                  placeholder="e.g. SW1A 1AA or SW1A"
+                  className="w-full h-12 text-base border-2 border-gray-200 hover:border-blue-400 focus:border-blue-500 transition-colors rounded-xl px-4 bg-white uppercase"
+                  data-testid="input-postcode"
                 />
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-gray-800 mb-3 flex items-center gap-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  Radius (miles)
+                </label>
+                <select 
+                  value={radius || ""}
+                  onChange={(e) => setRadius(e.target.value ? parseFloat(e.target.value) : undefined)}
+                  className="w-full h-12 text-base border-2 border-gray-200 hover:border-green-400 focus:border-green-500 transition-colors rounded-xl px-4 bg-white"
+                  disabled={!postcode.trim()}
+                  data-testid="select-radius"
+                >
+                  <option value="">No radius filter</option>
+                  <option value="0.25">0.25 miles</option>
+                  <option value="0.5">0.5 miles</option>
+                  <option value="1">1 mile</option>
+                  <option value="2">2 miles</option>
+                  <option value="3">3 miles</option>
+                  <option value="5">5 miles</option>
+                  <option value="10">10 miles</option>
+                  <option value="15">15 miles</option>
+                  <option value="20">20 miles</option>
+                </select>
+                {!postcode.trim() && (
+                  <p className="text-xs text-gray-500 mt-1">Enter a postcode to enable radius search</p>
+                )}
               </div>
             </div>
 

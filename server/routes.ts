@@ -9,6 +9,7 @@ import { CacheDatabase } from "./services/cache-database";
 import { estimatePropertyMetrics, scenarioReport, type PropertyData, type Assumptions } from "./services/property-estimation";
 import { predictPropertySize, extractReceptionsFromText } from "./services/property-size-predictor";
 import { enhancedArticle4Service } from "./services/enhanced-article4-service";
+import { PostcodeGeocoder } from "./services/postcode-geocoder";
 import { searchFiltersSchema } from "@shared/schema";
 import { z } from "zod";
 
@@ -278,7 +279,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Get cached property listings (Quick cache search - cache je glavna baza!)
   app.get("/api/properties", async (req, res) => {
     try {
-      const { city, max_price, min_bedrooms, min_sqm, max_sqm, postcode, keywords, hmo_candidate, article4_filter, page, limit, shuffle } = req.query;
+      const { city, max_price, min_bedrooms, min_sqm, max_sqm, postcode, radius, keywords, hmo_candidate, article4_filter, page, limit, shuffle } = req.query;
       
       // Konvertuj max_price string u integer (1.5M -> 1500000)
       const parsePrice = (priceStr: string): number => {
@@ -335,6 +336,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       // Get ALL properties first (without article4_filter - will apply after enrichment)
       let allProperties = await CacheDatabase.searchProperties(filters);
+      
+      // Apply radius filter ONLY if both postcode AND radius are provided
+      // This is applied BEFORE pagination to improve performance
+      if (postcode && radius) {
+        const radiusMiles = parseFloat(radius as string);
+        if (!isNaN(radiusMiles) && radiusMiles > 0) {
+          console.log(`🎯 Applying radius filter: ${radiusMiles} miles from ${postcode}`);
+          allProperties = await PostcodeGeocoder.filterPropertiesByRadius(
+            allProperties,
+            postcode as string,
+            radiusMiles
+          );
+          console.log(`📍 After radius filter: ${allProperties.length} properties`);
+        }
+      }
       
       // Helper functions for property type extraction and sorting
       const getPropertyTypeFromTitle = (title: string): string => {
