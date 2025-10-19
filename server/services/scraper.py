@@ -41,6 +41,21 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 from bs4 import BeautifulSoup, Tag
 
+# Import Article 4 helper for cache-based filtering
+try:
+    import sys
+    import os
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    if script_dir not in sys.path:
+        sys.path.insert(0, script_dir)
+    from article4_helper import is_article4_area as check_article4_cached
+    USE_ARTICLE4_CACHE = True
+    print("✅ Article 4 cache-based filtering enabled", file=sys.stderr, flush=True)
+except ImportError as e:
+    print(f"⚠️ Article 4 cache not available, using fallback: {e}", file=sys.stderr, flush=True)
+    USE_ARTICLE4_CACHE = False
+    check_article4_cached = None
+
 
 # ---------- Config & helpers ----------
 
@@ -299,7 +314,16 @@ def is_article4_area(address, postcode=None):
     """
     Determine if a property is in an Article 4 area (HMO planning restrictions).
     Returns True if property IS in Article 4 area (should be filtered out).
+    Uses cache-based detection when available for maximum accuracy.
     """
+    # Try cache-based detection first (most accurate)
+    if USE_ARTICLE4_CACHE and check_article4_cached:
+        try:
+            return check_article4_cached(address, postcode)
+        except Exception as e:
+            print(f"⚠️ Cache check failed, using fallback: {e}", file=sys.stderr, flush=True)
+    
+    # Fallback to pattern-based detection
     if not address:
         return False
         

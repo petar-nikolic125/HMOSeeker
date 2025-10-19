@@ -2,6 +2,7 @@ import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import { PythonSetup } from "./services/python-setup";
+import { article4CronService } from "./services/article4-cron";
 
 const app = express();
 app.use(express.json());
@@ -47,6 +48,9 @@ app.use((req, res, next) => {
   }
 
   const server = await registerRoutes(app);
+
+  // Start Article 4 cache refresh cron job
+  article4CronService.start();
 
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
     const status = err.status || err.statusCode || 500;

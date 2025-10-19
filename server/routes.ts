@@ -10,6 +10,8 @@ import { estimatePropertyMetrics, scenarioReport, type PropertyData, type Assump
 import { predictPropertySize, extractReceptionsFromText } from "./services/property-size-predictor";
 import { enhancedArticle4Service } from "./services/enhanced-article4-service";
 import { PostcodeGeocoder } from "./services/postcode-geocoder";
+import { article4CacheService } from "./services/article4-cache";
+import { article4CronService } from "./services/article4-cron";
 import { searchFiltersSchema } from "@shared/schema";
 import { z } from "zod";
 
@@ -185,6 +187,61 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({
         success: false,
         error: error instanceof Error ? error.message : "Batch check failed"
+      });
+    }
+  });
+
+  // Article 4 Cache Management Endpoints
+  app.get("/api/article4-cache/stats", async (req, res) => {
+    try {
+      const stats = await article4CacheService.getStats();
+      res.json({
+        success: true,
+        ...stats
+      });
+    } catch (error) {
+      console.error("❌ Failed to get cache stats:", error);
+      res.status(500).json({
+        success: false,
+        error: "Failed to get cache statistics"
+      });
+    }
+  });
+
+  app.post("/api/article4-cache/refresh", async (req, res) => {
+    try {
+      await article4CronService.manualRefresh();
+      const stats = await article4CacheService.getStats();
+      res.json({
+        success: true,
+        message: "Cache refreshed successfully",
+        ...stats
+      });
+    } catch (error) {
+      console.error("❌ Failed to refresh cache:", error);
+      res.status(500).json({
+        success: false,
+        error: error instanceof Error ? error.message : "Failed to refresh cache"
+      });
+    }
+  });
+
+  app.get("/api/article4-cache/check/:postcode", async (req, res) => {
+    try {
+      const { postcode } = req.params;
+      const isArticle4 = await article4CacheService.isArticle4Area(postcode);
+      
+      res.json({
+        success: true,
+        postcode,
+        inArticle4: isArticle4,
+        source: "cache"
+      });
+    } catch (error) {
+      console.error("❌ Cache check failed:", error);
+      res.status(500).json({
+        success: false,
+        error: "Failed to check cache"
       });
     }
   });
