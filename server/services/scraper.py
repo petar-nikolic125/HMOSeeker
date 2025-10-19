@@ -31,11 +31,14 @@ import time
 import math
 import random
 import hashlib
+from collections import deque
 from datetime import datetime, timedelta
 from urllib.parse import urljoin, quote_plus
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 from bs4 import BeautifulSoup, Tag
 
 
@@ -131,6 +134,13 @@ def rand_delay(a=0.1, b=0.3):
     time.sleep(random.uniform(a, b))
 
 
+# ---------- Tunables (ENV) ----------
+ARTICLE4_MODE = (os.getenv("ARTICLE4_MODE", "relaxed") or "relaxed").lower()
+PROPERTY_PATHS = [p.strip() for p in (os.getenv("PL_TYPES", "property,houses,flats") or "property").split(",") if p.strip()]
+MAX_LIST_PAGES_TOTAL = as_int(os.getenv("PL_MAX_PAGES_TOTAL", 200), 200)
+STOP_AFTER_EMPTY_PAGES = as_int(os.getenv("PL_EMPTY_PAGE_STOP", 5), 5)
+
+
 # ---------- Session & anti-403 ----------
 
 def setup_session():
@@ -140,7 +150,7 @@ def setup_session():
         "User-Agent": ua,
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
         "Accept-Language": "en-GB,en-US;q=0.9,en;q=0.8",
-        "Accept-Encoding": "gzip, deflate, br, zstd",
+        "Accept-Encoding": "gzip, deflate",
         "Upgrade-Insecure-Requests": "1",
         "Sec-Fetch-Dest": "document",
         "Sec-Fetch-Mode": "navigate",
@@ -150,6 +160,18 @@ def setup_session():
         "DNT": "1",
         "Connection": "keep-alive",
     })
+    
+    # Robust HTTP adapter with retry logic
+    retries = Retry(
+        total=3,
+        backoff_factor=0.5,
+        status_forcelist=[429, 500, 502, 503, 504],
+        allowed_methods=frozenset(["GET"]),
+        raise_on_status=False,
+    )
+    adapter = HTTPAdapter(max_retries=retries, pool_connections=64, pool_maxsize=64)
+    s.mount("https://", adapter)
+    s.mount("http://", adapter)
 
     # realistic-ish cookies
     timestamp = int(time.time())
@@ -307,10 +329,13 @@ def is_article4_area(address, postcode=None):
         if re.search(rf"\b{re.escape(city.lower())}\b", addr_lower):
             return True
     
-    # Special case: if address contains "london" but no specific borough identified,
-    # assume it might be in an Article 4 area (safer to exclude)
-    if " london" in addr_lower:
-        return True
+    # London fallback policy by mode
+    if " london" in addr_lower or addr_lower.startswith("london"):
+        if ARTICLE4_MODE == "strict":
+            return True
+        elif ARTICLE4_MODE == "off":
+            return False
+        # 'relaxed' mode - only borough/postcode matches above decide
     
     return False
 
@@ -402,8 +427,8 @@ def build_search_urls(city, min_beds, max_price, filters):
 
     urls = []
 
-    # Primary pattern
-    pattern = f"https://www.primelocation.com/for-sale/property/{city_slug}/"
+    # Multiple feed paths to discover more listings
+    patterns = [f"https://www.primelocation.com/for-sale/{path}/{city_slug}/" for path in PROPERTY_PATHS]
 
     # Optionally try multiple sort orders to surface different subsets
     expand_sorts = os.getenv("PL_EXPAND_SORTS", "0") == "1"
@@ -414,13 +439,14 @@ def build_search_urls(city, min_beds, max_price, filters):
     # Distribute pages across sorts so we don't request the same page repeatedly
     pages_per_sort = max(1, math.ceil(max_pages / len(sort_modes)))
 
-    for sort in sort_modes:
-        params = qs_base + f"&results_sort={quote_plus(sort)}"
-        for pn in range(1, pages_per_sort + 1):
-            if pn == 1:
-                urls.append(f"{pattern}?{params}")
-            else:
-                urls.append(f"{pattern}?{params}&pn={pn}")
+    for pattern in patterns:
+        for sort in sort_modes:
+            params = qs_base + f"&results_sort={quote_plus(sort)}"
+            for pn in range(1, pages_per_sort + 1):
+                if pn == 1:
+                    urls.append(f"{pattern}?{params}")
+                else:
+                    urls.append(f"{pattern}?{params}&pn={pn}")
 
     # Add a couple fallback first-page patterns to increase coverage
     fallbacks = [
@@ -549,11 +575,55 @@ def collect_detail_links(listing_html):
     return links
 
 
-# ---------- Details page parsing (unchanged core, with small robustness tweaks) ----------
+def discover_more_pages(listing_html, current_url):
+    """Discover additional listing pages: next/related/nearby."""
+    soup = BeautifulSoup(listing_html, "html.parser")
+    extra = []
+    
+    # rel=next link
+    nxt = soup.find("a", attrs={"rel": "next"})
+    if nxt and nxt.get("href"):
+        extra.append(urljoin("https://www.primelocation.com", nxt.get("href")))
+    
+    # fallback: link with text "Next" and contains &pn=
+    for a in soup.find_all("a", href=True):
+        txt = a.get_text(" ", strip=True).lower()
+        href = a["href"]
+        if "next" in txt and "pn=" in href:
+            extra.append(urljoin("https://www.primelocation.com", href))
+    
+    # related/nearby search links (conservative)
+    for a in soup.select("a[href*='/for-sale/']"):
+        href = safe_get_attr(a, "href")
+        if not href:
+            continue
+        u = urljoin("https://www.primelocation.com", href)
+        if "/for-sale/" in u and "q=" in u:
+            extra.append(u)
+    
+    # de-dup
+    return list(dict.fromkeys(extra))
+
+
+# ---------- Details page parsing (enhanced with JSON-LD) ----------
 
 def parse_details(detail_html):
     soup = BeautifulSoup(detail_html, "html.parser")
     text = soup.get_text(" ", strip=True)
+
+    # JSON-LD attempt for reliable data extraction
+    ld = {}
+    for s in soup.find_all("script", type="application/ld+json"):
+        try:
+            data = json.loads(s.get_text() or "{}")
+        except Exception:
+            continue
+        candidates = data if isinstance(data, list) else [data]
+        for obj in candidates:
+            if not isinstance(obj, dict):
+                continue
+            if obj.get("@type") in ("Product", "Offer", "Residence", "House", "Apartment", "SingleFamilyResidence"):
+                ld.update(obj)
 
     address = None
     h1 = soup.find("h1")
@@ -573,11 +643,52 @@ def parse_details(detail_html):
             content = safe_get_attr(mt, "content")
             if content:
                 address = str(content)
+    if not address and isinstance(ld.get("name"), str):
+        address = ld.get("name")
 
-    price = extract_price(text)
-    bedrooms = extract_first_int(BED_RE, text) or None
-    bathrooms = extract_first_int(BATH_RE, text) or None
-    postcode = extract_postcode(address or text)
+    # price from LD → fallback to text
+    price = None
+    offers = ld.get("offers") if isinstance(ld.get("offers"), dict) else None
+    if offers:
+        p = offers.get("price") or offers.get("lowPrice") or offers.get("highPrice")
+        if p:
+            try:
+                price = int(re.sub(r"[^\d]", "", str(p)))
+            except Exception:
+                price = None
+    if price is None:
+        price = extract_price(text)
+
+    # bedrooms from LD → fallback regex
+    bedrooms = None
+    for key in ("numberOfBedrooms", "bedrooms", "numberOfRooms"):
+        v = ld.get(key)
+        try:
+            bedrooms = int(v)
+            break
+        except Exception:
+            pass
+    if bedrooms is None:
+        bedrooms = extract_first_int(BED_RE, text) or None
+
+    # bathrooms from LD → fallback regex
+    bathrooms = None
+    for key in ("numberOfBathroomsTotal", "bathrooms"):
+        v = ld.get(key)
+        try:
+            bathrooms = int(v)
+            break
+        except Exception:
+            pass
+    if bathrooms is None:
+        bathrooms = extract_first_int(BATH_RE, text) or None
+
+    # postcode from LD → fallback regex
+    postcode = None
+    if isinstance(ld.get("address"), dict):
+        postcode = ld["address"].get("postalCode")
+    if not postcode:
+        postcode = extract_postcode(address or text)
 
     image_url = None
     og_image = soup.find("meta", attrs={"property": "og:image"})
@@ -650,30 +761,56 @@ def scrape_primelocation(city, min_bedrooms, max_price, keywords_blob):
     for i, url in enumerate(urls, 1):
         print(f"  {i}. {url}", file=sys.stderr)
 
-    # 2) Visit search pages and collect links (serial - cheaper for anti-bot)
+    # 2) Visit listing pages - BFS with dynamic expansion
     all_detail_links = []
     session = setup_session()
     failed_attempts = 0
-    for i, u in enumerate(urls, 1):
+    seen_list_pages = set()
+    q = deque(urls)
+    empty_in_a_row = 0
+    page_counter = 0
+    
+    while q and len(all_detail_links) < target_min_results and len(seen_list_pages) < MAX_LIST_PAGES_TOTAL:
+        u = q.popleft()
+        if u in seen_list_pages:
+            continue
+        seen_list_pages.add(u)
+        page_counter += 1
+        
         try:
-            print(f"  📄 Fetching search page {i}/{len(urls)}: {u}", file=sys.stderr)
+            print(f"  📄 Fetching listing page #{page_counter}: {u}", file=sys.stderr)
             html = get_html(session, u, proxies_list)
             links = collect_detail_links(html)
-            print(f"    Found {len(links)} property links on page {i}", file=sys.stderr)
+            print(f"    Found {len(links)} property links", file=sys.stderr)
             all_detail_links.extend(links)
-            # preserve order, de-dupe
             all_detail_links = list(dict.fromkeys(all_detail_links))
             print(f"    Total unique links so far: {len(all_detail_links)}", file=sys.stderr)
+            
+            # Dynamically discover additional listing pages
+            extra_pages = discover_more_pages(html, u)
+            newly_enqueued = 0
+            for nu in extra_pages:
+                if nu not in seen_list_pages:
+                    q.append(nu)
+                    newly_enqueued += 1
+            if newly_enqueued:
+                print(f"    ➕ Discovered {newly_enqueued} more listing pages", file=sys.stderr)
+            
             failed_attempts = 0
-            # polite pause
             rand_delay(0.2, 0.6)
-            # Continue collecting until we have enough links for target properties per city
-            if len(all_detail_links) >= target_min_results:  # Stop when we have enough links
-                print(f"✅ Collected {len(all_detail_links)} links; sufficient for {target_min_results} property target per city", file=sys.stderr)
-                break
+            
+            # Early stopping heuristic if pages are dry
+            if len(links) == 0:
+                empty_in_a_row += 1
+                if empty_in_a_row >= STOP_AFTER_EMPTY_PAGES:
+                    print(f"🛑 No links on {STOP_AFTER_EMPTY_PAGES} consecutive pages - stopping discovery", file=sys.stderr)
+                    break
+            else:
+                empty_in_a_row = 0
+                
         except Exception as e:
             failed_attempts += 1
-            print(f"❌ Error on search page {i}: {str(e)}", file=sys.stderr)
+            print(f"❌ Error on listing page #{page_counter}: {str(e)}", file=sys.stderr)
             if failed_attempts >= 3 and len(all_detail_links) == 0:
                 print(f"🔄 Primary URLs failing, trying simpler fallbacks...", file=sys.stderr)
                 fallback_urls = build_search_urls(city, min_beds, max_price_int, {**filters})

@@ -1,0 +1,300 @@
+@@
+-import requests
++import requests
++from collections import deque
++from requests.adapters import HTTPAdapter
++from urllib3.util.retry import Retry
+@@
+ USER_AGENTS = [
+@@
+ ]
+ 
++# ——— Tunables (ENV) ———
++ARTICLE4_MODE = (os.getenv("ARTICLE4_MODE", "relaxed") or "relaxed").lower()  # strict | relaxed | off
++PROPERTY_PATHS = [p.strip() for p in (os.getenv("PL_TYPES", "property,houses,flats") or "property").split(",") if p.strip()]
++MAX_LIST_PAGES_TOTAL = as_int(os.getenv("PL_MAX_PAGES_TOTAL", 200), 200)  # ograniči ukupno listing-stranica po gradu
++STOP_AFTER_EMPTY_PAGES = as_int(os.getenv("PL_EMPTY_PAGE_STOP", 5), 5)    # prekini kad X uzastopnih strana vrati 0 linkova
++
+@@
+ def setup_session():
+     s = requests.Session()
+     ua = random.choice(USER_AGENTS)
+     s.headers.update({
+         "User-Agent": ua,
+         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+         "Accept-Language": "en-GB,en-US;q=0.9,en;q=0.8",
+-        "Accept-Encoding": "gzip, deflate, br, zstd",
++        # Izbegni br/zstd osim ako imaš dodatne pakete; gzip/deflate su safe u Requests
++        "Accept-Encoding": "gzip, deflate",
+         "Upgrade-Insecure-Requests": "1",
+         "Sec-Fetch-Dest": "document",
+         "Sec-Fetch-Mode": "navigate",
+         "Sec-Fetch-Site": "none",
+         "Sec-Fetch-User": "?1",
+         "Cache-Control": "max-age=0",
+         "DNT": "1",
+         "Connection": "keep-alive",
+     })
++    # Robustniji HTTP adapter sa retry-jem
++    retries = Retry(
++        total=3,
++        backoff_factor=0.5,
++        status_forcelist=[429, 500, 502, 503, 504],
++        allowed_methods=frozenset(["GET"]),
++        raise_on_status=False,
++    )
++    adapter = HTTPAdapter(max_retries=retries, pool_connections=64, pool_maxsize=64)
++    s.mount("https://", adapter)
++    s.mount("http://", adapter)
+@@
+ def build_search_urls(city, min_beds, max_price, filters):
+     city_slug = slug_city(city)
+     q = filters.get("postcode") or get_search_query_for_city(city)
+     max_pages = as_int(os.getenv("PL_MAX_PAGES", 50), 50)
+     page_size = as_int(os.getenv("PL_PAGE_SIZE", 100), 100)
+@@
+-    pattern = f"https://www.primelocation.com/for-sale/property/{city_slug}/"
++    # Više feed-ova: /property, /houses, /flats ...
++    # Ovo otkriva dodatne skupove koji se ne pojavljuju nužno na /property/
++    patterns = [f"https://www.primelocation.com/for-sale/{path}/{city_slug}/" for path in PROPERTY_PATHS]
+@@
+-    sort_modes = ["highest_price"]
++    sort_modes = ["highest_price"]
+     if expand_sorts:
+-        sort_modes = ["highest_price", "newest", "lowest_price"]
++        sort_modes = ["highest_price", "newest", "lowest_price"]  # sigurni sortovi
+@@
+-    for sort in sort_modes:
+-        params = qs_base + f"&results_sort={quote_plus(sort)}"
+-        for pn in range(1, pages_per_sort + 1):
+-            if pn == 1:
+-                urls.append(f"{pattern}?{params}")
+-            else:
+-                urls.append(f"{pattern}?{params}&pn={pn}")
++    for pattern in patterns:
++        for sort in sort_modes:
++            params = qs_base + f"&results_sort={quote_plus(sort)}"
++            for pn in range(1, pages_per_sort + 1):
++                if pn == 1:
++                    urls.append(f"{pattern}?{params}")
++                else:
++                    urls.append(f"{pattern}?{params}&pn={pn}")
+@@
+     return final
+@@
+ def parse_details(detail_html):
+     soup = BeautifulSoup(detail_html, "html.parser")
+     text = soup.get_text(" ", strip=True)
+ 
++    # —— JSON-LD pokušaj (pouzdan izvor za price/bedrooms/postcode) ——
++    ld = {}
++    for s in soup.find_all("script", type="application/ld+json"):
++        try:
++            data = json.loads(s.get_text() or "{}")
++        except Exception:
++            continue
++        candidates = data if isinstance(data, list) else [data]
++        for obj in candidates:
++            if not isinstance(obj, dict):
++                continue
++            if obj.get("@type") in ("Product","Offer","Residence","House","Apartment","SingleFamilyResidence"):
++                ld.update(obj)
++
+     address = None
+     h1 = soup.find("h1")
+     if h1:
+         at = h1.get_text(" ", strip=True)
+         if at and len(at) > 8:
+             address = at
+     if not address:
+         mt = soup.find("meta", attrs={"property": "og:title"})
+         if mt:
+             content = safe_get_attr(mt, "content")
+             if content:
+                 address = str(content)
+     if not address:
+         mt = soup.find("meta", attrs={"name": "twitter:title"})
+         if mt:
+             content = safe_get_attr(mt, "content")
+             if content:
+                 address = str(content)
++    if not address and isinstance(ld.get("name"), str):
++        address = ld.get("name")
+ 
+-    price = extract_price(text)
+-    bedrooms = extract_first_int(BED_RE, text) or None
+-    bathrooms = extract_first_int(BATH_RE, text) or None
+-    postcode = extract_postcode(address or text)
++    # price iz LD → fallback na tekst
++    price = None
++    offers = ld.get("offers") if isinstance(ld.get("offers"), dict) else None
++    if offers:
++        p = offers.get("price") or offers.get("lowPrice") or offers.get("highPrice")
++        if p:
++            try:
++                price = int(re.sub(r"[^\d]", "", str(p)))
++            except Exception:
++                price = None
++    if price is None:
++        price = extract_price(text)
++
++    # bedrooms/bathrooms iz LD → fallback regex
++    bedrooms = None
++    for key in ("numberOfBedrooms", "bedrooms", "numberOfRooms"):
++        v = ld.get(key)
++        try:
++            bedrooms = int(v)
++            break
++        except Exception:
++            pass
++    if bedrooms is None:
++        bedrooms = extract_first_int(BED_RE, text) or None
++
++    bathrooms = None
++    for key in ("numberOfBathroomsTotal", "bathrooms"):
++        v = ld.get(key)
++        try:
++            bathrooms = int(v)
++            break
++        except Exception:
++            pass
++    if bathrooms is None:
++        bathrooms = extract_first_int(BATH_RE, text) or None
++
++    postcode = None
++    if isinstance(ld.get("address"), dict):
++        postcode = ld["address"].get("postalCode")
++    if not postcode:
++        postcode = extract_postcode(address or text)
+@@
+     return {
+         "address": address,
+         "postcode": postcode,
+         "price": price,
+         "bedrooms": bedrooms,
+         "bathrooms": bathrooms,
+         "image_url": image_url,
+         "description": desc,
+     }
+@@
++def discover_more_pages(listing_html, current_url):
++    """Otkrivaj dodatne listing-stranice: next/related/nearby."""
++    soup = BeautifulSoup(listing_html, "html.parser")
++    extra = []
++    # rel=next
++    nxt = soup.find("a", attrs={"rel": "next"})
++    if nxt and nxt.get("href"):
++        extra.append(urljoin("https://www.primelocation.com", nxt.get("href")))
++    # fallback: link čiji je text "Next" i sadrži &pn=
++    for a in soup.find_all("a", href=True):
++        txt = a.get_text(" ", strip=True).lower()
++        href = a["href"]
++        if "next" in txt and "pn=" in href:
++            extra.append(urljoin("https://www.primelocation.com", href))
++    # related/nearby search linkovi (konzervativno)
++    for a in soup.select("a[href*='/for-sale/']"):
++        href = safe_get_attr(a, "href")
++        if not href:
++            continue
++        u = urljoin("https://www.primelocation.com", href)
++        if "/for-sale/" in u and "q=" in u:
++            extra.append(u)
++    # de-dup
++    return list(dict.fromkeys(extra))
+@@
+ def is_article4_area(address, postcode=None):
+@@
+-    # Special case: if address contains "london" but no specific borough identified,
+-    # assume it might be in an Article 4 area (safer to exclude)
+-    if " london" in addr_lower:
+-        return True
++    # London fallback politika po modu
++    if " london" in addr_lower or addr_lower.startswith("london"):
++        if ARTICLE4_MODE == "strict":
++            return True
++        elif ARTICLE4_MODE == "off":
++            return False
++        # 'relaxed' → samo borough/postcode matchevi iznad odlučuju
+ 
+     return False
+@@
+ def scrape_primelocation(city, min_bedrooms, max_price, keywords_blob):
+@@
+-    # 2) Visit search pages and collect links (serial - cheaper for anti-bot)
+-    all_detail_links = []
+-    session = setup_session()
+-    failed_attempts = 0
+-    for i, u in enumerate(urls, 1):
++    # 2) Visit listing pages — BFS sa dinamičkom ekspanzijom (više otkrivenih linkova)
++    all_detail_links = []
++    session = setup_session()
++    failed_attempts = 0
++    seen_list_pages = set()
++    q = deque(urls)
++    empty_in_a_row = 0
++    page_counter = 0
++    while q and len(all_detail_links) < target_min_results and len(seen_list_pages) < MAX_LIST_PAGES_TOTAL:
++        u = q.popleft()
++        if u in seen_list_pages:
++            continue
++        seen_list_pages.add(u)
++        page_counter += 1
+         try:
+-            print(f"  📄 Fetching search page {i}/{len(urls)}: {u}", file=sys.stderr)
++            print(f"  📄 Fetching listing page #{page_counter}: {u}", file=sys.stderr)
+             html = get_html(session, u, proxies_list)
+             links = collect_detail_links(html)
+-            print(f"    Found {len(links)} property links on page {i}", file=sys.stderr)
++            print(f"    Found {len(links)} property links", file=sys.stderr)
+             all_detail_links.extend(links)
+             # preserve order, de-dupe
+             all_detail_links = list(dict.fromkeys(all_detail_links))
+-            print(f"    Total unique links so far: {len(all_detail_links)}", file=sys.stderr)
++            print(f"    Total unique links so far: {len(all_detail_links)}", file=sys.stderr)
++            # Dinamički otkrij dodatne listing-stranice
++            extra_pages = discover_more_pages(html, u)
++            newly_enqueued = 0
++            for nu in extra_pages:
++                if nu not in seen_list_pages:
++                    q.append(nu)
++                    newly_enqueued += 1
++            if newly_enqueued:
++                print(f"    ➕ Discovered {newly_enqueued} more listing pages", file=sys.stderr)
+             failed_attempts = 0
+             # polite pause
+             rand_delay(0.2, 0.6)
+-            # Continue collecting until we have enough links for target properties per city
+-            if len(all_detail_links) >= target_min_results:  # Stop when we have enough links
+-                print(f"✅ Collected {len(all_detail_links)} links; sufficient for {target_min_results} property target per city", file=sys.stderr)
+-                break
++            # heuristika za rano zaustavljanje ako “suvo”
++            if len(links) == 0:
++                empty_in_a_row += 1
++                if empty_in_a_row >= STOP_AFTER_EMPTY_PAGES:
++                    print(f"🛑 No links on {STOP_AFTER_EMPTY_PAGES} consecutive pages — stopping discovery", file=sys.stderr)
++                    break
++            else:
++                empty_in_a_row = 0
+         except Exception as e:
+             failed_attempts += 1
+-            print(f"❌ Error on search page {i}: {str(e)}", file=sys.stderr)
++            print(f"❌ Error on listing page #{page_counter}: {str(e)}", file=sys.stderr)
+             if failed_attempts >= 3 and len(all_detail_links) == 0:
+                 print(f"🔄 Primary URLs failing, trying simpler fallbacks...", file=sys.stderr)
+                 fallback_urls = build_search_urls(city, min_beds, max_price_int, {**filters})
+                 for j, fallback_url in enumerate(fallback_urls[:3]):
+                     try:
+                         print(f"  🔄 Trying fallback {j+1}: {fallback_url}", file=sys.stderr)
+                         html = get_html(session, fallback_url, proxies_list)
+                         links = collect_detail_links(html)
+                         if links:
+                             print(f"    ✅ Fallback successful! Found {len(links)} links", file=sys.stderr)
+                             all_detail_links.extend(links)
+                             break
+                     except Exception as fe:
+                         print(f"    ❌ Fallback {j+1} failed: {str(fe)}", file=sys.stderr)
+                         continue
+             continue
+@@
+-    workers = as_int(os.getenv("PL_WORKERS", 8), 8)
++    workers = as_int(os.getenv("PL_WORKERS", 12), 12)  # malo veći default

@@ -186,9 +186,21 @@ export class ScraperManager {
       
       console.log('Spawning Python process with args:', args);
       const pythonProcess = spawn(this.PYTHON_CMD, args, {
-       // cwd: __dirname,
+        // cwd: __dirname,
         timeout: this.DEFAULT_TIMEOUT,
-        env,
+        env: {
+          ...env,
+          // Default wider scraping parameters
+          PL_EXPAND_SORTS: env.PL_EXPAND_SORTS || "1",
+          PL_TYPES: env.PL_TYPES || "property,houses,flats",
+          PL_MAX_PAGES_TOTAL: env.PL_MAX_PAGES_TOTAL || "400",
+          PL_MIN_RESULTS: env.PL_MIN_RESULTS || "8000",
+          PL_WORKERS: env.PL_WORKERS || "12",
+          ARTICLE4_MODE: env.ARTICLE4_MODE || "relaxed",
+          REQUESTS_TIMEOUT: env.REQUESTS_TIMEOUT || "25",
+          PL_PAGE_SIZE: env.PL_PAGE_SIZE || "100",
+          PL_MAX_PAGES: env.PL_MAX_PAGES || "60",
+        },
       });
 
       let stdout = "";
