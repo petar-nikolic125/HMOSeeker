@@ -12,6 +12,16 @@ HMO Hunter is a full-stack property investment analysis application built with R
 
 ## Recent Changes
 
+### October 19, 2025 - Postcode Autocomplete & City/Address Radius Search
+- ✅ **Postcode autocomplete**: Shows outcode suggestions (e.g., "M7" when typing "M7 3PG")
+- ✅ **City name support**: Radius search now works with city names (e.g., "5 miles from Manchester")
+- ✅ **Address support**: Radius search accepts full addresses via Nominatim geocoding
+- ✅ **Rate limiting**: Respects Nominatim's 1 req/sec policy with built-in throttling
+- ✅ **Smart debouncing**: 1.5s delay for location searches, 300ms for other filters
+- ✅ **Geocoding APIs**: Uses postcodes.io for UK postcodes, Nominatim (OSM) for cities/addresses
+- ✅ **Performance**: Caches all geocoding results, limits radius searches to 100 properties
+- ✅ **UI improvements**: Updated label to "Postcode or City", new placeholder text
+
 ### October 16, 2025 - Automatic Article 4 Enrichment for All Properties
 - ✅ **Automatic Article 4 checking**: All property listings now automatically get Article 4 status via Article4Maps API
 - ✅ **Smart enrichment**: Only enriches paginated slice (20 properties) instead of full dataset for optimal performance
@@ -54,9 +64,13 @@ HMO Hunter is a full-stack property investment analysis application built with R
 - **Framework**: Express.js with TypeScript
 - **Database**: Drizzle ORM with PostgreSQL schema (currently using in-memory storage)
 - **Python Integration**: Property scraping with BeautifulSoup, requests, lxml
+- **Geocoding Services**: 
+  - postcodes.io for UK postcodes (free, no key needed)
+  - Nominatim (OpenStreetMap) for city names and addresses (rate-limited to 1 req/sec)
+  - Intelligent caching and rate limiting
 - **Article 4 Service**: Article4Maps API integration (single source of truth, 99.9% accuracy)
-- **Services**: Property analysis, cache management
-- **APIs**: RESTful endpoints for property search and analysis
+- **Services**: Property analysis, cache management, postcode geocoding
+- **APIs**: RESTful endpoints for property search, analysis, and postcode suggestions
 
 ### Shared (`shared/`)
 - **Schema**: Drizzle database schema with Zod validation
@@ -64,10 +78,12 @@ HMO Hunter is a full-stack property investment analysis application built with R
 
 ## Key Features
 1. **Property Search**: Multi-city property search with price and bedroom filters
-2. **Article 4 Checking**: Real-time HMO licensing restriction checks via Article4Maps API (99.9% accuracy)
-3. **Investment Analysis**: Rental yield calculations and property analysis
-4. **Data Caching**: Extensive property data cached from PrimeLocation and other sources
-5. **Responsive UI**: Modern interface with dark/light theme support
+2. **Radius Search**: Distance-based search supporting postcodes (M7, SW1A 1AA), city names (Manchester), and addresses
+3. **Postcode Autocomplete**: Smart suggestions showing outcodes when typing full postcodes
+4. **Article 4 Checking**: Real-time HMO licensing restriction checks via Article4Maps API (99.9% accuracy)
+5. **Investment Analysis**: Rental yield calculations and property analysis
+6. **Data Caching**: Extensive property data cached from PrimeLocation and other sources
+7. **Responsive UI**: Modern interface with dark/light theme support
 
 ## Configuration
 - **Host Configuration**: Properly configured for Replit with `allowedHosts: true`
