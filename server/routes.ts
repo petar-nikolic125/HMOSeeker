@@ -1153,7 +1153,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     });
   });
 
-  // Bulk insert properties endpoint (for cache population)
+  // Bulk insert endpoint (not needed - scraper saves directly to cache files)
   app.post("/api/properties/bulk-insert", async (req, res) => {
     try {
       const { properties } = req.body;
@@ -1165,47 +1165,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
 
-      console.log(`📥 Bulk inserting ${properties.length} properties...`);
-      
-      // Transform to storage format
-      const propertyListings = properties.map((prop: any) => ({
-        source: prop.source || 'primelocation',
-        title: prop.title || 'Property Listing',
-        address: prop.address || '',
-        price: prop.price || 0,
-        bedrooms: prop.bedrooms || 0,
-        bathrooms: prop.bathrooms || 0,
-        area_sqm: prop.area_sqm || null,
-        description: prop.description || '',
-        property_url: prop.property_url || '',
-        image_url: prop.image_url || '',
-        listing_id: prop.listing_id || `bulk-${Date.now()}-${Math.random()}`,
-        property_type: prop.property_type || 'house',
-        tenure: prop.tenure || null,
-        postcode: prop.postcode || '',
-        agent_name: prop.agent_name || null,
-        agent_phone: prop.agent_phone || null,
-        agent_url: prop.agent_url || null,
-        latitude: prop.latitude || null,
-        longitude: prop.longitude || null,
-        date_listed: prop.date_listed || null,
-      }));
-
-      const saved = await storage.createPropertyListings(propertyListings);
-      
-      console.log(`✅ Successfully saved ${saved.length} properties to database`);
+      // Not needed - the scraper already saves to cache files
+      console.log(`ℹ️ Bulk insert not needed - properties are saved to cache files automatically`);
       
       res.json({
         success: true,
-        saved_count: saved.length,
-        message: `Successfully saved ${saved.length} properties`
+        saved_count: properties.length,
+        message: `${properties.length} properties already saved to cache files by scraper`
       });
       
     } catch (error) {
-      console.error("Bulk insert failed:", error);
+      console.error("Bulk insert endpoint error:", error);
       res.status(500).json({
         success: false,
-        error: "Failed to save properties to database"
+        error: "Error processing request"
       });
     }
   });
