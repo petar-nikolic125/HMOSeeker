@@ -17,7 +17,7 @@ export default function HeroSection({ onSearch, isLoading, searchResults }: Hero
   const [maxSqm, setMaxSqm] = useState<number | undefined>(undefined);
   const [postcode, setPostcode] = useState<string>("");
 
-  const [article4Filter, setArticle4Filter] = useState<"all" | "non_article4" | "article4_only">("non_article4");
+  const [article4Filter, setArticle4Filter] = useState<"all" | "non_article4" | "article4_only">("article4_only");
   const { toast } = useToast();
   const [lastSearchFilters, setLastSearchFilters] = useState<SearchFilters | null>(null);
 

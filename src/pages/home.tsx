@@ -30,7 +30,7 @@ export default function Home() {
     city: "London",
     minRooms: 3,
     hmo_candidate: false,
-    article4_filter: "all"
+    article4_filter: "article4_only"
   });
   const [lastSearchTime, setLastSearchTime] = useState<number>(0);
   const [sortBy, setSortBy] = useState<string>("yield_desc");
