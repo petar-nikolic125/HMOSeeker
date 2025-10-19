@@ -432,9 +432,9 @@ def build_search_urls(city, min_beds, max_price, filters):
 
     # Optionally try multiple sort orders to surface different subsets
     expand_sorts = os.getenv("PL_EXPAND_SORTS", "0") == "1"
-    sort_modes = ["highest_price"]
+    sort_modes = ["newest_listings"]
     if expand_sorts:
-        sort_modes = ["highest_price", "newest", "lowest_price"]
+        sort_modes = ["newest_listings", "highest_price", "lowest_price"]
 
     # Distribute pages across sorts so we don't request the same page repeatedly
     pages_per_sort = max(1, math.ceil(max_pages / len(sort_modes)))
