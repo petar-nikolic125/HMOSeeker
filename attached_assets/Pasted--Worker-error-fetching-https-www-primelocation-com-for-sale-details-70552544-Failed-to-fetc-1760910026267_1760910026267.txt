@@ -1,0 +1,120 @@
+    ❌ Worker error fetching https://www.primelocation.com/for-sale/details/70552544/: Failed to fetch https://www.primelocation.com/for-sale/details/70552544/ - final status: 403
+    ❌ Worker error fetching https://www.primelocation.com/for-sale/details/70638023/: Failed to fetch https://www.primelocation.com/for-sale/details/70638023/ - final status: 403
+🧹 Deduplicating 840 properties...
+✨ Final results: 840 unique properties (0 duplicates removed)
+💾 Writing 840 properties to cache: cache/primelocation/london/search_53557167c422fe5e.json
+✅ Scraping complete! Found 840 properties in London
+💾 Wrote cache: cache/primelocation/london/search_53557167c422fe5e.json
+
+Successfully parsed 840 properties from stdout
+Cache status: {
+  cached: false,
+  cache_path: 'cache/primelocation/london/search_53557167c422fe5e.json'
+}
+Transforming properties for frontend...
+Sample property before transform: {
+  "address": "3 bed end terrace house for sale Western Avenue, Dagenham RM10",
+  "postcode": null,
+  "price": 340000,
+  "bedrooms": 3,
+  "bathrooms": 1,
+  "image_url": "https://lid.zoocdn.com/u/1024/768/3c3ccbd368a409fd557e23595acf07716b553275.jpg",
+  "description": "3-bed property in London.",
+  "property_url": "https://www.primelocation.com/for-sale/details/71590378/",
+  "city": "London",
+  "monthly_rent": 675,
+  "annual_rent": 8100,
+  "gross_yield": 2.38
+}
+Sample transformed property: {
+  "id": "pl-1760907408638-0",
+  "source": "primelocation",
+  "title": "3 bed end terrace house for sale Western Avenue, Dagenham RM10",
+  "address": "3 bed end terrace house for sale Western Avenue, Dagenham RM10",
+  "price": 340000,
+  "bedrooms": 3,
+  "bathrooms": 1,
+  "description": "3-bed property in London.",
+  "property_url": "https://www.primelocation.com/for-sale/details/71590378/",
+  "image_url": "https://lid.zoocdn.com/u/1024/768/3c3ccbd368a409fd557e23595acf07716b553275.jpg",
+  "listing_id": "pl-1760907408638-0",
+  "postcode": "",
+  "city": "London",
+  "roi": 8,
+  "grossYield": 2.38,
+  "profitabilityScore": "Low",
+  "lhaWeekly": 156,
+  "lhaMonthly": 675,
+  "imageUrl": "https://lid.zoocdn.com/u/1024/768/3c3ccbd368a409fd557e23595acf07716b553275.jpg",
+  "propertyUrl": "https://www.primelocation.com/for-sale/details/71590378/",
+  "coordinates": [
+    0,
+    0
+  ]
+}
+Successfully transformed 840 properties
+💾 Saving properties to database...
+8:56:48 PM [express] GET /api/bulk-scrape/progress 304 in 1ms :: {"success":true,"progress":{"curren…
+❌ Failed to save properties to database: ErrorEvent {
+  [Symbol(kTarget)]: WebSocket {
+    _events: [Object: null prototype] {
+      error: [Function],
+      message: [Function],
+      close: [Function],
+      open: [Function]
+    },
+    _eventsCount: 4,
+    _maxListeners: undefined,
+    _binaryType: 'arraybuffer',
+    _closeCode: 1006,
+    _closeFrameReceived: false,
+    _closeFrameSent: false,
+    _closeMessage: <Buffer >,
+    _closeTimer: null,
+    _errorEmitted: true,
+    _extensions: {},
+    _paused: false,
+    _protocol: '',
+    _readyState: 3,
+    _receiver: null,
+    _sender: null,
+    _socket: null,
+    _bufferedAmount: 0,
+    _isServer: false,
+    _redirects: 0,
+    _autoPong: true,
+    _url: 'ws://helium/v2',
+    _req: null,
+    [Symbol(shapeMode)]: false,
+    [Symbol(kCapture)]: false
+  },
+  [Symbol(kType)]: 'error',
+  [Symbol(kError)]: Error: connect ECONNREFUSED 172.31.68.165:80
+      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16) {
+    errno: -111,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '172.31.68.165',
+    port: 80
+  },
+  [Symbol(kMessage)]: 'connect ECONNREFUSED 172.31.68.165:80'
+}
+Final result: {
+  success: true,
+  count: 840,
+  cached: false,
+  listingsPreview: [
+    {
+      address: '3 bed end terrace house for sale Western Avenue, Dagenham RM10',
+      price: 340000
+    },
+    {
+      address: '3 bed semi-detached house for sale Cray Avenue, Orpington BR5',
+      price: 400000
+    }
+  ]
+}
+📁 Found cache directory: cache/primelocation/london
+📊 London: 5852 unique properties
+📦 No new properties to add for London
+✅ London completed successfully (840 properties)
