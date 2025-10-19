@@ -23,6 +23,62 @@ export async function registerRoutes(app: Express): Promise<Server> {
     });
   });
 
+  // Postcode autocomplete endpoint
+  app.get("/api/postcode/suggest", async (req, res) => {
+    try {
+      const { q } = req.query;
+      
+      if (!q || typeof q !== 'string') {
+        return res.status(400).json({
+          success: false,
+          error: "Query parameter 'q' is required"
+        });
+      }
+      
+      const query = q.trim().toUpperCase();
+      
+      // Extract outcode from full postcode (e.g., "M7" from "M7 3PG")
+      const outcodeMatch = query.match(/^([A-Z]{1,2}[0-9][A-Z0-9]?)/);
+      
+      const suggestions = [];
+      
+      // If it looks like a full postcode, suggest the outcode
+      if (outcodeMatch) {
+        const outcode = outcodeMatch[1];
+        if (outcode !== query) {
+          suggestions.push({
+            value: outcode,
+            label: `${outcode} (Postcode area)`,
+            type: 'outcode'
+          });
+        }
+        suggestions.push({
+          value: query,
+          label: query,
+          type: 'postcode'
+        });
+      } else {
+        // Just return the query as-is
+        suggestions.push({
+          value: query,
+          label: query,
+          type: query.length <= 4 ? 'outcode' : 'query'
+        });
+      }
+      
+      res.json({
+        success: true,
+        suggestions
+      });
+    } catch (error) {
+      console.error("Error generating postcode suggestions:", error);
+      res.status(500).json({
+        success: false,
+        error: "Failed to generate suggestions"
+      });
+    }
+  });
+  
   // Article 4 check endpoint
   app.get("/api/check", async (req, res) => {
     try {

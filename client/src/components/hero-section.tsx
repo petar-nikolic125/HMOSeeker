@@ -17,9 +17,11 @@ export default function HeroSection({ onSearch, isLoading, searchResults }: Hero
   const [maxSqm, setMaxSqm] = useState<number | undefined>(undefined);
   const [postcode, setPostcode] = useState<string>("");
   const [radius, setRadius] = useState<number | undefined>(undefined);
+  const [postcodeSuggestions, setPostcodeSuggestions] = useState<Array<{value: string; label: string; type: string}>>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
   const [article4Filter, setArticle4Filter] = useState<"all" | "non_article4" | "article4_only">("all");
-  const { toast } = useToast();
+  const { toast} = useToast();
   const [lastSearchFilters, setLastSearchFilters] = useState<SearchFilters | null>(null);
 
   const handleSearch = () => {
@@ -41,12 +43,42 @@ export default function HeroSection({ onSearch, isLoading, searchResults }: Hero
     onSearch(filters);
   };
 
+  // Fetch postcode suggestions (only for UK postcode patterns)
+  useEffect(() => {
+    const fetchSuggestions = async () => {
+      // Only show suggestions for UK postcode patterns (starts with letters + numbers)
+      const postcodePattern = /^[A-Z]{1,2}[0-9]/i;
+      if (postcode.trim().length >= 2 && postcodePattern.test(postcode)) {
+        try {
+          const response = await fetch(`/api/postcode/suggest?q=${encodeURIComponent(postcode)}`);
+          const data = await response.json();
+          if (data.success && data.suggestions) {
+            setPostcodeSuggestions(data.suggestions);
+            setShowSuggestions(true);
+          }
+        } catch (error) {
+          console.error("Error fetching postcode suggestions:", error);
+        }
+      } else {
+        setPostcodeSuggestions([]);
+        setShowSuggestions(false);
+      }
+    };
+
+    const timer = setTimeout(fetchSuggestions, 500);
+    return () => clearTimeout(timer);
+  }, [postcode]);
+
   // Auto-filter when parameters change
   useEffect(() => {
     if (city) {
+      // Longer debounce for postcode/radius changes (1.5s) to avoid rate limiting Nominatim
+      // Shorter debounce (300ms) for other filters
+      const debounceTime = (postcode.trim().length > 0 || radius) ? 1500 : 300;
+      
       const timer = setTimeout(() => {
         handleSearch();
-      }, 300); // Debounce by 300ms
+      }, debounceTime);
       return () => clearTimeout(timer);
     }
   }, [city, maxPrice, minBedrooms, minSqm, maxSqm, postcode, radius, article4Filter]);
@@ -197,19 +229,40 @@ export default function HeroSection({ onSearch, isLoading, searchResults }: Hero
                 </select>
               </div>
 
-              <div>
+              <div className="relative">
                 <label className="block text-sm font-semibold text-gray-800 mb-3 flex items-center gap-2">
                   <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                  Postcode
+                  Postcode or City
                 </label>
                 <input 
                   type="text"
                   value={postcode}
                   onChange={(e) => setPostcode(e.target.value.toUpperCase())}
-                  placeholder="e.g. SW1A 1AA or SW1A"
+                  onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
+                  onFocus={() => postcodeSuggestions.length > 0 && setShowSuggestions(true)}
+                  placeholder="e.g. M7 3PG, M7, or Manchester"
                   className="w-full h-12 text-base border-2 border-gray-200 hover:border-blue-400 focus:border-blue-500 transition-colors rounded-xl px-4 bg-white uppercase"
                   data-testid="input-postcode"
                 />
+                {showSuggestions && postcodeSuggestions.length > 0 && (
+                  <div className="absolute z-50 w-full mt-1 bg-white border-2 border-blue-400 rounded-xl shadow-lg max-h-48 overflow-y-auto">
+                    {postcodeSuggestions.map((suggestion, index) => (
+                      <button
+                        key={index}
+                        type="button"
+                        onClick={() => {
+                          setPostcode(suggestion.value);
+                          setShowSuggestions(false);
+                        }}
+                        className="w-full text-left px-4 py-2 hover:bg-blue-50 transition-colors flex items-center gap-2 text-sm"
+                        data-testid={`suggestion-${index}`}
+                      >
+                        <MapPin className="w-4 h-4 text-blue-500" />
+                        <span className="font-medium">{suggestion.label}</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
 
               <div>
@@ -236,7 +289,7 @@ export default function HeroSection({ onSearch, isLoading, searchResults }: Hero
                   <option value="20">20 miles</option>
                 </select>
                 {!postcode.trim() && (
-                  <p className="text-xs text-gray-500 mt-1">Enter a postcode to enable radius search</p>
+                  <p className="text-xs text-gray-500 mt-1">Enter a postcode or city to enable radius search</p>
                 )}
               </div>
             </div>

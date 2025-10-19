@@ -6,8 +6,106 @@ interface PostcodeData {
   country?: string;
 }
 
+interface LocationData {
+  latitude: number;
+  longitude: number;
+  display_name: string;
+  type: 'postcode' | 'city' | 'address';
+}
+
 export class PostcodeGeocoder {
   private static cache = new Map<string, PostcodeData>();
+  private static locationCache = new Map<string, LocationData>();
+  private static lastNominatimCall = 0;
+  
+  /**
+   * Rate limiter for Nominatim API (max 1 req/sec as per their usage policy)
+   */
+  private static async waitForNominatimRateLimit(): Promise<void> {
+    const now = Date.now();
+    const timeSinceLastCall = now - this.lastNominatimCall;
+    const minInterval = 1000; // 1 second
+    
+    if (timeSinceLastCall < minInterval) {
+      const waitTime = minInterval - timeSinceLastCall;
+      await new Promise(resolve => setTimeout(resolve, waitTime));
+    }
+    
+    this.lastNominatimCall = Date.now();
+  }
+  
+  /**
+   * Geocode any location: postcode, city name, or address
+   * This intelligently detects the input type and uses the appropriate API
+   */
+  static async geocodeLocation(location: string): Promise<LocationData | null> {
+    const cleanLocation = location.trim();
+    
+    // Check cache first
+    if (this.locationCache.has(cleanLocation.toUpperCase())) {
+      return this.locationCache.get(cleanLocation.toUpperCase())!;
+    }
+    
+    // Try postcode first (UK postcode pattern, including short outcodes like "M7")
+    const postcodePattern = /^[A-Z]{1,2}[0-9][A-Z0-9]?\s?[0-9]?[A-Z]{0,2}$/i;
+    if (postcodePattern.test(cleanLocation.replace(/\s+/g, ''))) {
+      const postcodeData = await this.geocode(cleanLocation);
+      if (postcodeData) {
+        const locationData: LocationData = {
+          latitude: postcodeData.latitude,
+          longitude: postcodeData.longitude,
+          display_name: postcodeData.postcode,
+          type: 'postcode'
+        };
+        this.locationCache.set(cleanLocation.toUpperCase(), locationData);
+        return locationData;
+      }
+    }
+    
+    // Require minimum length for city/address lookups to avoid wasteful Nominatim calls
+    if (cleanLocation.length < 3) {
+      return null;
+    }
+    
+    // Try Nominatim (OpenStreetMap) for city names and addresses
+    // Rate limit: max 1 req/sec
+    await this.waitForNominatimRateLimit();
+    
+    try {
+      const encodedLocation = encodeURIComponent(cleanLocation);
+      const url = `https://nominatim.openstreetmap.org/search?q=${encodedLocation}&countrycodes=gb&format=json&limit=1`;
+      
+      const response = await fetch(url, {
+        headers: {
+          'User-Agent': 'HMO-Hunter-PropertyApp/1.0'
+        }
+      });
+      
+      if (!response.ok) {
+        return null;
+      }
+      
+      const results = await response.json();
+      
+      if (results && results.length > 0) {
+        const result = results[0];
+        const locationData: LocationData = {
+          latitude: parseFloat(result.lat),
+          longitude: parseFloat(result.lon),
+          display_name: result.display_name,
+          type: result.type === 'city' || result.type === 'town' ? 'city' : 'address'
+        };
+        this.locationCache.set(cleanLocation.toUpperCase(), locationData);
+        console.log(`✅ Geocoded "${cleanLocation}" via Nominatim: ${locationData.latitude}, ${locationData.longitude}`);
+        return locationData;
+      }
+      
+      return null;
+    } catch (error) {
+      console.error(`Error geocoding location ${cleanLocation}:`, error);
+      return null;
+    }
+  }
   
   static async geocode(postcode: string): Promise<PostcodeData | null> {
     const cleanPostcode = postcode.toUpperCase().replace(/\s+/g, '');
@@ -111,10 +209,10 @@ export class PostcodeGeocoder {
   
   static async filterPropertiesByRadius(
     properties: any[],
-    postcode: string,
+    location: string,
     radiusMiles: number
   ): Promise<any[]> {
-    console.log(`📍 Filtering properties within ${radiusMiles} miles of ${postcode}`);
+    console.log(`📍 Filtering properties within ${radiusMiles} miles of "${location}"`);
     
     const MAX_PROPERTIES_FOR_RADIUS = 100;
     if (properties.length > MAX_PROPERTIES_FOR_RADIUS) {
@@ -123,14 +221,15 @@ export class PostcodeGeocoder {
       properties = properties.slice(0, MAX_PROPERTIES_FOR_RADIUS);
     }
     
-    const centerPoint = await this.geocode(postcode);
+    // Use the new geocodeLocation method that supports postcodes, cities, and addresses
+    const centerPoint = await this.geocodeLocation(location);
     
     if (!centerPoint) {
-      console.error(`❌ Could not geocode postcode: ${postcode}`);
+      console.error(`❌ Could not geocode location: ${location}`);
       return properties;
     }
     
-    console.log(`✅ Center point: ${centerPoint.latitude}, ${centerPoint.longitude}`);
+    console.log(`✅ Center point for "${location}": ${centerPoint.latitude}, ${centerPoint.longitude} (${centerPoint.type})`);
     
     const uniquePostcodes = new Map<string, { lat: number; lon: number }>();
     const propertiesWithDistances = [];
@@ -173,7 +272,7 @@ export class PostcodeGeocoder {
         propertiesWithDistances.push({
           ...property,
           distance_miles: parseFloat(distance.toFixed(2)),
-          center_postcode: postcode,
+          center_location: location,
         });
         withinRadiusCount++;
       }
