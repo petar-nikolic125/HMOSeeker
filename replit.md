@@ -12,6 +12,17 @@ HMO Hunter is a full-stack property investment analysis application built with R
 
 ## Recent Changes
 
+### October 19, 2025 - Comprehensive Scraper Upgrades (Patch 2)
+- ✅ **TypeScript ScraperManager**: Added default ENV variables for wider scraping (PL_EXPAND_SORTS, PL_TYPES, PL_MAX_PAGES_TOTAL, PL_MIN_RESULTS, PL_WORKERS, ARTICLE4_MODE)
+- ✅ **HTTP Retry Logic**: Implemented robust HTTPAdapter with retry strategy (3 retries, backoff 0.5s, handles 429/5xx status codes)
+- ✅ **Multiple Feed Paths**: Scraper now searches across /property, /houses, and /flats feeds for maximum coverage
+- ✅ **Dynamic Page Discovery (BFS)**: Implemented breadth-first search with deque for automatic discovery of related/next pages
+- ✅ **JSON-LD Parsing**: Enhanced data extraction using structured JSON-LD metadata with DOM fallbacks for reliability
+- ✅ **Configurable Article 4 Modes**: Support for strict/relaxed/off modes via ARTICLE4_MODE environment variable
+- ✅ **Smart Empty Page Detection**: Automatic stopping after configured consecutive empty pages (default: 5)
+- ✅ **Improved Session Management**: Better Accept-Encoding headers, connection pooling (64 connections), and anti-bot resilience
+- ✅ **Architect Reviewed**: All changes passed comprehensive code review with no functional regressions
+
 ### October 16, 2025 - Automatic Article 4 Enrichment for All Properties
 - ✅ **Automatic Article 4 checking**: All property listings now automatically get Article 4 status via Article4Maps API
 - ✅ **Smart enrichment**: Only enriches paginated slice (20 properties) instead of full dataset for optimal performance
