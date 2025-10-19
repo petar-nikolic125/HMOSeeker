@@ -12,6 +12,25 @@ HMO Hunter is a full-stack property investment analysis application built with R
 
 ## Recent Changes
 
+### October 19, 2025 - Article 4 Cache System Implementation
+- ✅ **Article 4 Cache Service**: Implemented local caching system to minimize API calls (article4-cache.ts)
+  - 24-hour cache TTL with daily automatic refresh at 3 AM via cron job
+  - Caches 92 UK postcodes from property dataset
+  - Reduces API usage from 400 calls/month to just daily cache refreshes
+- ✅ **Python Helper Integration**: Added article4-helper.py for cache-based Article 4 filtering during scraping
+  - Scraper now checks cache first before making API calls
+  - Falls back to pattern matching if postcode not in cache
+- ✅ **Cron Job**: Automated daily cache refresh (article4-cron.ts)
+  - Scheduled refresh at 3 AM daily
+  - Manual refresh available via API endpoint
+  - Initial cache population on startup if no cache exists
+- ✅ **Cache API Endpoints**: Added management endpoints for monitoring and control
+  - GET /api/article4-cache/stats - View cache statistics
+  - POST /api/article4-cache/refresh - Manually trigger refresh
+  - GET /api/article4-cache/check/:postcode - Check cache for specific postcode
+- ✅ **Database SSL Fix**: Resolved Neon database WebSocket SSL certificate issue in development
+- ✅ **Sort Order**: Scraper now prioritizes newest_listings instead of highest_price for better results
+
 ### October 19, 2025 - Comprehensive Scraper Upgrades (Patch 2)
 - ✅ **TypeScript ScraperManager**: Added default ENV variables for wider scraping (PL_EXPAND_SORTS, PL_TYPES, PL_MAX_PAGES_TOTAL, PL_MIN_RESULTS, PL_WORKERS, ARTICLE4_MODE)
 - ✅ **HTTP Retry Logic**: Implemented robust HTTPAdapter with retry strategy (3 retries, backoff 0.5s, handles 429/5xx status codes)
