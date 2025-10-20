@@ -1,0 +1,44 @@
+[
+  {
+    "address": "3 bed terraced house for sale Angerton Terrace, Dudley, Cramlington, Tyne And Wear NE23",
+    "price": 135000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "description": "3-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71603629/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/9b3bc27a75d8b310eeda2c2c5939d5543536d311.jpg",
+    "postcode": "",
+    "city": "Newcastle",
+    "monthly_rent": 285,
+    "annual_rent": 3420,
+    "gross_yield": 2.53
+  },
+  {
+    "address": "3 bed semi-detached house for sale Woodlands Grange, Forest Hall NE12",
+    "price": 240000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "description": "3-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71493139/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/e1a62947d89bbd6ec555b270ade6654fbd864a72.jpg",
+    "postcode": "",
+    "city": "Newcastle",
+    "monthly_rent": 285,
+    "annual_rent": 3420,
+    "gross_yield": 1.43
+  },
+  {
+    "address": "3 bed semi-detached house for sale Byrewood Walk, Kenton NE3",
+    "price": 170000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "description": "3-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70808108/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/d9c6446d0a4bd2edad0309acb61c2c273db1ee12.jpg",
+    "postcode": "",
+    "city": "Newcastle",
+    "monthly_rent": 285,
+    "annual_rent": 3420,
+    "gross_yield": 2.01
+  }
+]
