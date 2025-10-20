@@ -1,5 +1,61 @@
 [
   {
+    "address": "3 bed flat for sale 6/13 Drummond Street, Old Town EH8",
+    "postcode": null,
+    "price": 325000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/2d75b927c24066a2626bb9751938fb4b2881d50f.jpg",
+    "description": "3-bed property in Edinburgh.",
+    "property_url": "https://www.primelocation.com/for-sale/details/46861415/",
+    "city": "Edinburgh",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.22
+  },
+  {
+    "address": "3 bed terraced house for sale 37 Bauld Drive, Newcraighall, Musselburgh EH21",
+    "postcode": null,
+    "price": 260000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/cfdc19916a133af5bce4b4431b86833d1e14d3ba.jpg",
+    "description": "3-bed property in Edinburgh.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71532097/",
+    "city": "Edinburgh",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.52
+  },
+  {
+    "address": "3 bed semi-detached house for sale Stewart Crescent, Currie EH14",
+    "postcode": null,
+    "price": 275000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/eba2e2c376ad5f1fb4642d135fd9031806e132c1.jpg",
+    "description": "3-bed property in Edinburgh.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70629129/",
+    "city": "Edinburgh",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.44
+  },
+  {
+    "address": "3 bed terraced house for sale 152 Greenwell Wynd, Mortonhall EH17",
+    "postcode": null,
+    "price": 295000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/5997a6a455604ff1d5fe95b029d5f59306a74dd8.jpg",
+    "description": "3-bed property in Edinburgh.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70431822/",
+    "city": "Edinburgh",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.34
+  },
+  {
     "address": "3 bed flat for sale Flat 5, 13 South Oswald Road, Blackford EH9",
     "postcode": null,
     "price": 400000,
@@ -26,19 +82,5 @@
     "monthly_rent": 330,
     "annual_rent": 3960,
     "gross_yield": 0.99
-  },
-  {
-    "address": "4 bed semi-detached house for sale Nether Currie Road, Currie, Midlothian EH14",
-    "postcode": null,
-    "price": 395000,
-    "bedrooms": 4,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/da7b8d30fedc09e97fbedd381f2e2f020c3f8ff9.jpg",
-    "description": "4-bed property in Edinburgh.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71358913/",
-    "city": "Edinburgh",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 1.34
   }
 ]
