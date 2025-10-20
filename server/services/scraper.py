@@ -152,8 +152,8 @@ def rand_delay(a=0.1, b=0.3):
 # ---------- Tunables (ENV) ----------
 ARTICLE4_MODE = (os.getenv("ARTICLE4_MODE", "relaxed") or "relaxed").lower()
 PROPERTY_PATHS = [p.strip() for p in (os.getenv("PL_TYPES", "property,houses,flats") or "property").split(",") if p.strip()]
-MAX_LIST_PAGES_TOTAL = as_int(os.getenv("PL_MAX_PAGES_TOTAL", 200), 200)
-STOP_AFTER_EMPTY_PAGES = as_int(os.getenv("PL_EMPTY_PAGE_STOP", 5), 5)
+MAX_LIST_PAGES_TOTAL = as_int(os.getenv("PL_MAX_PAGES_TOTAL", 800), 800)  # 200 → 800
+STOP_AFTER_EMPTY_PAGES = as_int(os.getenv("PL_EMPTY_PAGE_STOP", 8), 8)  # 5 → 8
 
 
 # ---------- Session & anti-403 ----------
@@ -774,8 +774,8 @@ def scrape_primelocation(city, min_bedrooms, max_price, keywords_blob):
 
     proxies_env = os.getenv("PROXY_LIST", "")
     proxies_list = [p.strip() for p in proxies_env.split(",") if p.strip()]
-    target_min_results = as_int(os.getenv("PL_MIN_RESULTS", 5000), 5000)
-    max_fetch_target = as_int(os.getenv("PL_MAX_FETCH", 5000), 5000)
+    target_min_results = as_int(os.getenv("PL_MIN_RESULTS", 15000), 15000)  # 5000 → 15000
+    max_fetch_target = as_int(os.getenv("PL_MAX_FETCH", 10000), 10000)  # 5000 → 10000
     
     print(f"🎯 Target: {target_min_results} links per city, max fetch: {max_fetch_target} properties", file=sys.stderr)
 
@@ -859,7 +859,7 @@ def scrape_primelocation(city, min_bedrooms, max_price, keywords_blob):
 
     # 3) Parallel fetch details
     results = []
-    workers = as_int(os.getenv("PL_WORKERS", 8), 8)
+    workers = as_int(os.getenv("PL_WORKERS", 16), 16)  # 8 → 16 paralelnih workera
     print(f"🏠 Extracting property details with {workers} workers...", file=sys.stderr)
 
     def fetch_and_parse(url):

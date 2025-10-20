@@ -190,16 +190,17 @@ export class ScraperManager {
         timeout: this.DEFAULT_TIMEOUT,
         env: {
           ...env,
-          // Default wider scraping parameters
+          // Default wider scraping parameters - POVEĆANO ZA VIŠE REZULTATA
           PL_EXPAND_SORTS: env.PL_EXPAND_SORTS || "1",
           PL_TYPES: env.PL_TYPES || "property,houses,flats",
-          PL_MAX_PAGES_TOTAL: env.PL_MAX_PAGES_TOTAL || "400",
-          PL_MIN_RESULTS: env.PL_MIN_RESULTS || "8000",
-          PL_WORKERS: env.PL_WORKERS || "12",
+          PL_MAX_PAGES_TOTAL: env.PL_MAX_PAGES_TOTAL || "800",  // 400 → 800 listing stranica
+          PL_MIN_RESULTS: env.PL_MIN_RESULTS || "15000",  // 8000 → 15000 linkova
+          PL_MAX_FETCH: env.PL_MAX_FETCH || "10000",  // Dodato: 10000 detail stranica
+          PL_WORKERS: env.PL_WORKERS || "16",  // 12 → 16 paralelnih workera
           ARTICLE4_MODE: env.ARTICLE4_MODE || "relaxed",
           REQUESTS_TIMEOUT: env.REQUESTS_TIMEOUT || "25",
           PL_PAGE_SIZE: env.PL_PAGE_SIZE || "100",
-          PL_MAX_PAGES: env.PL_MAX_PAGES || "60",
+          PL_MAX_PAGES: env.PL_MAX_PAGES || "100",  // 60 → 100 stranica po sort modu
         },
       });
 
