@@ -151,7 +151,7 @@ def rand_delay(a=0.1, b=0.3):
 
 # ---------- Tunables (ENV) ----------
 ARTICLE4_MODE = (os.getenv("ARTICLE4_MODE", "relaxed") or "relaxed").lower()
-PROPERTY_PATHS = [p.strip() for p in (os.getenv("PL_TYPES", "property,houses,flats") or "property").split(",") if p.strip()]
+PROPERTY_PATHS = [p.strip() for p in (os.getenv("PL_TYPES", "houses") or "houses").split(",") if p.strip()]
 MAX_LIST_PAGES_TOTAL = as_int(os.getenv("PL_MAX_PAGES_TOTAL", 800), 800)  # 200 → 800
 STOP_AFTER_EMPTY_PAGES = as_int(os.getenv("PL_EMPTY_PAGE_STOP", 8), 8)  # 5 → 8
 
@@ -448,6 +448,10 @@ def build_search_urls(city, min_beds, max_price, filters):
         base_params["beds_min"] = str(min_beds)
 
     qs_base = "&".join([f"{k}={quote_plus(v)}" for k, v in base_params.items() if v])
+    
+    # Add property_sub_type filters to only get houses (detached, semi-detached, terraced)
+    # Multiple property_sub_type values are needed as separate parameters
+    qs_base += "&property_sub_type=detached&property_sub_type=semi_detached&property_sub_type=terraced"
 
     urls = []
 
