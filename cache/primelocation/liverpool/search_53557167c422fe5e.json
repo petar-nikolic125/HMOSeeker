@@ -1,31 +1,129 @@
 [
   {
-    "address": "3 bed semi-detached house for sale Leafield Road, Hunts Cross L25",
+    "address": "4 bed semi-detached house for sale Warmwell Close, Speke L24",
+    "postcode": null,
+    "price": 280000,
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/fa538dafe0cfe9676d9d1a86ac9743fe46dc3f4e.png",
+    "description": "4-bed property in Liverpool.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71614871/",
+    "city": "Liverpool",
+    "monthly_rent": 440,
+    "annual_rent": 5280,
+    "gross_yield": 1.89
+  },
+  {
+    "address": "3 bed semi-detached house for sale Leybourne Close, Gateacre L25",
+    "postcode": null,
+    "price": 280000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/b3c034fa3863a755f46dee59911b57604b20dcd8.jpg",
+    "description": "3-bed property in Liverpool.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70762397/",
+    "city": "Liverpool",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.41
+  },
+  {
+    "address": "3 bed semi-detached house for sale The Threshers, Bootle L30",
+    "postcode": null,
+    "price": 220000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/c12b6911a97aac584f28275dd9e8ac12d744b13f.jpg",
+    "description": "3-bed property in Liverpool.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71612026/",
+    "city": "Liverpool",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.8
+  },
+  {
+    "address": "3 bed detached house for sale Caplin Close, Littledale L33",
+    "postcode": null,
+    "price": 260000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/9f8a7d8496b427ffbab7cc4ce93845f7afa4fe9a.jpg",
+    "description": "3-bed property in Liverpool.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71613465/",
+    "city": "Liverpool",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.52
+  },
+  {
+    "address": "3 bed terraced house for sale Richmond Park, Anfield L6",
+    "postcode": null,
+    "price": 150000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/8a8268df46c767421929936d768306c9169285e3.jpg",
+    "description": "3-bed property in Liverpool.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71610167/",
+    "city": "Liverpool",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 2.64
+  },
+  {
+    "address": "4 bed terraced house for sale Rockland Road, Waterloo L22",
+    "postcode": null,
+    "price": 290000,
+    "bedrooms": 4,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/9a6b7084fa65dc9e8167d91f262a8a8dceb1c3a8.jpg",
+    "description": "4-bed property in Liverpool.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71610170/",
+    "city": "Liverpool",
+    "monthly_rent": 440,
+    "annual_rent": 5280,
+    "gross_yield": 1.82
+  },
+  {
+    "address": "3 bed semi-detached house for sale Riverslea Road, Crosby L23",
+    "postcode": null,
+    "price": 265000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/e58cb0ded16274dcadc96308c6e28bdffbf12951.jpg",
+    "description": "3-bed property in Liverpool.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71610166/",
+    "city": "Liverpool",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.49
+  },
+  {
+    "address": "3 bed detached house for sale Empress Rd, Edge Hill, Merseyside, Se L7",
     "postcode": null,
     "price": 210000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/2a1b81e5ebac0a533fd99c170c61803d51ed4d86.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/0a82c0a961ad6091f53bfe310784847057125b75.jpg",
     "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70961532/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71609202/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
     "gross_yield": 1.89
   },
   {
-    "address": "4 bed terraced house for sale Elm Drive, Seaforth, Merseyside L21",
+    "address": "3 bed semi-detached house for sale Apollo Way, Bootle, Merseyside L30",
     "postcode": null,
-    "price": 185000,
-    "bedrooms": 4,
+    "price": 210000,
+    "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/6efb7aec1451ecbb30b92b31a76ad8cefc9096bf.jpg",
-    "description": "4-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71600595/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/15bdb4a5295387d71484139efbe859dd799ecc8b.jpg",
+    "description": "3-bed property in Liverpool.",
+    "property_url": "https://www.primelocation.com/for-sale/details/68195363/",
     "city": "Liverpool",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 2.85
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.89
   },
   {
     "address": "3 bed terraced house for sale Hilton Court, Bootle L30",
@@ -42,18 +140,18 @@
     "gross_yield": 2.64
   },
   {
-    "address": "3 bed terraced house for sale Beatrice Street, Bootle L20",
+    "address": "3 bed terraced house for sale Northumberland Way, Bootle L30",
     "postcode": null,
-    "price": 75000,
+    "price": 145000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/8cd32f1589dc62ad257d24cca29884446f1e18cb.png",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/7879f2a414629dd1544f899dfe491c7a87db530e.jpg",
     "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71594526/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71591689/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 5.28
+    "gross_yield": 2.73
   },
   {
     "address": "3 bed town house for sale Malvern Road, Bootle L20",
@@ -70,18 +168,18 @@
     "gross_yield": 2.48
   },
   {
-    "address": "3 bed semi-detached house for sale Sankey Road, Maghull L31",
+    "address": "4 bed terraced house for sale Elm Drive, Seaforth, Merseyside L21",
     "postcode": null,
-    "price": 240000,
-    "bedrooms": 3,
+    "price": 185000,
+    "bedrooms": 4,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/2822a726787ac8f2bc6abd67da8a3573ccd0529a.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71591457/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/6efb7aec1451ecbb30b92b31a76ad8cefc9096bf.jpg",
+    "description": "4-bed property in Liverpool.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71600595/",
     "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.65
+    "monthly_rent": 440,
+    "annual_rent": 5280,
+    "gross_yield": 2.85
   },
   {
     "address": "3 bed end terrace house for sale Lyndhurst, Maghull L31",
@@ -98,18 +196,18 @@
     "gross_yield": 1.76
   },
   {
-    "address": "3 bed terraced house for sale Northumberland Way, Bootle L30",
+    "address": "3 bed terraced house for sale Northdale Road, Wavertree L15",
     "postcode": null,
-    "price": 145000,
+    "price": 180000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/7879f2a414629dd1544f899dfe491c7a87db530e.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/658b25d3614638466898deca88a285438736db2a.jpg",
     "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71591689/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71589689/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 2.73
+    "gross_yield": 2.2
   },
   {
     "address": "3 bed end terrace house for sale Hereford Drive, Bootle, Merseyside L30",
@@ -126,18 +224,18 @@
     "gross_yield": 3.05
   },
   {
-    "address": "3 bed terraced house for sale Northdale Road, Wavertree L15",
+    "address": "5 bed detached house for sale Fern Close, Kirkby L32",
     "postcode": null,
-    "price": 180000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/658b25d3614638466898deca88a285438736db2a.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71589689/",
+    "price": 400000,
+    "bedrooms": 5,
+    "bathrooms": 4,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/d70186e52b39642eb824fd725839e3d7786b6bec.jpg",
+    "description": "5-bed property in Liverpool.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71586517/",
     "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.2
+    "monthly_rent": 550,
+    "annual_rent": 6600,
+    "gross_yield": 1.65
   },
   {
     "address": "3 bed semi-detached house for sale Turnbridge Road, Maghull L31",
@@ -154,34 +252,6 @@
     "gross_yield": 2.2
   },
   {
-    "address": "5 bed detached house for sale Fern Close, Kirkby L32",
-    "postcode": null,
-    "price": 400000,
-    "bedrooms": 5,
-    "bathrooms": 4,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/d70186e52b39642eb824fd725839e3d7786b6bec.jpg",
-    "description": "5-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71586517/",
-    "city": "Liverpool",
-    "monthly_rent": 550,
-    "annual_rent": 6600,
-    "gross_yield": 1.65
-  },
-  {
-    "address": "3 bed semi-detached house for sale Ennerdale Close, Kirkby, Merseyside L33",
-    "postcode": null,
-    "price": 150000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/8d2dbdda07dc4dfaf6fbb758fdfa63fd9e12a48f.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71586311/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.64
-  },
-  {
     "address": "3 bed semi-detached house for sale Silverstone Grove, Lydiate L31",
     "postcode": null,
     "price": 250000,
@@ -194,34 +264,6 @@
     "monthly_rent": 330,
     "annual_rent": 3960,
     "gross_yield": 1.58
-  },
-  {
-    "address": "3 bed semi-detached house for sale Eastway, Maghull L31",
-    "postcode": null,
-    "price": 220000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/a44c325f5d9464988946a2030cb8e6f60f9f3a55.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71582600/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.8
-  },
-  {
-    "address": "4 bed terraced house for sale Willowdale Road, Walton L9",
-    "postcode": null,
-    "price": 185000,
-    "bedrooms": 4,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/c83e38ae0f0e02e68b5de2b1e479169ade29207d.jpg",
-    "description": "4-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71581175/",
-    "city": "Liverpool",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 2.85
   },
   {
     "address": "4 bed detached house for sale Molyneux Gardens, Netherton L30",
@@ -238,6 +280,20 @@
     "gross_yield": 1.51
   },
   {
+    "address": "4 bed terraced house for sale Willowdale Road, Walton L9",
+    "postcode": null,
+    "price": 185000,
+    "bedrooms": 4,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/c83e38ae0f0e02e68b5de2b1e479169ade29207d.jpg",
+    "description": "4-bed property in Liverpool.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71581175/",
+    "city": "Liverpool",
+    "monthly_rent": 440,
+    "annual_rent": 5280,
+    "gross_yield": 2.85
+  },
+  {
     "address": "3 bed terraced house for sale Litherland Road, Bootle L20",
     "postcode": null,
     "price": 150000,
@@ -250,34 +306,6 @@
     "monthly_rent": 330,
     "annual_rent": 3960,
     "gross_yield": 2.64
-  },
-  {
-    "address": "3 bed terraced house for sale Herondale Road, Mossley Hill L18",
-    "postcode": null,
-    "price": 260000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/e07be2fe453997887012c8a04eae0c299c3b7ab4.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71034922/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.52
-  },
-  {
-    "address": "3 bed semi-detached house for sale Norton Grove, Maghull L31",
-    "postcode": null,
-    "price": 220000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/260f75e078a0b9b31f73ed09e21c5ee4bc5481e2.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71571359/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.8
   },
   {
     "address": "3 bed semi-detached house for sale Wimborne Place, Huyton L14",
@@ -294,6 +322,20 @@
     "gross_yield": 1.89
   },
   {
+    "address": "3 bed semi-detached house for sale Norton Grove, Maghull L31",
+    "postcode": null,
+    "price": 220000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/260f75e078a0b9b31f73ed09e21c5ee4bc5481e2.jpg",
+    "description": "3-bed property in Liverpool.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71571359/",
+    "city": "Liverpool",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.8
+  },
+  {
     "address": "3 bed end terrace house for sale Renville Road, Broadgreen L14",
     "postcode": null,
     "price": 210000,
@@ -306,48 +348,6 @@
     "monthly_rent": 330,
     "annual_rent": 3960,
     "gross_yield": 1.89
-  },
-  {
-    "address": "3 bed semi-detached house for sale Edge Lane, Old Swan L13",
-    "postcode": null,
-    "price": 160000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/1bc50dbc30a253e8bb7b93b27362b07fb5af7fd7.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70887773/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.48
-  },
-  {
-    "address": "3 bed semi-detached house for sale Leeside Avenue, Southdene, Kirkby L32",
-    "postcode": null,
-    "price": 110000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/4d0a2161928d07164869259ea0323c06f8eead2a.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71562791/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 3.6
-  },
-  {
-    "address": "3 bed semi-detached house for sale Northway, Maghull L31",
-    "postcode": null,
-    "price": 375000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/efe4e8f45949d2ac1c8fdbb704577939bc9bf252.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71559449/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.06
   },
   {
     "address": "3 bed semi-detached house for sale Fairway, Huyton L36",
@@ -364,6 +364,20 @@
     "gross_yield": 1.72
   },
   {
+    "address": "3 bed semi-detached house for sale Northway, Maghull L31",
+    "postcode": null,
+    "price": 375000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/efe4e8f45949d2ac1c8fdbb704577939bc9bf252.jpg",
+    "description": "3-bed property in Liverpool.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71559449/",
+    "city": "Liverpool",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.06
+  },
+  {
     "address": "3 bed semi-detached house for sale Ramsbury Drive, Speke L24",
     "postcode": null,
     "price": 230000,
@@ -376,62 +390,6 @@
     "monthly_rent": 330,
     "annual_rent": 3960,
     "gross_yield": 1.72
-  },
-  {
-    "address": "3 bed terraced house for sale Ascot Drive, Kirkby L33",
-    "postcode": null,
-    "price": 155000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/94210da2498566af0ae1ca7e800b469ade57e4c3.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70360838/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.55
-  },
-  {
-    "address": "3 bed semi-detached house for sale Marl Road, Bootle L30",
-    "postcode": null,
-    "price": 185000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/e733b62a5930ec77ce111f1b9c6aab0c1bf002a4.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71542415/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.14
-  },
-  {
-    "address": "3 bed detached house for sale June Street, Bootle L20",
-    "postcode": null,
-    "price": 170000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/465544d4ed4fcbad9d65f2a515cbd8d76389f534.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71481807/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.33
-  },
-  {
-    "address": "3 bed semi-detached house for sale Vale Road, Woolton L25",
-    "postcode": null,
-    "price": 280000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/2bd5561814084ee99c44f2c0ec8bc474831ab6cc.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71541748/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.41
   },
   {
     "address": "3 bed semi-detached house for sale Wolfenden Avenue, Bootle L20",
@@ -448,51 +406,37 @@
     "gross_yield": 3.05
   },
   {
-    "address": "3 bed terraced house for sale Percy Street, Bootle L20",
+    "address": "3 bed semi-detached house for sale Vale Road, Woolton L25",
     "postcode": null,
-    "price": 75000,
+    "price": 280000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/4d8459d49053dc51d3cccd8596f7defd0ff23e1a.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/2bd5561814084ee99c44f2c0ec8bc474831ab6cc.jpg",
     "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71527150/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71541748/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 5.28
+    "gross_yield": 1.41
   },
   {
-    "address": "3 bed semi-detached house for sale Belmont Crescent, Huyton L36",
+    "address": "3 bed semi-detached house for sale Marl Road, Bootle L30",
     "postcode": null,
-    "price": 250000,
+    "price": 185000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/fe9aa2a819902fa5a501f2042339c85632ce30a7.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/e733b62a5930ec77ce111f1b9c6aab0c1bf002a4.jpg",
     "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71535006/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71542415/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 1.58
-  },
-  {
-    "address": "3 bed semi-detached house for sale Fernhill Road, Bootle L20",
-    "postcode": null,
-    "price": 150000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/c0e6eb6821e461a4539c5ac1d77e505d4d1aa5b1.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71527169/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.64
+    "gross_yield": 2.14
   },
   {
     "address": "3 bed end terrace house for sale 45 Croxteth Road, Bootle L20",
     "postcode": null,
-    "price": 40000,
+    "price": 60000,
     "bedrooms": 3,
     "bathrooms": null,
     "image_url": "https://lid.zoocdn.com/u/1024/768/31f573f579b63ce52c016fbfbd9fcd96913ea5f0.jpg",
@@ -501,49 +445,21 @@
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 9.9
+    "gross_yield": 6.6
   },
   {
-    "address": "3 bed terraced house for sale Streatham Avenue, Mossley Hill L18",
+    "address": "3 bed semi-detached house for sale Southport Road, Bootle L20",
     "postcode": null,
-    "price": 280000,
+    "price": 200000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/3f8fdce12c31765d067cb7143bd52f066f3f8136.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/d076964c40b4e57899087e01787f73e9635e24cb.jpg",
     "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70681706/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71062029/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 1.41
-  },
-  {
-    "address": "3 bed semi-detached house for sale St. Monicas Drive, Netherton, Merseyside L30",
-    "postcode": null,
-    "price": 134950,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/1f68f2a8430d6393414b2d2a29a1d086b5842d9a.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69956577/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.93
-  },
-  {
-    "address": "3 bed semi-detached house for sale Holmefield Grove, Maghull L31",
-    "postcode": null,
-    "price": 235000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/7f48c3581e9d49f0d2f62213b3e21eeb6d5a3e08.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71524587/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.69
+    "gross_yield": 1.98
   },
   {
     "address": "3 bed terraced house for sale Hawthorne Road, Bootle L20",
@@ -560,18 +476,18 @@
     "gross_yield": 3.07
   },
   {
-    "address": "3 bed end terrace house for sale Marmion Avenue, Bootle L20",
+    "address": "3 bed semi-detached house for sale St. Monicas Drive, Netherton, Merseyside L30",
     "postcode": null,
-    "price": 185000,
+    "price": 134950,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/109777c9a3fa752652c72066e4fa1e1531c2ab11.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/1f68f2a8430d6393414b2d2a29a1d086b5842d9a.jpg",
     "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71516353/",
+    "property_url": "https://www.primelocation.com/for-sale/details/69956577/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 2.14
+    "gross_yield": 2.93
   },
   {
     "address": "3 bed terraced house for sale Scott Street, Bootle, Merseyside L20",
@@ -602,6 +518,34 @@
     "gross_yield": 2.26
   },
   {
+    "address": "3 bed end terrace house for sale St Marys Road, Huyton L36",
+    "postcode": null,
+    "price": 185000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/40b6f6a2b0b5ba0ecbd1496f05aa29af25f04b43.jpg",
+    "description": "3-bed property in Liverpool.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70341020/",
+    "city": "Liverpool",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 2.14
+  },
+  {
+    "address": "3 bed semi-detached house for sale Booker Avenue, Mossley Hill L18",
+    "postcode": null,
+    "price": 350000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/31db11c1945074ebf3f3a38ce10c7fbd1a8c0aa4.jpg",
+    "description": "3-bed property in Liverpool.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71239651/",
+    "city": "Liverpool",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.13
+  },
+  {
     "address": "4 bed terraced house for sale Parkway, Netherton, Merseyside L30",
     "postcode": null,
     "price": 145000,
@@ -614,20 +558,6 @@
     "monthly_rent": 440,
     "annual_rent": 5280,
     "gross_yield": 3.64
-  },
-  {
-    "address": "3 bed semi-detached house for sale Retford Road, Kirkby L33",
-    "postcode": null,
-    "price": 130000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/0f5ef74ed81f2eadca0a2bcfe58aa66790209d29.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71504935/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 3.05
   },
   {
     "address": "3 bed semi-detached house for sale Gorelston Way, Southdene L32",
@@ -644,20 +574,6 @@
     "gross_yield": 2.93
   },
   {
-    "address": "3 bed terraced house for sale Cranborne Road, Wavertree L15",
-    "postcode": null,
-    "price": 160000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/42263c90a7340676b035904f1889ed16741c2336.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71227695/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.48
-  },
-  {
     "address": "3 bed semi-detached house for sale Elmsfield Road, Crosby L23",
     "postcode": null,
     "price": 200000,
@@ -670,6 +586,20 @@
     "monthly_rent": 330,
     "annual_rent": 3960,
     "gross_yield": 1.98
+  },
+  {
+    "address": "3 bed semi-detached house for sale Moor Lane, Crosby L23",
+    "postcode": null,
+    "price": 400000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/843c0f990d3f9704767229c505df1614521e4944.jpg",
+    "description": "3-bed property in Liverpool.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71499029/",
+    "city": "Liverpool",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 0.99
   },
   {
     "address": "3 bed terraced house for sale Chesterfield Drive, Kirkby L33",
@@ -686,18 +616,18 @@
     "gross_yield": 6.6
   },
   {
-    "address": "3 bed semi-detached house for sale Moor Lane, Crosby L23",
+    "address": "3 bed semi-detached house for sale Retford Road, Kirkby L33",
     "postcode": null,
-    "price": 400000,
+    "price": 130000,
     "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/843c0f990d3f9704767229c505df1614521e4944.jpg",
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/0f5ef74ed81f2eadca0a2bcfe58aa66790209d29.jpg",
     "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71499029/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71504935/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 0.99
+    "gross_yield": 3.05
   },
   {
     "address": "3 bed semi-detached house for sale Greenville Drive, Maghull L31",
@@ -728,18 +658,18 @@
     "gross_yield": 3.17
   },
   {
-    "address": "3 bed terraced house for sale Karslake Road, Mossley Hill L18",
+    "address": "3 bed semi-detached house for sale Springvale Close, Westvale L32",
     "postcode": null,
-    "price": 280000,
+    "price": 135000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/46ee7ad5f982c7b293d9a428430a434746829a6a.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/8c61b4a814869838e9f2d779e6ae0d99dcf06263.jpg",
     "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71493515/",
+    "property_url": "https://www.primelocation.com/for-sale/details/69554998/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 1.41
+    "gross_yield": 2.93
   },
   {
     "address": "3 bed town house for sale Overton Close, Westvale L32",
@@ -750,20 +680,6 @@
     "image_url": "https://lid.zoocdn.com/u/1024/768/6fb4873d6a6157bc2e6e655e648e8192ec5595da.jpg",
     "description": "3-bed property in Liverpool.",
     "property_url": "https://www.primelocation.com/for-sale/details/69510871/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.93
-  },
-  {
-    "address": "3 bed semi-detached house for sale Springvale Close, Westvale L32",
-    "postcode": null,
-    "price": 135000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/8c61b4a814869838e9f2d779e6ae0d99dcf06263.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69554998/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
@@ -784,18 +700,18 @@
     "gross_yield": 1.62
   },
   {
-    "address": "3 bed terraced house for sale St. Asaph Grove, Bootle, Merseyside L30",
+    "address": "3 bed detached house for sale June Street, Bootle L20",
     "postcode": null,
-    "price": 115000,
+    "price": 170000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/6434e02f36beb8dd0b2b55d16e14f3d3953b5f13.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/465544d4ed4fcbad9d65f2a515cbd8d76389f534.jpg",
     "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71488733/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71481807/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 3.44
+    "gross_yield": 2.33
   },
   {
     "address": "3 bed semi-detached house for sale Sprakeling Place, Orrell Park, Merseyside L20",
@@ -812,32 +728,32 @@
     "gross_yield": 2.33
   },
   {
-    "address": "3 bed semi-detached house for sale Meadway, Maghull L31",
+    "address": "3 bed terraced house for sale Karslake Road, Mossley Hill L18",
     "postcode": null,
-    "price": 195000,
+    "price": 280000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/fd5a85bcf903bbddfcdd5831748c249f77ec9d20.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/46ee7ad5f982c7b293d9a428430a434746829a6a.jpg",
     "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71477955/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71493515/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 2.03
+    "gross_yield": 1.41
   },
   {
-    "address": "3 bed detached house for sale Maryland Grove, Bootle L20",
+    "address": "3 bed terraced house for sale St. Asaph Grove, Bootle, Merseyside L30",
     "postcode": null,
-    "price": 350000,
+    "price": 115000,
     "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/b049e68cc855ef8ed044ae5853fe7247b69fe651.jpg",
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/6434e02f36beb8dd0b2b55d16e14f3d3953b5f13.jpg",
     "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71477393/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71488733/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 1.13
+    "gross_yield": 3.44
   },
   {
     "address": "3 bed semi-detached house for sale Durley Road, Fazakerley L9",
@@ -854,74 +770,18 @@
     "gross_yield": 2.08
   },
   {
-    "address": "4 bed semi-detached house for sale Brookside Avenue, Waterloo L22",
+    "address": "3 bed semi-detached house for sale Heydale Road, Mossley Hill L18",
     "postcode": null,
-    "price": 250000,
-    "bedrooms": 4,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/126608a90839159068480efd8f0896d3cfb12cbf.jpg",
-    "description": "4-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71458957/",
-    "city": "Liverpool",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 2.11
-  },
-  {
-    "address": "3 bed semi-detached house for sale Milton Avenue, Broadgreen L14",
-    "postcode": null,
-    "price": 260000,
+    "price": 350000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/5f708425e96e8fa64b08d1373f30b575a398f0d6.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/6ae1d0cb1c71b2b738270228d1cbd867dbd42396.jpg",
     "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71154198/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71343277/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 1.52
-  },
-  {
-    "address": "4 bed semi-detached house for sale Rosedale Avenue, Crosby L23",
-    "postcode": null,
-    "price": 270000,
-    "bedrooms": 4,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/c749f9f8dbc8aab1d8a0696ea09a0ea4d9cb4c07.jpg",
-    "description": "4-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71445367/",
-    "city": "Liverpool",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 1.96
-  },
-  {
-    "address": "3 bed semi-detached house for sale Vale Road, Woolton L25",
-    "postcode": null,
-    "price": 300000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/63c0e1440c5c39ada7e4c106d32894698f6864e7.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71442734/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.32
-  },
-  {
-    "address": "3 bed terraced house for sale Debra Close, Melling L31",
-    "postcode": null,
-    "price": 165000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/93efeead3d3608b37dcdb074439a8f2577182fdc.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69812266/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.4
+    "gross_yield": 1.13
   },
   {
     "address": "3 bed detached house for sale West Meade, Maghull L31",
@@ -938,18 +798,18 @@
     "gross_yield": 1.22
   },
   {
-    "address": "4 bed terraced house for sale Thorndale Road, Waterloo L22",
+    "address": "4 bed semi-detached house for sale Rosedale Avenue, Crosby L23",
     "postcode": null,
-    "price": 260000,
+    "price": 270000,
     "bedrooms": 4,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/167ab2e6fddba6f4aa147419ac12a89e28e40d5a.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/c749f9f8dbc8aab1d8a0696ea09a0ea4d9cb4c07.jpg",
     "description": "4-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71440320/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71445367/",
     "city": "Liverpool",
     "monthly_rent": 440,
     "annual_rent": 5280,
-    "gross_yield": 2.03
+    "gross_yield": 1.96
   },
   {
     "address": "3 bed semi-detached house for sale Haworth Drive, Bootle L20",
@@ -980,74 +840,46 @@
     "gross_yield": 1.35
   },
   {
-    "address": "4 bed detached house for sale Barberry Crescent, Bootle L30",
+    "address": "3 bed terraced house for sale Debra Close, Melling L31",
     "postcode": null,
-    "price": 350000,
-    "bedrooms": 4,
+    "price": 165000,
+    "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/d4279ce6a5791d0423793d0b77c129fdd651c4cc.jpg",
-    "description": "4-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71431590/",
-    "city": "Liverpool",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 1.51
-  },
-  {
-    "address": "3 bed terraced house for sale Glovers Lane, Bootle L30",
-    "postcode": null,
-    "price": 125000,
-    "bedrooms": 3,
-    "bathrooms": null,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/663547e8f52763cda51d713b2e8923f2451e01be.png",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/93efeead3d3608b37dcdb074439a8f2577182fdc.jpg",
     "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71425078/",
+    "property_url": "https://www.primelocation.com/for-sale/details/69812266/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 3.17
+    "gross_yield": 2.4
   },
   {
-    "address": "3 bed detached house for sale Richmond Crescent, Bootle L30",
+    "address": "3 bed semi-detached house for sale Moss Pits Lane, Wavertree L15",
     "postcode": null,
-    "price": 280000,
+    "price": 325000,
     "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/ea0eca5002a562d25e09145a3b11bad374a1668a.jpg",
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/5bfd8a8271a5c2b33456322fe755d21f4b4189a1.jpg",
     "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71426858/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71043961/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 1.41
+    "gross_yield": 1.22
   },
   {
-    "address": "4 bed detached house for sale Addison Close, Kirkby L32",
+    "address": "3 bed semi-detached house for sale Milton Avenue, Broadgreen L14",
     "postcode": null,
-    "price": 320000,
-    "bedrooms": 4,
-    "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/46147364fff6709271439869a80ce95a4c22ee6c.jpg",
-    "description": "4-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71426010/",
-    "city": "Liverpool",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 1.65
-  },
-  {
-    "address": "3 bed terraced house for sale Whalley Court, Bootle L30",
-    "postcode": null,
-    "price": 115000,
+    "price": 260000,
     "bedrooms": 3,
-    "bathrooms": null,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/20a386cdee437ca920ce44cb80c5190ca63440ac.png",
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/5f708425e96e8fa64b08d1373f30b575a398f0d6.jpg",
     "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71425077/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71154198/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 3.44
+    "gross_yield": 1.52
   },
   {
     "address": "3 bed semi-detached house for sale Moss Lane, Maghull L31",
@@ -1064,32 +896,32 @@
     "gross_yield": 1.58
   },
   {
-    "address": "3 bed terraced house for sale Frederick Banting Close, Bootle L30",
+    "address": "3 bed terraced house for sale 9 Chesterfield Drive, Kirkby, Merseyside L33",
     "postcode": null,
-    "price": 110000,
-    "bedrooms": 3,
-    "bathrooms": null,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/fafa4e9719ac06d6ec10d3c3ea05d8139bb28c52.png",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71425074/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 3.6
-  },
-  {
-    "address": "3 bed semi-detached house for sale Leybourne Close, Gateacre L25",
-    "postcode": null,
-    "price": 280000,
+    "price": 60000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/b3c034fa3863a755f46dee59911b57604b20dcd8.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/8504480dd86d826b43be9aee08de9774c77ba194.jpg",
     "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70762397/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71424454/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 1.41
+    "gross_yield": 6.6
+  },
+  {
+    "address": "3 bed terraced house for sale Whalley Court, Bootle L30",
+    "postcode": null,
+    "price": 115000,
+    "bedrooms": 3,
+    "bathrooms": null,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/20a386cdee437ca920ce44cb80c5190ca63440ac.png",
+    "description": "3-bed property in Liverpool.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71425077/",
+    "city": "Liverpool",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 3.44
   },
   {
     "address": "3 bed semi-detached house for sale Lonsdale Road, Formby L37",
@@ -1106,32 +938,18 @@
     "gross_yield": 1.18
   },
   {
-    "address": "3 bed terraced house for sale 9 Chesterfield Drive, Kirkby, Merseyside L33",
+    "address": "3 bed terraced house for sale Glovers Lane, Bootle L30",
     "postcode": null,
-    "price": 60000,
+    "price": 125000,
     "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/8504480dd86d826b43be9aee08de9774c77ba194.jpg",
+    "bathrooms": null,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/663547e8f52763cda51d713b2e8923f2451e01be.png",
     "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71424454/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71425078/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 6.6
-  },
-  {
-    "address": "3 bed semi-detached house for sale Wavertree Green, Wavertree L15",
-    "postcode": null,
-    "price": 325000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/0edefa21beacea25b01a73718730f70f7bfa1264.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71420709/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.22
+    "gross_yield": 3.17
   },
   {
     "address": "3 bed semi-detached house for sale Dodds Lane, Maghull L31",
@@ -1148,18 +966,32 @@
     "gross_yield": 1.65
   },
   {
-    "address": "3 bed terraced house for sale Norton Street, Bootle, Merseyside L20",
+    "address": "3 bed terraced house for sale Frederick Banting Close, Bootle L30",
     "postcode": null,
-    "price": 130000,
+    "price": 110000,
     "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/1bd45ce3ca4a888965ccf84fff31ecc3766a0e6f.jpg",
+    "bathrooms": null,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/fafa4e9719ac06d6ec10d3c3ea05d8139bb28c52.png",
     "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71408588/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71425074/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 3.05
+    "gross_yield": 3.6
+  },
+  {
+    "address": "3 bed semi-detached house for sale Wavertree Green, Wavertree L15",
+    "postcode": null,
+    "price": 325000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/0edefa21beacea25b01a73718730f70f7bfa1264.jpg",
+    "description": "3-bed property in Liverpool.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71420709/",
+    "city": "Liverpool",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.22
   },
   {
     "address": "4 bed detached house for sale Rock View, Melling L31",
@@ -1174,20 +1006,6 @@
     "monthly_rent": 440,
     "annual_rent": 5280,
     "gross_yield": 1.65
-  },
-  {
-    "address": "3 bed terraced house for sale Norton Street, Bootle, Merseyside L20",
-    "postcode": null,
-    "price": 115000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/924ac7df58d243da6da85736c051fac295ee2783.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71405385/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 3.44
   },
   {
     "address": "3 bed detached house for sale Village Courts, Bootle L30",
@@ -1218,20 +1036,6 @@
     "gross_yield": 1.41
   },
   {
-    "address": "3 bed detached house for sale Richmond Crescent, Bootle L30",
-    "postcode": null,
-    "price": 280000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/59ab9084365076092cc7dac571e8b6e32dbf4681.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71384951/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.41
-  },
-  {
     "address": "3 bed semi-detached house for sale Thomas Lane, Broadgreen L14",
     "postcode": null,
     "price": 230000,
@@ -1246,18 +1050,18 @@
     "gross_yield": 1.72
   },
   {
-    "address": "3 bed semi-detached house for sale Alvanley Road, West Derby L12",
+    "address": "3 bed terraced house for sale Norton Street, Bootle, Merseyside L20",
     "postcode": null,
-    "price": 325000,
+    "price": 115000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/fe6b952e8e472ef691e2c8819ea35f2da0e646df.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/924ac7df58d243da6da85736c051fac295ee2783.jpg",
     "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71382165/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71405385/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 1.22
+    "gross_yield": 3.44
   },
   {
     "address": "4 bed semi-detached house for sale Moorgate Avenue, Crosby, Merseyside L23",
@@ -1288,32 +1092,18 @@
     "gross_yield": 1.41
   },
   {
-    "address": "3 bed terraced house for sale Ranelagh Avenue, Litherland, Merseyside L21",
+    "address": "3 bed detached house for sale Richmond Crescent, Bootle L30",
     "postcode": null,
-    "price": 145000,
+    "price": 280000,
     "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/eade862e8dfb0d0736141a285cb78f7e6b1242a4.jpg",
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/59ab9084365076092cc7dac571e8b6e32dbf4681.jpg",
     "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70584393/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71384951/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 2.73
-  },
-  {
-    "address": "3 bed terraced house for sale Cambridge Road, Bootle L20",
-    "postcode": null,
-    "price": 122000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/a17ced15e6b0c9b45cdd1dad39c6a4f39c7fa8b3.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71375761/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 3.25
+    "gross_yield": 1.41
   },
   {
     "address": "5 bed semi-detached house for sale Kimberley Avenue, Crosby L23",
@@ -1328,20 +1118,6 @@
     "monthly_rent": 550,
     "annual_rent": 6600,
     "gross_yield": 2.2
-  },
-  {
-    "address": "3 bed semi-detached house for sale Halewood Close, Gateacre L25",
-    "postcode": null,
-    "price": 320000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/351bd729925d39a3db3ff24d4f4627e92a8e843f.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69870950/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.24
   },
   {
     "address": "3 bed terraced house for sale Atherton Rake, Bootle, Merseyside L30",
@@ -1372,20 +1148,6 @@
     "gross_yield": 3.05
   },
   {
-    "address": "3 bed semi-detached house for sale Hathaway, Maghull L31",
-    "postcode": null,
-    "price": 240000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/e2a7471e8ec48e2f2b4d868131bef5ce6c24836d.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71364062/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.65
-  },
-  {
     "address": "3 bed semi-detached house for sale Duddon Avenue, Maghull L31",
     "postcode": null,
     "price": 260000,
@@ -1398,20 +1160,6 @@
     "monthly_rent": 330,
     "annual_rent": 3960,
     "gross_yield": 1.52
-  },
-  {
-    "address": "3 bed semi-detached house for sale Moss Pits Lane, Wavertree L15",
-    "postcode": null,
-    "price": 290000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/3c61b911781465a3cb162355e0f4bf91dead4cfe.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71154266/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.37
   },
   {
     "address": "3 bed town house for sale Dapple Heath Avenue, Melling L31",
@@ -1428,48 +1176,6 @@
     "gross_yield": 1.62
   },
   {
-    "address": "3 bed semi-detached house for sale Heydale Road, Mossley Hill L18",
-    "postcode": null,
-    "price": 350000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/6ae1d0cb1c71b2b738270228d1cbd867dbd42396.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71343277/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.13
-  },
-  {
-    "address": "3 bed terraced house for sale Field Lane, Litherland L21",
-    "postcode": null,
-    "price": 200000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/0bcf40f7b69ee286c3541a7daf2ee52b6ff8c850.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71342557/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.98
-  },
-  {
-    "address": "4 bed semi-detached house for sale Lewis Walk, Kirkby L33",
-    "postcode": null,
-    "price": 240000,
-    "bedrooms": 4,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/37783933042efdfa075e33bc45d69ddbd4affeb5.jpg",
-    "description": "4-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71342445/",
-    "city": "Liverpool",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 2.2
-  },
-  {
     "address": "5 bed town house for sale Flats 1-5, 7 St. Edmonds Road, Bootle, Merseyside L20",
     "postcode": null,
     "price": 190000,
@@ -1482,6 +1188,20 @@
     "monthly_rent": 550,
     "annual_rent": 6600,
     "gross_yield": 3.47
+  },
+  {
+    "address": "3 bed semi-detached house for sale Johnston Avenue, Bootle L20",
+    "postcode": null,
+    "price": 180000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/9ef896196ddaa7443acafba862127f266c010fb3.jpg",
+    "description": "3-bed property in Liverpool.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71246806/",
+    "city": "Liverpool",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 2.2
   },
   {
     "address": "3 bed semi-detached house for sale Kenbury Road, Northwood L33",
@@ -1526,32 +1246,18 @@
     "gross_yield": 1.41
   },
   {
-    "address": "3 bed detached house for sale Hobart Drive, Kirkby, Merseyside L33",
+    "address": "3 bed terraced house for sale Field Lane, Litherland L21",
     "postcode": null,
-    "price": 170000,
+    "price": 200000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/79872a80fd404f945ea73d371af65e0d6effcad3.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/0bcf40f7b69ee286c3541a7daf2ee52b6ff8c850.jpg",
     "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71326992/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71342557/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 2.33
-  },
-  {
-    "address": "3 bed semi-detached house for sale 22, Carr Road, Bootle L20",
-    "postcode": null,
-    "price": 115000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/3e043d1339118f6c6288f3642c5a544a77b39122.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71324765/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 3.44
+    "gross_yield": 1.98
   },
   {
     "address": "3 bed terraced house for sale Ramilies Road, Mossley Hill L18",
@@ -1568,18 +1274,18 @@
     "gross_yield": 1.37
   },
   {
-    "address": "3 bed end terrace house for sale St Marys Road, Huyton L36",
+    "address": "3 bed semi-detached house for sale 22, Carr Road, Bootle L20",
     "postcode": null,
-    "price": 185000,
+    "price": 115000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/40b6f6a2b0b5ba0ecbd1496f05aa29af25f04b43.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/3e043d1339118f6c6288f3642c5a544a77b39122.jpg",
     "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70341020/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71324765/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 2.14
+    "gross_yield": 3.44
   },
   {
     "address": "3 bed terraced house for sale Sidney Road, Bootle L20",
@@ -1596,48 +1302,6 @@
     "gross_yield": 3.17
   },
   {
-    "address": "3 bed semi-detached house for sale Norman Road, Litherland, Merseyside L20",
-    "postcode": null,
-    "price": 210000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/31f16e2fab1ea9f8aae3cc79c49cae2a11282134.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71315878/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.89
-  },
-  {
-    "address": "3 bed semi-detached house for sale Tatton Road, Orrell Park, Merseyside L9",
-    "postcode": null,
-    "price": 180000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/5525e9e64d0a8e6c0ee72869d3d88a76a52179cd.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/68543821/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.2
-  },
-  {
-    "address": "5 bed semi-detached house for sale Campbell Drive, Broadgreen L14",
-    "postcode": null,
-    "price": 305000,
-    "bedrooms": 5,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/d27eb0e132a8a5ff2c22f0b62266374eac71060e.jpg",
-    "description": "5-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71299548/",
-    "city": "Liverpool",
-    "monthly_rent": 550,
-    "annual_rent": 6600,
-    "gross_yield": 2.16
-  },
-  {
     "address": "4 bed semi-detached house for sale Eastway, Maghull L31",
     "postcode": null,
     "price": 260000,
@@ -1652,79 +1316,23 @@
     "gross_yield": 2.03
   },
   {
-    "address": "4 bed semi-detached house for sale Manvers Road, Childwall L16",
+    "address": "3 bed semi-detached house for sale Norman Road, Litherland, Merseyside L20",
     "postcode": null,
-    "price": 380000,
-    "bedrooms": 4,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/4ce2f5778335f2ffed86aeb4cc511856ec8b4e94.jpg",
-    "description": "4-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71297758/",
-    "city": "Liverpool",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 1.39
-  },
-  {
-    "address": "3 bed detached house for sale Baytree Grove, Melling L31",
-    "postcode": null,
-    "price": 315000,
-    "bedrooms": 3,
-    "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/1593032e5aafa27927648e99b45e559495c77296.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71297612/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.26
-  },
-  {
-    "address": "4 bed terraced house for sale Blucher Street, Waterloo L22",
-    "postcode": null,
-    "price": 350000,
-    "bedrooms": 4,
-    "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/5456227112e7887f720c4f306430583af3860168.jpg",
-    "description": "4-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71292171/",
-    "city": "Liverpool",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 1.51
-  },
-  {
-    "address": "3 bed terraced house for sale Shelley Street, Bootle L20",
-    "postcode": null,
-    "price": 120000,
+    "price": 210000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/bafec14e7627be679361b94ad49e3b86ccf8b6d7.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/31f16e2fab1ea9f8aae3cc79c49cae2a11282134.jpg",
     "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70359945/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71315878/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 3.3
-  },
-  {
-    "address": "3 bed semi-detached house for sale Higher Road, Halewood L26",
-    "postcode": null,
-    "price": 350000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/20c486db99afedba4113050c00e88a51025ee539.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71290752/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.13
+    "gross_yield": 1.89
   },
   {
     "address": "3 bed semi-detached house for sale Cherryfield Drive, Southdene L32",
     "postcode": null,
-    "price": 225000,
+    "price": 220000,
     "bedrooms": 3,
     "bathrooms": 1,
     "image_url": "https://lid.zoocdn.com/u/1024/768/d16967b865a38268eaefcbccb127cc1869f43a7c.jpg",
@@ -1733,7 +1341,7 @@
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 1.76
+    "gross_yield": 1.8
   },
   {
     "address": "3 bed terraced house for sale Aintree Road, Bootle L20",
@@ -1750,32 +1358,18 @@
     "gross_yield": 2.33
   },
   {
-    "address": "3 bed semi-detached house for sale Queens Drive, Wavertree L15",
+    "address": "3 bed semi-detached house for sale Higher Road, Halewood L26",
     "postcode": null,
-    "price": 400000,
+    "price": 350000,
     "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/63ec3afb84298b745f29fa28e8fa5ee58d751a1a.jpg",
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/20c486db99afedba4113050c00e88a51025ee539.jpg",
     "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71289563/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71290752/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 0.99
-  },
-  {
-    "address": "3 bed semi-detached house for sale Deverell Road, Wavertree L15",
-    "postcode": null,
-    "price": 170000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/2654276f9b7dad1364c9ce8658f8864a3e4e7b1c.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70572426/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.33
+    "gross_yield": 1.13
   },
   {
     "address": "4 bed detached house for sale Gadwall Close, Maghull L31",
@@ -1792,34 +1386,6 @@
     "gross_yield": 1.39
   },
   {
-    "address": "3 bed terraced house for sale Litherland Road, Bootle, Merseyside L20",
-    "postcode": null,
-    "price": 135000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/5bd14b691a972fb63737acabaafd20d10175c3cc.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71279064/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.93
-  },
-  {
-    "address": "3 bed terraced house for sale Norton Street, Bootle, Merseyside L20",
-    "postcode": null,
-    "price": 115000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/a796792a0c8de3173423a24e63a5dc9b4045d5ee.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71276895/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 3.44
-  },
-  {
     "address": "4 bed detached house for sale Copy Close, Bootle L30",
     "postcode": null,
     "price": 400000,
@@ -1832,6 +1398,34 @@
     "monthly_rent": 440,
     "annual_rent": 5280,
     "gross_yield": 1.32
+  },
+  {
+    "address": "3 bed semi-detached house for sale Deverell Road, Wavertree L15",
+    "postcode": null,
+    "price": 170000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/2654276f9b7dad1364c9ce8658f8864a3e4e7b1c.jpg",
+    "description": "3-bed property in Liverpool.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70572426/",
+    "city": "Liverpool",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 2.33
+  },
+  {
+    "address": "3 bed terraced house for sale Litherland Road, Bootle, Merseyside L20",
+    "postcode": null,
+    "price": 135000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/5bd14b691a972fb63737acabaafd20d10175c3cc.jpg",
+    "description": "3-bed property in Liverpool.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71279064/",
+    "city": "Liverpool",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 2.93
   },
   {
     "address": "4 bed semi-detached house for sale James Holt Avenue, Kirkby L32",
@@ -1848,46 +1442,18 @@
     "gross_yield": 3.27
   },
   {
-    "address": "3 bed semi-detached house for sale Deyes End, Maghull L31",
+    "address": "3 bed terraced house for sale Norton Street, Bootle, Merseyside L20",
     "postcode": null,
-    "price": 230000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/20d32762d387a16ce7fb00a48fdc33f0f1a23732.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71272722/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.72
-  },
-  {
-    "address": "3 bed semi-detached house for sale Wicks Crescent, Formby L37",
-    "postcode": null,
-    "price": 315000,
+    "price": 115000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/75db24548c72c2fec30b55cb1f0d9a5d6cb0acf2.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/a796792a0c8de3173423a24e63a5dc9b4045d5ee.jpg",
     "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70275790/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71276895/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 1.26
-  },
-  {
-    "address": "3 bed property for sale Carr House Lane, Ince Blundell L38",
-    "postcode": null,
-    "price": 290000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/47ec4fd812bfda19028f6a798eeb7adf8e42d7f5.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71270619/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.37
+    "gross_yield": 3.44
   },
   {
     "address": "3 bed semi-detached house for sale Heather Way, Thornton L23",
@@ -1904,18 +1470,32 @@
     "gross_yield": 1.65
   },
   {
-    "address": "3 bed semi-detached house for sale Keir Hardie Avenue, Bootle, Merseyside L20",
+    "address": "3 bed property for sale Carr House Lane, Ince Blundell L38",
     "postcode": null,
-    "price": 160000,
+    "price": 290000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/e0a51657969e19a44175633dfa3497ee25b55275.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/47ec4fd812bfda19028f6a798eeb7adf8e42d7f5.jpg",
     "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71265608/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71270619/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 2.48
+    "gross_yield": 1.37
+  },
+  {
+    "address": "3 bed semi-detached house for sale Deyes End, Maghull L31",
+    "postcode": null,
+    "price": 230000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/20d32762d387a16ce7fb00a48fdc33f0f1a23732.jpg",
+    "description": "3-bed property in Liverpool.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71272722/",
+    "city": "Liverpool",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.72
   },
   {
     "address": "3 bed semi-detached house for sale Douglas Drive, Maghull L31",
@@ -1932,20 +1512,6 @@
     "gross_yield": 1.98
   },
   {
-    "address": "3 bed semi-detached house for sale Johnston Avenue, Bootle L20",
-    "postcode": null,
-    "price": 180000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/9ef896196ddaa7443acafba862127f266c010fb3.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71246806/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.2
-  },
-  {
     "address": "3 bed semi-detached house for sale Gatley Drive, Maghull L31",
     "postcode": null,
     "price": 335000,
@@ -1960,46 +1526,18 @@
     "gross_yield": 1.18
   },
   {
-    "address": "3 bed terraced house for sale Scott Street, Bootle, Merseyside L20",
+    "address": "3 bed terraced house for sale Cranborne Road, Wavertree L15",
     "postcode": null,
-    "price": 100000,
+    "price": 160000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/b705bd57267a219fb641104f7821bac216cee7f7.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/42263c90a7340676b035904f1889ed16741c2336.jpg",
     "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70275089/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71227695/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 3.96
-  },
-  {
-    "address": "3 bed semi-detached house for sale Booker Avenue, Mossley Hill L18",
-    "postcode": null,
-    "price": 350000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/31db11c1945074ebf3f3a38ce10c7fbd1a8c0aa4.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71239651/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.13
-  },
-  {
-    "address": "3 bed terraced house for sale Grieve Road, Fazakerley L10",
-    "postcode": null,
-    "price": 145000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/130bbc1379b4a759d54726bcf5d6511c8713eaf1.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71236983/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.73
+    "gross_yield": 2.48
   },
   {
     "address": "3 bed detached house for sale Heron Way, Maghull L31",
@@ -2016,6 +1554,20 @@
     "gross_yield": 1.52
   },
   {
+    "address": "3 bed terraced house for sale Scott Street, Bootle, Merseyside L20",
+    "postcode": null,
+    "price": 100000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/b705bd57267a219fb641104f7821bac216cee7f7.jpg",
+    "description": "3-bed property in Liverpool.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70275089/",
+    "city": "Liverpool",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 3.96
+  },
+  {
     "address": "3 bed terraced house for sale Thistley Hey Road, Southdene L32",
     "postcode": null,
     "price": 120000,
@@ -2030,34 +1582,6 @@
     "gross_yield": 3.3
   },
   {
-    "address": "3 bed terraced house for sale Gainsborough Road, Wavertree L15",
-    "postcode": null,
-    "price": 170000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/5a16dece55bb8673a49e6c08ff6db5436fdd0b4e.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71217965/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.33
-  },
-  {
-    "address": "3 bed end terrace house for sale Churchward Court, Woolton L25",
-    "postcode": null,
-    "price": 399950,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/d423689735ad3650ca7066c5a322e2313940df85.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71212855/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 0.99
-  },
-  {
     "address": "3 bed semi-detached house for sale Moss Lane, Bootle L20",
     "postcode": null,
     "price": 200000,
@@ -2070,20 +1594,6 @@
     "monthly_rent": 330,
     "annual_rent": 3960,
     "gross_yield": 1.98
-  },
-  {
-    "address": "3 bed end terrace house for sale Russell Road, Mossley Hill L18",
-    "postcode": null,
-    "price": 300000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/ceca47a67d1f492ca0633c84942956212aed1b66.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71207236/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.32
   },
   {
     "address": "3 bed semi-detached house for sale Acuba Road, Wavertree L15",
@@ -2114,18 +1624,18 @@
     "gross_yield": 1.89
   },
   {
-    "address": "3 bed terraced house for sale Berrydale Road, Broadgreen L14",
+    "address": "3 bed end terrace house for sale Churchward Court, Woolton L25",
     "postcode": null,
-    "price": 235000,
+    "price": 399950,
     "bedrooms": 3,
     "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/ffccdd272ad5535c9675c96fc25a93b7a6981cf9.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/d423689735ad3650ca7066c5a322e2313940df85.jpg",
     "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70806616/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71212855/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 1.69
+    "gross_yield": 0.99
   },
   {
     "address": "4 bed semi-detached house for sale Aragon Close, Lydiate L31",
@@ -2142,34 +1652,6 @@
     "gross_yield": 2.03
   },
   {
-    "address": "3 bed semi-detached house for sale Rose Avenue, Litherland, Merseyside L20",
-    "postcode": null,
-    "price": 195000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/dfa08cbffc976249fa9411339428cda36896e219.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71156339/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.03
-  },
-  {
-    "address": "4 bed semi-detached house for sale Harthill Avenue, Allerton L18",
-    "postcode": null,
-    "price": 375000,
-    "bedrooms": 4,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/f4d5879a7ad3ae871dd6221b7bc31b8a7ea031e4.jpg",
-    "description": "4-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71154115/",
-    "city": "Liverpool",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 1.41
-  },
-  {
     "address": "3 bed semi-detached house for sale Chelwood Avenue, Childwall L16",
     "postcode": null,
     "price": 250000,
@@ -2182,62 +1664,6 @@
     "monthly_rent": 330,
     "annual_rent": 3960,
     "gross_yield": 1.58
-  },
-  {
-    "address": "3 bed semi-detached house for sale Marmion Avenue, Bootle L20",
-    "postcode": null,
-    "price": 160000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/343f84a9b376abcb5f7495b0289a284326ddc109.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71107100/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.48
-  },
-  {
-    "address": "3 bed semi-detached house for sale Strafford Drive, Bootle L20",
-    "postcode": null,
-    "price": 250000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/ab6caae7a32ee6ae87f046619ad373bccb655cb7.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71121587/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.58
-  },
-  {
-    "address": "3 bed semi-detached house for sale Fouracres, Maghull L31",
-    "postcode": null,
-    "price": 300000,
-    "bedrooms": 3,
-    "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/0b67e24ccbd58c51e57bdc14be59031699818289.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71119333/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.32
-  },
-  {
-    "address": "4 bed terraced house for sale Beverley Road, Wavertree L15",
-    "postcode": null,
-    "price": 340000,
-    "bedrooms": 4,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/66547b5e4a8c3fea839c908b981f4c973f2a6e36.jpg",
-    "description": "4-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71105472/",
-    "city": "Liverpool",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 1.55
   },
   {
     "address": "3 bed semi-detached house for sale Sonning Avenue, Litherland L21",
@@ -2268,18 +1694,18 @@
     "gross_yield": 1.44
   },
   {
-    "address": "3 bed terraced house for sale Coppull Road, Lydiate L31",
+    "address": "4 bed terraced house for sale Beverley Road, Wavertree L15",
     "postcode": null,
-    "price": 190000,
-    "bedrooms": 3,
+    "price": 340000,
+    "bedrooms": 4,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/059a7364ef4d61500cbff4acc47dacbd41f03490.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71104594/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/66547b5e4a8c3fea839c908b981f4c973f2a6e36.jpg",
+    "description": "4-bed property in Liverpool.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71105472/",
     "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.08
+    "monthly_rent": 440,
+    "annual_rent": 5280,
+    "gross_yield": 1.55
   },
   {
     "address": "3 bed semi-detached house for sale Roseland Close, Lydiate L31",
@@ -2296,6 +1722,20 @@
     "gross_yield": 1.66
   },
   {
+    "address": "3 bed terraced house for sale Coppull Road, Lydiate L31",
+    "postcode": null,
+    "price": 190000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/059a7364ef4d61500cbff4acc47dacbd41f03490.jpg",
+    "description": "3-bed property in Liverpool.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71104594/",
+    "city": "Liverpool",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 2.08
+  },
+  {
     "address": "3 bed end terrace house for sale Crawford Avenue, Mossley Hill L18",
     "postcode": null,
     "price": 290000,
@@ -2308,62 +1748,6 @@
     "monthly_rent": 330,
     "annual_rent": 3960,
     "gross_yield": 1.37
-  },
-  {
-    "address": "4 bed end terrace house for sale Oakhill Drive, Lydiate L31",
-    "postcode": null,
-    "price": 265000,
-    "bedrooms": 4,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/c362204f42c7723efa99c890cd2f2de13852a9aa.jpg",
-    "description": "4-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71075560/",
-    "city": "Liverpool",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 1.99
-  },
-  {
-    "address": "3 bed semi-detached house for sale Normington Close, Lydiate L31",
-    "postcode": null,
-    "price": 240000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/711dd3ddf4d661251dc87cd416720d0d55cd301e.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71063593/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.65
-  },
-  {
-    "address": "3 bed end terrace house for sale Riesling Drive, Kirkby, Merseyside L33",
-    "postcode": null,
-    "price": 175000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/a8bb47985871d88e28eeafc6e0bae4de233cce71.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71061095/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.26
-  },
-  {
-    "address": "3 bed semi-detached house for sale Southport Road, Bootle L20",
-    "postcode": null,
-    "price": 200000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/d076964c40b4e57899087e01787f73e9635e24cb.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71062029/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.98
   },
   {
     "address": "6 bed terraced house for sale Rathbone Road, Wavertree L15",
@@ -2380,32 +1764,32 @@
     "gross_yield": 3.77
   },
   {
-    "address": "3 bed semi-detached house for sale Moss Pits Lane, Wavertree L15",
+    "address": "3 bed semi-detached house for sale Normington Close, Lydiate L31",
     "postcode": null,
-    "price": 325000,
+    "price": 240000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/5bfd8a8271a5c2b33456322fe755d21f4b4189a1.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/711dd3ddf4d661251dc87cd416720d0d55cd301e.jpg",
     "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71043961/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71063593/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 1.22
+    "gross_yield": 1.65
   },
   {
-    "address": "4 bed semi-detached house for sale Thingwall Hall Drive, Broadgreen L14",
+    "address": "4 bed end terrace house for sale Oakhill Drive, Lydiate L31",
     "postcode": null,
-    "price": 350000,
+    "price": 265000,
     "bedrooms": 4,
-    "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/fa56f4ceb06edf0cf621fcf77845a9a0caa852f1.jpg",
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/c362204f42c7723efa99c890cd2f2de13852a9aa.jpg",
     "description": "4-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71043296/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71075560/",
     "city": "Liverpool",
     "monthly_rent": 440,
     "annual_rent": 5280,
-    "gross_yield": 1.51
+    "gross_yield": 1.99
   },
   {
     "address": "3 bed semi-detached house for sale Coppull Road, Lydiate, Merseyside L31",
@@ -2422,20 +1806,6 @@
     "gross_yield": 2.08
   },
   {
-    "address": "3 bed semi-detached house for sale Vale Road, Crosby, Merseyside L23",
-    "postcode": null,
-    "price": 225000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/365a3934200eaa47bf18791cce744b2f5fddf93d.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71035127/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.76
-  },
-  {
     "address": "4 bed semi-detached house for sale Molyneux Road, Maghull L31",
     "postcode": null,
     "price": 340000,
@@ -2448,20 +1818,6 @@
     "monthly_rent": 440,
     "annual_rent": 5280,
     "gross_yield": 1.55
-  },
-  {
-    "address": "3 bed terraced house for sale Cunard Road, Litherland, Merseyside L21",
-    "postcode": null,
-    "price": 160000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/7861c1bc8607b0829b0d53dde62fc69267a47eca.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71023870/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.48
   },
   {
     "address": "4 bed semi-detached house for sale Keswick Close, Maghull L31",
@@ -2478,18 +1834,18 @@
     "gross_yield": 1.53
   },
   {
-    "address": "4 bed semi-detached house for sale Withens Road, Lydiate L31",
+    "address": "3 bed terraced house for sale Cunard Road, Litherland, Merseyside L21",
     "postcode": null,
-    "price": 320000,
-    "bedrooms": 4,
+    "price": 160000,
+    "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/f71f045a1b2cf270475e8ad36e3a3ed9692c3d20.jpg",
-    "description": "4-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71004593/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/7861c1bc8607b0829b0d53dde62fc69267a47eca.jpg",
+    "description": "3-bed property in Liverpool.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71023870/",
     "city": "Liverpool",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 1.65
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 2.48
   },
   {
     "address": "5 bed end terrace house for sale Sandringham Avenue, Waterloo, Merseyside L22",
@@ -2520,34 +1876,6 @@
     "gross_yield": 2.2
   },
   {
-    "address": "3 bed end terrace house for sale All Hallows Drive, Speke L24",
-    "postcode": null,
-    "price": 165000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/83ca4e1d93c7e1349dde66998ea522d7838b03ac.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70868594/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.4
-  },
-  {
-    "address": "3 bed semi-detached house for sale Acuba Road, Wavertree L15",
-    "postcode": null,
-    "price": 290000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/4f33840cdd2525ac1f83e722a9972c5d445c1ad3.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70958298/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.37
-  },
-  {
     "address": "3 bed semi-detached house for sale Woodend Avenue, Hunts Cross L25",
     "postcode": null,
     "price": 190000,
@@ -2576,20 +1904,6 @@
     "gross_yield": 1.62
   },
   {
-    "address": "3 bed detached house for sale Heathfield Road, Maghull L31",
-    "postcode": null,
-    "price": 325000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/3b551746509b73c4bcec9dbb4358f2842ca53889.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70935509/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.22
-  },
-  {
     "address": "3 bed semi-detached house for sale Brenda Crescent, Thornton, Merseyside L23",
     "postcode": null,
     "price": 380000,
@@ -2604,18 +1918,18 @@
     "gross_yield": 1.04
   },
   {
-    "address": "3 bed semi-detached house for sale Ridgeway Drive, Lydiate L31",
+    "address": "3 bed semi-detached house for sale Acuba Road, Wavertree L15",
     "postcode": null,
-    "price": 240000,
+    "price": 290000,
     "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/0ee1715c9cf0f6764d9b10d96047d15962e0f918.jpg",
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/4f33840cdd2525ac1f83e722a9972c5d445c1ad3.jpg",
     "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70931827/",
+    "property_url": "https://www.primelocation.com/for-sale/details/70958298/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 1.65
+    "gross_yield": 1.37
   },
   {
     "address": "3 bed semi-detached house for sale Langdale Drive, Maghull L31",
@@ -2646,32 +1960,18 @@
     "gross_yield": 1.65
   },
   {
-    "address": "4 bed semi-detached house for sale Haigh Crescent, Lydiate L31",
+    "address": "3 bed semi-detached house for sale Elwyn Drive, Halewood L26",
     "postcode": null,
-    "price": 249950,
-    "bedrooms": 4,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/8b4901b365e1edde63af802bf49dca714390ac27.jpg",
-    "description": "4-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70884886/",
-    "city": "Liverpool",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 2.11
-  },
-  {
-    "address": "4 bed semi-detached house for sale Cambridge Drive, Blundellsands, Merseyside L23",
-    "postcode": null,
-    "price": 385000,
-    "bedrooms": 4,
+    "price": 240000,
+    "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/115cf8f68ac8451234db564e0d135cdacaf92700.jpg",
-    "description": "4-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70677077/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/a1220fa3373633f89145f488ed7f6e25ea1ef15c.jpg",
+    "description": "3-bed property in Liverpool.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70857936/",
     "city": "Liverpool",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 1.37
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.65
   },
   {
     "address": "4 bed detached house for sale Haddington Road, Crosby, Merseyside L23",
@@ -2688,18 +1988,18 @@
     "gross_yield": 1.37
   },
   {
-    "address": "3 bed detached house for sale The Round Meade, Maghull L31",
+    "address": "4 bed semi-detached house for sale Cambridge Drive, Blundellsands, Merseyside L23",
     "postcode": null,
-    "price": 375000,
-    "bedrooms": 3,
+    "price": 385000,
+    "bedrooms": 4,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/e74c7a25835394973ceda2ed9b74c426021d1b17.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69665952/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/115cf8f68ac8451234db564e0d135cdacaf92700.jpg",
+    "description": "4-bed property in Liverpool.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70677077/",
     "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.06
+    "monthly_rent": 440,
+    "annual_rent": 5280,
+    "gross_yield": 1.37
   },
   {
     "address": "4 bed detached house for sale Newbury Close, Huyton With Roby L36",
@@ -2716,20 +2016,6 @@
     "gross_yield": 1.41
   },
   {
-    "address": "3 bed semi-detached house for sale De Villiers Avenue, Crosby L23",
-    "postcode": null,
-    "price": 370000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/632ff01c97c8af8257f4a7ea8dadf4fed66ff3d9.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70466723/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.07
-  },
-  {
     "address": "3 bed detached bungalow for sale Eshelby Close, Waterloo L22",
     "postcode": null,
     "price": 370000,
@@ -2744,18 +2030,18 @@
     "gross_yield": 1.07
   },
   {
-    "address": "4 bed detached house for sale Cypress Close, Melling L31",
+    "address": "4 bed semi-detached house for sale Holland Street, Kensington L7",
     "postcode": null,
-    "price": 360000,
+    "price": 240000,
     "bedrooms": 4,
-    "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/35344d5c7a098527b805677083979bc419bb9e8f.jpg",
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/f89768d99039956938c9be4a1a5c64256ca42b60.jpg",
     "description": "4-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70816559/",
+    "property_url": "https://www.primelocation.com/for-sale/details/70351966/",
     "city": "Liverpool",
     "monthly_rent": 440,
     "annual_rent": 5280,
-    "gross_yield": 1.47
+    "gross_yield": 2.2
   },
   {
     "address": "3 bed terraced house for sale North Sudley Road, Mossley Hill L17",
@@ -2772,18 +2058,18 @@
     "gross_yield": 1.13
   },
   {
-    "address": "4 bed semi-detached house for sale Rossett Road, Crosby L23",
+    "address": "5 bed terraced house for sale Ramilies Road, Mossley Hill L18",
     "postcode": null,
-    "price": 350000,
-    "bedrooms": 4,
+    "price": 325000,
+    "bedrooms": 5,
     "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/62ae9b09b438bb8507e5b6f5df94d96273b879f4.jpg",
-    "description": "4-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/68796666/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/6cdc2cb33f61febd37a650fd9876a30c6db27c4e.jpg",
+    "description": "5-bed property in Liverpool.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70233562/",
     "city": "Liverpool",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 1.51
+    "monthly_rent": 550,
+    "annual_rent": 6600,
+    "gross_yield": 2.03
   },
   {
     "address": "4 bed detached house for sale Rock View, Melling L31",
@@ -2800,34 +2086,6 @@
     "gross_yield": 1.51
   },
   {
-    "address": "4 bed semi-detached house for sale Gordon Drive, Aigburth L19",
-    "postcode": null,
-    "price": 350000,
-    "bedrooms": 4,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/977d7f36c8873759da1a7b954d083fa8b539f66b.jpg",
-    "description": "4-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70345622/",
-    "city": "Liverpool",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 1.51
-  },
-  {
-    "address": "3 bed semi-detached house for sale Hillfoot Road, Woolton L25",
-    "postcode": null,
-    "price": 350000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/8cafbbd95735101d032ae3e941b21100b3675e4d.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70805082/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.13
-  },
-  {
     "address": "3 bed detached house for sale Crossley Drive, Wavertree L15",
     "postcode": null,
     "price": 330000,
@@ -2842,102 +2100,18 @@
     "gross_yield": 1.2
   },
   {
-    "address": "4 bed detached house for sale Beech Meadows, Prescot, Merseyside L34",
+    "address": "3 bed semi-detached house for sale Halewood Close, Gateacre L25",
     "postcode": null,
-    "price": 339500,
-    "bedrooms": 4,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/dfbea88c9bf73f735a6aa18fa19afbaac0e957c5.jpg",
-    "description": "4-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69365141/",
-    "city": "Liverpool",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 1.56
-  },
-  {
-    "address": "4 bed detached house for sale Ashbrook Drive, Fazakerley L9",
-    "postcode": null,
-    "price": 330000,
-    "bedrooms": 4,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/911374883afc67110426a33d81449f81a8c47bab.jpg",
-    "description": "4-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70232483/",
-    "city": "Liverpool",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 1.6
-  },
-  {
-    "address": "3 bed terraced house for sale Pennsylvania Road, Clubmoor L13",
-    "postcode": null,
-    "price": 160000,
+    "price": 320000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/7185de979cf53b44f2b7499573b5581e58b84d6a.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/351bd729925d39a3db3ff24d4f4627e92a8e843f.jpg",
     "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/68705713/",
+    "property_url": "https://www.primelocation.com/for-sale/details/69870950/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 2.48
-  },
-  {
-    "address": "5 bed terraced house for sale Ramilies Road, Mossley Hill L18",
-    "postcode": null,
-    "price": 325000,
-    "bedrooms": 5,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/6cdc2cb33f61febd37a650fd9876a30c6db27c4e.jpg",
-    "description": "5-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70233562/",
-    "city": "Liverpool",
-    "monthly_rent": 550,
-    "annual_rent": 6600,
-    "gross_yield": 2.03
-  },
-  {
-    "address": "4 bed semi-detached house for sale Hillfoot Road, Hunts Cross L25",
-    "postcode": null,
-    "price": 315000,
-    "bedrooms": 4,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/5b059fff0d496da25a3b26c9ec601cdd3f7bf482.jpg",
-    "description": "4-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69240068/",
-    "city": "Liverpool",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 1.68
-  },
-  {
-    "address": "3 bed semi-detached house for sale Ventnor Road, Wavertree L15",
-    "postcode": null,
-    "price": 315000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/7436cae2af9bc33a3b4a241286884f619e01c1e8.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70351785/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.26
-  },
-  {
-    "address": "3 bed detached house for sale Broxholme Way, Maghull, Merseyside L31",
-    "postcode": null,
-    "price": 315000,
-    "bedrooms": 3,
-    "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/0cab682f97b98da6245012f499aa0ed79cb9d814.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/67720264/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.26
+    "gross_yield": 1.24
   },
   {
     "address": "3 bed detached house for sale Artisan Drive, Melling L31",
@@ -2954,18 +2128,18 @@
     "gross_yield": 1.28
   },
   {
-    "address": "4 bed detached house for sale Goldcrest Road, Maghull L31",
+    "address": "3 bed semi-detached house for sale Woolton Road, Wavertree L15",
     "postcode": null,
-    "price": 310000,
-    "bedrooms": 4,
-    "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/e088f3b086ed2121d5fe022377e376074f0ca52d.png",
-    "description": "4-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70818365/",
+    "price": 280000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/df92eaa9ed74c4ecef8d864e101ee2a0d98edd47.jpg",
+    "description": "3-bed property in Liverpool.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70374546/",
     "city": "Liverpool",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 1.7
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.41
   },
   {
     "address": "6 bed end terrace house for sale Sandheys Avenue, Waterloo L22",
@@ -2982,34 +2156,6 @@
     "gross_yield": 2.55
   },
   {
-    "address": "3 bed semi-detached house for sale Elwyn Drive, Halewood L26",
-    "postcode": null,
-    "price": 240000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/a1220fa3373633f89145f488ed7f6e25ea1ef15c.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70857936/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.65
-  },
-  {
-    "address": "3 bed detached house for sale Spencers Lane, Melling, Merseyside L31",
-    "postcode": null,
-    "price": 300000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/d65850b4c30b892abd11db09490bd48f65acefad.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69933820/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.32
-  },
-  {
     "address": "3 bed semi-detached house for sale Coniston Road, Maghull L31",
     "postcode": null,
     "price": 287500,
@@ -3022,34 +2168,6 @@
     "monthly_rent": 330,
     "annual_rent": 3960,
     "gross_yield": 1.38
-  },
-  {
-    "address": "4 bed terraced house for sale Ancaster Road, Aigburth L17",
-    "postcode": null,
-    "price": 290000,
-    "bedrooms": 4,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/2f9a7a7d98bea3c1741a3983f624b9abd18d05d5.jpg",
-    "description": "4-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70732398/",
-    "city": "Liverpool",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 1.82
-  },
-  {
-    "address": "3 bed semi-detached house for sale Longview Drive, Huyton, Merseyside L36",
-    "postcode": null,
-    "price": 285000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/e6b419476d3fcce9ec52c8f2a120aa95b2842470.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70682406/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.39
   },
   {
     "address": "4 bed semi-detached house for sale Hillary Crescent, Maghull L31",
@@ -3066,48 +2184,6 @@
     "gross_yield": 1.85
   },
   {
-    "address": "3 bed semi-detached house for sale Mimosa Road, Wavertree L15",
-    "postcode": null,
-    "price": 285000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/4e169bbb79700d19133a140ed6620c987c76e734.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69661848/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.39
-  },
-  {
-    "address": "3 bed detached house for sale Linnet Road, Maghull L31",
-    "postcode": null,
-    "price": 279000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/ab49174beb69c3af445897f7c8e2b53f34eb1808.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69594764/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.42
-  },
-  {
-    "address": "3 bed semi-detached house for sale Woolton Road, Wavertree L15",
-    "postcode": null,
-    "price": 280000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/df92eaa9ed74c4ecef8d864e101ee2a0d98edd47.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70374546/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.41
-  },
-  {
     "address": "3 bed semi-detached house for sale Chestnut Avenue, Huyton L36",
     "postcode": null,
     "price": 270000,
@@ -3116,20 +2192,6 @@
     "image_url": "https://lid.zoocdn.com/u/1024/768/97b3f758a47212e1ad1481f241edb20a1449191e.jpg",
     "description": "3-bed property in Liverpool.",
     "property_url": "https://www.primelocation.com/for-sale/details/69731382/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.47
-  },
-  {
-    "address": "3 bed terraced house for sale Bundoran Road, Aigburth L17",
-    "postcode": null,
-    "price": 270000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/49c635da6b16f4d8b68cd01f5ab1b622e1b4de55.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69542283/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
@@ -3164,14 +2226,14 @@
     "gross_yield": 2.03
   },
   {
-    "address": "3 bed semi-detached house for sale Trevor Drive, Crosby L23",
+    "address": "3 bed semi-detached house for sale Norfolk Road, Maghull L31",
     "postcode": null,
     "price": 250000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/fa189e60340a8982c29d2a56e49e38c97cd37a63.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/5512ea8705600c5b0140b5456ded2c9ca7c366c9.jpg",
     "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70067369/",
+    "property_url": "https://www.primelocation.com/for-sale/details/70309993/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
@@ -3192,42 +2254,14 @@
     "gross_yield": 1.58
   },
   {
-    "address": "3 bed semi-detached house for sale Comer Wall Way, Halewood, Knowsley L26",
-    "postcode": null,
-    "price": 250000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/a843fc5b59ac43086ae31e2d8ceb47e96304a7f0.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70608498/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.58
-  },
-  {
-    "address": "3 bed semi-detached house for sale Norfolk Road, Maghull L31",
+    "address": "3 bed semi-detached house for sale Trevor Drive, Crosby L23",
     "postcode": null,
     "price": 250000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/5512ea8705600c5b0140b5456ded2c9ca7c366c9.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/aa6cc5446a5ed61b6c1b27ee36305880e452e0d4.jpg",
     "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70309993/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.58
-  },
-  {
-    "address": "3 bed semi-detached house for sale Sundial Close, Thornton, Merseyside L23",
-    "postcode": null,
-    "price": 250000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/f05b48a93bb54273ad38bf5afbc973cd82d81b28.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70677184/",
+    "property_url": "https://www.primelocation.com/for-sale/details/70067369/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
@@ -3262,60 +2296,18 @@
     "gross_yield": 2.11
   },
   {
-    "address": "3 bed semi-detached house for sale Land Mark Close, Crosby, Merseyside L23",
+    "address": "4 bed semi-detached house for sale Haigh Crescent, Lydiate L31",
     "postcode": null,
-    "price": 250000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/71ea3628556811ce20735dfabb9fb9c5fcaa2ee6.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70805010/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.58
-  },
-  {
-    "address": "4 bed semi-detached house for sale Holland Street, Kensington L7",
-    "postcode": null,
-    "price": 240000,
+    "price": 249950,
     "bedrooms": 4,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/f89768d99039956938c9be4a1a5c64256ca42b60.jpg",
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/8b4901b365e1edde63af802bf49dca714390ac27.jpg",
     "description": "4-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70351966/",
+    "property_url": "https://www.primelocation.com/for-sale/details/70884886/",
     "city": "Liverpool",
     "monthly_rent": 440,
     "annual_rent": 5280,
-    "gross_yield": 2.2
-  },
-  {
-    "address": "3 bed semi-detached house for sale Highgate Road, Lydiate L31",
-    "postcode": null,
-    "price": 235000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/e9941fd8ece2b54f8a7bd80bf291003dc6506a70.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70563540/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.69
-  },
-  {
-    "address": "3 bed semi-detached house for sale Station Road, Melling L31",
-    "postcode": null,
-    "price": 235000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/d50e03d950b95912dd34c2b441f86fd05689d529.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70746227/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.69
+    "gross_yield": 2.11
   },
   {
     "address": "4 bed semi-detached house for sale Melling Road, Aintree L9",
@@ -3332,6 +2324,20 @@
     "gross_yield": 2.25
   },
   {
+    "address": "3 bed semi-detached house for sale Highgate Road, Lydiate L31",
+    "postcode": null,
+    "price": 235000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/e9941fd8ece2b54f8a7bd80bf291003dc6506a70.jpg",
+    "description": "3-bed property in Liverpool.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70563540/",
+    "city": "Liverpool",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.69
+  },
+  {
     "address": "3 bed end terrace house for sale Holden Road, Waterloo, Merseyside L22",
     "postcode": null,
     "price": 230000,
@@ -3346,46 +2352,18 @@
     "gross_yield": 1.72
   },
   {
-    "address": "3 bed semi-detached house for sale Hodder Avenue, Maghull L31",
+    "address": "3 bed terraced house for sale Berrydale Road, Broadgreen L14",
     "postcode": null,
-    "price": 230000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/8822f66e0c806c149fecf8fbd347e98558a02fb1.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70325269/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.72
-  },
-  {
-    "address": "3 bed terraced house for sale Thorn Tree Drive, Thornton L23",
-    "postcode": null,
-    "price": 230000,
+    "price": 235000,
     "bedrooms": 3,
     "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/2426cb289922f5ae215b8e0184a4972d0130712d.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/ffccdd272ad5535c9675c96fc25a93b7a6981cf9.jpg",
     "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70321166/",
+    "property_url": "https://www.primelocation.com/for-sale/details/70806616/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 1.72
-  },
-  {
-    "address": "3 bed semi-detached house for sale Oakwood Road, Halewood L26",
-    "postcode": null,
-    "price": 225000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/0c14771c7c5d1184294968fa9eae4477626499d9.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69783244/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.76
+    "gross_yield": 1.69
   },
   {
     "address": "3 bed semi-detached house for sale Bearwood Road, Kirkby L33",
@@ -3402,18 +2380,18 @@
     "gross_yield": 1.8
   },
   {
-    "address": "3 bed terraced house for sale Newton Way, City Centre L3",
+    "address": "3 bed semi-detached house for sale Oakwood Road, Halewood L26",
     "postcode": null,
-    "price": 220000,
+    "price": 225000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/47f19ebab8d2110f080704742469bf2825d08db7.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/0c14771c7c5d1184294968fa9eae4477626499d9.jpg",
     "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69985171/",
+    "property_url": "https://www.primelocation.com/for-sale/details/69783244/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 1.8
+    "gross_yield": 1.76
   },
   {
     "address": "3 bed semi-detached house for sale Raffia Way, Walton L9",
@@ -3430,76 +2408,6 @@
     "gross_yield": 1.8
   },
   {
-    "address": "3 bed property for sale Raffia Way, Walton L9",
-    "postcode": null,
-    "price": 219995,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/1c2968c7c0943ce43a40567ff1918cb0c8062262.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69801274/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.8
-  },
-  {
-    "address": "3 bed semi-detached house for sale Clent Road, Maghull, Merseyside L31",
-    "postcode": null,
-    "price": 200000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/70afc787c99f865295d26d609ccddcc38b762bc3.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/68154287/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.98
-  },
-  {
-    "address": "3 bed detached house for sale Lichfield Close, Bootle, Merseyside L30",
-    "postcode": null,
-    "price": 200000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/f62eaa264b6dbf65566753ccbe0fb50dd1e483aa.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70872750/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.98
-  },
-  {
-    "address": "3 bed terraced house for sale Somerset Road, Bootle, Merseyside L20",
-    "postcode": null,
-    "price": 84995,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/219a9b88a641d9d8fd0082ad045db9ae03a69ad2.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70160030/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 4.66
-  },
-  {
-    "address": "3 bed terraced house for sale Winskill Road, Croxteth, Croxteth L11",
-    "postcode": null,
-    "price": 108500,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/17d5b2b781cead57b5cf101d014f07badf0860eb.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69973471/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 3.65
-  },
-  {
     "address": "4 bed town house for sale Hawthorne Drive, Northwood L33",
     "postcode": null,
     "price": 80000,
@@ -3512,20 +2420,6 @@
     "monthly_rent": 440,
     "annual_rent": 5280,
     "gross_yield": 6.6
-  },
-  {
-    "address": "4 bed town house for sale Sycamore Drive, Northwood L33",
-    "postcode": null,
-    "price": 95000,
-    "bedrooms": 4,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/0bf558a2f192528ece19f9ee0b2990f50ad127ea.jpg",
-    "description": "4-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/68638619/",
-    "city": "Liverpool",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 5.56
   },
   {
     "address": "3 bed terraced house for sale Litherland Road, Bootle L20",
@@ -3542,20 +2436,6 @@
     "gross_yield": 5.01
   },
   {
-    "address": "3 bed terraced house for sale Lordens Road, Dovecot L14",
-    "postcode": null,
-    "price": 114000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/73e227128262c82b2eeca5c353236c5473588ae2.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70641118/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 3.47
-  },
-  {
     "address": "3 bed terraced house for sale Round Hey, Stockbridge Village, Stockbridge Village L28",
     "postcode": null,
     "price": 115000,
@@ -3570,14 +2450,14 @@
     "gross_yield": 3.44
   },
   {
-    "address": "3 bed end terrace house for sale Randall Drive, Bootle, Merseyside L30",
+    "address": "3 bed terraced house for sale Shelley Street, Bootle L20",
     "postcode": null,
     "price": 120000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/a143f9532c7dd71e9a01336e5382385bc311dfc6.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/bafec14e7627be679361b94ad49e3b86ccf8b6d7.jpg",
     "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70057773/",
+    "property_url": "https://www.primelocation.com/for-sale/details/70359945/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
@@ -3598,32 +2478,18 @@
     "gross_yield": 3.3
   },
   {
-    "address": "3 bed terraced house for sale Walton Breck Road, Anfield, Anfield L4",
+    "address": "3 bed terraced house for sale Lordens Road, Dovecot L14",
     "postcode": null,
-    "price": 125000,
+    "price": 114000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/a2e520eded9d041402381d610f3a8e408937a04f.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/73e227128262c82b2eeca5c353236c5473588ae2.jpg",
     "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/67873910/",
+    "property_url": "https://www.primelocation.com/for-sale/details/70641118/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 3.17
-  },
-  {
-    "address": "3 bed terraced house for sale Markfield Road, Bootle, Bootle L20",
-    "postcode": null,
-    "price": 125000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/08cee4cf62cdccbe96c6b5a4f2d32b762c61c0b4.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/67873891/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 3.17
+    "gross_yield": 3.47
   },
   {
     "address": "5 bed terraced house for sale Selwyn Street, Walton, Walton L4",
@@ -3668,34 +2534,6 @@
     "gross_yield": 3.05
   },
   {
-    "address": "3 bed terraced house for sale Harrops Croft, Bootle, Merseyside L30",
-    "postcode": null,
-    "price": 135000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/360649f3f04dfbfb17dde37dd2c92acaa6cc5d7e.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69937472/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.93
-  },
-  {
-    "address": "3 bed semi-detached house for sale Parkfield Avenue, Bootle L30",
-    "postcode": null,
-    "price": 179950,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/596e305ce4ff688998231aac817606ac17f67a60.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69383639/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.2
-  },
-  {
     "address": "3 bed terraced house for sale All Saints Close, Netherton L30",
     "postcode": null,
     "price": 138000,
@@ -3708,34 +2546,6 @@
     "monthly_rent": 330,
     "annual_rent": 3960,
     "gross_yield": 2.87
-  },
-  {
-    "address": "3 bed terraced house for sale Stanley Park Avenue, Walton L4",
-    "postcode": null,
-    "price": 140000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/3cbbc579289c2847114ac6207d9b308f4e65e930.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70698109/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.83
-  },
-  {
-    "address": "3 bed end terrace house for sale Rugby Road, Aintree L9",
-    "postcode": null,
-    "price": 145000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/24c8e9f307ab561d7720d63ae6da0d2ca2b90d8e.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69453664/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.73
   },
   {
     "address": "5 bed terraced house for sale Oakfield Road, Anfield, Anfield L4",
@@ -3808,20 +2618,6 @@
     "gross_yield": 2.55
   },
   {
-    "address": "3 bed terraced house for sale Thackeray Gardens, Bootle L30",
-    "postcode": null,
-    "price": 160000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/98c3b50e34de1ac269b72e7b048fc3ebbfd2b013.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70016355/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.48
-  },
-  {
     "address": "3 bed terraced house for sale Field Lane, Litherland L21",
     "postcode": null,
     "price": 160000,
@@ -3836,28 +2632,14 @@
     "gross_yield": 2.48
   },
   {
-    "address": "3 bed semi-detached house for sale Denstone Avenue, Aintree L10",
-    "postcode": null,
-    "price": 165000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/07d306aba480a821d96e461c59fc9230092675ab.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69897725/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.4
-  },
-  {
-    "address": "3 bed semi-detached house for sale October Drive, Anfield L6",
+    "address": "3 bed end terrace house for sale All Hallows Drive, Speke L24",
     "postcode": null,
     "price": 165000,
     "bedrooms": 3,
     "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/185200f675e1fa1c4a2745db51bbe0a4c8f24974.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/83ca4e1d93c7e1349dde66998ea522d7838b03ac.jpg",
     "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70596034/",
+    "property_url": "https://www.primelocation.com/for-sale/details/70868594/",
     "city": "Liverpool",
     "monthly_rent": 330,
     "annual_rent": 3960,
@@ -3876,20 +2658,6 @@
     "monthly_rent": 330,
     "annual_rent": 3960,
     "gross_yield": 2.2
-  },
-  {
-    "address": "3 bed semi-detached house for sale Burland Road, Halewood L26",
-    "postcode": null,
-    "price": 180500,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/0f07302ecba1526264ba09b540957ce7f2d4bf18.jpg",
-    "description": "3-bed property in Liverpool.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70189516/",
-    "city": "Liverpool",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.19
   },
   {
     "address": "3 bed semi-detached house for sale The Carters, Bootle, Merseyside L30",

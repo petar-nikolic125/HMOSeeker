@@ -1,17 +1,59 @@
 [
   {
-    "address": "5 bed terraced house for sale Tewkesbury Street, Cathays CF24",
+    "address": "3 bed terraced house for sale Maes Yr Ysgol, Aspen Grove CF3",
     "postcode": null,
-    "price": 350000,
-    "bedrooms": 5,
+    "price": 335000,
+    "bedrooms": 3,
     "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/a9f75687f056f3c7dd12d0d452026eddad0156a8.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/5942adff75d20c7ab63cc33f5a1ad56b4b4e9356.jpg",
+    "description": "3-bed property in Cardiff.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71614515/",
+    "city": "Cardiff",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.18
+  },
+  {
+    "address": "4 bed semi-detached house for sale Matthysens Way, St Mellons CF3",
+    "postcode": null,
+    "price": 255000,
+    "bedrooms": 4,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/eb5f0650500d493619d048c798d8a691ae9bf9af.jpg",
+    "description": "4-bed property in Cardiff.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71612390/",
+    "city": "Cardiff",
+    "monthly_rent": 440,
+    "annual_rent": 5280,
+    "gross_yield": 2.07
+  },
+  {
+    "address": "5 bed terraced house for sale Eclipse Street, Adamsdown CF24",
+    "postcode": null,
+    "price": 267000,
+    "bedrooms": 5,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/460f5503d95c8e039f926047139d811e03b4a2df.jpg",
     "description": "5-bed property in Cardiff.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70533001/",
+    "property_url": "https://www.primelocation.com/for-sale/details/70033905/",
     "city": "Cardiff",
     "monthly_rent": 550,
     "annual_rent": 6600,
-    "gross_yield": 1.89
+    "gross_yield": 2.47
+  },
+  {
+    "address": "3 bed detached house for sale Rhodfa Leonard, St Edeyrns CF3",
+    "postcode": null,
+    "price": 385000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/a61414380461a77a1f8777b20191b81df4a76c95.jpg",
+    "description": "3-bed property in Cardiff.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71597394/",
+    "city": "Cardiff",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.03
   },
   {
     "address": "3 bed end terrace house for sale Newfoundland Road, Gabalfa CF14",
@@ -28,18 +70,32 @@
     "gross_yield": 1.06
   },
   {
-    "address": "3 bed detached house for sale Rhodfa Leonard, St Edeyrns CF3",
+    "address": "3 bed semi-detached house for sale Stryd Boyd, St Edeyrns CF3",
     "postcode": null,
-    "price": 385000,
+    "price": 325000,
     "bedrooms": 3,
     "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/a61414380461a77a1f8777b20191b81df4a76c95.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/366e9aee3181d390fd05c9498cf6c9284dff62ed.jpg",
     "description": "3-bed property in Cardiff.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71597394/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71615261/",
     "city": "Cardiff",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 1.03
+    "gross_yield": 1.22
+  },
+  {
+    "address": "5 bed terraced house for sale Tewkesbury Street, Cathays CF24",
+    "postcode": null,
+    "price": 350000,
+    "bedrooms": 5,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/a9f75687f056f3c7dd12d0d452026eddad0156a8.jpg",
+    "description": "5-bed property in Cardiff.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70533001/",
+    "city": "Cardiff",
+    "monthly_rent": 550,
+    "annual_rent": 6600,
+    "gross_yield": 1.89
   },
   {
     "address": "4 bed terraced house for sale Rhymney Street, Cathays CF24",
@@ -68,20 +124,6 @@
     "monthly_rent": 330,
     "annual_rent": 3960,
     "gross_yield": 2.83
-  },
-  {
-    "address": "3 bed semi-detached house for sale Haverford Way, Caerau CF5",
-    "postcode": null,
-    "price": 215000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/4158d91a091714a89e79ffcaaa9a0ea0d998538f.jpg",
-    "description": "3-bed property in Cardiff.",
-    "property_url": "https://www.primelocation.com/for-sale/details/67643463/",
-    "city": "Cardiff",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.84
   },
   {
     "address": "3 bed semi-detached house for sale Wentloog Close, Rumney CF3",
@@ -140,20 +182,6 @@
     "gross_yield": 1.32
   },
   {
-    "address": "3 bed semi-detached house for sale Newport Road, Rumney CF3",
-    "postcode": null,
-    "price": 345000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/b01e8daf449ffd5e4b663b6091502d20d94ba0b2.jpg",
-    "description": "3-bed property in Cardiff.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71510574/",
-    "city": "Cardiff",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.15
-  },
-  {
     "address": "3 bed semi-detached house for sale Bartley Wilson Way, Leckwith CF11",
     "postcode": null,
     "price": 325000,
@@ -182,18 +210,18 @@
     "gross_yield": 1.76
   },
   {
-    "address": "3 bed semi-detached house for sale Ridgeway Road, Rumney CF3",
+    "address": "3 bed semi-detached house for sale Newport Road, Rumney CF3",
     "postcode": null,
-    "price": 280000,
+    "price": 345000,
     "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/f911222ff07ba8b107b076eb2ab7611bd4557ffd.jpg",
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/b01e8daf449ffd5e4b663b6091502d20d94ba0b2.jpg",
     "description": "3-bed property in Cardiff.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71482312/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71510574/",
     "city": "Cardiff",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 1.41
+    "gross_yield": 1.15
   },
   {
     "address": "3 bed property for sale Cherry Down Close, Thornhill CF14",
@@ -238,18 +266,32 @@
     "gross_yield": 1.51
   },
   {
-    "address": "4 bed detached house for sale Potter Street, St Edeyrns CF3",
+    "address": "3 bed semi-detached house for sale Mortimer Avenue, St Edeyrns CF3",
     "postcode": null,
-    "price": 395000,
-    "bedrooms": 4,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/2ae18a5a343a7f9afe46db3ed5d64a16556a9680.jpg",
-    "description": "4-bed property in Cardiff.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71424414/",
+    "price": 299950,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/eb77d541ea23b8362c9097f8c32d225f8f950a6c.jpg",
+    "description": "3-bed property in Cardiff.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71417781/",
     "city": "Cardiff",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 1.34
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.32
+  },
+  {
+    "address": "3 bed semi-detached house for sale Ridgeway Road, Rumney CF3",
+    "postcode": null,
+    "price": 280000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/f911222ff07ba8b107b076eb2ab7611bd4557ffd.jpg",
+    "description": "3-bed property in Cardiff.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71482312/",
+    "city": "Cardiff",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.41
   },
   {
     "address": "3 bed semi-detached house for sale Southcourt Road, Penylan CF23",
@@ -266,20 +308,6 @@
     "gross_yield": 0.99
   },
   {
-    "address": "3 bed semi-detached house for sale Mortimer Avenue, St Edeyrns CF3",
-    "postcode": null,
-    "price": 299950,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/eb77d541ea23b8362c9097f8c32d225f8f950a6c.jpg",
-    "description": "3-bed property in Cardiff.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71417781/",
-    "city": "Cardiff",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.32
-  },
-  {
     "address": "3 bed terraced house for sale Wilson Street, Splott CF24",
     "postcode": null,
     "price": 190000,
@@ -292,20 +320,6 @@
     "monthly_rent": 330,
     "annual_rent": 3960,
     "gross_yield": 2.08
-  },
-  {
-    "address": "3 bed terraced house for sale Mervyn Road, Tremorfa CF24",
-    "postcode": null,
-    "price": 230000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/2f300e5a418646ed2a779c52d6d35cca858452d3.jpg",
-    "description": "3-bed property in Cardiff.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71361982/",
-    "city": "Cardiff",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.72
   },
   {
     "address": "3 bed semi-detached house for sale Chester Close, St. Mellons CF3",
@@ -322,20 +336,6 @@
     "gross_yield": 1.65
   },
   {
-    "address": "3 bed semi-detached house for sale Thorne Way, St Marys Field CF5",
-    "postcode": null,
-    "price": 270000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/12b347501f6cb94ed5ef3ac8959f00064a3d5dc4.jpg",
-    "description": "3-bed property in Cardiff.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71342324/",
-    "city": "Cardiff",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.47
-  },
-  {
     "address": "3 bed semi-detached house for sale Rhodfa Leonard, St Edeyrns CF3",
     "postcode": null,
     "price": 280000,
@@ -350,6 +350,20 @@
     "gross_yield": 1.41
   },
   {
+    "address": "3 bed semi-detached house for sale Thorne Way, St Marys Field CF5",
+    "postcode": null,
+    "price": 270000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/12b347501f6cb94ed5ef3ac8959f00064a3d5dc4.jpg",
+    "description": "3-bed property in Cardiff.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71342324/",
+    "city": "Cardiff",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.47
+  },
+  {
     "address": "3 bed terraced house for sale Gelligaer Street, Cathays CF24",
     "postcode": null,
     "price": 235000,
@@ -358,6 +372,20 @@
     "image_url": "https://lid.zoocdn.com/u/1024/768/5c8052f98611ee131fb15b4c51efc50214f3c645.jpg",
     "description": "3-bed property in Cardiff.",
     "property_url": "https://www.primelocation.com/for-sale/details/71332721/",
+    "city": "Cardiff",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.69
+  },
+  {
+    "address": "3 bed terraced house for sale Cecil Street, Adamsdown CF24",
+    "postcode": null,
+    "price": 235000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/fdbb8578259600c58038a342aae69c764678126a.jpg",
+    "description": "3-bed property in Cardiff.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71150267/",
     "city": "Cardiff",
     "monthly_rent": 330,
     "annual_rent": 3960,
@@ -378,32 +406,18 @@
     "gross_yield": 1.06
   },
   {
-    "address": "3 bed terraced house for sale Cecil Street, Adamsdown CF24",
+    "address": "4 bed semi-detached house for sale Maes-Y-Crochan, St. Mellons CF3",
     "postcode": null,
-    "price": 235000,
-    "bedrooms": 3,
+    "price": 400000,
+    "bedrooms": 4,
     "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/fdbb8578259600c58038a342aae69c764678126a.jpg",
-    "description": "3-bed property in Cardiff.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71150267/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/44c265bef01869e99a4dd285eca003b1d636b58f.jpg",
+    "description": "4-bed property in Cardiff.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71115920/",
     "city": "Cardiff",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.69
-  },
-  {
-    "address": "5 bed terraced house for sale Broadway, Roath CF24",
-    "postcode": null,
-    "price": 300000,
-    "bedrooms": 5,
-    "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/302cb73859c2bf5d564c32effd72ec3c48339ac5.jpg",
-    "description": "5-bed property in Cardiff.",
-    "property_url": "https://www.primelocation.com/for-sale/details/68183461/",
-    "city": "Cardiff",
-    "monthly_rent": 550,
-    "annual_rent": 6600,
-    "gross_yield": 2.2
+    "monthly_rent": 440,
+    "annual_rent": 5280,
+    "gross_yield": 1.32
   },
   {
     "address": "3 bed detached house for sale Cwm Gwynlais, Tongwynlais CF15",
@@ -420,18 +434,18 @@
     "gross_yield": 0.99
   },
   {
-    "address": "4 bed semi-detached house for sale Maes-Y-Crochan, St. Mellons CF3",
+    "address": "5 bed terraced house for sale Broadway, Roath CF24",
     "postcode": null,
-    "price": 400000,
-    "bedrooms": 4,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/44c265bef01869e99a4dd285eca003b1d636b58f.jpg",
-    "description": "4-bed property in Cardiff.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71115920/",
+    "price": 300000,
+    "bedrooms": 5,
+    "bathrooms": 3,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/302cb73859c2bf5d564c32effd72ec3c48339ac5.jpg",
+    "description": "5-bed property in Cardiff.",
+    "property_url": "https://www.primelocation.com/for-sale/details/68183461/",
     "city": "Cardiff",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 1.32
+    "monthly_rent": 550,
+    "annual_rent": 6600,
+    "gross_yield": 2.2
   },
   {
     "address": "4 bed semi-detached house for sale Templeton Avenue, Llanishen CF14",
@@ -462,6 +476,20 @@
     "gross_yield": 0.99
   },
   {
+    "address": "3 bed semi-detached house for sale Haverford Way, Caerau CF5",
+    "postcode": null,
+    "price": 215000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/4158d91a091714a89e79ffcaaa9a0ea0d998538f.jpg",
+    "description": "3-bed property in Cardiff.",
+    "property_url": "https://www.primelocation.com/for-sale/details/67643463/",
+    "city": "Cardiff",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.84
+  },
+  {
     "address": "4 bed terraced house for sale Cathays Terrace, Cathays CF24",
     "postcode": null,
     "price": 300000,
@@ -490,20 +518,6 @@
     "gross_yield": 1.69
   },
   {
-    "address": "3 bed end terrace house for sale Llanrumney Avenue, Llanrumney CF3",
-    "postcode": null,
-    "price": 230000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/0b1b4847c1638b1505e2c53e473ca267e220fc83.jpg",
-    "description": "3-bed property in Cardiff.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70752637/",
-    "city": "Cardiff",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.72
-  },
-  {
     "address": "3 bed semi-detached house for sale Aintree Drive, Caerau CF5",
     "postcode": null,
     "price": 280000,
@@ -518,18 +532,18 @@
     "gross_yield": 1.41
   },
   {
-    "address": "5 bed terraced house for sale Orbit Street, Adamsdown CF24",
+    "address": "3 bed end terrace house for sale Llanrumney Avenue, Llanrumney CF3",
     "postcode": null,
-    "price": 265000,
-    "bedrooms": 5,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/b32aa5d786996c1c5a145a20dd8bd53501296a03.jpg",
-    "description": "5-bed property in Cardiff.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69706027/",
+    "price": 230000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/0b1b4847c1638b1505e2c53e473ca267e220fc83.jpg",
+    "description": "3-bed property in Cardiff.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70752637/",
     "city": "Cardiff",
-    "monthly_rent": 550,
-    "annual_rent": 6600,
-    "gross_yield": 2.49
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.72
   },
   {
     "address": "4 bed semi-detached house for sale Woodlawn Way, Thornhill CF14",
@@ -544,6 +558,20 @@
     "monthly_rent": 440,
     "annual_rent": 5280,
     "gross_yield": 1.34
+  },
+  {
+    "address": "5 bed terraced house for sale Orbit Street, Adamsdown CF24",
+    "postcode": null,
+    "price": 265000,
+    "bedrooms": 5,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/b32aa5d786996c1c5a145a20dd8bd53501296a03.jpg",
+    "description": "5-bed property in Cardiff.",
+    "property_url": "https://www.primelocation.com/for-sale/details/69706027/",
+    "city": "Cardiff",
+    "monthly_rent": 550,
+    "annual_rent": 6600,
+    "gross_yield": 2.49
   },
   {
     "address": "4 bed semi-detached house for sale Manor Way, Birchgrove CF14",
@@ -574,6 +602,20 @@
     "gross_yield": 1.07
   },
   {
+    "address": "3 bed detached house for sale Church Road, St Edeyrns CF3",
+    "postcode": null,
+    "price": 380000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/f00e001dd38163dc3097fdf41d79728ab3909650.jpg",
+    "description": "3-bed property in Cardiff.",
+    "property_url": "https://www.primelocation.com/for-sale/details/69930891/",
+    "city": "Cardiff",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.04
+  },
+  {
     "address": "4 bed terraced house for sale Daniel Street, Cathays CF24",
     "postcode": null,
     "price": 315000,
@@ -590,20 +632,6 @@
   {
     "address": "3 bed detached house for sale Church Road, St Edeyrns CF3",
     "postcode": null,
-    "price": 380000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/f00e001dd38163dc3097fdf41d79728ab3909650.jpg",
-    "description": "3-bed property in Cardiff.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69930891/",
-    "city": "Cardiff",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.04
-  },
-  {
-    "address": "3 bed detached house for sale Church Road, St Edeyrns CF3",
-    "postcode": null,
     "price": 385000,
     "bedrooms": 3,
     "bathrooms": 2,
@@ -614,20 +642,6 @@
     "monthly_rent": 330,
     "annual_rent": 3960,
     "gross_yield": 1.03
-  },
-  {
-    "address": "5 bed terraced house for sale Railway Street, Splott CF24",
-    "postcode": null,
-    "price": 300000,
-    "bedrooms": 5,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/808a45ece0f21b2b00e829bcd1239d685e4eb243.jpg",
-    "description": "5-bed property in Cardiff.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69783800/",
-    "city": "Cardiff",
-    "monthly_rent": 550,
-    "annual_rent": 6600,
-    "gross_yield": 2.2
   },
   {
     "address": "6 bed terraced house for sale Sapphire Street, Adamsdown CF24",
@@ -656,5 +670,19 @@
     "monthly_rent": 330,
     "annual_rent": 3960,
     "gross_yield": 1.44
+  },
+  {
+    "address": "5 bed terraced house for sale Railway Street, Splott CF24",
+    "postcode": null,
+    "price": 300000,
+    "bedrooms": 5,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/808a45ece0f21b2b00e829bcd1239d685e4eb243.jpg",
+    "description": "5-bed property in Cardiff.",
+    "property_url": "https://www.primelocation.com/for-sale/details/69783800/",
+    "city": "Cardiff",
+    "monthly_rent": 550,
+    "annual_rent": 6600,
+    "gross_yield": 2.2
   }
 ]

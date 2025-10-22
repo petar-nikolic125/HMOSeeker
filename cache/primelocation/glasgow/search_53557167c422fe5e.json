@@ -1,17 +1,59 @@
 [
   {
-    "address": "3 bed terraced house for sale Ballochmyle, Calderwood, East Kilbride G74",
+    "address": "3 bed semi-detached house for sale Araburn Drive, Whitehills, East Kilbride G75",
     "postcode": null,
-    "price": 170000,
+    "price": 155000,
     "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/91432c9a88cc452521b8308853f588b9a7de41fb.jpg",
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/ae62ad117ba5a9f8100bcb51b0084302802a0329.jpg",
     "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71591082/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71591984/",
     "city": "Glasgow",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 2.33
+    "gross_yield": 2.55
+  },
+  {
+    "address": "4 bed semi-detached house for sale Canonbie Avenue, Mavorpark Gardens, East Kilbride G74",
+    "postcode": null,
+    "price": 225000,
+    "bedrooms": 4,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/d9132acf58360c5eafa0c0c144d47ba7faf225db.jpg",
+    "description": "4-bed property in Glasgow.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71605338/",
+    "city": "Glasgow",
+    "monthly_rent": 440,
+    "annual_rent": 5280,
+    "gross_yield": 2.35
+  },
+  {
+    "address": "3 bed semi-detached house for sale Kirkriggs View, Burnside G73",
+    "postcode": null,
+    "price": 210000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/de3205ce0d2f5c0978b74562cdd1087552c50e25.jpg",
+    "description": "3-bed property in Glasgow.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71604639/",
+    "city": "Glasgow",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.89
+  },
+  {
+    "address": "3 bed semi-detached house for sale Lindores Drive, Stepps G33",
+    "postcode": null,
+    "price": 220000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/58d86acdfb3c633e5768b759498dc0045810a858.jpg",
+    "description": "3-bed property in Glasgow.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71605524/",
+    "city": "Glasgow",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.8
   },
   {
     "address": "3 bed semi-detached house for sale Naysmyth Bank, The Murray, East Kilbride G75",
@@ -22,6 +64,34 @@
     "image_url": "https://lid.zoocdn.com/u/1024/768/043260f748b30a3886430980e13f5d0a7002acd9.jpg",
     "description": "3-bed property in Glasgow.",
     "property_url": "https://www.primelocation.com/for-sale/details/71592636/",
+    "city": "Glasgow",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 2.33
+  },
+  {
+    "address": "4 bed detached house for sale Marsden Wynd, Benthall Farm, East Kilbride G75",
+    "postcode": null,
+    "price": 330000,
+    "bedrooms": 4,
+    "bathrooms": 4,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/25586083acfdbbe20150e89080891c9fc48529a0.jpg",
+    "description": "4-bed property in Glasgow.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71592503/",
+    "city": "Glasgow",
+    "monthly_rent": 440,
+    "annual_rent": 5280,
+    "gross_yield": 1.6
+  },
+  {
+    "address": "3 bed terraced house for sale Ballochmyle, Calderwood, East Kilbride G74",
+    "postcode": null,
+    "price": 170000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/91432c9a88cc452521b8308853f588b9a7de41fb.jpg",
+    "description": "3-bed property in Glasgow.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71591082/",
     "city": "Glasgow",
     "monthly_rent": 330,
     "annual_rent": 3960,
@@ -42,62 +112,6 @@
     "gross_yield": 2.26
   },
   {
-    "address": "3 bed semi-detached house for sale Araburn Drive, Whitehills, East Kilbride G75",
-    "postcode": null,
-    "price": 155000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/ae62ad117ba5a9f8100bcb51b0084302802a0329.jpg",
-    "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71591984/",
-    "city": "Glasgow",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.55
-  },
-  {
-    "address": "4 bed detached house for sale Marsden Wynd, Benthall Farm, East Kilbride G75",
-    "postcode": null,
-    "price": 330000,
-    "bedrooms": 4,
-    "bathrooms": 4,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/25586083acfdbbe20150e89080891c9fc48529a0.jpg",
-    "description": "4-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71592503/",
-    "city": "Glasgow",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 1.6
-  },
-  {
-    "address": "3 bed flat for sale Central Avenue, Cambuslang G72",
-    "postcode": null,
-    "price": 260000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/28bbef2779456f5a92fd4e7811f2e78fa5b61049.jpg",
-    "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71590388/",
-    "city": "Glasgow",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.52
-  },
-  {
-    "address": "3 bed flat for sale 59 Rose Street, Garnethill G3",
-    "postcode": null,
-    "price": 310000,
-    "bedrooms": 3,
-    "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/c94e28bfe2201ead1941af4da8ffa1a1ffc91de1.jpg",
-    "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70641663/",
-    "city": "Glasgow",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.28
-  },
-  {
     "address": "3 bed terraced house for sale Glen Cannich, St Leonards, East Kilbride, South Lanarkshire G74",
     "postcode": null,
     "price": 160000,
@@ -110,6 +124,20 @@
     "monthly_rent": 330,
     "annual_rent": 3960,
     "gross_yield": 2.48
+  },
+  {
+    "address": "4 bed semi-detached house for sale Catrine Road, Crookston G53",
+    "postcode": null,
+    "price": 240000,
+    "bedrooms": 4,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/456ba49824ee6cfaa595d51d457d299698d2ded1.jpg",
+    "description": "4-bed property in Glasgow.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71603479/",
+    "city": "Glasgow",
+    "monthly_rent": 440,
+    "annual_rent": 5280,
+    "gross_yield": 2.2
   },
   {
     "address": "3 bed semi-detached house for sale Aurs Drive, Barrhead G78",
@@ -126,6 +154,20 @@
     "gross_yield": 2.64
   },
   {
+    "address": "3 bed semi-detached house for sale Auchinleck Avenue, Robroyston G33",
+    "postcode": null,
+    "price": 200000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/3c573cab2b904b9f9e85a7db2bfe36123df6656c.jpg",
+    "description": "3-bed property in Glasgow.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71574476/",
+    "city": "Glasgow",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.98
+  },
+  {
     "address": "3 bed end terrace house for sale Riccarton, Weswood, East Kilbride G75",
     "postcode": null,
     "price": 135000,
@@ -134,48 +176,6 @@
     "image_url": "https://lid.zoocdn.com/u/1024/768/63dbc52088c7ee8a7be394d2d0f51311223c7c81.jpg",
     "description": "3-bed property in Glasgow.",
     "property_url": "https://www.primelocation.com/for-sale/details/71581541/",
-    "city": "Glasgow",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.93
-  },
-  {
-    "address": "3 bed semi-detached house for sale Milnwood Crescent, Broomhouse, Uddingston G71",
-    "postcode": null,
-    "price": 255000,
-    "bedrooms": 3,
-    "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/2b35a6bbf114a584c79911285a2824b6b3330981.jpg",
-    "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71577961/",
-    "city": "Glasgow",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.55
-  },
-  {
-    "address": "3 bed flat for sale Dunure Drive, Rutherglen G73",
-    "postcode": null,
-    "price": 79995,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/e3135dc9e7b78498662cf238d344d924fde8173b.jpg",
-    "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71577617/",
-    "city": "Glasgow",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 4.95
-  },
-  {
-    "address": "3 bed flat for sale North British Road, Uddingston G71",
-    "postcode": null,
-    "price": 135000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/b50d2f1b33d08ddfa19494ec3339d1a123548e0a.jpg",
-    "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71566983/",
     "city": "Glasgow",
     "monthly_rent": 330,
     "annual_rent": 3960,
@@ -196,20 +196,6 @@
     "gross_yield": 1.65
   },
   {
-    "address": "3 bed semi-detached house for sale Auchinleck Avenue, Robroyston G33",
-    "postcode": null,
-    "price": 200000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/3c573cab2b904b9f9e85a7db2bfe36123df6656c.jpg",
-    "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71574476/",
-    "city": "Glasgow",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.98
-  },
-  {
     "address": "3 bed semi-detached house for sale Buttercup Crescent, Newton Farm G72",
     "postcode": null,
     "price": 220000,
@@ -222,6 +208,20 @@
     "monthly_rent": 330,
     "annual_rent": 3960,
     "gross_yield": 1.8
+  },
+  {
+    "address": "3 bed semi-detached house for sale Milnwood Crescent, Broomhouse, Uddingston G71",
+    "postcode": null,
+    "price": 255000,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/2b35a6bbf114a584c79911285a2824b6b3330981.jpg",
+    "description": "3-bed property in Glasgow.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71577961/",
+    "city": "Glasgow",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.55
   },
   {
     "address": "4 bed semi-detached house for sale Kippen Drive, Busby G76",
@@ -266,18 +266,18 @@
     "gross_yield": 1.58
   },
   {
-    "address": "3 bed flat for sale Main Street, Bothwell G71",
+    "address": "3 bed terraced house for sale Benbecula, St Leonards, East Kilbride G74",
     "postcode": null,
-    "price": 225000,
+    "price": 175000,
     "bedrooms": 3,
     "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/e7c531b1c7ce5944978e0c46caab9384e99fb02a.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/31c21fafd38f65a1533e390639cc39984143de33.jpg",
     "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71566784/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71558392/",
     "city": "Glasgow",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 1.76
+    "gross_yield": 2.26
   },
   {
     "address": "3 bed semi-detached house for sale Tarn Grove, Robroyston G33",
@@ -294,20 +294,6 @@
     "gross_yield": 1.76
   },
   {
-    "address": "3 bed flat for sale Kingswood Drive, Kings Park G44",
-    "postcode": null,
-    "price": 120000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/f03e9fb3315ebe150c2254da452a54b3c0595e4d.jpg",
-    "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71561241/",
-    "city": "Glasgow",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 3.3
-  },
-  {
     "address": "4 bed detached house for sale Bloomingdale Drive, Lindsayfield, East Kilbride G75",
     "postcode": null,
     "price": 280000,
@@ -320,20 +306,6 @@
     "monthly_rent": 440,
     "annual_rent": 5280,
     "gross_yield": 1.89
-  },
-  {
-    "address": "3 bed terraced house for sale Benbecula, St Leonards, East Kilbride G74",
-    "postcode": null,
-    "price": 175000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/31c21fafd38f65a1533e390639cc39984143de33.jpg",
-    "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71558392/",
-    "city": "Glasgow",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.26
   },
   {
     "address": "3 bed detached house for sale Barrow Drive, Newlandsmuir, East Kilbride, South Lanarkshire G75",
@@ -350,18 +322,18 @@
     "gross_yield": 1.37
   },
   {
-    "address": "3 bed terraced house for sale Somerville Drive, The Murray, East Kilbride G75",
+    "address": "3 bed end terrace house for sale Divernia Way, Barrhead G78",
     "postcode": null,
-    "price": 180000,
+    "price": 160000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/99025605ab68f34394015cc325e3d7c95a0a8da3.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/56903f1433a399d66631f39dbeb8a3a08ded557e.jpg",
     "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71548583/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71548505/",
     "city": "Glasgow",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 2.2
+    "gross_yield": 2.48
   },
   {
     "address": "3 bed terraced house for sale Franklin Place, Westwood, East Kilbride G75",
@@ -378,48 +350,6 @@
     "gross_yield": 2.55
   },
   {
-    "address": "3 bed end terrace house for sale Chatham, Westwood, East Kilbride G75",
-    "postcode": null,
-    "price": 140000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/dc36ea7be245f8356a48c116f2f3a9cb22bdb2ab.jpg",
-    "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71548135/",
-    "city": "Glasgow",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.83
-  },
-  {
-    "address": "3 bed detached bungalow for sale Muirhead Gate, Uddingston G71",
-    "postcode": null,
-    "price": 295000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/798a3ca4dc35eb3cfb88b0663e93d91d6f35a0d8.jpg",
-    "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71548146/",
-    "city": "Glasgow",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.34
-  },
-  {
-    "address": "4 bed detached house for sale Picketlaw Lane, Eaglesham G76",
-    "postcode": null,
-    "price": 355000,
-    "bedrooms": 4,
-    "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/3c9acfcf7ee9ae55bd0666e4b29a63d1cb00a3f9.jpg",
-    "description": "4-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71545052/",
-    "city": "Glasgow",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 1.49
-  },
-  {
     "address": "3 bed semi-detached house for sale Findhorn Place, Gardenhall, East Kilbride G75",
     "postcode": null,
     "price": 230000,
@@ -434,46 +364,18 @@
     "gross_yield": 1.72
   },
   {
-    "address": "3 bed flat for sale Dorchester Avenue, Kelvindale G12",
+    "address": "3 bed terraced house for sale Somerville Drive, The Murray, East Kilbride G75",
     "postcode": null,
-    "price": 124000,
+    "price": 180000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/9bdc09e95eab097cc0bce42649407782074db827.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/99025605ab68f34394015cc325e3d7c95a0a8da3.jpg",
     "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71539564/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71548583/",
     "city": "Glasgow",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 3.19
-  },
-  {
-    "address": "3 bed end terrace house for sale Divernia Way, Barrhead G78",
-    "postcode": null,
-    "price": 160000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/56903f1433a399d66631f39dbeb8a3a08ded557e.jpg",
-    "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71548505/",
-    "city": "Glasgow",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.48
-  },
-  {
-    "address": "3 bed flat for sale Festival Court, Pacific Quay G51",
-    "postcode": null,
-    "price": 360000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/5cb0de71d9acc5eda5cd91e3902c894a713fc679.jpg",
-    "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71546430/",
-    "city": "Glasgow",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.1
+    "gross_yield": 2.2
   },
   {
     "address": "3 bed terraced house for sale Loch Awe, St Leonards, East Kilbride G74",
@@ -518,6 +420,20 @@
     "gross_yield": 2.26
   },
   {
+    "address": "4 bed detached house for sale Picketlaw Lane, Eaglesham G76",
+    "postcode": null,
+    "price": 355000,
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/3c9acfcf7ee9ae55bd0666e4b29a63d1cb00a3f9.jpg",
+    "description": "4-bed property in Glasgow.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71545052/",
+    "city": "Glasgow",
+    "monthly_rent": 440,
+    "annual_rent": 5280,
+    "gross_yield": 1.49
+  },
+  {
     "address": "3 bed terraced house for sale Kirktonholme Road, West Mains, East Kilbride G74",
     "postcode": null,
     "price": 160000,
@@ -530,20 +446,6 @@
     "monthly_rent": 330,
     "annual_rent": 3960,
     "gross_yield": 2.48
-  },
-  {
-    "address": "3 bed flat for sale Bertram Street, Shawlands G41",
-    "postcode": null,
-    "price": 220000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/3098d7763b8b5fa25f5d081088cf8f3eea84b4c0.jpg",
-    "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71532156/",
-    "city": "Glasgow",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.8
   },
   {
     "address": "3 bed end terrace house for sale Glen Lethnot, St Leonards, East Kilbride G74",
@@ -574,20 +476,6 @@
     "gross_yield": 1.61
   },
   {
-    "address": "4 bed detached bungalow for sale Switchback Road, Bearsden G61",
-    "postcode": null,
-    "price": 390000,
-    "bedrooms": 4,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/3203485ca4be26258b8dbf7bbe434716cea177ef.jpg",
-    "description": "4-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71531914/",
-    "city": "Glasgow",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 1.35
-  },
-  {
     "address": "4 bed detached house for sale Penny Crescent, Cowglen G43",
     "postcode": null,
     "price": 300000,
@@ -600,6 +488,20 @@
     "monthly_rent": 440,
     "annual_rent": 5280,
     "gross_yield": 1.76
+  },
+  {
+    "address": "4 bed detached bungalow for sale Switchback Road, Bearsden G61",
+    "postcode": null,
+    "price": 390000,
+    "bedrooms": 4,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/3203485ca4be26258b8dbf7bbe434716cea177ef.jpg",
+    "description": "4-bed property in Glasgow.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71531914/",
+    "city": "Glasgow",
+    "monthly_rent": 440,
+    "annual_rent": 5280,
+    "gross_yield": 1.35
   },
   {
     "address": "3 bed semi-detached house for sale Greenhall Place, Blantyre G72",
@@ -644,18 +546,18 @@
     "gross_yield": 1.8
   },
   {
-    "address": "3 bed flat for sale Thornwood Road, Thornwood G11",
+    "address": "4 bed detached house for sale Stewartfield Drive, Stewartfield, East Kilbride G74",
     "postcode": null,
-    "price": 180000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/318135e958944ca2c7564f35b13929706edb6fdc.jpg",
-    "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71513398/",
+    "price": 250000,
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/7ed0d703d11be55822b5255d0b70078e329a887e.jpg",
+    "description": "4-bed property in Glasgow.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71514781/",
     "city": "Glasgow",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.2
+    "monthly_rent": 440,
+    "annual_rent": 5280,
+    "gross_yield": 2.11
   },
   {
     "address": "3 bed end terrace house for sale Ballochmyle, Calderwood, East Kilbride G74",
@@ -672,32 +574,18 @@
     "gross_yield": 2.73
   },
   {
-    "address": "3 bed semi-detached house for sale Marsden Wynd, Benthall Farm, East Kilbride G75",
+    "address": "3 bed semi-detached house for sale Farmington Avenue G32",
     "postcode": null,
-    "price": 260000,
+    "price": 210000,
     "bedrooms": 3,
-    "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/dccd45ad6351c9b0682a419abda77e9e4b5ef954.jpg",
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/aae47c8559664e7abab08beba483de2ef54d072a.jpg",
     "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71514130/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71509041/",
     "city": "Glasgow",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 1.52
-  },
-  {
-    "address": "4 bed detached house for sale Stewartfield Drive, Stewartfield, East Kilbride G74",
-    "postcode": null,
-    "price": 250000,
-    "bedrooms": 4,
-    "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/7ed0d703d11be55822b5255d0b70078e329a887e.jpg",
-    "description": "4-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71514781/",
-    "city": "Glasgow",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 2.11
+    "gross_yield": 1.89
   },
   {
     "address": "4 bed detached house for sale Church View, Cambuslang G72",
@@ -714,46 +602,32 @@
     "gross_yield": 1.65
   },
   {
-    "address": "3 bed semi-detached house for sale Farmington Avenue G32",
-    "postcode": null,
-    "price": 210000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/aae47c8559664e7abab08beba483de2ef54d072a.jpg",
-    "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71509041/",
-    "city": "Glasgow",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.89
-  },
-  {
-    "address": "3 bed semi-detached house for sale Berriedale, Gardenhall, East Kilbride, South Lanarkshire G75",
+    "address": "3 bed detached house for sale Forth Crescent, Mossneuk, East Kilbride G75",
     "postcode": null,
     "price": 230000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/03daa3b3cae22150ce4af0815ebc66d32adbcad0.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/17323224d5ff9c4a7f5f26f45790b2796634bd34.jpg",
     "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71505742/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71500882/",
     "city": "Glasgow",
     "monthly_rent": 330,
     "annual_rent": 3960,
     "gross_yield": 1.72
   },
   {
-    "address": "3 bed semi-detached house for sale Bruce Terrace, Blantyre G72",
+    "address": "3 bed semi-detached house for sale Marsden Wynd, Benthall Farm, East Kilbride G75",
     "postcode": null,
-    "price": 174995,
+    "price": 260000,
     "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/9d1743961f9e57125dc0cfbfd2392a66140fa3b9.jpg",
+    "bathrooms": 3,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/dccd45ad6351c9b0682a419abda77e9e4b5ef954.jpg",
     "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71506942/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71514130/",
     "city": "Glasgow",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 2.26
+    "gross_yield": 1.52
   },
   {
     "address": "3 bed detached house for sale Inveroran Drive, Bearsden G61",
@@ -770,6 +644,20 @@
     "gross_yield": 1.03
   },
   {
+    "address": "3 bed semi-detached house for sale Berriedale, Gardenhall, East Kilbride, South Lanarkshire G75",
+    "postcode": null,
+    "price": 230000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/03daa3b3cae22150ce4af0815ebc66d32adbcad0.jpg",
+    "description": "3-bed property in Glasgow.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71505742/",
+    "city": "Glasgow",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.72
+  },
+  {
     "address": "4 bed detached house for sale Elsie Way, Lindsayfield, East Kilbride G75",
     "postcode": null,
     "price": 345000,
@@ -782,48 +670,6 @@
     "monthly_rent": 440,
     "annual_rent": 5280,
     "gross_yield": 1.53
-  },
-  {
-    "address": "3 bed detached house for sale Forth Crescent, Mossneuk, East Kilbride G75",
-    "postcode": null,
-    "price": 230000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/17323224d5ff9c4a7f5f26f45790b2796634bd34.jpg",
-    "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71500882/",
-    "city": "Glasgow",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.72
-  },
-  {
-    "address": "4 bed flat for sale Paisley Road West, Cessnock G51",
-    "postcode": null,
-    "price": 200000,
-    "bedrooms": 4,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/408fc38ea2271784f4855c4f8f0a527df0f469b4.jpg",
-    "description": "4-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71505684/",
-    "city": "Glasgow",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 2.64
-  },
-  {
-    "address": "3 bed detached house for sale Skye Gardens, Bearsden G61",
-    "postcode": null,
-    "price": 310000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/b6d2073efb39fed483d30715358c5377cb62d776.jpg",
-    "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71065275/",
-    "city": "Glasgow",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.28
   },
   {
     "address": "3 bed end terrace house for sale Juniper Avenue, Greenhills, East Kilbride G75",
@@ -854,32 +700,32 @@
     "gross_yield": 1.32
   },
   {
-    "address": "3 bed flat for sale Corkerhill Road, Bellahouston G52",
+    "address": "3 bed detached house for sale Skye Gardens, Bearsden G61",
     "postcode": null,
-    "price": 165000,
+    "price": 310000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/f62cbb079b0c840ed72be966303bcc117f9cd501.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/b6d2073efb39fed483d30715358c5377cb62d776.jpg",
     "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71477866/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71065275/",
     "city": "Glasgow",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 2.4
+    "gross_yield": 1.28
   },
   {
-    "address": "3 bed terraced house for sale Ness Drive, St Leonards, East Kilbride G74",
+    "address": "3 bed terraced house for sale Clamps Terrace, St Leonards, East Kilbride G74",
     "postcode": null,
-    "price": 145000,
+    "price": 225000,
     "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/8481a41ca273de5f2bd49cb9209554c9bd6eb778.jpg",
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/68c97e61892e6d26b098a4e690578f03766125d2.jpg",
     "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71476339/",
+    "property_url": "https://www.primelocation.com/for-sale/details/70213624/",
     "city": "Glasgow",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 2.73
+    "gross_yield": 1.76
   },
   {
     "address": "3 bed terraced house for sale New Plymouth, Original Newlandsmuir, East Kilbride G75",
@@ -910,32 +756,32 @@
     "gross_yield": 1.72
   },
   {
-    "address": "3 bed terraced house for sale Clamps Terrace, St Leonards, East Kilbride G74",
+    "address": "3 bed terraced house for sale Ness Drive, St Leonards, East Kilbride G74",
     "postcode": null,
-    "price": 225000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/68c97e61892e6d26b098a4e690578f03766125d2.jpg",
-    "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70213624/",
-    "city": "Glasgow",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.76
-  },
-  {
-    "address": "3 bed detached bungalow for sale Seres Road, Clarkston G76",
-    "postcode": null,
-    "price": 395000,
+    "price": 145000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/e7d105f614ab56ed2426357cba607d57260f01a2.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/8481a41ca273de5f2bd49cb9209554c9bd6eb778.jpg",
     "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71465207/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71476339/",
     "city": "Glasgow",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 1.0
+    "gross_yield": 2.73
+  },
+  {
+    "address": "3 bed semi-detached house for sale Watervole Crescent, Cambuslang G72",
+    "postcode": null,
+    "price": 235000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/8502706aa219754f391b4b625b6582330d60f0f6.jpg",
+    "description": "3-bed property in Glasgow.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71466140/",
+    "city": "Glasgow",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.69
   },
   {
     "address": "3 bed end terrace house for sale Brimley Place, Lindsayfield, East Kilbride G75",
@@ -952,18 +798,32 @@
     "gross_yield": 1.8
   },
   {
-    "address": "3 bed semi-detached house for sale Watervole Crescent, Cambuslang G72",
+    "address": "3 bed detached bungalow for sale Seres Road, Clarkston G76",
     "postcode": null,
-    "price": 235000,
+    "price": 395000,
     "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/8502706aa219754f391b4b625b6582330d60f0f6.jpg",
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/e7d105f614ab56ed2426357cba607d57260f01a2.jpg",
     "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71466140/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71465207/",
     "city": "Glasgow",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 1.69
+    "gross_yield": 1.0
+  },
+  {
+    "address": "3 bed semi-detached house for sale Drummond Way, Newton Mearns G77",
+    "postcode": null,
+    "price": 260000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/605d240493f7157c5593bcc4333962efd385731b.jpg",
+    "description": "3-bed property in Glasgow.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71463099/",
+    "city": "Glasgow",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.52
   },
   {
     "address": "4 bed town house for sale Parklands Oval, Crookston G53",
@@ -992,34 +852,6 @@
     "monthly_rent": 330,
     "annual_rent": 3960,
     "gross_yield": 2.51
-  },
-  {
-    "address": "3 bed semi-detached house for sale Drummond Way, Newton Mearns G77",
-    "postcode": null,
-    "price": 260000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/605d240493f7157c5593bcc4333962efd385731b.jpg",
-    "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71463099/",
-    "city": "Glasgow",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.52
-  },
-  {
-    "address": "3 bed flat for sale Nasmyth Avenue, Bearsden G61",
-    "postcode": null,
-    "price": 220000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/7284bd19b75d4df9e15c60c25182ec15b5c24ae3.jpg",
-    "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71457587/",
-    "city": "Glasgow",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.8
   },
   {
     "address": "3 bed semi-detached house for sale Forth Court, Mossneuk, East Kilbride, South Lanarkshire G75",
@@ -1078,20 +910,6 @@
     "gross_yield": 1.8
   },
   {
-    "address": "4 bed detached house for sale Foinaven Gardens, Thornliebank G46",
-    "postcode": null,
-    "price": 325000,
-    "bedrooms": 4,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/c2a93930e46c944f245ac8334d241d307563394e.jpg",
-    "description": "4-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71409002/",
-    "city": "Glasgow",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 1.62
-  },
-  {
     "address": "3 bed terraced house for sale Glen Lee, St. Leonards, East Kilbride G74",
     "postcode": null,
     "price": 165000,
@@ -1120,18 +938,18 @@
     "gross_yield": 2.03
   },
   {
-    "address": "4 bed end terrace house for sale Kelso Drive, East Mains, East Kilbride G74",
+    "address": "4 bed detached house for sale Foinaven Gardens, Thornliebank G46",
     "postcode": null,
-    "price": 195000,
+    "price": 325000,
     "bedrooms": 4,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/250bb909f2c717bcc2a78a5e876c2638b83153c6.jpg",
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/c2a93930e46c944f245ac8334d241d307563394e.jpg",
     "description": "4-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71385130/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71409002/",
     "city": "Glasgow",
     "monthly_rent": 440,
     "annual_rent": 5280,
-    "gross_yield": 2.71
+    "gross_yield": 1.62
   },
   {
     "address": "4 bed detached house for sale Swinburne Avenue, Blantyre G72",
@@ -1162,32 +980,18 @@
     "gross_yield": 2.78
   },
   {
-    "address": "3 bed semi-detached house for sale Dalcraig Crescent, Blantyre G72",
+    "address": "4 bed end terrace house for sale Kelso Drive, East Mains, East Kilbride G74",
     "postcode": null,
-    "price": 174995,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/fae1bfb731deb7d382f988217219a360a223d3e7.jpg",
-    "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71398165/",
+    "price": 195000,
+    "bedrooms": 4,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/250bb909f2c717bcc2a78a5e876c2638b83153c6.jpg",
+    "description": "4-bed property in Glasgow.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71385130/",
     "city": "Glasgow",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.26
-  },
-  {
-    "address": "3 bed flat for sale Polnoon Street, Eaglesham G76",
-    "postcode": null,
-    "price": 260000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/33606ce87e79e55950f1f6bd1c34a296b19e8935.jpg",
-    "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71379442/",
-    "city": "Glasgow",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.52
+    "monthly_rent": 440,
+    "annual_rent": 5280,
+    "gross_yield": 2.71
   },
   {
     "address": "4 bed detached house for sale Fallow Grove, Cambuslang G72",
@@ -1204,18 +1008,18 @@
     "gross_yield": 1.68
   },
   {
-    "address": "3 bed terraced house for sale 78, Juniper Ave, Let Residential Investment, East Kilbride G759Js G75",
-    "postcode": "G759JS",
-    "price": 100000,
+    "address": "3 bed semi-detached house for sale Dalcraig Crescent, Blantyre G72",
+    "postcode": null,
+    "price": 174995,
     "bedrooms": 3,
-    "bathrooms": null,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/8b487f7d313db17ab754f116659d852e30fb2af3.jpg",
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/fae1bfb731deb7d382f988217219a360a223d3e7.jpg",
     "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71355388/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71398165/",
     "city": "Glasgow",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 3.96
+    "gross_yield": 2.26
   },
   {
     "address": "4 bed semi-detached house for sale Catbells Drive, Jackton G75",
@@ -1232,6 +1036,20 @@
     "gross_yield": 1.93
   },
   {
+    "address": "3 bed terraced house for sale 78, Juniper Ave, Let Residential Investment, East Kilbride G759Js G75",
+    "postcode": "G759JS",
+    "price": 100000,
+    "bedrooms": 3,
+    "bathrooms": null,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/8b487f7d313db17ab754f116659d852e30fb2af3.jpg",
+    "description": "3-bed property in Glasgow.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71355388/",
+    "city": "Glasgow",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 3.96
+  },
+  {
     "address": "3 bed semi-detached house for sale Loganswell Road, Thornliebank G46",
     "postcode": null,
     "price": 220000,
@@ -1244,76 +1062,6 @@
     "monthly_rent": 330,
     "annual_rent": 3960,
     "gross_yield": 1.8
-  },
-  {
-    "address": "4 bed detached house for sale Sandalwood Avenue, Stewartfield, East Kilbride, South Lanarkshire G74",
-    "postcode": null,
-    "price": 290000,
-    "bedrooms": 4,
-    "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/577f0c74e70747f2b9dfec39775038a63486e532.jpg",
-    "description": "4-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71314900/",
-    "city": "Glasgow",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 1.82
-  },
-  {
-    "address": "3 bed flat for sale Plot 4 Gartloch Way, Gartcosh G69",
-    "postcode": null,
-    "price": 314995,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/f89cc779525b1fce8d059c422db6be753d86fb08.jpg",
-    "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71325856/",
-    "city": "Glasgow",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.26
-  },
-  {
-    "address": "3 bed flat for sale Lancefield Quay, Finnieston G3",
-    "postcode": null,
-    "price": 280000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/02a9fd9f4d5630d3554dd11ecdf4cadefa1b2d27.jpg",
-    "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71313568/",
-    "city": "Glasgow",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.41
-  },
-  {
-    "address": "3 bed semi-detached house for sale Telford Terrace, The Murray, East Kilbride, South Lanarkshire G75",
-    "postcode": null,
-    "price": 195000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/e7b40af51a0d11da46d2c51c673d770994715248.jpg",
-    "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71312649/",
-    "city": "Glasgow",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.03
-  },
-  {
-    "address": "4 bed bungalow for sale Herries Road G41",
-    "postcode": null,
-    "price": 340000,
-    "bedrooms": 4,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/7723649d68e06e242de625e144f2748ba1ae543f.jpg",
-    "description": "4-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71308258/",
-    "city": "Glasgow",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 1.55
   },
   {
     "address": "3 bed terraced house for sale Brimley Place, Lindsayfield, East Kilbride, South Lanarkshire G75",
@@ -1330,60 +1078,32 @@
     "gross_yield": 2.08
   },
   {
-    "address": "3 bed flat for sale 0/1, 55 Glencoe Street, Anniesland G13",
+    "address": "4 bed detached house for sale Sandalwood Avenue, Stewartfield, East Kilbride, South Lanarkshire G74",
     "postcode": null,
-    "price": 159000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/a06263e24fe5b1f975c64a4b3ce1e959f7eb9dce.jpg",
-    "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71300630/",
-    "city": "Glasgow",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.49
-  },
-  {
-    "address": "4 bed semi-detached house for sale Woodfoot Crescent, Darnley G53",
-    "postcode": null,
-    "price": 230000,
+    "price": 290000,
     "bedrooms": 4,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/a5df80ac4daaaba7565c764d18dade96a6df08ba.jpg",
+    "bathrooms": 3,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/577f0c74e70747f2b9dfec39775038a63486e532.jpg",
     "description": "4-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71283978/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71314900/",
     "city": "Glasgow",
     "monthly_rent": 440,
     "annual_rent": 5280,
-    "gross_yield": 2.3
+    "gross_yield": 1.82
   },
   {
-    "address": "3 bed terraced house for sale Hareton Place, Jackton G75",
+    "address": "3 bed semi-detached house for sale Telford Terrace, The Murray, East Kilbride, South Lanarkshire G75",
     "postcode": null,
-    "price": 285000,
+    "price": 195000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/3b806eabcef76a528fe3c77ca696447c5cadcb58.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/e7b40af51a0d11da46d2c51c673d770994715248.jpg",
     "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71267133/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71312649/",
     "city": "Glasgow",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 1.39
-  },
-  {
-    "address": "3 bed semi-detached house for sale Mid Park, The Murray, East Kilbride, South Lanarkshire G75",
-    "postcode": null,
-    "price": 190000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/25fb95b072fad381424dc0d176e40655c56b6156.jpg",
-    "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71276872/",
-    "city": "Glasgow",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.08
+    "gross_yield": 2.03
   },
   {
     "address": "5 bed villa for sale Ailsh Crescent, Robroyston G33",
@@ -1400,20 +1120,6 @@
     "gross_yield": 1.89
   },
   {
-    "address": "3 bed terraced house for sale Quebec Drive, East Kilbride G75",
-    "postcode": null,
-    "price": 155000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/4f859ac451af5d2bc410cfe3d7ea84e2124a8a44.jpg",
-    "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71261696/",
-    "city": "Glasgow",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.55
-  },
-  {
     "address": "3 bed town house for sale Blackbraes Avenue, Calderwood, East Kilbride G74",
     "postcode": null,
     "price": 255000,
@@ -1428,18 +1134,60 @@
     "gross_yield": 1.55
   },
   {
-    "address": "3 bed terraced house for sale Seymour Green, East Kilbride G75",
+    "address": "3 bed terraced house for sale Hareton Place, Jackton G75",
     "postcode": null,
-    "price": 139995,
+    "price": 285000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/d857659eebe42a56a0d47c23d47bf36f3af49c24.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/3b806eabcef76a528fe3c77ca696447c5cadcb58.jpg",
     "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71240582/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71267133/",
     "city": "Glasgow",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 2.83
+    "gross_yield": 1.39
+  },
+  {
+    "address": "3 bed terraced house for sale Quebec Drive, East Kilbride G75",
+    "postcode": null,
+    "price": 155000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/4f859ac451af5d2bc410cfe3d7ea84e2124a8a44.jpg",
+    "description": "3-bed property in Glasgow.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71261696/",
+    "city": "Glasgow",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 2.55
+  },
+  {
+    "address": "4 bed semi-detached house for sale Woodfoot Crescent, Darnley G53",
+    "postcode": null,
+    "price": 230000,
+    "bedrooms": 4,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/a5df80ac4daaaba7565c764d18dade96a6df08ba.jpg",
+    "description": "4-bed property in Glasgow.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71283978/",
+    "city": "Glasgow",
+    "monthly_rent": 440,
+    "annual_rent": 5280,
+    "gross_yield": 2.3
+  },
+  {
+    "address": "3 bed semi-detached house for sale Mid Park, The Murray, East Kilbride, South Lanarkshire G75",
+    "postcode": null,
+    "price": 190000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/25fb95b072fad381424dc0d176e40655c56b6156.jpg",
+    "description": "3-bed property in Glasgow.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71276872/",
+    "city": "Glasgow",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 2.08
   },
   {
     "address": "4 bed villa for sale Leck Wynd, Robroyston G33",
@@ -1456,18 +1204,18 @@
     "gross_yield": 1.41
   },
   {
-    "address": "3 bed terraced house for sale Stobo, Calderwood, East Kilbride G74",
+    "address": "3 bed terraced house for sale Seymour Green, East Kilbride G75",
     "postcode": null,
-    "price": 180000,
+    "price": 139995,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/00ddf3620ff757c1949caf9525aa0d2078719c4f.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/d857659eebe42a56a0d47c23d47bf36f3af49c24.jpg",
     "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71236897/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71240582/",
     "city": "Glasgow",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 2.2
+    "gross_yield": 2.83
   },
   {
     "address": "3 bed semi-detached house for sale Alwyn Drive, Stewartfield, East Kilbride G74",
@@ -1498,20 +1246,6 @@
     "gross_yield": 1.79
   },
   {
-    "address": "3 bed terraced house for sale Loanfoot Avenue, Knightswood G13",
-    "postcode": null,
-    "price": 189999,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/ee8d24e5a7fba55dcad665f24bd805d8ebb95eca.jpg",
-    "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71198945/",
-    "city": "Glasgow",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.08
-  },
-  {
     "address": "4 bed villa for sale Onslow Drive, Dennistoun G31",
     "postcode": null,
     "price": 269950,
@@ -1524,6 +1258,20 @@
     "monthly_rent": 440,
     "annual_rent": 5280,
     "gross_yield": 1.96
+  },
+  {
+    "address": "3 bed terraced house for sale Stobo, Calderwood, East Kilbride G74",
+    "postcode": null,
+    "price": 180000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/00ddf3620ff757c1949caf9525aa0d2078719c4f.jpg",
+    "description": "3-bed property in Glasgow.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71236897/",
+    "city": "Glasgow",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 2.2
   },
   {
     "address": "4 bed town house for sale Lochview Gate, Hogganfield G33",
@@ -1540,6 +1288,20 @@
     "gross_yield": 1.62
   },
   {
+    "address": "3 bed terraced house for sale Loanfoot Avenue, Knightswood G13",
+    "postcode": null,
+    "price": 189999,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/ee8d24e5a7fba55dcad665f24bd805d8ebb95eca.jpg",
+    "description": "3-bed property in Glasgow.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71198945/",
+    "city": "Glasgow",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 2.08
+  },
+  {
     "address": "3 bed semi-detached house for sale Auchinraith Road, Blantyre G72",
     "postcode": null,
     "price": 225000,
@@ -1552,20 +1314,6 @@
     "monthly_rent": 330,
     "annual_rent": 3960,
     "gross_yield": 1.76
-  },
-  {
-    "address": "4 bed detached house for sale Fulmar Park, East Kilbride G74",
-    "postcode": null,
-    "price": 310000,
-    "bedrooms": 4,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/bf0207ce964b24b3886838ad691a2d75fd7eae8e.jpg",
-    "description": "4-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69952108/",
-    "city": "Glasgow",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 1.7
   },
   {
     "address": "5 bed detached house for sale Auchinleck Road, Robroyston G33",
@@ -1594,6 +1342,20 @@
     "monthly_rent": 330,
     "annual_rent": 3960,
     "gross_yield": 1.76
+  },
+  {
+    "address": "4 bed detached house for sale Fulmar Park, East Kilbride G74",
+    "postcode": null,
+    "price": 310000,
+    "bedrooms": 4,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/bf0207ce964b24b3886838ad691a2d75fd7eae8e.jpg",
+    "description": "4-bed property in Glasgow.",
+    "property_url": "https://www.primelocation.com/for-sale/details/69952108/",
+    "city": "Glasgow",
+    "monthly_rent": 440,
+    "annual_rent": 5280,
+    "gross_yield": 1.7
   },
   {
     "address": "3 bed end terrace house for sale Baljaffray Cottage, Bearsden G61",
@@ -1638,46 +1400,18 @@
     "gross_yield": 1.92
   },
   {
-    "address": "5 bed detached house for sale Strathnairn Court, Hairmyres, East Kilbride G75",
+    "address": "3 bed terraced house for sale Dunblane Place, East Mains, East Kilbride G74",
     "postcode": null,
-    "price": 372000,
-    "bedrooms": 5,
-    "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/4cfec0f261624d3b21abb8542e403e85fc3df84d.jpg",
-    "description": "5-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70984987/",
-    "city": "Glasgow",
-    "monthly_rent": 550,
-    "annual_rent": 6600,
-    "gross_yield": 1.77
-  },
-  {
-    "address": "3 bed flat for sale Kerrycroy Street, Toryglen G42",
-    "postcode": null,
-    "price": 110000,
+    "price": 170000,
     "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/9ad079aac74c41ed942580c0ff240ead34e9ef04.jpg",
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/b9da193bf08fd6e9996ac29e72c868085d1d1d1a.jpg",
     "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71007965/",
+    "property_url": "https://www.primelocation.com/for-sale/details/70918461/",
     "city": "Glasgow",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 3.6
-  },
-  {
-    "address": "3 bed link detached house for sale Duncanrig Crescent, Hudson Bay, East Kilbride G75",
-    "postcode": null,
-    "price": 235000,
-    "bedrooms": 3,
-    "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/6f68da4a1ac39753951ed90ec20f98745c2af391.jpg",
-    "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70946348/",
-    "city": "Glasgow",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.69
+    "gross_yield": 2.33
   },
   {
     "address": "3 bed terraced house for sale Lindores Drive, West Mains, East Kilbride G74",
@@ -1694,20 +1428,6 @@
     "gross_yield": 2.73
   },
   {
-    "address": "3 bed terraced house for sale Dunblane Place, East Mains, East Kilbride G74",
-    "postcode": null,
-    "price": 170000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/b9da193bf08fd6e9996ac29e72c868085d1d1d1a.jpg",
-    "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70918461/",
-    "city": "Glasgow",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 2.33
-  },
-  {
     "address": "3 bed detached house for sale Moffat Gardens, Gardenhall, East Kilbride G75",
     "postcode": null,
     "price": 290000,
@@ -1720,6 +1440,34 @@
     "monthly_rent": 330,
     "annual_rent": 3960,
     "gross_yield": 1.37
+  },
+  {
+    "address": "3 bed link detached house for sale Duncanrig Crescent, Hudson Bay, East Kilbride G75",
+    "postcode": null,
+    "price": 235000,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/6f68da4a1ac39753951ed90ec20f98745c2af391.jpg",
+    "description": "3-bed property in Glasgow.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70946348/",
+    "city": "Glasgow",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.69
+  },
+  {
+    "address": "3 bed terraced house for sale Shott Drive, Blantyre G72",
+    "postcode": null,
+    "price": 208995,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/09f6bdcd49848dd5b8023f7ed3260a4101d242d5.jpg",
+    "description": "3-bed property in Glasgow.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70586875/",
+    "city": "Glasgow",
+    "monthly_rent": 330,
+    "annual_rent": 3960,
+    "gross_yield": 1.89
   },
   {
     "address": "3 bed terraced house for sale Bartonshill Way, Broomhouse, Uddingston G71",
@@ -1736,20 +1484,6 @@
     "gross_yield": 2.03
   },
   {
-    "address": "4 bed semi-detached house for sale Catbells Drive, Jackton Hall, East Kilbride G75",
-    "postcode": null,
-    "price": 274000,
-    "bedrooms": 4,
-    "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/a498b80bc3bb19127273f3a4f7c79965cd66ce86.jpg",
-    "description": "4-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69618786/",
-    "city": "Glasgow",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 1.93
-  },
-  {
     "address": "4 bed detached house for sale Dalehead Crescent, Jackton Gardens, Jackton G75",
     "postcode": null,
     "price": 289000,
@@ -1764,18 +1498,32 @@
     "gross_yield": 1.83
   },
   {
-    "address": "3 bed terraced house for sale Shott Drive, Blantyre G72",
+    "address": "4 bed semi-detached house for sale Catbells Drive, Jackton Hall, East Kilbride G75",
     "postcode": null,
-    "price": 208995,
-    "bedrooms": 3,
+    "price": 274000,
+    "bedrooms": 4,
     "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/09f6bdcd49848dd5b8023f7ed3260a4101d242d5.jpg",
-    "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70586875/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/a498b80bc3bb19127273f3a4f7c79965cd66ce86.jpg",
+    "description": "4-bed property in Glasgow.",
+    "property_url": "https://www.primelocation.com/for-sale/details/69618786/",
     "city": "Glasgow",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.89
+    "monthly_rent": 440,
+    "annual_rent": 5280,
+    "gross_yield": 1.93
+  },
+  {
+    "address": "5 bed detached house for sale Strathnairn Court, Hairmyres, East Kilbride G75",
+    "postcode": null,
+    "price": 372000,
+    "bedrooms": 5,
+    "bathrooms": 3,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/4cfec0f261624d3b21abb8542e403e85fc3df84d.jpg",
+    "description": "5-bed property in Glasgow.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70984987/",
+    "city": "Glasgow",
+    "monthly_rent": 550,
+    "annual_rent": 6600,
+    "gross_yield": 1.77
   },
   {
     "address": "4 bed villa for sale Conacher Drive, Robroyston G33",
@@ -1806,34 +1554,6 @@
     "gross_yield": 1.41
   },
   {
-    "address": "4 bed flat for sale Balshagray Drive, Broomhill G11",
-    "postcode": null,
-    "price": 380000,
-    "bedrooms": 4,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/dc758f6df87843901f9f18d6d99de1c4ed4d9fac.jpg",
-    "description": "4-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70505047/",
-    "city": "Glasgow",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 1.39
-  },
-  {
-    "address": "3 bed semi-detached house for sale Calderbank Road, Uddingston, Uddingston G71",
-    "postcode": null,
-    "price": 247500,
-    "bedrooms": 3,
-    "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/60ff5d9db492a30b12fe163b56b1105f72a5f7ad.jpg",
-    "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70476079/",
-    "city": "Glasgow",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.6
-  },
-  {
     "address": "3 bed semi-detached house for sale Lochranza Drive, Lindsayfield, East Kilbride G75",
     "postcode": null,
     "price": 180000,
@@ -1846,20 +1566,6 @@
     "monthly_rent": 330,
     "annual_rent": 3960,
     "gross_yield": 2.2
-  },
-  {
-    "address": "3 bed mobile/park home for sale Cairngorm Residential Park, Bishopbriggs G64",
-    "postcode": null,
-    "price": 99000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/10253dbd87e4f2f9b96784cd19cfb1ab5ffd9582.jpg",
-    "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70327452/",
-    "city": "Glasgow",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 4.0
   },
   {
     "address": "3 bed semi-detached house for sale Headhouse Green, The Murray, East Kilbride G75",
@@ -1890,18 +1596,18 @@
     "gross_yield": 1.76
   },
   {
-    "address": "3 bed flat for sale Norwood Park, Bearsden G61",
+    "address": "3 bed semi-detached house for sale Calderbank Road, Uddingston, Uddingston G71",
     "postcode": null,
-    "price": 300000,
+    "price": 247500,
     "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/181bb86fbd21cc157a8526f1db5684e483cd1b28.jpg",
+    "bathrooms": 3,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/60ff5d9db492a30b12fe163b56b1105f72a5f7ad.jpg",
     "description": "3-bed property in Glasgow.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69461807/",
+    "property_url": "https://www.primelocation.com/for-sale/details/70476079/",
     "city": "Glasgow",
     "monthly_rent": 330,
     "annual_rent": 3960,
-    "gross_yield": 1.32
+    "gross_yield": 1.6
   },
   {
     "address": "4 bed detached house for sale Vickers Place, Merlin Gardens, East Kilbride G74",
