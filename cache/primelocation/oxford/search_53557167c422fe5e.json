@@ -1,5 +1,19 @@
 [
   {
+    "address": "3 bed semi-detached house for sale Grovelands Road, Risinghurst OX3",
+    "postcode": null,
+    "price": 375000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/28432c9e221157161e06a3f09d1452f4c9cc1c53.jpg",
+    "description": "3-bed property in Oxford.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71630374/",
+    "city": "Oxford",
+    "monthly_rent": 495,
+    "annual_rent": 5940,
+    "gross_yield": 1.58
+  },
+  {
     "address": "3 bed terraced house for sale Maltfield Road, Headington OX3",
     "postcode": null,
     "price": 380000,
@@ -12,19 +26,5 @@
     "monthly_rent": 495,
     "annual_rent": 5940,
     "gross_yield": 1.56
-  },
-  {
-    "address": "3 bed semi-detached house for sale Bagley Close, Kennington OX1",
-    "postcode": null,
-    "price": 350000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/37f2fa2746b55c1368db090fce947ad0269129c9.jpg",
-    "description": "3-bed property in Oxford.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71206616/",
-    "city": "Oxford",
-    "monthly_rent": 495,
-    "annual_rent": 5940,
-    "gross_yield": 1.7
   }
 ]
