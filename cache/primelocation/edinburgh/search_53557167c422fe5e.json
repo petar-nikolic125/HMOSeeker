@@ -1,61 +1,5 @@
 [
   {
-    "address": "4 bed detached house for sale 11 Raith Gardens, The Wisp EH16",
-    "postcode": null,
-    "price": 350000,
-    "bedrooms": 4,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/5115b322203662c0716679da83a71047860cbb65.jpg",
-    "description": "4-bed property in Edinburgh.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71602411/",
-    "city": "Edinburgh",
-    "monthly_rent": 440,
-    "annual_rent": 5280,
-    "gross_yield": 1.51
-  },
-  {
-    "address": "3 bed detached bungalow for sale 111 Newcraighall Road, Newcraighall EH21",
-    "postcode": null,
-    "price": 350000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/1d7f5eaff230d80ece88b5b9ec4e32d92e533436.jpg",
-    "description": "3-bed property in Edinburgh.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71606613/",
-    "city": "Edinburgh",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.13
-  },
-  {
-    "address": "3 bed terraced house for sale 37 Bauld Drive, Newcraighall, Musselburgh EH21",
-    "postcode": null,
-    "price": 260000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/cfdc19916a133af5bce4b4431b86833d1e14d3ba.jpg",
-    "description": "3-bed property in Edinburgh.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71532097/",
-    "city": "Edinburgh",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.52
-  },
-  {
-    "address": "3 bed semi-detached house for sale Stewart Crescent, Currie EH14",
-    "postcode": null,
-    "price": 275000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/eba2e2c376ad5f1fb4642d135fd9031806e132c1.jpg",
-    "description": "3-bed property in Edinburgh.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70629129/",
-    "city": "Edinburgh",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 1.44
-  },
-  {
     "address": "3 bed terraced house for sale 152 Greenwell Wynd, Mortonhall EH17",
     "postcode": null,
     "price": 295000,
@@ -68,19 +12,5 @@
     "monthly_rent": 330,
     "annual_rent": 3960,
     "gross_yield": 1.34
-  },
-  {
-    "address": "3 bed terraced house for sale 7 Hermiston Steading, Hermiston, Currie EH14",
-    "postcode": null,
-    "price": 399000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/5e33def7d5bb06231603b0f842c94f386f7d22f7.jpg",
-    "description": "3-bed property in Edinburgh.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70568088/",
-    "city": "Edinburgh",
-    "monthly_rent": 330,
-    "annual_rent": 3960,
-    "gross_yield": 0.99
   }
 ]

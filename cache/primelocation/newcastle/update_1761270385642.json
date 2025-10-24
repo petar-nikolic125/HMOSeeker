@@ -1,0 +1,30 @@
+[
+  {
+    "address": "3 bed semi-detached house for sale Fulbrook Road, Kenton NE3",
+    "price": 165000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "description": "3-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70594561/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/9190fa2b74db06add5acdc296a9cabb8512e6090.jpg",
+    "postcode": "",
+    "city": "Newcastle",
+    "monthly_rent": 285,
+    "annual_rent": 3420,
+    "gross_yield": 2.07
+  },
+  {
+    "address": "4 bed semi-detached house for sale Reynolds Avenue, West Moor NE12",
+    "price": 375000,
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "description": "4-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71627388/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/d8290ec76c1cf75319a490ddace4fba94de764ef.jpg",
+    "postcode": "",
+    "city": "Newcastle",
+    "monthly_rent": 380,
+    "annual_rent": 4560,
+    "gross_yield": 1.22
+  }
+]
