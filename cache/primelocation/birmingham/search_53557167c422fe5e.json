@@ -1,17 +1,17 @@
 [
   {
-    "address": "3 bed terraced house for sale Eachway Lane, Rednal B45",
+    "address": "3 bed semi-detached house for sale Stanmore Road, Edgbaston B16",
     "postcode": null,
-    "price": 225000,
+    "price": 325000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/d4fc2571ff999328a37f811541b208522cd6e385.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/8cd4cc839c855f689ac80568f4f3fa5098ba7e12.png",
     "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71631106/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71635999/",
     "city": "Birmingham",
     "monthly_rent": 345,
     "annual_rent": 4140,
-    "gross_yield": 1.84
+    "gross_yield": 1.27
   },
   {
     "address": "3 bed semi-detached house for sale Lamprey Court, Chelmsley Wood B37",
@@ -28,32 +28,18 @@
     "gross_yield": 1.59
   },
   {
-    "address": "3 bed terraced house for sale Kendrick Avenue, Shard End B34",
+    "address": "3 bed terraced house for sale Eachway Lane, Rednal B45",
     "postcode": null,
-    "price": 175000,
+    "price": 225000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/aad534b8fc6ebf3cadd298151e0ad1f6a36ce9b8.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/d4fc2571ff999328a37f811541b208522cd6e385.jpg",
     "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71337410/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71631106/",
     "city": "Birmingham",
     "monthly_rent": 345,
     "annual_rent": 4140,
-    "gross_yield": 2.37
-  },
-  {
-    "address": "3 bed semi-detached house for sale Cubley Road, Hall Green B28",
-    "postcode": null,
-    "price": 325000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/b1e209fe6835b5dbca918ad1f6eed886c0945484.jpg",
-    "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70714970/",
-    "city": "Birmingham",
-    "monthly_rent": 345,
-    "annual_rent": 4140,
-    "gross_yield": 1.27
+    "gross_yield": 1.84
   },
   {
     "address": "3 bed semi-detached house for sale Acheson Road, Hall Green B28",
@@ -70,20 +56,6 @@
     "gross_yield": 1.45
   },
   {
-    "address": "4 bed detached house for sale Parkdale Road, Sheldon B26",
-    "postcode": null,
-    "price": 340000,
-    "bedrooms": 4,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/6056bbc522fb752338cf88ab7f26891e5f94cbf6.jpg",
-    "description": "4-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71174503/",
-    "city": "Birmingham",
-    "monthly_rent": 460,
-    "annual_rent": 5520,
-    "gross_yield": 1.62
-  },
-  {
     "address": "3 bed terraced house for sale Abbey Road, Bearwood, West Midlands B67",
     "postcode": null,
     "price": 220000,
@@ -96,6 +68,20 @@
     "monthly_rent": 345,
     "annual_rent": 4140,
     "gross_yield": 1.88
+  },
+  {
+    "address": "4 bed detached house for sale Parkdale Road, Sheldon B26",
+    "postcode": null,
+    "price": 340000,
+    "bedrooms": 4,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/6056bbc522fb752338cf88ab7f26891e5f94cbf6.jpg",
+    "description": "4-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71174503/",
+    "city": "Birmingham",
+    "monthly_rent": 460,
+    "annual_rent": 5520,
+    "gross_yield": 1.62
   },
   {
     "address": "3 bed semi-detached house for sale Croft Down Road, Solihull B92",
@@ -140,6 +126,20 @@
     "gross_yield": 1.27
   },
   {
+    "address": "3 bed semi-detached house for sale Sandwell Road, Handsworth, West Midlands B21",
+    "postcode": null,
+    "price": 255000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/a5aac43612f0e1d7f65728eb3d982a166ca7059f.jpg",
+    "description": "3-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/58295811/",
+    "city": "Birmingham",
+    "monthly_rent": 345,
+    "annual_rent": 4140,
+    "gross_yield": 1.62
+  },
+  {
     "address": "3 bed terraced house for sale Drake Croft, Chelmsley Wood B37",
     "postcode": null,
     "price": 220000,
@@ -152,6 +152,20 @@
     "monthly_rent": 345,
     "annual_rent": 4140,
     "gross_yield": 1.88
+  },
+  {
+    "address": "4 bed semi-detached house for sale Larchmere Drive, Hall Green B28",
+    "postcode": null,
+    "price": 320000,
+    "bedrooms": 4,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/6c56604798d36c6260e308bdad26d83f31e49dfe.jpg",
+    "description": "4-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71510786/",
+    "city": "Birmingham",
+    "monthly_rent": 460,
+    "annual_rent": 5520,
+    "gross_yield": 1.73
   },
   {
     "address": "3 bed semi-detached house for sale Reynolds Road, Handsworth B21",
@@ -168,20 +182,6 @@
     "gross_yield": 1.73
   },
   {
-    "address": "3 bed terraced house for sale Penshaw Grove, Moseley B13",
-    "postcode": null,
-    "price": 230000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/ce35982a54741e71c1e9f81982c349a9e91227ec.jpg",
-    "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/65994154/",
-    "city": "Birmingham",
-    "monthly_rent": 345,
-    "annual_rent": 4140,
-    "gross_yield": 1.8
-  },
-  {
     "address": "3 bed semi-detached house for sale Overdale Road, Quinton B32",
     "postcode": null,
     "price": 235000,
@@ -194,6 +194,20 @@
     "monthly_rent": 345,
     "annual_rent": 4140,
     "gross_yield": 1.76
+  },
+  {
+    "address": "3 bed terraced house for sale Douglas Road, Handsworth, West Midlands B21",
+    "postcode": null,
+    "price": 185000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/1ef0cf1d920eb88eb489d15c4809cb9bcf568133.jpg",
+    "description": "3-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/58002019/",
+    "city": "Birmingham",
+    "monthly_rent": 345,
+    "annual_rent": 4140,
+    "gross_yield": 2.24
   },
   {
     "address": "3 bed terraced house for sale Astbury Avenue, Smethwick B67",
@@ -280,20 +294,6 @@
     "gross_yield": 3.07
   },
   {
-    "address": "3 bed detached house for sale Doulton Close, Harborne B32",
-    "postcode": null,
-    "price": 300000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/f06b6bd417a51fad2f8614710c0698a6f38d44f1.png",
-    "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71576980/",
-    "city": "Birmingham",
-    "monthly_rent": 345,
-    "annual_rent": 4140,
-    "gross_yield": 1.38
-  },
-  {
     "address": "3 bed link detached house for sale Mountford Road, Shirley, Solihull, West Midlands B90",
     "postcode": null,
     "price": 400000,
@@ -308,32 +308,18 @@
     "gross_yield": 1.03
   },
   {
-    "address": "4 bed semi-detached house for sale Larchmere Drive, Hall Green B28",
+    "address": "3 bed detached house for sale Doulton Close, Harborne B32",
     "postcode": null,
-    "price": 320000,
-    "bedrooms": 4,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/6c56604798d36c6260e308bdad26d83f31e49dfe.jpg",
-    "description": "4-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71510786/",
-    "city": "Birmingham",
-    "monthly_rent": 460,
-    "annual_rent": 5520,
-    "gross_yield": 1.73
-  },
-  {
-    "address": "3 bed semi-detached house for sale Stanhope Road, Smethwick B67",
-    "postcode": null,
-    "price": 245000,
+    "price": 300000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/235f058f4662002d4e1d84824f11d60aa6a34028.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/f06b6bd417a51fad2f8614710c0698a6f38d44f1.png",
     "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69641906/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71576980/",
     "city": "Birmingham",
     "monthly_rent": 345,
     "annual_rent": 4140,
-    "gross_yield": 1.69
+    "gross_yield": 1.38
   },
   {
     "address": "4 bed end terrace house for sale Cromwell Lane, Northfield B31",
@@ -350,6 +336,20 @@
     "gross_yield": 2.45
   },
   {
+    "address": "3 bed semi-detached house for sale Stanhope Road, Smethwick B67",
+    "postcode": null,
+    "price": 245000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/235f058f4662002d4e1d84824f11d60aa6a34028.jpg",
+    "description": "3-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/69641906/",
+    "city": "Birmingham",
+    "monthly_rent": 345,
+    "annual_rent": 4140,
+    "gross_yield": 1.69
+  },
+  {
     "address": "3 bed detached house for sale Berkeley Road, Shirley, Solihull B90",
     "postcode": null,
     "price": 365000,
@@ -362,20 +362,6 @@
     "monthly_rent": 345,
     "annual_rent": 4140,
     "gross_yield": 1.13
-  },
-  {
-    "address": "3 bed semi-detached house for sale Quinton, Ridgacre Lane B32",
-    "postcode": null,
-    "price": 295000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/a96cdfefbe00e28337bf95bb54d48d8f1b0c5f55.jpg",
-    "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71566635/",
-    "city": "Birmingham",
-    "monthly_rent": 345,
-    "annual_rent": 4140,
-    "gross_yield": 1.4
   },
   {
     "address": "5 bed end terrace house for sale Washwood Heath Road, Washwood Heath B8",
@@ -392,20 +378,6 @@
     "gross_yield": 1.86
   },
   {
-    "address": "6 bed semi-detached house for sale Acocks Green B27",
-    "postcode": null,
-    "price": 370000,
-    "bedrooms": 6,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/e9f5937b875875709fc9e85c65d4c3bb55ec2df2.jpg",
-    "description": "6-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71561258/",
-    "city": "Birmingham",
-    "monthly_rent": 690,
-    "annual_rent": 8280,
-    "gross_yield": 2.24
-  },
-  {
     "address": "5 bed terraced house for sale Bearwood Road, Smethwick B66",
     "postcode": null,
     "price": 330000,
@@ -420,18 +392,18 @@
     "gross_yield": 2.09
   },
   {
-    "address": "3 bed terraced house for sale Beakes Road, Smethwick B67",
+    "address": "6 bed semi-detached house for sale Acocks Green B27",
     "postcode": null,
-    "price": 215000,
-    "bedrooms": 3,
+    "price": 370000,
+    "bedrooms": 6,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/7428d68602c7f8e486cc49bb9f84de20782b7316.jpg",
-    "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71560333/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/e9f5937b875875709fc9e85c65d4c3bb55ec2df2.jpg",
+    "description": "6-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71561258/",
     "city": "Birmingham",
-    "monthly_rent": 345,
-    "annual_rent": 4140,
-    "gross_yield": 1.93
+    "monthly_rent": 690,
+    "annual_rent": 8280,
+    "gross_yield": 2.24
   },
   {
     "address": "3 bed semi-detached house for sale Nine Elms Road, Stirchley B30",
@@ -446,6 +418,20 @@
     "monthly_rent": 345,
     "annual_rent": 4140,
     "gross_yield": 1.18
+  },
+  {
+    "address": "3 bed terraced house for sale Beakes Road, Smethwick B67",
+    "postcode": null,
+    "price": 215000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/7428d68602c7f8e486cc49bb9f84de20782b7316.jpg",
+    "description": "3-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71560333/",
+    "city": "Birmingham",
+    "monthly_rent": 345,
+    "annual_rent": 4140,
+    "gross_yield": 1.93
   },
   {
     "address": "4 bed detached house for sale Holmes Drive, Rednal B45",
@@ -464,20 +450,6 @@
   {
     "address": "3 bed end terrace house for sale Chapel Rise, Rednal B45",
     "postcode": null,
-    "price": 270000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/8eb3ff051c61a93a479178b7eca072c6f92e6103.jpg",
-    "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71556017/",
-    "city": "Birmingham",
-    "monthly_rent": 345,
-    "annual_rent": 4140,
-    "gross_yield": 1.53
-  },
-  {
-    "address": "3 bed end terrace house for sale Chapel Rise, Rednal B45",
-    "postcode": null,
     "price": 121500,
     "bedrooms": 3,
     "bathrooms": 2,
@@ -488,6 +460,20 @@
     "monthly_rent": 345,
     "annual_rent": 4140,
     "gross_yield": 3.41
+  },
+  {
+    "address": "3 bed end terrace house for sale Chapel Rise, Rednal B45",
+    "postcode": null,
+    "price": 270000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/8eb3ff051c61a93a479178b7eca072c6f92e6103.jpg",
+    "description": "3-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71556017/",
+    "city": "Birmingham",
+    "monthly_rent": 345,
+    "annual_rent": 4140,
+    "gross_yield": 1.53
   },
   {
     "address": "3 bed terraced house for sale Kitchener Road, Selly Park B29",
@@ -616,18 +602,32 @@
     "gross_yield": 1.73
   },
   {
-    "address": "3 bed terraced house for sale Arden Road, Smethwick, West Midlands B67",
+    "address": "3 bed terraced house for sale Wigorn Road, Smethwick, West Midlands B67",
     "postcode": null,
-    "price": 200000,
+    "price": 250000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/30fe69f8b428c28ecf14ccae65a4d9141b0b4ba5.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/79be7469e8844f23c95c985815199b0e5eccd78e.jpg",
     "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71331266/",
+    "property_url": "https://www.primelocation.com/for-sale/details/70687230/",
     "city": "Birmingham",
     "monthly_rent": 345,
     "annual_rent": 4140,
-    "gross_yield": 2.07
+    "gross_yield": 1.66
+  },
+  {
+    "address": "3 bed semi-detached house for sale Cranbrook Road, Handsworth B21",
+    "postcode": null,
+    "price": 280000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/74ed1eb3a5badd10f14bb923d1cbced393482062.jpg",
+    "description": "3-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71500295/",
+    "city": "Birmingham",
+    "monthly_rent": 345,
+    "annual_rent": 4140,
+    "gross_yield": 1.48
   },
   {
     "address": "3 bed detached house for sale Jenson Street, Cofton Hackett B45",
@@ -649,41 +649,13 @@
     "price": 325000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/888d4958d93b3ed8a3e4912c72a4ad985eb24e9f.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/b35d33bc6abac4c7bb055739b9b9aa6c281d72bf.jpg",
     "description": "3-bed property in Birmingham.",
     "property_url": "https://www.primelocation.com/for-sale/details/71502135/",
     "city": "Birmingham",
     "monthly_rent": 345,
     "annual_rent": 4140,
     "gross_yield": 1.27
-  },
-  {
-    "address": "3 bed semi-detached house for sale Cranbrook Road, Handsworth B21",
-    "postcode": null,
-    "price": 280000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/74ed1eb3a5badd10f14bb923d1cbced393482062.jpg",
-    "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71500295/",
-    "city": "Birmingham",
-    "monthly_rent": 345,
-    "annual_rent": 4140,
-    "gross_yield": 1.48
-  },
-  {
-    "address": "3 bed terraced house for sale Woodlands Street, Smethwick B66",
-    "postcode": null,
-    "price": 190000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/90df478ccba49f44aeb5a1c0e68bd8499d60283f.jpg",
-    "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71500125/",
-    "city": "Birmingham",
-    "monthly_rent": 345,
-    "annual_rent": 4140,
-    "gross_yield": 2.18
   },
   {
     "address": "4 bed semi-detached house for sale Rangoon Road, Solihull B92",
@@ -698,6 +670,20 @@
     "monthly_rent": 460,
     "annual_rent": 5520,
     "gross_yield": 1.42
+  },
+  {
+    "address": "3 bed terraced house for sale Woodlands Street, Smethwick B66",
+    "postcode": null,
+    "price": 190000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/90df478ccba49f44aeb5a1c0e68bd8499d60283f.jpg",
+    "description": "3-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71500125/",
+    "city": "Birmingham",
+    "monthly_rent": 345,
+    "annual_rent": 4140,
+    "gross_yield": 2.18
   },
   {
     "address": "4 bed semi-detached house for sale Bearwood Road, Smethwick B66",
@@ -742,20 +728,6 @@
     "gross_yield": 1.65
   },
   {
-    "address": "3 bed semi-detached house for sale Stratford Road, Hall Green B28",
-    "postcode": null,
-    "price": 285000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/7b26b29fbedf73e2a33a1e1445bf792e7ddac539.png",
-    "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71488354/",
-    "city": "Birmingham",
-    "monthly_rent": 345,
-    "annual_rent": 4140,
-    "gross_yield": 1.45
-  },
-  {
     "address": "3 bed terraced house for sale Neston Grove, Stechford B33",
     "postcode": null,
     "price": 235000,
@@ -770,32 +742,18 @@
     "gross_yield": 1.76
   },
   {
-    "address": "4 bed semi-detached house for sale Evered Close, Galton Lock, Smethwick, West Midlands B66",
+    "address": "3 bed semi-detached house for sale Stratford Road, Hall Green B28",
     "postcode": null,
-    "price": 375000,
-    "bedrooms": 4,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/7c5a1fd5ea9fc24a530f891dca4897b17c081186.jpg",
-    "description": "4-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71481038/",
-    "city": "Birmingham",
-    "monthly_rent": 460,
-    "annual_rent": 5520,
-    "gross_yield": 1.47
-  },
-  {
-    "address": "3 bed property for sale 20 John Brooks Avenue, Smethwick, West Midlands B66",
-    "postcode": null,
-    "price": 180000,
+    "price": 285000,
     "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/1d4b77649b04029595d63a7cfe0629fc2385a3a9.png",
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/7b26b29fbedf73e2a33a1e1445bf792e7ddac539.png",
     "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71482739/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71488354/",
     "city": "Birmingham",
     "monthly_rent": 345,
     "annual_rent": 4140,
-    "gross_yield": 2.3
+    "gross_yield": 1.45
   },
   {
     "address": "3 bed terraced house for sale Richmond Road, Smethwick B66",
@@ -824,6 +782,20 @@
     "monthly_rent": 345,
     "annual_rent": 4140,
     "gross_yield": 1.13
+  },
+  {
+    "address": "4 bed semi-detached house for sale Evered Close, Galton Lock, Smethwick, West Midlands B66",
+    "postcode": null,
+    "price": 375000,
+    "bedrooms": 4,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/7c5a1fd5ea9fc24a530f891dca4897b17c081186.jpg",
+    "description": "4-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71481038/",
+    "city": "Birmingham",
+    "monthly_rent": 460,
+    "annual_rent": 5520,
+    "gross_yield": 1.47
   },
   {
     "address": "3 bed link detached house for sale Taylors Lane, Smethwick B67",
@@ -896,18 +868,18 @@
     "gross_yield": 1.69
   },
   {
-    "address": "3 bed detached house for sale Perry Barr Locks, Walsall Road B42",
+    "address": "3 bed semi-detached house for sale Brooklands Road, Hall Green B28",
     "postcode": null,
-    "price": 265000,
+    "price": 355000,
     "bedrooms": 3,
-    "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/b5080989e14551ac6bbf96acf43b8153a258b90c.jpg",
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/9708d01aad438dc26662288c660f15f437305cac.jpg",
     "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70396006/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71087358/",
     "city": "Birmingham",
     "monthly_rent": 345,
     "annual_rent": 4140,
-    "gross_yield": 1.56
+    "gross_yield": 1.17
   },
   {
     "address": "3 bed semi-detached house for sale Croft Down Road, Solihull B92",
@@ -952,20 +924,6 @@
     "gross_yield": 1.97
   },
   {
-    "address": "3 bed terraced house for sale Oxhill Road, Handsworth, West Midlands B21",
-    "postcode": null,
-    "price": 180000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/98f08721b67af12ec1e003188ef7678b48c87f2a.jpg",
-    "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71332208/",
-    "city": "Birmingham",
-    "monthly_rent": 345,
-    "annual_rent": 4140,
-    "gross_yield": 2.3
-  },
-  {
     "address": "3 bed terraced house for sale Friary Road, Handsworth B20",
     "postcode": null,
     "price": 210000,
@@ -978,6 +936,34 @@
     "monthly_rent": 345,
     "annual_rent": 4140,
     "gross_yield": 1.97
+  },
+  {
+    "address": "4 bed end terrace house for sale Alexander Road, Acocks Green B27",
+    "postcode": null,
+    "price": 295000,
+    "bedrooms": 4,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/afefaddaf1a6270f445e683d33a8cfe80cbeb6f6.jpg",
+    "description": "4-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70532388/",
+    "city": "Birmingham",
+    "monthly_rent": 460,
+    "annual_rent": 5520,
+    "gross_yield": 1.87
+  },
+  {
+    "address": "3 bed terraced house for sale Alfred Road, Handsworth, West Midlands B21",
+    "postcode": null,
+    "price": 170000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/93b19f9f07a8ef125bd3a240fd20c7fdcc9f710d.jpg",
+    "description": "3-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/69705668/",
+    "city": "Birmingham",
+    "monthly_rent": 345,
+    "annual_rent": 4140,
+    "gross_yield": 2.44
   },
   {
     "address": "3 bed semi-detached house for sale Grafton Road, Handsworth B21",
@@ -1134,18 +1120,18 @@
     "gross_yield": 1.27
   },
   {
-    "address": "4 bed semi-detached house for sale Wyckham Road, Castle Bromwich B36",
+    "address": "3 bed semi-detached house for sale Gannow Road, Rednal B45",
     "postcode": null,
-    "price": 350000,
-    "bedrooms": 4,
+    "price": 400000,
+    "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/fe904a0051f471f9471607a9ebbf90ee5af5a16d.jpg",
-    "description": "4-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71386325/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/38ff43626bceb5da94cd86bad35ae6d9c9fa2d89.jpg",
+    "description": "3-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71387228/",
     "city": "Birmingham",
-    "monthly_rent": 460,
-    "annual_rent": 5520,
-    "gross_yield": 1.58
+    "monthly_rent": 345,
+    "annual_rent": 4140,
+    "gross_yield": 1.03
   },
   {
     "address": "3 bed end terrace house for sale Eachway Lane, Rednal B45",
@@ -1162,18 +1148,18 @@
     "gross_yield": 1.93
   },
   {
-    "address": "3 bed semi-detached house for sale Gannow Road, Rednal B45",
+    "address": "4 bed semi-detached house for sale Wyckham Road, Castle Bromwich B36",
     "postcode": null,
-    "price": 400000,
-    "bedrooms": 3,
+    "price": 350000,
+    "bedrooms": 4,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/38ff43626bceb5da94cd86bad35ae6d9c9fa2d89.jpg",
-    "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71387228/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/fe904a0051f471f9471607a9ebbf90ee5af5a16d.jpg",
+    "description": "4-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71386325/",
     "city": "Birmingham",
-    "monthly_rent": 345,
-    "annual_rent": 4140,
-    "gross_yield": 1.03
+    "monthly_rent": 460,
+    "annual_rent": 5520,
+    "gross_yield": 1.58
   },
   {
     "address": "4 bed semi-detached house for sale Kingfield Road, Shirley B90",
@@ -1246,6 +1232,48 @@
     "gross_yield": 1.27
   },
   {
+    "address": "3 bed terraced house for sale Kendrick Avenue, Shard End B34",
+    "postcode": null,
+    "price": 175000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/aad534b8fc6ebf3cadd298151e0ad1f6a36ce9b8.jpg",
+    "description": "3-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71337410/",
+    "city": "Birmingham",
+    "monthly_rent": 345,
+    "annual_rent": 4140,
+    "gross_yield": 2.37
+  },
+  {
+    "address": "3 bed terraced house for sale Oxhill Road, Handsworth, West Midlands B21",
+    "postcode": null,
+    "price": 180000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/98f08721b67af12ec1e003188ef7678b48c87f2a.jpg",
+    "description": "3-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71332208/",
+    "city": "Birmingham",
+    "monthly_rent": 345,
+    "annual_rent": 4140,
+    "gross_yield": 2.3
+  },
+  {
+    "address": "3 bed terraced house for sale Arden Road, Smethwick, West Midlands B67",
+    "postcode": null,
+    "price": 200000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/30fe69f8b428c28ecf14ccae65a4d9141b0b4ba5.jpg",
+    "description": "3-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71331266/",
+    "city": "Birmingham",
+    "monthly_rent": 345,
+    "annual_rent": 4140,
+    "gross_yield": 2.07
+  },
+  {
     "address": "3 bed terraced house for sale Plestowes Close, Shirley, Solihull B90",
     "postcode": null,
     "price": 280000,
@@ -1302,20 +1330,6 @@
     "gross_yield": 1.51
   },
   {
-    "address": "3 bed semi-detached house for sale St. Blaise Avenue, Water Orton B46",
-    "postcode": null,
-    "price": 335000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/12aaf8503def9ec186c645faeb8f4f22513d8b83.jpg",
-    "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71284743/",
-    "city": "Birmingham",
-    "monthly_rent": 345,
-    "annual_rent": 4140,
-    "gross_yield": 1.24
-  },
-  {
     "address": "4 bed terraced house for sale Cheshire Road, Smethwick B67",
     "postcode": null,
     "price": 265000,
@@ -1342,6 +1356,34 @@
     "monthly_rent": 345,
     "annual_rent": 4140,
     "gross_yield": 1.66
+  },
+  {
+    "address": "3 bed semi-detached house for sale St. Blaise Avenue, Water Orton B46",
+    "postcode": null,
+    "price": 335000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/12aaf8503def9ec186c645faeb8f4f22513d8b83.jpg",
+    "description": "3-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71284743/",
+    "city": "Birmingham",
+    "monthly_rent": 345,
+    "annual_rent": 4140,
+    "gross_yield": 1.24
+  },
+  {
+    "address": "3 bed terraced house for sale Upper St. Marys Road, Bearwood, West Midlands B67",
+    "postcode": null,
+    "price": 339950,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/26fb1b2463c0de164d8d06db43c162089e2b5bd3.jpg",
+    "description": "3-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71269243/",
+    "city": "Birmingham",
+    "monthly_rent": 345,
+    "annual_rent": 4140,
+    "gross_yield": 1.22
   },
   {
     "address": "4 bed semi-detached house for sale Stud Lane, Kitts Green, Stechford B33",
@@ -1372,20 +1414,6 @@
     "gross_yield": 1.38
   },
   {
-    "address": "3 bed terraced house for sale Upper St. Marys Road, Bearwood, West Midlands B67",
-    "postcode": null,
-    "price": 339950,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/26fb1b2463c0de164d8d06db43c162089e2b5bd3.jpg",
-    "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71269243/",
-    "city": "Birmingham",
-    "monthly_rent": 345,
-    "annual_rent": 4140,
-    "gross_yield": 1.22
-  },
-  {
     "address": "4 bed semi-detached house for sale The Crescent, Shirley, Solihull B90",
     "postcode": null,
     "price": 350000,
@@ -1414,20 +1442,6 @@
     "gross_yield": 1.04
   },
   {
-    "address": "3 bed semi-detached house for sale West Park Avenue, Northfield B31",
-    "postcode": null,
-    "price": 319950,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/8b6fe2a5255cd064849de7a4c43f092777918b0e.jpg",
-    "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71242462/",
-    "city": "Birmingham",
-    "monthly_rent": 345,
-    "annual_rent": 4140,
-    "gross_yield": 1.29
-  },
-  {
     "address": "3 bed semi-detached house for sale Worlds End Lane, Quinton B32",
     "postcode": null,
     "price": 250000,
@@ -1440,6 +1454,20 @@
     "monthly_rent": 345,
     "annual_rent": 4140,
     "gross_yield": 1.66
+  },
+  {
+    "address": "3 bed semi-detached house for sale West Park Avenue, Northfield B31",
+    "postcode": null,
+    "price": 319950,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/8b6fe2a5255cd064849de7a4c43f092777918b0e.jpg",
+    "description": "3-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71242462/",
+    "city": "Birmingham",
+    "monthly_rent": 345,
+    "annual_rent": 4140,
+    "gross_yield": 1.29
   },
   {
     "address": "3 bed semi-detached house for sale Ivydale Avenue, Sheldon B26",
@@ -1484,32 +1512,18 @@
     "gross_yield": 1.38
   },
   {
-    "address": "3 bed semi-detached house for sale Leopold Avenue, Handsworth Wood B20",
+    "address": "3 bed semi-detached house for sale Chester Road, Castle Bromwich B36",
     "postcode": null,
-    "price": 340000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/da0bf3280d8c0816fa25684ffdd04251b1b4873c.jpg",
-    "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70856140/",
-    "city": "Birmingham",
-    "monthly_rent": 345,
-    "annual_rent": 4140,
-    "gross_yield": 1.22
-  },
-  {
-    "address": "3 bed semi-detached house for sale Ethel Street, Smethwick B67",
-    "postcode": null,
-    "price": 200000,
+    "price": 400000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/fa0bef363ad989cde1458c3943c1fbcfaf04f95d.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/2bb216fa44821e61b911c7595633e100a4842f25.jpg",
     "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71223883/",
+    "property_url": "https://www.primelocation.com/for-sale/details/61396842/",
     "city": "Birmingham",
     "monthly_rent": 345,
     "annual_rent": 4140,
-    "gross_yield": 2.07
+    "gross_yield": 1.03
   },
   {
     "address": "6 bed semi-detached house for sale Barrett Street, Smethwick B66",
@@ -1524,20 +1538,6 @@
     "monthly_rent": 690,
     "annual_rent": 8280,
     "gross_yield": 2.07
-  },
-  {
-    "address": "3 bed semi-detached house for sale Chester Road, Castle Bromwich B36",
-    "postcode": null,
-    "price": 400000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/2bb216fa44821e61b911c7595633e100a4842f25.jpg",
-    "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/61396842/",
-    "city": "Birmingham",
-    "monthly_rent": 345,
-    "annual_rent": 4140,
-    "gross_yield": 1.03
   },
   {
     "address": "4 bed semi-detached house for sale Wadhurst Road, Edgbaston B17",
@@ -1652,20 +1652,6 @@
     "gross_yield": 1.04
   },
   {
-    "address": "4 bed semi-detached house for sale Leopold Avenue, Handsworth Wood B20",
-    "postcode": null,
-    "price": 395000,
-    "bedrooms": 4,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/51210d39d7f45f715af224e10bf0ed7d125959fd.jpg",
-    "description": "4-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69936203/",
-    "city": "Birmingham",
-    "monthly_rent": 460,
-    "annual_rent": 5520,
-    "gross_yield": 1.4
-  },
-  {
     "address": "6 bed semi-detached house for sale Claremont Road, Smethwick B66",
     "postcode": null,
     "price": 395000,
@@ -1680,18 +1666,18 @@
     "gross_yield": 2.1
   },
   {
-    "address": "3 bed terraced house for sale Galton Road, Smethwick B67",
+    "address": "4 bed semi-detached house for sale Leopold Avenue, Handsworth Wood B20",
     "postcode": null,
-    "price": 300000,
-    "bedrooms": 3,
+    "price": 395000,
+    "bedrooms": 4,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/c91aa31bc595c6e2b9e9a6859c75400cbbc2d021.jpg",
-    "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71180552/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/51210d39d7f45f715af224e10bf0ed7d125959fd.jpg",
+    "description": "4-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/69936203/",
     "city": "Birmingham",
-    "monthly_rent": 345,
-    "annual_rent": 4140,
-    "gross_yield": 1.38
+    "monthly_rent": 460,
+    "annual_rent": 5520,
+    "gross_yield": 1.4
   },
   {
     "address": "4 bed terraced house for sale Hill Crest Road, Moseley B13",
@@ -1792,20 +1778,6 @@
     "gross_yield": 1.09
   },
   {
-    "address": "5 bed semi-detached house for sale Longstone Road, Great Barr B42",
-    "postcode": null,
-    "price": 375000,
-    "bedrooms": 5,
-    "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/fe5a31d9657ae987bbc1c71bc6626b3e59d394e4.jpg",
-    "description": "5-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70663502/",
-    "city": "Birmingham",
-    "monthly_rent": 575,
-    "annual_rent": 6900,
-    "gross_yield": 1.84
-  },
-  {
     "address": "3 bed property for sale Beverley Court Road, Quinton B32",
     "postcode": null,
     "price": 375000,
@@ -1832,6 +1804,20 @@
     "monthly_rent": 345,
     "annual_rent": 4140,
     "gross_yield": 1.1
+  },
+  {
+    "address": "5 bed semi-detached house for sale Longstone Road, Great Barr B42",
+    "postcode": null,
+    "price": 375000,
+    "bedrooms": 5,
+    "bathrooms": 3,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/fe5a31d9657ae987bbc1c71bc6626b3e59d394e4.jpg",
+    "description": "5-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70663502/",
+    "city": "Birmingham",
+    "monthly_rent": 575,
+    "annual_rent": 6900,
+    "gross_yield": 1.84
   },
   {
     "address": "3 bed terraced house for sale Willows Crescent, Balsall Heath B12",
@@ -1876,20 +1862,6 @@
     "gross_yield": 1.13
   },
   {
-    "address": "4 bed terraced house for sale Crompton Road, Handsworth B20",
-    "postcode": null,
-    "price": 360000,
-    "bedrooms": 4,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/54e6a32d589f15ec7db170fabaaa8da0337dfdac.jpg",
-    "description": "4-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69696908/",
-    "city": "Birmingham",
-    "monthly_rent": 460,
-    "annual_rent": 5520,
-    "gross_yield": 1.53
-  },
-  {
     "address": "4 bed detached house for sale Olliver Close, Halesowen B62",
     "postcode": null,
     "price": 360000,
@@ -1898,6 +1870,20 @@
     "image_url": "https://lid.zoocdn.com/u/1024/768/0beb66dc6b41b5f8ce3f9685edc7b9853547c895.jpg",
     "description": "4-bed property in Birmingham.",
     "property_url": "https://www.primelocation.com/for-sale/details/69173708/",
+    "city": "Birmingham",
+    "monthly_rent": 460,
+    "annual_rent": 5520,
+    "gross_yield": 1.53
+  },
+  {
+    "address": "4 bed terraced house for sale Crompton Road, Handsworth B20",
+    "postcode": null,
+    "price": 360000,
+    "bedrooms": 4,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/54e6a32d589f15ec7db170fabaaa8da0337dfdac.jpg",
+    "description": "4-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/69696908/",
     "city": "Birmingham",
     "monthly_rent": 460,
     "annual_rent": 5520,
@@ -1946,20 +1932,6 @@
     "gross_yield": 1.53
   },
   {
-    "address": "3 bed semi-detached house for sale Brooklands Road, Hall Green B28",
-    "postcode": null,
-    "price": 355000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/9708d01aad438dc26662288c660f15f437305cac.jpg",
-    "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71087358/",
-    "city": "Birmingham",
-    "monthly_rent": 345,
-    "annual_rent": 4140,
-    "gross_yield": 1.17
-  },
-  {
     "address": "3 bed town house for sale Nether Hall Avenue, Great Barr B43",
     "postcode": null,
     "price": 355000,
@@ -2002,20 +1974,6 @@
     "gross_yield": 1.97
   },
   {
-    "address": "4 bed terraced house for sale Barrett Street, Smethwick B66",
-    "postcode": null,
-    "price": 350000,
-    "bedrooms": 4,
-    "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/9d34e3d267adf44cfd3e5e4157b260f71e6a032a.jpg",
-    "description": "4-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69065967/",
-    "city": "Birmingham",
-    "monthly_rent": 460,
-    "annual_rent": 5520,
-    "gross_yield": 1.58
-  },
-  {
     "address": "3 bed semi-detached house for sale Cherry Orchard Road, Handsworth Wood B20",
     "postcode": null,
     "price": 350000,
@@ -2028,6 +1986,20 @@
     "monthly_rent": 345,
     "annual_rent": 4140,
     "gross_yield": 1.18
+  },
+  {
+    "address": "4 bed terraced house for sale Barrett Street, Smethwick B66",
+    "postcode": null,
+    "price": 350000,
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/9d34e3d267adf44cfd3e5e4157b260f71e6a032a.jpg",
+    "description": "4-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/69065967/",
+    "city": "Birmingham",
+    "monthly_rent": 460,
+    "annual_rent": 5520,
+    "gross_yield": 1.58
   },
   {
     "address": "3 bed end terrace house for sale Westfield Road, Kings Heath B14",
@@ -2128,6 +2100,20 @@
     "gross_yield": 2.0
   },
   {
+    "address": "3 bed terraced house for sale Rathbone Road, Smethwick, West Midlands B67",
+    "postcode": null,
+    "price": 260000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/d942ccf4575645dd551a5200f7b523f3532d97a2.jpg",
+    "description": "3-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70559381/",
+    "city": "Birmingham",
+    "monthly_rent": 345,
+    "annual_rent": 4140,
+    "gross_yield": 1.59
+  },
+  {
     "address": "3 bed detached house for sale Lowfield Close, Halesowen, West Midlands B62",
     "postcode": null,
     "price": 340000,
@@ -2142,18 +2128,18 @@
     "gross_yield": 1.22
   },
   {
-    "address": "3 bed semi-detached house for sale Sheldonfield Road, Sheldon B26",
+    "address": "3 bed semi-detached house for sale Leopold Avenue, Handsworth Wood B20",
     "postcode": null,
-    "price": 325000,
+    "price": 340000,
     "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/bf09260f3a378a6336c17148e49db9c7bda1d5c5.jpg",
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/da0bf3280d8c0816fa25684ffdd04251b1b4873c.jpg",
     "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70760924/",
+    "property_url": "https://www.primelocation.com/for-sale/details/70856140/",
     "city": "Birmingham",
     "monthly_rent": 345,
     "annual_rent": 4140,
-    "gross_yield": 1.27
+    "gross_yield": 1.22
   },
   {
     "address": "3 bed semi-detached house for sale Gunner Lane, Rednal B45",
@@ -2178,20 +2164,6 @@
     "image_url": "https://lid.zoocdn.com/u/1024/768/ad1381e3f90debd47781884031702cb2f1575a21.jpg",
     "description": "3-bed property in Birmingham.",
     "property_url": "https://www.primelocation.com/for-sale/details/69900212/",
-    "city": "Birmingham",
-    "monthly_rent": 345,
-    "annual_rent": 4140,
-    "gross_yield": 1.25
-  },
-  {
-    "address": "3 bed detached house for sale Coopers Lane, Smethwick B67",
-    "postcode": null,
-    "price": 330000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/f1b2cca37fb5017b8d975b9bd340fb36fbd7903f.jpg",
-    "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70244339/",
     "city": "Birmingham",
     "monthly_rent": 345,
     "annual_rent": 4140,
@@ -2226,6 +2198,20 @@
     "gross_yield": 1.25
   },
   {
+    "address": "3 bed detached house for sale Coopers Lane, Smethwick B67",
+    "postcode": null,
+    "price": 330000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/f1b2cca37fb5017b8d975b9bd340fb36fbd7903f.jpg",
+    "description": "3-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70244339/",
+    "city": "Birmingham",
+    "monthly_rent": 345,
+    "annual_rent": 4140,
+    "gross_yield": 1.25
+  },
+  {
     "address": "3 bed end terrace house for sale Solihull Lane, Hall Green B28",
     "postcode": null,
     "price": 330000,
@@ -2240,18 +2226,32 @@
     "gross_yield": 1.25
   },
   {
-    "address": "3 bed terraced house for sale Summer Road, Edgbaston B15",
+    "address": "3 bed semi-detached house for sale Cubley Road, Hall Green B28",
     "postcode": null,
-    "price": 305000,
+    "price": 325000,
     "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/09fd995f1dd8be2107c4f6631c70a3bd436f1fd9.jpg",
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/b1e209fe6835b5dbca918ad1f6eed886c0945484.jpg",
     "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70396115/",
+    "property_url": "https://www.primelocation.com/for-sale/details/70714970/",
     "city": "Birmingham",
     "monthly_rent": 345,
     "annual_rent": 4140,
-    "gross_yield": 1.36
+    "gross_yield": 1.27
+  },
+  {
+    "address": "3 bed semi-detached house for sale Sheldonfield Road, Sheldon B26",
+    "postcode": null,
+    "price": 325000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/bf09260f3a378a6336c17148e49db9c7bda1d5c5.jpg",
+    "description": "3-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70760924/",
+    "city": "Birmingham",
+    "monthly_rent": 345,
+    "annual_rent": 4140,
+    "gross_yield": 1.27
   },
   {
     "address": "3 bed semi-detached house for sale School Road, Hall Green B28",
@@ -2268,6 +2268,20 @@
     "gross_yield": 1.27
   },
   {
+    "address": "3 bed terraced house for sale Galton Road, Smethwick B67",
+    "postcode": null,
+    "price": 300000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/c91aa31bc595c6e2b9e9a6859c75400cbbc2d021.jpg",
+    "description": "3-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71180552/",
+    "city": "Birmingham",
+    "monthly_rent": 345,
+    "annual_rent": 4140,
+    "gross_yield": 1.38
+  },
+  {
     "address": "3 bed detached house for sale Andrew Gardens, Handsworth, West Midlands B21",
     "postcode": null,
     "price": 315000,
@@ -2282,20 +2296,6 @@
     "gross_yield": 1.31
   },
   {
-    "address": "3 bed semi-detached house for sale Loynells Road, Rednal B45",
-    "postcode": null,
-    "price": 310000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/888e8784678f1c8e4cff6166fef1941f00135c43.jpg",
-    "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70794467/",
-    "city": "Birmingham",
-    "monthly_rent": 345,
-    "annual_rent": 4140,
-    "gross_yield": 1.34
-  },
-  {
     "address": "3 bed end terrace house for sale Greenfield Road, Harborne B17",
     "postcode": null,
     "price": 310000,
@@ -2304,6 +2304,34 @@
     "image_url": "https://lid.zoocdn.com/u/1024/768/33b126b8debbf3093610bfa36af655e5e6f30978.jpg",
     "description": "3-bed property in Birmingham.",
     "property_url": "https://www.primelocation.com/for-sale/details/70396106/",
+    "city": "Birmingham",
+    "monthly_rent": 345,
+    "annual_rent": 4140,
+    "gross_yield": 1.34
+  },
+  {
+    "address": "5 bed semi-detached house for sale Stony Lane, Smethwick B67",
+    "postcode": null,
+    "price": 310000,
+    "bedrooms": 5,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/3fe639257a4d2993362ee7722fcdfc02687e2a3c.jpg",
+    "description": "5-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70704726/",
+    "city": "Birmingham",
+    "monthly_rent": 575,
+    "annual_rent": 6900,
+    "gross_yield": 2.23
+  },
+  {
+    "address": "3 bed semi-detached house for sale Loynells Road, Rednal B45",
+    "postcode": null,
+    "price": 310000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/888e8784678f1c8e4cff6166fef1941f00135c43.jpg",
+    "description": "3-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70794467/",
     "city": "Birmingham",
     "monthly_rent": 345,
     "annual_rent": 4140,
@@ -2324,18 +2352,18 @@
     "gross_yield": 1.34
   },
   {
-    "address": "5 bed semi-detached house for sale Stony Lane, Smethwick B67",
+    "address": "3 bed terraced house for sale Summer Road, Edgbaston B15",
     "postcode": null,
-    "price": 310000,
-    "bedrooms": 5,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/3fe639257a4d2993362ee7722fcdfc02687e2a3c.jpg",
-    "description": "5-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70704726/",
+    "price": 305000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/09fd995f1dd8be2107c4f6631c70a3bd436f1fd9.jpg",
+    "description": "3-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70396115/",
     "city": "Birmingham",
-    "monthly_rent": 575,
-    "annual_rent": 6900,
-    "gross_yield": 2.23
+    "monthly_rent": 345,
+    "annual_rent": 4140,
+    "gross_yield": 1.36
   },
   {
     "address": "3 bed semi-detached house for sale Acheson Road, Shirley B90",
@@ -2450,32 +2478,18 @@
     "gross_yield": 1.38
   },
   {
-    "address": "3 bed terraced house for sale Wigorn Road, Smethwick, West Midlands B67",
+    "address": "3 bed semi-detached house for sale Camp Lane, Handsworth, West Midlands B21",
     "postcode": null,
-    "price": 250000,
+    "price": 225000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/79be7469e8844f23c95c985815199b0e5eccd78e.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/34c26a3c1b7d557f6bb3a762734e4b1e43e08da1.jpg",
     "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70687230/",
+    "property_url": "https://www.primelocation.com/for-sale/details/69940261/",
     "city": "Birmingham",
     "monthly_rent": 345,
     "annual_rent": 4140,
-    "gross_yield": 1.66
-  },
-  {
-    "address": "4 bed end terrace house for sale Alexander Road, Acocks Green B27",
-    "postcode": null,
-    "price": 295000,
-    "bedrooms": 4,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/afefaddaf1a6270f445e683d33a8cfe80cbeb6f6.jpg",
-    "description": "4-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70532388/",
-    "city": "Birmingham",
-    "monthly_rent": 460,
-    "annual_rent": 5520,
-    "gross_yield": 1.87
+    "gross_yield": 1.84
   },
   {
     "address": "3 bed detached house for sale Cranford Street, Smethwick, West Midlands B66",
@@ -2520,6 +2534,20 @@
     "gross_yield": 1.9
   },
   {
+    "address": "3 bed detached house for sale Poplar Road, Smethwick B66",
+    "postcode": null,
+    "price": 270000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/8d4e0c59a25f9af386af6aa2874a823a81a3e797.jpg",
+    "description": "3-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70396008/",
+    "city": "Birmingham",
+    "monthly_rent": 345,
+    "annual_rent": 4140,
+    "gross_yield": 1.53
+  },
+  {
     "address": "3 bed terraced house for sale Bearwood Road, Smethwick B66",
     "postcode": null,
     "price": 280000,
@@ -2532,34 +2560,6 @@
     "monthly_rent": 345,
     "annual_rent": 4140,
     "gross_yield": 1.48
-  },
-  {
-    "address": "3 bed terraced house for sale Alfred Road, Handsworth, West Midlands B21",
-    "postcode": null,
-    "price": 170000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/93b19f9f07a8ef125bd3a240fd20c7fdcc9f710d.jpg",
-    "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69705668/",
-    "city": "Birmingham",
-    "monthly_rent": 345,
-    "annual_rent": 4140,
-    "gross_yield": 2.44
-  },
-  {
-    "address": "3 bed semi-detached house for sale Sandwell Road, Handsworth, West Midlands B21",
-    "postcode": null,
-    "price": 255000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/a5aac43612f0e1d7f65728eb3d982a166ca7059f.jpg",
-    "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/58295811/",
-    "city": "Birmingham",
-    "monthly_rent": 345,
-    "annual_rent": 4140,
-    "gross_yield": 1.62
   },
   {
     "address": "3 bed semi-detached house for sale Cock Hill Lane, Rubery B45",
@@ -2576,20 +2576,6 @@
     "gross_yield": 2.3
   },
   {
-    "address": "3 bed terraced house for sale Douglas Road, Handsworth, West Midlands B21",
-    "postcode": null,
-    "price": 185000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/1ef0cf1d920eb88eb489d15c4809cb9bcf568133.jpg",
-    "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/58002019/",
-    "city": "Birmingham",
-    "monthly_rent": 345,
-    "annual_rent": 4140,
-    "gross_yield": 2.24
-  },
-  {
     "address": "3 bed semi-detached house for sale Neville Road, Erdington B23",
     "postcode": null,
     "price": 185000,
@@ -2602,20 +2588,6 @@
     "monthly_rent": 345,
     "annual_rent": 4140,
     "gross_yield": 2.24
-  },
-  {
-    "address": "3 bed terraced house for sale Simmons Drive, Quinton B32",
-    "postcode": null,
-    "price": 190000,
-    "bedrooms": 3,
-    "bathrooms": null,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/2f8eaa2d28dea5675e6bb4ac9cd708b3f8b49488.jpg",
-    "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70604717/",
-    "city": "Birmingham",
-    "monthly_rent": 345,
-    "annual_rent": 4140,
-    "gross_yield": 2.18
   },
   {
     "address": "3 bed terraced house for sale Dale Street, Smethwick B66",
@@ -2632,18 +2604,18 @@
     "gross_yield": 2.18
   },
   {
-    "address": "3 bed semi-detached house for sale Nuttall Grove, Handsworth, West Midlands B21",
+    "address": "3 bed terraced house for sale Simmons Drive, Quinton B32",
     "postcode": null,
-    "price": 195000,
+    "price": 190000,
     "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/eb184787b1149eb5c8390fd6173b723c69245252.jpg",
+    "bathrooms": null,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/2f8eaa2d28dea5675e6bb4ac9cd708b3f8b49488.jpg",
     "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70289186/",
+    "property_url": "https://www.primelocation.com/for-sale/details/70604717/",
     "city": "Birmingham",
     "monthly_rent": 345,
     "annual_rent": 4140,
-    "gross_yield": 2.12
+    "gross_yield": 2.18
   },
   {
     "address": "3 bed terraced house for sale Bartley Green, Romsley Road B32",
@@ -2658,6 +2630,20 @@
     "monthly_rent": 345,
     "annual_rent": 4140,
     "gross_yield": 2.08
+  },
+  {
+    "address": "3 bed semi-detached house for sale Nuttall Grove, Handsworth, West Midlands B21",
+    "postcode": null,
+    "price": 195000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/eb184787b1149eb5c8390fd6173b723c69245252.jpg",
+    "description": "3-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70289186/",
+    "city": "Birmingham",
+    "monthly_rent": 345,
+    "annual_rent": 4140,
+    "gross_yield": 2.12
   },
   {
     "address": "3 bed terraced house for sale The Uplands, Smethwick B67",
@@ -2693,9 +2679,9 @@
     "price": 200000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/1579dc0bdda9177054bc0c465b66dbdb0640ef2e.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/cc654f59252e4c8ccb49c750373855cc8ff0773d.jpg",
     "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69441462/",
+    "property_url": "https://www.primelocation.com/for-sale/details/69808395/",
     "city": "Birmingham",
     "monthly_rent": 345,
     "annual_rent": 4140,
@@ -2707,9 +2693,23 @@
     "price": 200000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/cc654f59252e4c8ccb49c750373855cc8ff0773d.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/1579dc0bdda9177054bc0c465b66dbdb0640ef2e.jpg",
     "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69808395/",
+    "property_url": "https://www.primelocation.com/for-sale/details/69441462/",
+    "city": "Birmingham",
+    "monthly_rent": 345,
+    "annual_rent": 4140,
+    "gross_yield": 2.07
+  },
+  {
+    "address": "3 bed semi-detached house for sale Ethel Street, Smethwick B67",
+    "postcode": null,
+    "price": 200000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/fa0bef363ad989cde1458c3943c1fbcfaf04f95d.jpg",
+    "description": "3-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71223883/",
     "city": "Birmingham",
     "monthly_rent": 345,
     "annual_rent": 4140,
@@ -2756,20 +2756,6 @@
     "monthly_rent": 345,
     "annual_rent": 4140,
     "gross_yield": 1.97
-  },
-  {
-    "address": "3 bed semi-detached house for sale Camp Lane, Handsworth, West Midlands B21",
-    "postcode": null,
-    "price": 225000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/34c26a3c1b7d557f6bb3a762734e4b1e43e08da1.jpg",
-    "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69940261/",
-    "city": "Birmingham",
-    "monthly_rent": 345,
-    "annual_rent": 4140,
-    "gross_yield": 1.84
   },
   {
     "address": "3 bed terraced house for sale Dorsington Road, Solihull, West Midlands B27",
@@ -2842,6 +2828,20 @@
     "gross_yield": 1.8
   },
   {
+    "address": "3 bed terraced house for sale Penshaw Grove, Moseley B13",
+    "postcode": null,
+    "price": 230000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/ce35982a54741e71c1e9f81982c349a9e91227ec.jpg",
+    "description": "3-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/65994154/",
+    "city": "Birmingham",
+    "monthly_rent": 345,
+    "annual_rent": 4140,
+    "gross_yield": 1.8
+  },
+  {
     "address": "3 bed semi-detached house for sale Overdale Road, Quinton B32",
     "postcode": null,
     "price": 230000,
@@ -2870,20 +2870,6 @@
     "gross_yield": 1.76
   },
   {
-    "address": "3 bed semi-detached house for sale Woodhouse Road, Quinton B32",
-    "postcode": null,
-    "price": 235000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/27d16a9a94dc663edd4a4f58451e2dd5f158c3d5.jpg",
-    "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69641917/",
-    "city": "Birmingham",
-    "monthly_rent": 345,
-    "annual_rent": 4140,
-    "gross_yield": 1.76
-  },
-  {
     "address": "3 bed terraced house for sale Durban Road, Smethwick B66",
     "postcode": null,
     "price": 235000,
@@ -2892,6 +2878,20 @@
     "image_url": "https://lid.zoocdn.com/u/1024/768/87f6f5b1ab6a14d028911def471aecc5a40b6e44.jpg",
     "description": "3-bed property in Birmingham.",
     "property_url": "https://www.primelocation.com/for-sale/details/69656247/",
+    "city": "Birmingham",
+    "monthly_rent": 345,
+    "annual_rent": 4140,
+    "gross_yield": 1.76
+  },
+  {
+    "address": "3 bed semi-detached house for sale Woodhouse Road, Quinton B32",
+    "postcode": null,
+    "price": 235000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/27d16a9a94dc663edd4a4f58451e2dd5f158c3d5.jpg",
+    "description": "3-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/69641917/",
     "city": "Birmingham",
     "monthly_rent": 345,
     "annual_rent": 4140,
@@ -2954,20 +2954,6 @@
     "gross_yield": 1.73
   },
   {
-    "address": "3 bed semi-detached house for sale Fairway, Northfield B31",
-    "postcode": null,
-    "price": 240000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/a662554df050797f1e191424c54824a1fa7dd913.jpg",
-    "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70931788/",
-    "city": "Birmingham",
-    "monthly_rent": 345,
-    "annual_rent": 4140,
-    "gross_yield": 1.73
-  },
-  {
     "address": "3 bed terraced house for sale Kitwell Lane, Bartley Green B32",
     "postcode": null,
     "price": 240000,
@@ -2976,6 +2962,20 @@
     "image_url": "https://lid.zoocdn.com/u/1024/768/b48bab0bdb832f3f19e11bd127f639ee51e03d34.jpg",
     "description": "3-bed property in Birmingham.",
     "property_url": "https://www.primelocation.com/for-sale/details/70815963/",
+    "city": "Birmingham",
+    "monthly_rent": 345,
+    "annual_rent": 4140,
+    "gross_yield": 1.73
+  },
+  {
+    "address": "3 bed semi-detached house for sale Fairway, Northfield B31",
+    "postcode": null,
+    "price": 240000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/a662554df050797f1e191424c54824a1fa7dd913.jpg",
+    "description": "3-bed property in Birmingham.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70931788/",
     "city": "Birmingham",
     "monthly_rent": 345,
     "annual_rent": 4140,
@@ -3066,32 +3066,18 @@
     "gross_yield": 1.59
   },
   {
-    "address": "3 bed terraced house for sale Rathbone Road, Smethwick, West Midlands B67",
+    "address": "3 bed detached house for sale Perry Barr Locks, Walsall Road B42",
     "postcode": null,
-    "price": 260000,
+    "price": 265000,
     "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/d942ccf4575645dd551a5200f7b523f3532d97a2.jpg",
+    "bathrooms": 3,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/b5080989e14551ac6bbf96acf43b8153a258b90c.jpg",
     "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70559381/",
+    "property_url": "https://www.primelocation.com/for-sale/details/70396006/",
     "city": "Birmingham",
     "monthly_rent": 345,
     "annual_rent": 4140,
-    "gross_yield": 1.59
-  },
-  {
-    "address": "3 bed detached house for sale Poplar Road, Smethwick B66",
-    "postcode": null,
-    "price": 270000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/8d4e0c59a25f9af386af6aa2874a823a81a3e797.jpg",
-    "description": "3-bed property in Birmingham.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70396008/",
-    "city": "Birmingham",
-    "monthly_rent": 345,
-    "annual_rent": 4140,
-    "gross_yield": 1.53
+    "gross_yield": 1.56
   },
   {
     "address": "3 bed semi-detached house for sale Fell Grove, Handsworth, West Midlands B21",
