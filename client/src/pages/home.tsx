@@ -4,6 +4,7 @@ import PropertyResults from "@/components/property-results";
 import PropertyAnalysisModal from "@/components/property-analysis-modal";
 import Article4Checker from "@/components/article4-checker";
 import { Footer } from "@/components/Footer";
+import BulkScrapeSection from "@/components/BulkScrapeSection";
 import { useState, useCallback, useEffect } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
@@ -233,6 +234,13 @@ export default function Home() {
           searchResults={{ count: searchState.properties.length, error: searchState.error || undefined }}
         />
         
+        {/* Bulk Scrape Section */}
+        <section className="py-6 bg-gradient-to-r from-blue-600 to-purple-600 border-b">
+          <div className="container mx-auto px-4">
+            <BulkScrapeSection />
+          </div>
+        </section>
+
         {/* Article 4 Direction Checker Section - Moved above property listings */}
         <section className="py-8 bg-white border-b">
           <div className="container mx-auto px-4">
