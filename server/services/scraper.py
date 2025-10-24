@@ -755,6 +755,140 @@ def parse_details(detail_html):
     }
 
 
+# ---------- Price segmentation to bypass 40-page limit ----------
+
+def generate_price_segments(max_price_int):
+    """
+    Generate price segments to bypass PrimeLocation's 40-page limit.
+    Strategy: Split price range into smaller segments (50k increments) so each segment
+    has <40 pages of results, allowing us to collect ALL listings.
+    
+    Example for max_price=700k:
+    [(700000, 700000), (650000, 700000), (600000, 650000), (550000, 600000), ...]
+    """
+    if not max_price_int or max_price_int <= 0:
+        # No max price specified, use default range
+        return [(None, 400000)]
+    
+    segments = []
+    segment_size = 50000  # £50k increments
+    
+    # Start from max_price and work down to 0
+    current_max = max_price_int
+    
+    # First segment: exact max price (to catch properties at exactly max_price)
+    segments.append((max_price_int, max_price_int))
+    
+    # Then create overlapping segments going down
+    while current_max > 0:
+        segment_min = max(0, current_max - segment_size)
+        if segment_min < current_max:
+            segments.append((segment_min, current_max))
+        current_max = segment_min
+        
+        # Stop if we've reached very low prices
+        if current_max <= 50000:
+            if current_max > 0:
+                segments.append((0, current_max))
+            break
+    
+    print(f"💰 Generated {len(segments)} price segments to bypass 40-page limit:", file=sys.stderr)
+    for i, (min_p, max_p) in enumerate(segments, 1):
+        print(f"   Segment {i}: £{min_p:,} - £{max_p:,}", file=sys.stderr)
+    
+    return segments
+
+
+def scrape_price_segment(city, min_beds, price_min, price_max, filters, proxies_list):
+    """
+    Scrape a single price segment and return unique property detail links.
+    """
+    print(f"\n💎 Scraping segment: £{price_min:,} - £{price_max:,}", file=sys.stderr)
+    
+    city_slug = slug_city(city)
+    
+    # Build URLs for this price segment
+    segment_filters = {**filters}
+    
+    # Build search URLs with price_min and price_max
+    q = segment_filters.get("postcode") or get_search_query_for_city(city)
+    max_pages = 40  # PrimeLocation's limit
+    page_size = as_int(os.getenv("PL_PAGE_SIZE", 100), 100)
+
+    base_params = {
+        "q": q,
+        "price_min": str(price_min) if price_min else None,
+        "price_max": str(price_max) if price_max else None,
+        "is_auction": "include",
+        "is_retirement_home": "include",
+        "is_shared_ownership": "include",
+        "radius": "0",
+        "page_size": str(page_size),
+        "search_source": "for-sale"
+    }
+    
+    # Remove None values
+    base_params = {k: v for k, v in base_params.items() if v is not None}
+
+    if min_beds:
+        base_params["beds_min"] = str(min_beds)
+
+    qs_base = "&".join([f"{k}={quote_plus(v)}" for k, v in base_params.items() if v])
+    qs_base += "&property_sub_type=detached&property_sub_type=semi_detached&property_sub_type=terraced"
+
+    urls = []
+    patterns = [f"https://www.primelocation.com/for-sale/{path}/{city_slug}/" for path in PROPERTY_PATHS]
+    
+    # Use only newest_listings sort to avoid duplicates
+    sort = "newest_listings"
+    
+    for pattern in patterns:
+        params = qs_base + f"&results_sort={quote_plus(sort)}"
+        for pn in range(1, max_pages + 1):
+            if pn == 1:
+                urls.append(f"{pattern}?{params}")
+            else:
+                urls.append(f"{pattern}?{params}&pn={pn}")
+
+    print(f"  🌐 Built {len(urls)} URLs for this segment", file=sys.stderr)
+    
+    # Collect links from this segment
+    segment_links = []
+    session = setup_session()
+    seen_pages = set()
+    empty_in_a_row = 0
+    
+    for i, u in enumerate(urls, 1):
+        if u in seen_pages:
+            continue
+        seen_pages.add(u)
+        
+        try:
+            print(f"    📄 Page {i}/{len(urls)}: Fetching...", file=sys.stderr, flush=True)
+            html = get_html(session, u, proxies_list)
+            links = collect_detail_links(html)
+            
+            if len(links) == 0:
+                empty_in_a_row += 1
+                if empty_in_a_row >= 3:
+                    print(f"    🛑 No results on 3 consecutive pages, stopping segment", file=sys.stderr)
+                    break
+            else:
+                empty_in_a_row = 0
+                segment_links.extend(links)
+                segment_links = list(dict.fromkeys(segment_links))
+                print(f"    ✅ Found {len(links)} links (total unique: {len(segment_links)})", file=sys.stderr)
+            
+            rand_delay(0.2, 0.5)
+            
+        except Exception as e:
+            print(f"    ❌ Error on page {i}: {str(e)}", file=sys.stderr)
+            continue
+    
+    print(f"  🎯 Segment complete: {len(segment_links)} unique property links", file=sys.stderr)
+    return segment_links
+
+
 # ---------- Main scrape flow (parallel detail fetch) ----------
 
 def scrape_primelocation(city, min_bedrooms, max_price, keywords_blob):
@@ -779,89 +913,45 @@ def scrape_primelocation(city, min_bedrooms, max_price, keywords_blob):
 
     proxies_env = os.getenv("PROXY_LIST", "")
     proxies_list = [p.strip() for p in proxies_env.split(",") if p.strip()]
-    # Collect all available listings - no hard limit on link collection
-    target_min_results = as_int(os.getenv("PL_MIN_RESULTS", 999999), 999999)  # Effectively unlimited
-    max_fetch_target = as_int(os.getenv("PL_MAX_FETCH", 999999), 999999)  # Effectively unlimited
     
-    print(f"🎯 Target: unlimited links per city (stops when no more pages found)", file=sys.stderr)
+    print(f"🎯 Using price segmentation strategy to bypass 40-page limit", file=sys.stderr)
 
-    # 1) Build search URLs
-    urls = build_search_urls(city, min_beds, max_price_int, filters)
-    print(f"🌐 Built {len(urls)} search URLs:", file=sys.stderr)
-    for i, url in enumerate(urls, 1):
-        print(f"  {i}. {url}", file=sys.stderr)
-
-    # 2) Visit listing pages - BFS with dynamic expansion
+    # 1) Generate price segments to bypass 40-page limit
+    price_segments = generate_price_segments(max_price_int)
+    
+    # 2) Scrape each price segment and collect all unique links
     all_detail_links = []
-    session = setup_session()
-    failed_attempts = 0
-    seen_list_pages = set()
-    q = deque(urls)
-    empty_in_a_row = 0
-    page_counter = 0
+    seen_links = set()
     
-    while q and len(all_detail_links) < target_min_results and len(seen_list_pages) < MAX_LIST_PAGES_TOTAL:
-        u = q.popleft()
-        if u in seen_list_pages:
-            continue
-        seen_list_pages.add(u)
-        page_counter += 1
+    for segment_idx, (price_min, price_max) in enumerate(price_segments, 1):
+        print(f"\n{'='*80}", file=sys.stderr)
+        print(f"📊 Processing segment {segment_idx}/{len(price_segments)}", file=sys.stderr)
+        print(f"{'='*80}", file=sys.stderr)
         
         try:
-            print(f"  📄 Fetching listing page #{page_counter}: {u}", file=sys.stderr)
-            html = get_html(session, u, proxies_list)
-            links = collect_detail_links(html)
-            print(f"    Found {len(links)} property links", file=sys.stderr)
-            all_detail_links.extend(links)
-            all_detail_links = list(dict.fromkeys(all_detail_links))
-            print(f"    Total unique links so far: {len(all_detail_links)}", file=sys.stderr)
+            segment_links = scrape_price_segment(city, min_beds, price_min, price_max, filters, proxies_list)
             
-            # Dynamically discover additional listing pages
-            extra_pages = discover_more_pages(html, u)
-            newly_enqueued = 0
-            for nu in extra_pages:
-                if nu not in seen_list_pages:
-                    q.append(nu)
-                    newly_enqueued += 1
-            if newly_enqueued:
-                print(f"    ➕ Discovered {newly_enqueued} more listing pages", file=sys.stderr)
+            # Add only new unique links
+            new_links = 0
+            for link in segment_links:
+                if link not in seen_links:
+                    seen_links.add(link)
+                    all_detail_links.append(link)
+                    new_links += 1
             
-            failed_attempts = 0
-            rand_delay(0.2, 0.6)
+            print(f"  ➕ Added {new_links} new unique links from this segment", file=sys.stderr)
+            print(f"  📊 Total unique links across all segments: {len(all_detail_links)}", file=sys.stderr)
             
-            # Early stopping heuristic if pages are dry
-            if len(links) == 0:
-                empty_in_a_row += 1
-                if empty_in_a_row >= STOP_AFTER_EMPTY_PAGES:
-                    print(f"🛑 No links on {STOP_AFTER_EMPTY_PAGES} consecutive pages - stopping discovery", file=sys.stderr)
-                    break
-            else:
-                empty_in_a_row = 0
-                
         except Exception as e:
-            failed_attempts += 1
-            print(f"❌ Error on listing page #{page_counter}: {str(e)}", file=sys.stderr)
-            if failed_attempts >= 3 and len(all_detail_links) == 0:
-                print(f"🔄 Primary URLs failing, trying simpler fallbacks...", file=sys.stderr)
-                fallback_urls = build_search_urls(city, min_beds, max_price_int, {**filters})
-                for j, fallback_url in enumerate(fallback_urls[:3]):
-                    try:
-                        print(f"  🔄 Trying fallback {j+1}: {fallback_url}", file=sys.stderr)
-                        html = get_html(session, fallback_url, proxies_list)
-                        links = collect_detail_links(html)
-                        if links:
-                            print(f"    ✅ Fallback successful! Found {len(links)} links", file=sys.stderr)
-                            all_detail_links.extend(links)
-                            break
-                    except Exception as fe:
-                        print(f"    ❌ Fallback {j+1} failed: {str(fe)}", file=sys.stderr)
-                        continue
+            print(f"  ❌ Error scraping segment £{price_min:,} - £{price_max:,}: {str(e)}", file=sys.stderr)
             continue
-
-    # Process all found detail pages (no capping)
-    max_fetch = as_int(os.getenv("PL_MAX_FETCH", 999999), 999999)  # Effectively unlimited
-    detail_links = all_detail_links[:max_fetch] if max_fetch < len(all_detail_links) else all_detail_links
-    print(f"🎯 Processing all {len(detail_links)} property detail pages", file=sys.stderr)
+    
+    print(f"\n{'='*80}", file=sys.stderr)
+    print(f"✅ Completed all {len(price_segments)} price segments", file=sys.stderr)
+    print(f"🎯 Processing {len(all_detail_links)} unique property detail pages", file=sys.stderr)
+    print(f"{'='*80}\n", file=sys.stderr)
+    
+    detail_links = all_detail_links
 
     # 3) Parallel fetch details
     results = []
