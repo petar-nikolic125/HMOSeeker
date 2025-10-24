@@ -196,10 +196,11 @@ def scrape_zoopla_search(city, min_bedrooms, max_price, keywords, postcode=None,
     
     properties = []
     page = 1
-    max_pages = 10  # Limit to prevent infinite loops
+    empty_pages_count = 0
+    max_empty_pages = 3  # Stop after 3 consecutive empty pages
     
     try:
-        while page <= max_pages:
+        while True:  # Continue until we run out of pages
             page_url = f"{search_url}&pn={page}" if page > 1 else search_url
             
             print(f"Scraping page {page}: {page_url}", file=sys.stderr)
@@ -216,9 +217,14 @@ def scrape_zoopla_search(city, min_bedrooms, max_price, keywords, postcode=None,
                            soup.find_all('article', class_=re.compile(r'listing'))
             
             if not listing_cards:
-                print(f"No listings found on page {page}", file=sys.stderr)
-                break
-            
+                empty_pages_count += 1
+                print(f"No listings found on page {page} (empty page {empty_pages_count}/{max_empty_pages})", file=sys.stderr)
+                if empty_pages_count >= max_empty_pages:
+                    print(f"Stopping after {max_empty_pages} consecutive empty pages", file=sys.stderr)
+                    break
+            else:
+                empty_pages_count = 0  # Reset counter when we find listings
+                
             for card in listing_cards:
                 try:
                     property_data = extract_property_from_card(card, city, max_sqm)
@@ -228,14 +234,16 @@ def scrape_zoopla_search(city, min_bedrooms, max_price, keywords, postcode=None,
                     print(f"Error extracting property: {e}", file=sys.stderr)
                     continue
             
-            page += 1
-            time.sleep(random.uniform(1.0, 2.0))  # Respectful delay
-            
             # Check if there are more pages
             next_button = soup.find('a', {'aria-label': 'Next page'}) or \
                          soup.find('button', text=re.compile(r'Next', re.I))
             if not next_button:
+                print(f"No 'Next page' button found - reached the end", file=sys.stderr)
                 break
+            
+            page += 1
+            time.sleep(random.uniform(1.0, 2.0))  # Respectful delay
+            print(f"Total properties collected so far: {len(properties)}", file=sys.stderr)
     
     except Exception as e:
         print(f"Error during scraping: {e}", file=sys.stderr)

@@ -152,7 +152,8 @@ def rand_delay(a=0.1, b=0.3):
 # ---------- Tunables (ENV) ----------
 ARTICLE4_MODE = (os.getenv("ARTICLE4_MODE", "relaxed") or "relaxed").lower()
 PROPERTY_PATHS = [p.strip() for p in (os.getenv("PL_TYPES", "houses") or "houses").split(",") if p.strip()]
-MAX_LIST_PAGES_TOTAL = as_int(os.getenv("PL_MAX_PAGES_TOTAL", 800), 800)  # 200 → 800
+# Allow unlimited pages - stop only when no more listings are found
+MAX_LIST_PAGES_TOTAL = as_int(os.getenv("PL_MAX_PAGES_TOTAL", 999999), 999999)  # Effectively unlimited
 STOP_AFTER_EMPTY_PAGES = as_int(os.getenv("PL_EMPTY_PAGE_STOP", 8), 8)  # 5 → 8
 
 
@@ -778,10 +779,11 @@ def scrape_primelocation(city, min_bedrooms, max_price, keywords_blob):
 
     proxies_env = os.getenv("PROXY_LIST", "")
     proxies_list = [p.strip() for p in proxies_env.split(",") if p.strip()]
-    target_min_results = as_int(os.getenv("PL_MIN_RESULTS", 15000), 15000)  # 5000 → 15000
-    max_fetch_target = as_int(os.getenv("PL_MAX_FETCH", 10000), 10000)  # 5000 → 10000
+    # Collect all available listings - no hard limit on link collection
+    target_min_results = as_int(os.getenv("PL_MIN_RESULTS", 999999), 999999)  # Effectively unlimited
+    max_fetch_target = as_int(os.getenv("PL_MAX_FETCH", 999999), 999999)  # Effectively unlimited
     
-    print(f"🎯 Target: {target_min_results} links per city, max fetch: {max_fetch_target} properties", file=sys.stderr)
+    print(f"🎯 Target: unlimited links per city (stops when no more pages found)", file=sys.stderr)
 
     # 1) Build search URLs
     urls = build_search_urls(city, min_beds, max_price_int, filters)
@@ -856,10 +858,10 @@ def scrape_primelocation(city, min_bedrooms, max_price, keywords_blob):
                         continue
             continue
 
-    # cap how many detail pages to actually fetch
-    max_fetch = as_int(os.getenv("PL_MAX_FETCH", 15000), 15000)
-    detail_links = all_detail_links[:max_fetch]
-    print(f"🎯 Processing {len(detail_links)} property detail pages (capped from {len(all_detail_links)} found)", file=sys.stderr)
+    # Process all found detail pages (no capping)
+    max_fetch = as_int(os.getenv("PL_MAX_FETCH", 999999), 999999)  # Effectively unlimited
+    detail_links = all_detail_links[:max_fetch] if max_fetch < len(all_detail_links) else all_detail_links
+    print(f"🎯 Processing all {len(detail_links)} property detail pages", file=sys.stderr)
 
     # 3) Parallel fetch details
     results = []
