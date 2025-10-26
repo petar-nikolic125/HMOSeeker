@@ -28,20 +28,6 @@
     "gross_yield": 0.66
   },
   {
-    "address": "4 bed detached house for sale Parkside, West Moor NE12",
-    "postcode": null,
-    "price": 525000,
-    "bedrooms": 4,
-    "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/a82d802200ea8ca24097ae5787ab970d2a23f231.jpg",
-    "description": "4-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71603593/",
-    "city": "Newcastle",
-    "monthly_rent": 380,
-    "annual_rent": 4560,
-    "gross_yield": 0.87
-  },
-  {
     "address": "4 bed semi-detached house for sale Kenton Avenue, Gosforth NE3",
     "postcode": null,
     "price": 450000,
@@ -70,32 +56,18 @@
     "gross_yield": 1.01
   },
   {
-    "address": "4 bed detached house for sale Winder Drive, Havannah Park NE13",
+    "address": "4 bed detached house for sale Parkside, West Moor NE12",
     "postcode": null,
-    "price": 400000,
-    "bedrooms": 4,
-    "bathrooms": 4,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/00d68b9d3a62e743a66e914d7d7608d40e265bef.jpg",
-    "description": "4-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70262246/",
-    "city": "Newcastle",
-    "monthly_rent": 380,
-    "annual_rent": 4560,
-    "gross_yield": 1.14
-  },
-  {
-    "address": "4 bed detached house for sale Stable Close, Moorfields NE12",
-    "postcode": null,
-    "price": 425000,
+    "price": 525000,
     "bedrooms": 4,
     "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/21a5cf090c2dd92b8bc83c331608e8b65f59bb6d.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/a82d802200ea8ca24097ae5787ab970d2a23f231.jpg",
     "description": "4-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71127047/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71603593/",
     "city": "Newcastle",
     "monthly_rent": 380,
     "annual_rent": 4560,
-    "gross_yield": 1.07
+    "gross_yield": 0.87
   },
   {
     "address": "4 bed detached house for sale Barn Close, Moorfields NE12",
@@ -112,6 +84,20 @@
     "gross_yield": 1.07
   },
   {
+    "address": "5 bed semi-detached house for sale Clovelly Place, Darras Hall, Ponteland NE20",
+    "postcode": null,
+    "price": 425000,
+    "bedrooms": 5,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/8a541aa219d37222522abac0ef747a197543ef95.jpg",
+    "description": "5-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70275049/",
+    "city": "Newcastle",
+    "monthly_rent": 475,
+    "annual_rent": 5700,
+    "gross_yield": 1.34
+  },
+  {
     "address": "2 bed detached bungalow for sale Parkside, West Moor NE12",
     "postcode": null,
     "price": 425000,
@@ -126,20 +112,6 @@
     "gross_yield": 0.54
   },
   {
-    "address": "4 bed detached house for sale Watson Road, Callerton NE5",
-    "postcode": null,
-    "price": 400000,
-    "bedrooms": 4,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/859ff87de050656d7213d8c9ccdac03c71cfbc0e.jpg",
-    "description": "4-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71044118/",
-    "city": "Newcastle",
-    "monthly_rent": 380,
-    "annual_rent": 4560,
-    "gross_yield": 1.14
-  },
-  {
     "address": "4 bed detached house for sale The Oldbury, Hartford Street, Heaton NE6",
     "postcode": null,
     "price": 424995,
@@ -152,6 +124,34 @@
     "monthly_rent": 380,
     "annual_rent": 4560,
     "gross_yield": 1.07
+  },
+  {
+    "address": "4 bed detached house for sale Stable Close, Moorfields NE12",
+    "postcode": null,
+    "price": 425000,
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/21a5cf090c2dd92b8bc83c331608e8b65f59bb6d.jpg",
+    "description": "4-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71127047/",
+    "city": "Newcastle",
+    "monthly_rent": 380,
+    "annual_rent": 4560,
+    "gross_yield": 1.07
+  },
+  {
+    "address": "4 bed detached house for sale Watson Road, Callerton NE5",
+    "postcode": null,
+    "price": 400000,
+    "bedrooms": 4,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/859ff87de050656d7213d8c9ccdac03c71cfbc0e.jpg",
+    "description": "4-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71044118/",
+    "city": "Newcastle",
+    "monthly_rent": 380,
+    "annual_rent": 4560,
+    "gross_yield": 1.14
   },
   {
     "address": "4 bed detached house for sale Parkside View, Backworth NE27",
@@ -182,18 +182,18 @@
     "gross_yield": 1.07
   },
   {
-    "address": "5 bed semi-detached house for sale Clovelly Place, Darras Hall, Ponteland NE20",
+    "address": "4 bed detached house for sale Winder Drive, Havannah Park NE13",
     "postcode": null,
-    "price": 425000,
-    "bedrooms": 5,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/8a541aa219d37222522abac0ef747a197543ef95.jpg",
-    "description": "5-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70275049/",
+    "price": 400000,
+    "bedrooms": 4,
+    "bathrooms": 4,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/00d68b9d3a62e743a66e914d7d7608d40e265bef.jpg",
+    "description": "4-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70262246/",
     "city": "Newcastle",
-    "monthly_rent": 475,
-    "annual_rent": 5700,
-    "gross_yield": 1.34
+    "monthly_rent": 380,
+    "annual_rent": 4560,
+    "gross_yield": 1.14
   },
   {
     "address": "4 bed semi-detached house for sale Reynolds Avenue, West Moor NE12",
@@ -224,6 +224,20 @@
     "gross_yield": 1.3
   },
   {
+    "address": "3 bed semi-detached house for sale Rowan Drive, Ponteland NE20",
+    "postcode": null,
+    "price": 363000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/0031f53737de5a77a64dcfb3551ef1717edf3de5.jpg",
+    "description": "3-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70496928/",
+    "city": "Newcastle",
+    "monthly_rent": 285,
+    "annual_rent": 3420,
+    "gross_yield": 0.94
+  },
+  {
     "address": "4 bed detached house for sale Coppice Place, Forest Gate NE12",
     "postcode": null,
     "price": 375000,
@@ -232,6 +246,20 @@
     "image_url": "https://lid.zoocdn.com/u/1024/768/cd32c17fc785b49a60381b643a570b89b6724dbc.jpg",
     "description": "4-bed property in Newcastle.",
     "property_url": "https://www.primelocation.com/for-sale/details/71326608/",
+    "city": "Newcastle",
+    "monthly_rent": 380,
+    "annual_rent": 4560,
+    "gross_yield": 1.22
+  },
+  {
+    "address": "4 bed detached house for sale West Farm Court, Killingworth Village NE12",
+    "postcode": null,
+    "price": 375000,
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/13c4d5fb41cf180b035a5046041b3151ec4af108.jpg",
+    "description": "4-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70171903/",
     "city": "Newcastle",
     "monthly_rent": 380,
     "annual_rent": 4560,
@@ -250,34 +278,6 @@
     "monthly_rent": 475,
     "annual_rent": 5700,
     "gross_yield": 1.43
-  },
-  {
-    "address": "3 bed semi-detached house for sale Rowan Drive, Ponteland NE20",
-    "postcode": null,
-    "price": 363000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/0031f53737de5a77a64dcfb3551ef1717edf3de5.jpg",
-    "description": "3-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70496928/",
-    "city": "Newcastle",
-    "monthly_rent": 285,
-    "annual_rent": 3420,
-    "gross_yield": 0.94
-  },
-  {
-    "address": "4 bed detached house for sale West Farm Court, Killingworth Village NE12",
-    "postcode": null,
-    "price": 375000,
-    "bedrooms": 4,
-    "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/13c4d5fb41cf180b035a5046041b3151ec4af108.jpg",
-    "description": "4-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70171903/",
-    "city": "Newcastle",
-    "monthly_rent": 380,
-    "annual_rent": 4560,
-    "gross_yield": 1.22
   },
   {
     "address": "4 bed detached house for sale Collier Gardens, Havannah Park, Hazlerigg NE13",
@@ -322,6 +322,20 @@
     "gross_yield": 1.32
   },
   {
+    "address": "2 bed end terrace house for sale Whorlton Hall Farm Cottages, Whorlton NE5",
+    "postcode": null,
+    "price": 300000,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/846335419e8650fc0cf897beaf3f195c7505e87d.jpg",
+    "description": "2-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71477211/",
+    "city": "Newcastle",
+    "monthly_rent": 190,
+    "annual_rent": 2280,
+    "gross_yield": 0.76
+  },
+  {
     "address": "3 bed terraced house for sale Whorlton Terrace, North Walbottle NE5",
     "postcode": null,
     "price": 300000,
@@ -334,20 +348,6 @@
     "monthly_rent": 285,
     "annual_rent": 3420,
     "gross_yield": 1.14
-  },
-  {
-    "address": "2 bed detached bungalow for sale Harwood Drive, Killingworth NE12",
-    "postcode": null,
-    "price": 325000,
-    "bedrooms": 2,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/aee7647877fa5e40fdfc5ce326227e73ae441247.jpg",
-    "description": "2-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71415598/",
-    "city": "Newcastle",
-    "monthly_rent": 190,
-    "annual_rent": 2280,
-    "gross_yield": 0.7
   },
   {
     "address": "4 bed detached house for sale St. Cuthberts Way, Holystone NE27",
@@ -364,6 +364,20 @@
     "gross_yield": 1.4
   },
   {
+    "address": "2 bed detached bungalow for sale Harwood Drive, Killingworth NE12",
+    "postcode": null,
+    "price": 325000,
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/aee7647877fa5e40fdfc5ce326227e73ae441247.jpg",
+    "description": "2-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71415598/",
+    "city": "Newcastle",
+    "monthly_rent": 190,
+    "annual_rent": 2280,
+    "gross_yield": 0.7
+  },
+  {
     "address": "4 bed detached house for sale Glenwood Close, Annitsford NE23",
     "postcode": null,
     "price": 325000,
@@ -376,34 +390,6 @@
     "monthly_rent": 380,
     "annual_rent": 4560,
     "gross_yield": 1.4
-  },
-  {
-    "address": "2 bed end terrace house for sale Whorlton Hall Farm Cottages, Whorlton NE5",
-    "postcode": null,
-    "price": 300000,
-    "bedrooms": 2,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/846335419e8650fc0cf897beaf3f195c7505e87d.jpg",
-    "description": "2-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71477211/",
-    "city": "Newcastle",
-    "monthly_rent": 190,
-    "annual_rent": 2280,
-    "gross_yield": 0.76
-  },
-  {
-    "address": "3 bed terraced house for sale The Swarbourn, Hartford Street, Heaton NE6",
-    "postcode": null,
-    "price": 339995,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/abd6fc9a86302dba89778eed0066a72b283da5f4.jpg",
-    "description": "3-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71115555/",
-    "city": "Newcastle",
-    "monthly_rent": 285,
-    "annual_rent": 3420,
-    "gross_yield": 1.01
   },
   {
     "address": "4 bed detached house for sale Cranbrook, Annitsford, Cramlington NE23",
@@ -448,6 +434,20 @@
     "gross_yield": 1.38
   },
   {
+    "address": "3 bed terraced house for sale The Swarbourn, Hartford Street, Heaton NE6",
+    "postcode": null,
+    "price": 339995,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/abd6fc9a86302dba89778eed0066a72b283da5f4.jpg",
+    "description": "3-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71115555/",
+    "city": "Newcastle",
+    "monthly_rent": 285,
+    "annual_rent": 3420,
+    "gross_yield": 1.01
+  },
+  {
     "address": "5 bed detached house for sale Burradon Road, Burradon, Cramlington NE23",
     "postcode": null,
     "price": 315000,
@@ -460,34 +460,6 @@
     "monthly_rent": 475,
     "annual_rent": 5700,
     "gross_yield": 1.81
-  },
-  {
-    "address": "3 bed detached house for sale Snowdrop Drive, Westerhope NE5",
-    "postcode": null,
-    "price": 310000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/5ee4f035e83c1a66f4ced3f8db640817110cc62c.jpg",
-    "description": "3-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/68744283/",
-    "city": "Newcastle",
-    "monthly_rent": 285,
-    "annual_rent": 3420,
-    "gross_yield": 1.1
-  },
-  {
-    "address": "5 bed terraced house for sale Simonside Terrace, Heaton NE6",
-    "postcode": null,
-    "price": 265000,
-    "bedrooms": 5,
-    "bathrooms": 5,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/8f12b8c5614a3bf36d1d6b126a7e3301a06bd4ec.jpg",
-    "description": "5-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71612955/",
-    "city": "Newcastle",
-    "monthly_rent": 475,
-    "annual_rent": 5700,
-    "gross_yield": 2.15
   },
   {
     "address": "3 bed detached house for sale Barley Way, Moorfields, Killingworth NE12",
@@ -504,6 +476,20 @@
     "gross_yield": 1.16
   },
   {
+    "address": "5 bed terraced house for sale Simonside Terrace, Heaton NE6",
+    "postcode": null,
+    "price": 265000,
+    "bedrooms": 5,
+    "bathrooms": 5,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/8f12b8c5614a3bf36d1d6b126a7e3301a06bd4ec.jpg",
+    "description": "5-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71612955/",
+    "city": "Newcastle",
+    "monthly_rent": 475,
+    "annual_rent": 5700,
+    "gross_yield": 2.15
+  },
+  {
     "address": "3 bed semi-detached house for sale Reynolds Avenue, West Moor NE12",
     "postcode": null,
     "price": 260000,
@@ -518,32 +504,32 @@
     "gross_yield": 1.32
   },
   {
-    "address": "3 bed semi-detached house for sale Fernwood Avenue, Garden Village NE3",
+    "address": "4 bed semi-detached house for sale Goswick Drive, Red House Farm NE3",
     "postcode": null,
     "price": 290000,
-    "bedrooms": 3,
+    "bedrooms": 4,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/baf406252446a87cbec251012415c6ed131ace7b.jpg",
-    "description": "3-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71523158/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/9aaf8b943cbeb8182f3c7861481015fcd2068aba.jpg",
+    "description": "4-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/68147262/",
     "city": "Newcastle",
-    "monthly_rent": 285,
-    "annual_rent": 3420,
-    "gross_yield": 1.18
+    "monthly_rent": 380,
+    "annual_rent": 4560,
+    "gross_yield": 1.57
   },
   {
-    "address": "3 bed terraced house for sale Wilson Terrace, Forest Hall NE12",
+    "address": "3 bed detached house for sale Snowdrop Drive, Westerhope NE5",
     "postcode": null,
-    "price": 260000,
+    "price": 310000,
     "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/ffcc5fef8b97ae77704ff60dc2ad927208c24da0.jpg",
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/5ee4f035e83c1a66f4ced3f8db640817110cc62c.jpg",
     "description": "3-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71535827/",
+    "property_url": "https://www.primelocation.com/for-sale/details/68744283/",
     "city": "Newcastle",
     "monthly_rent": 285,
     "annual_rent": 3420,
-    "gross_yield": 1.32
+    "gross_yield": 1.1
   },
   {
     "address": "4 bed detached house for sale Greenhills, Killingworth NE12",
@@ -560,18 +546,18 @@
     "gross_yield": 1.82
   },
   {
-    "address": "4 bed detached house for sale Mill Vale, Newburn NE15",
+    "address": "3 bed semi-detached house for sale Fernwood Avenue, Garden Village NE3",
     "postcode": null,
-    "price": 270000,
-    "bedrooms": 4,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/3d16e19b87e27ddc0ef147ac2f250ead4c9de71b.jpg",
-    "description": "4-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/68794043/",
+    "price": 290000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/baf406252446a87cbec251012415c6ed131ace7b.jpg",
+    "description": "3-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71523158/",
     "city": "Newcastle",
-    "monthly_rent": 380,
-    "annual_rent": 4560,
-    "gross_yield": 1.69
+    "monthly_rent": 285,
+    "annual_rent": 3420,
+    "gross_yield": 1.18
   },
   {
     "address": "3 bed semi-detached house for sale Elmwood Crescent, Walkerville NE6",
@@ -586,6 +572,20 @@
     "monthly_rent": 285,
     "annual_rent": 3420,
     "gross_yield": 1.37
+  },
+  {
+    "address": "3 bed terraced house for sale Wilson Terrace, Forest Hall NE12",
+    "postcode": null,
+    "price": 260000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/ffcc5fef8b97ae77704ff60dc2ad927208c24da0.jpg",
+    "description": "3-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71535827/",
+    "city": "Newcastle",
+    "monthly_rent": 285,
+    "annual_rent": 3420,
+    "gross_yield": 1.32
   },
   {
     "address": "3 bed semi-detached house for sale Woodhorn Gardens, North Gosforth NE13",
@@ -658,18 +658,18 @@
     "gross_yield": 1.22
   },
   {
-    "address": "4 bed semi-detached house for sale Goswick Drive, Red House Farm NE3",
+    "address": "3 bed detached house for sale Mead Court, Forest Hall NE12",
     "postcode": null,
     "price": 290000,
-    "bedrooms": 4,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/9aaf8b943cbeb8182f3c7861481015fcd2068aba.jpg",
-    "description": "4-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/68147262/",
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/54e6d4a9cee1381a6eea8bd74827be94cca3db36.jpg",
+    "description": "3-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70238839/",
     "city": "Newcastle",
-    "monthly_rent": 380,
-    "annual_rent": 4560,
-    "gross_yield": 1.57
+    "monthly_rent": 285,
+    "annual_rent": 3420,
+    "gross_yield": 1.18
   },
   {
     "address": "3 bed detached house for sale Edgemount, Killingworth NE12",
@@ -686,32 +686,18 @@
     "gross_yield": 1.18
   },
   {
-    "address": "3 bed detached house for sale Mead Court, Forest Hall NE12",
+    "address": "4 bed detached house for sale Mill Vale, Newburn NE15",
     "postcode": null,
-    "price": 290000,
-    "bedrooms": 3,
-    "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/54e6d4a9cee1381a6eea8bd74827be94cca3db36.jpg",
-    "description": "3-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70238839/",
+    "price": 270000,
+    "bedrooms": 4,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/3d16e19b87e27ddc0ef147ac2f250ead4c9de71b.jpg",
+    "description": "4-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/68794043/",
     "city": "Newcastle",
-    "monthly_rent": 285,
-    "annual_rent": 3420,
-    "gross_yield": 1.18
-  },
-  {
-    "address": "3 bed semi-detached house for sale Bayfield, West Allotment NE27",
-    "postcode": null,
-    "price": 280000,
-    "bedrooms": 3,
-    "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/6675c0cf5f57c9b784a9408ac4ad41df92f0e914.jpg",
-    "description": "3-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69753755/",
-    "city": "Newcastle",
-    "monthly_rent": 285,
-    "annual_rent": 3420,
-    "gross_yield": 1.22
+    "monthly_rent": 380,
+    "annual_rent": 4560,
+    "gross_yield": 1.69
   },
   {
     "address": "3 bed semi-detached house for sale Station Road, Newburn NE15",
@@ -728,18 +714,32 @@
     "gross_yield": 1.27
   },
   {
-    "address": "3 bed detached house for sale Hillhead Parkway, Chapel House NE5",
+    "address": "3 bed semi-detached house for sale Bayfield, West Allotment NE27",
     "postcode": null,
-    "price": 219995,
+    "price": 280000,
     "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/cd8b9955e003325ea843aba44b23e9365890a140.jpg",
+    "bathrooms": 3,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/6675c0cf5f57c9b784a9408ac4ad41df92f0e914.jpg",
     "description": "3-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71275326/",
+    "property_url": "https://www.primelocation.com/for-sale/details/69753755/",
     "city": "Newcastle",
     "monthly_rent": 285,
     "annual_rent": 3420,
-    "gross_yield": 1.55
+    "gross_yield": 1.22
+  },
+  {
+    "address": "2 bed semi-detached house for sale Shelford Gardens, South West Denton NE15",
+    "postcode": null,
+    "price": 220000,
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/e2030dd069aea8e655bcb33fb0f723b6dea8fadd.jpg",
+    "description": "2-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71194789/",
+    "city": "Newcastle",
+    "monthly_rent": 190,
+    "annual_rent": 2280,
+    "gross_yield": 1.04
   },
   {
     "address": "3 bed property for sale Greenacres Close, Killingworth NE12",
@@ -784,6 +784,20 @@
     "gross_yield": 1.82
   },
   {
+    "address": "3 bed semi-detached house for sale Ullswater Drive, Killingworth NE12",
+    "postcode": null,
+    "price": 230000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/6567e5ceb5cdb0cc2eb5846319672bf47b69dc2d.jpg",
+    "description": "3-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/69687796/",
+    "city": "Newcastle",
+    "monthly_rent": 285,
+    "annual_rent": 3420,
+    "gross_yield": 1.49
+  },
+  {
     "address": "3 bed semi-detached house for sale Marlborough Avenue, Gosforth NE3",
     "postcode": null,
     "price": 224500,
@@ -812,14 +826,14 @@
     "gross_yield": 1.49
   },
   {
-    "address": "3 bed semi-detached house for sale Ullswater Drive, Killingworth NE12",
+    "address": "3 bed terraced house for sale Wilson Terrace, Forest Hall NE12",
     "postcode": null,
     "price": 230000,
     "bedrooms": 3,
     "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/6567e5ceb5cdb0cc2eb5846319672bf47b69dc2d.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/9cf72a827a5909a4dfafed5da708816fe4b8ecfa.jpg",
     "description": "3-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69687796/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71521190/",
     "city": "Newcastle",
     "monthly_rent": 285,
     "annual_rent": 3420,
@@ -840,14 +854,28 @@
     "gross_yield": 1.71
   },
   {
-    "address": "3 bed terraced house for sale Wilson Terrace, Forest Hall NE12",
+    "address": "2 bed semi-detached house for sale Mooney Crescent, Stephenson Meadows, Callerton NE5",
+    "postcode": null,
+    "price": 210000,
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/7a5b059a3280fbacd8286837fc4179203f130384.jpg",
+    "description": "2-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71404175/",
+    "city": "Newcastle",
+    "monthly_rent": 190,
+    "annual_rent": 2280,
+    "gross_yield": 1.09
+  },
+  {
+    "address": "3 bed semi-detached house for sale Hillhead Road, West Denton NE5",
     "postcode": null,
     "price": 230000,
     "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/9cf72a827a5909a4dfafed5da708816fe4b8ecfa.jpg",
+    "bathrooms": null,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/8e4758af5cbbfe1a7bcbaae3895887994e779c84.jpg",
     "description": "3-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71521190/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71374238/",
     "city": "Newcastle",
     "monthly_rent": 285,
     "annual_rent": 3420,
@@ -868,18 +896,18 @@
     "gross_yield": 1.43
   },
   {
-    "address": "2 bed semi-detached house for sale Mooney Crescent, Stephenson Meadows, Callerton NE5",
+    "address": "3 bed semi-detached house for sale Earlsmeadow, Shiremoor NE27",
     "postcode": null,
-    "price": 210000,
-    "bedrooms": 2,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/7a5b059a3280fbacd8286837fc4179203f130384.jpg",
-    "description": "2-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71404175/",
+    "price": 230000,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/7dcb918c23440c36a0461c9642552f2eeb790925.jpg",
+    "description": "3-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71314417/",
     "city": "Newcastle",
-    "monthly_rent": 190,
-    "annual_rent": 2280,
-    "gross_yield": 1.09
+    "monthly_rent": 285,
+    "annual_rent": 3420,
+    "gross_yield": 1.49
   },
   {
     "address": "3 bed terraced house for sale Woodside Crescent, Forest Hall NE12",
@@ -896,34 +924,6 @@
     "gross_yield": 1.59
   },
   {
-    "address": "3 bed semi-detached house for sale Hillhead Road, West Denton NE5",
-    "postcode": null,
-    "price": 230000,
-    "bedrooms": 3,
-    "bathrooms": null,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/8e4758af5cbbfe1a7bcbaae3895887994e779c84.jpg",
-    "description": "3-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71374238/",
-    "city": "Newcastle",
-    "monthly_rent": 285,
-    "annual_rent": 3420,
-    "gross_yield": 1.49
-  },
-  {
-    "address": "3 bed semi-detached house for sale Earlsmeadow, Shiremoor NE27",
-    "postcode": null,
-    "price": 230000,
-    "bedrooms": 3,
-    "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/7dcb918c23440c36a0461c9642552f2eeb790925.jpg",
-    "description": "3-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71314417/",
-    "city": "Newcastle",
-    "monthly_rent": 285,
-    "annual_rent": 3420,
-    "gross_yield": 1.49
-  },
-  {
     "address": "4 bed terraced house for sale White Swan Close, Killingworth NE12",
     "postcode": null,
     "price": 200000,
@@ -938,18 +938,18 @@
     "gross_yield": 2.28
   },
   {
-    "address": "2 bed semi-detached house for sale Shelford Gardens, South West Denton NE15",
+    "address": "3 bed detached house for sale Crumstone Court, Killingworth NE12",
     "postcode": null,
-    "price": 220000,
-    "bedrooms": 2,
+    "price": 240000,
+    "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/e2030dd069aea8e655bcb33fb0f723b6dea8fadd.jpg",
-    "description": "2-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71194789/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/e1d886bec1b66a5198a08acec1e400234e2a533c.jpg",
+    "description": "3-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71228907/",
     "city": "Newcastle",
-    "monthly_rent": 190,
-    "annual_rent": 2280,
-    "gross_yield": 1.04
+    "monthly_rent": 285,
+    "annual_rent": 3420,
+    "gross_yield": 1.43
   },
   {
     "address": "3 bed semi-detached house for sale Bede Close, Holystone NE12",
@@ -966,18 +966,18 @@
     "gross_yield": 1.49
   },
   {
-    "address": "3 bed detached house for sale Crumstone Court, Killingworth NE12",
+    "address": "3 bed detached house for sale Hillhead Parkway, Chapel House NE5",
     "postcode": null,
-    "price": 240000,
+    "price": 219995,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/e1d886bec1b66a5198a08acec1e400234e2a533c.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/cd8b9955e003325ea843aba44b23e9365890a140.jpg",
     "description": "3-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71228907/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71275326/",
     "city": "Newcastle",
     "monthly_rent": 285,
     "annual_rent": 3420,
-    "gross_yield": 1.43
+    "gross_yield": 1.55
   },
   {
     "address": "3 bed semi-detached house for sale Coast Road, Cochrane Park NE7",
@@ -1050,20 +1050,6 @@
     "gross_yield": 1.95
   },
   {
-    "address": "3 bed semi-detached house for sale Firfield Road, Blakelaw NE5",
-    "postcode": null,
-    "price": 180000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/edc355622cd3c991b2a14b9594a1e1245219e685.jpg",
-    "description": "3-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71290759/",
-    "city": "Newcastle",
-    "monthly_rent": 285,
-    "annual_rent": 3420,
-    "gross_yield": 1.9
-  },
-  {
     "address": "3 bed semi-detached house for sale Fulbrook Road, Kenton NE3",
     "postcode": null,
     "price": 165000,
@@ -1092,20 +1078,6 @@
     "gross_yield": 1.85
   },
   {
-    "address": "2 bed semi-detached house for sale Brunton Avenue, Fawdon NE3",
-    "postcode": null,
-    "price": 165000,
-    "bedrooms": 2,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/ca0b19e25936f709bd23bbe3287655f526c966ee.jpg",
-    "description": "2-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71491012/",
-    "city": "Newcastle",
-    "monthly_rent": 190,
-    "annual_rent": 2280,
-    "gross_yield": 1.38
-  },
-  {
     "address": "3 bed terraced house for sale Sheldon Court, West Moor NE12",
     "postcode": null,
     "price": 150000,
@@ -1118,20 +1090,6 @@
     "monthly_rent": 285,
     "annual_rent": 3420,
     "gross_yield": 2.28
-  },
-  {
-    "address": "3 bed property for sale Knowle Place, Longbenton NE12",
-    "postcode": null,
-    "price": 162000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/fc42a9d0100e1822af7ae55aa165a4e8aab61f16.jpg",
-    "description": "3-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71553730/",
-    "city": "Newcastle",
-    "monthly_rent": 285,
-    "annual_rent": 3420,
-    "gross_yield": 2.11
   },
   {
     "address": "2 bed terraced house for sale Beaumont Close, Shiremoor NE27",
@@ -1148,18 +1106,18 @@
     "gross_yield": 1.2
   },
   {
-    "address": "3 bed terraced house for sale South Street, Shiremoor NE27",
+    "address": "3 bed property for sale Knowle Place, Longbenton NE12",
     "postcode": null,
-    "price": 150000,
+    "price": 162000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/ac5e467c036b297576d2a272d23591e2a948c8d4.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/fc42a9d0100e1822af7ae55aa165a4e8aab61f16.jpg",
     "description": "3-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71520265/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71553730/",
     "city": "Newcastle",
     "monthly_rent": 285,
     "annual_rent": 3420,
-    "gross_yield": 2.28
+    "gross_yield": 2.11
   },
   {
     "address": "3 bed semi-detached house for sale Byrewood Walk, Kenton NE3",
@@ -1190,6 +1148,34 @@
     "gross_yield": 1.3
   },
   {
+    "address": "3 bed semi-detached house for sale Ewesley Gardens, Wideopen NE13",
+    "postcode": null,
+    "price": 177500,
+    "bedrooms": 3,
+    "bathrooms": null,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/5ade58dac468d4f74ccaf7e90405c106ed98c3d4.jpg",
+    "description": "3-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71328957/",
+    "city": "Newcastle",
+    "monthly_rent": 285,
+    "annual_rent": 3420,
+    "gross_yield": 1.93
+  },
+  {
+    "address": "2 bed semi-detached house for sale Brunton Avenue, Fawdon NE3",
+    "postcode": null,
+    "price": 165000,
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/ca0b19e25936f709bd23bbe3287655f526c966ee.jpg",
+    "description": "2-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71491012/",
+    "city": "Newcastle",
+    "monthly_rent": 190,
+    "annual_rent": 2280,
+    "gross_yield": 1.38
+  },
+  {
     "address": "3 bed semi-detached house for sale Hayleazes Road, Denton Burn NE15",
     "postcode": null,
     "price": 190000,
@@ -1204,18 +1190,18 @@
     "gross_yield": 1.8
   },
   {
-    "address": "3 bed semi-detached house for sale Ewesley Gardens, Wideopen NE13",
+    "address": "3 bed semi-detached house for sale Firfield Road, Blakelaw NE5",
     "postcode": null,
-    "price": 177500,
+    "price": 180000,
     "bedrooms": 3,
-    "bathrooms": null,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/5ade58dac468d4f74ccaf7e90405c106ed98c3d4.jpg",
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/edc355622cd3c991b2a14b9594a1e1245219e685.jpg",
     "description": "3-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71328957/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71290759/",
     "city": "Newcastle",
     "monthly_rent": 285,
     "annual_rent": 3420,
-    "gross_yield": 1.93
+    "gross_yield": 1.9
   },
   {
     "address": "3 bed end terrace house for sale Terry Cooney Place, Fenham NE5",
@@ -1246,18 +1232,18 @@
     "gross_yield": 2.04
   },
   {
-    "address": "4 bed semi-detached house for sale Barras Avenue, Annitsford, Cramlington NE23",
+    "address": "3 bed semi-detached house for sale Warwick Court, Kingston Park NE3",
     "postcode": null,
-    "price": 199950,
-    "bedrooms": 4,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/13e3b8fdbf54655a360efcc67ba3c6a319a4ed18.jpg",
-    "description": "4-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70981691/",
+    "price": 180000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/f377e66fcf826d1674e58ed4c389f1243bfc375c.jpg",
+    "description": "3-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70923583/",
     "city": "Newcastle",
-    "monthly_rent": 380,
-    "annual_rent": 4560,
-    "gross_yield": 2.28
+    "monthly_rent": 285,
+    "annual_rent": 3420,
+    "gross_yield": 1.9
   },
   {
     "address": "2 bed detached bungalow for sale Oakdale Close, Dumpling Hall NE15",
@@ -1274,18 +1260,18 @@
     "gross_yield": 1.38
   },
   {
-    "address": "3 bed semi-detached house for sale Warwick Court, Kingston Park NE3",
+    "address": "4 bed semi-detached house for sale Barras Avenue, Annitsford, Cramlington NE23",
     "postcode": null,
-    "price": 180000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/f377e66fcf826d1674e58ed4c389f1243bfc375c.jpg",
-    "description": "3-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70923583/",
+    "price": 199950,
+    "bedrooms": 4,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/13e3b8fdbf54655a360efcc67ba3c6a319a4ed18.jpg",
+    "description": "4-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70981691/",
     "city": "Newcastle",
-    "monthly_rent": 285,
-    "annual_rent": 3420,
-    "gross_yield": 1.9
+    "monthly_rent": 380,
+    "annual_rent": 4560,
+    "gross_yield": 2.28
   },
   {
     "address": "2 bed semi-detached house for sale Edgemount, Killingworth NE12",
@@ -1302,34 +1288,6 @@
     "gross_yield": 1.27
   },
   {
-    "address": "2 bed property for sale Mill Road, Gateshead NE8",
-    "postcode": null,
-    "price": 150000,
-    "bedrooms": 2,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/25aa3df7854f95bdfe75fee40db4f336188d3264.jpg",
-    "description": "2-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69974979/",
-    "city": "Newcastle",
-    "monthly_rent": 190,
-    "annual_rent": 2280,
-    "gross_yield": 1.52
-  },
-  {
-    "address": "3 bed semi-detached house for sale The Roman Way, West Denton NE5",
-    "postcode": null,
-    "price": 155000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/65ac750c3e5d31a68caefb621f8edc96783b910f.jpg",
-    "description": "3-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/67395710/",
-    "city": "Newcastle",
-    "monthly_rent": 285,
-    "annual_rent": 3420,
-    "gross_yield": 2.21
-  },
-  {
     "address": "3 bed end terrace house for sale Sharnford Close, Backworth NE27",
     "postcode": null,
     "price": 190000,
@@ -1344,6 +1302,20 @@
     "gross_yield": 1.8
   },
   {
+    "address": "2 bed property for sale Mill Road, Gateshead NE8",
+    "postcode": null,
+    "price": 150000,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/25aa3df7854f95bdfe75fee40db4f336188d3264.jpg",
+    "description": "2-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/69974979/",
+    "city": "Newcastle",
+    "monthly_rent": 190,
+    "annual_rent": 2280,
+    "gross_yield": 1.52
+  },
+  {
     "address": "2 bed end terrace house for sale Tynevale Terrace, Lemington NE15",
     "postcode": null,
     "price": 110000,
@@ -1356,6 +1328,20 @@
     "monthly_rent": 190,
     "annual_rent": 2280,
     "gross_yield": 2.07
+  },
+  {
+    "address": "3 bed semi-detached house for sale The Roman Way, West Denton NE5",
+    "postcode": null,
+    "price": 155000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/65ac750c3e5d31a68caefb621f8edc96783b910f.jpg",
+    "description": "3-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/67395710/",
+    "city": "Newcastle",
+    "monthly_rent": 285,
+    "annual_rent": 3420,
+    "gross_yield": 2.21
   },
   {
     "address": "2 bed terraced house for sale Annitsford Drive, Dudley, Cramlington NE23",
@@ -1414,20 +1400,6 @@
     "gross_yield": 1.63
   },
   {
-    "address": "3 bed terraced house for sale Grasmere Avenue, Walker NE6",
-    "postcode": null,
-    "price": 135000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/c48a0bdb69ee33ae38dc7861d00e77d39cf2648c.jpg",
-    "description": "3-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70819495/",
-    "city": "Newcastle",
-    "monthly_rent": 285,
-    "annual_rent": 3420,
-    "gross_yield": 2.53
-  },
-  {
     "address": "3 bed terraced house for sale Dove Close, Killingworth, North Tyneside NE12",
     "postcode": null,
     "price": 120000,
@@ -1442,18 +1414,18 @@
     "gross_yield": 2.85
   },
   {
-    "address": "2 bed property for sale Woodcroft Close, Cramlington NE23",
+    "address": "3 bed terraced house for sale Grasmere Avenue, Walker NE6",
     "postcode": null,
     "price": 135000,
-    "bedrooms": 2,
+    "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/ab9d3000f70937e64e8de3ae77648605cce00eb5.jpg",
-    "description": "2-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71324266/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/c48a0bdb69ee33ae38dc7861d00e77d39cf2648c.jpg",
+    "description": "3-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70819495/",
     "city": "Newcastle",
-    "monthly_rent": 190,
-    "annual_rent": 2280,
-    "gross_yield": 1.69
+    "monthly_rent": 285,
+    "annual_rent": 3420,
+    "gross_yield": 2.53
   },
   {
     "address": "3 bed terraced house for sale Hunters Road, Spital Tongues NE2",
@@ -1470,32 +1442,18 @@
     "gross_yield": 2.36
   },
   {
-    "address": "2 bed terraced house for sale The Leazes, Throckley NE15",
+    "address": "2 bed property for sale Woodcroft Close, Cramlington NE23",
     "postcode": null,
-    "price": 115000,
+    "price": 135000,
     "bedrooms": 2,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/98dd910068a4b722cb529c3b7d3b9dd44fe5aaba.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/ab9d3000f70937e64e8de3ae77648605cce00eb5.jpg",
     "description": "2-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70764878/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71324266/",
     "city": "Newcastle",
     "monthly_rent": 190,
     "annual_rent": 2280,
-    "gross_yield": 1.98
-  },
-  {
-    "address": "4 bed terraced house for sale Apperley Avenue, Kenton NE3",
-    "postcode": null,
-    "price": 145000,
-    "bedrooms": 4,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/29a083cb1f059f3868f4a286b2af2c602c419368.jpg",
-    "description": "4-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71161867/",
-    "city": "Newcastle",
-    "monthly_rent": 380,
-    "annual_rent": 4560,
-    "gross_yield": 3.14
+    "gross_yield": 1.69
   },
   {
     "address": "3 bed terraced house for sale Stephenson Terrace, Blucher NE15",
@@ -1512,18 +1470,18 @@
     "gross_yield": 3.11
   },
   {
-    "address": "2 bed property for sale Sandyford Park, Sandyford NE2",
+    "address": "4 bed terraced house for sale Apperley Avenue, Kenton NE3",
     "postcode": null,
-    "price": 115000,
-    "bedrooms": 2,
+    "price": 145000,
+    "bedrooms": 4,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/01c74b31b4a636161692f222187dddc0cf9f2bde.jpg",
-    "description": "2-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70395088/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/29a083cb1f059f3868f4a286b2af2c602c419368.jpg",
+    "description": "4-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71161867/",
     "city": "Newcastle",
-    "monthly_rent": 190,
-    "annual_rent": 2280,
-    "gross_yield": 1.98
+    "monthly_rent": 380,
+    "annual_rent": 4560,
+    "gross_yield": 3.14
   },
   {
     "address": "3 bed end terrace house for sale Skendleby Drive, Kenton NE3",
@@ -1538,6 +1496,20 @@
     "monthly_rent": 285,
     "annual_rent": 3420,
     "gross_yield": 2.84
+  },
+  {
+    "address": "2 bed property for sale Sandyford Park, Sandyford NE2",
+    "postcode": null,
+    "price": 115000,
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/01c74b31b4a636161692f222187dddc0cf9f2bde.jpg",
+    "description": "2-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70395088/",
+    "city": "Newcastle",
+    "monthly_rent": 190,
+    "annual_rent": 2280,
+    "gross_yield": 1.98
   },
   {
     "address": "2 bed end terrace house for sale Warenmill Close, West Denton Park NE15",
@@ -1568,18 +1540,18 @@
     "gross_yield": 2.4
   },
   {
-    "address": "3 bed terraced house for sale Angus Close, Killingworth NE12",
+    "address": "2 bed terraced house for sale The Leazes, Throckley NE15",
     "postcode": null,
-    "price": 87000,
-    "bedrooms": 3,
-    "bathrooms": null,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/ed5cb18b3478e1566adfe8b1cd85fa4493a70d4f.jpg",
-    "description": "3-bed property in Newcastle.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71010681/",
+    "price": 115000,
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/98dd910068a4b722cb529c3b7d3b9dd44fe5aaba.jpg",
+    "description": "2-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70764878/",
     "city": "Newcastle",
-    "monthly_rent": 285,
-    "annual_rent": 3420,
-    "gross_yield": 3.93
+    "monthly_rent": 190,
+    "annual_rent": 2280,
+    "gross_yield": 1.98
   },
   {
     "address": "3 bed terraced house for sale Ladykirk Road, Benwell NE4",
@@ -1594,6 +1566,20 @@
     "monthly_rent": 285,
     "annual_rent": 3420,
     "gross_yield": 4.25
+  },
+  {
+    "address": "3 bed terraced house for sale Angus Close, Killingworth NE12",
+    "postcode": null,
+    "price": 87000,
+    "bedrooms": 3,
+    "bathrooms": null,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/ed5cb18b3478e1566adfe8b1cd85fa4493a70d4f.jpg",
+    "description": "3-bed property in Newcastle.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71010681/",
+    "city": "Newcastle",
+    "monthly_rent": 285,
+    "annual_rent": 3420,
+    "gross_yield": 3.93
   },
   {
     "address": "3 bed terraced house for sale Angus Close, Killingworth NE12",

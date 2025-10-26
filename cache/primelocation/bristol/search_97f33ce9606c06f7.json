@@ -28,20 +28,6 @@
     "gross_yield": 0.77
   },
   {
-    "address": "3 bed terraced house for sale Raleigh Road, Southville BS3",
-    "postcode": null,
-    "price": 650000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/a1e87b29a332a601357877b806654a8ca4d5fbbc.jpg",
-    "description": "3-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71567050/",
-    "city": "Bristol",
-    "monthly_rent": 450,
-    "annual_rent": 5400,
-    "gross_yield": 0.83
-  },
-  {
     "address": "3 bed semi-detached house for sale Bell Barn Road, Stoke Bishop BS9",
     "postcode": null,
     "price": 665000,
@@ -54,6 +40,20 @@
     "monthly_rent": 450,
     "annual_rent": 5400,
     "gross_yield": 0.81
+  },
+  {
+    "address": "3 bed terraced house for sale Raleigh Road, Southville BS3",
+    "postcode": null,
+    "price": 650000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/a1e87b29a332a601357877b806654a8ca4d5fbbc.jpg",
+    "description": "3-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71567050/",
+    "city": "Bristol",
+    "monthly_rent": 450,
+    "annual_rent": 5400,
+    "gross_yield": 0.83
   },
   {
     "address": "2 bed end terrace house for sale Caledonia Mews, Princess Victoria Street | Clifton BS8",
@@ -126,20 +126,6 @@
     "gross_yield": 0.85
   },
   {
-    "address": "4 bed detached house for sale Westover Drive, Westbury On Trym BS9",
-    "postcode": null,
-    "price": 625000,
-    "bedrooms": 4,
-    "bathrooms": 4,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/5959ee8b6003b95e3717bf23b9578ee409e69796.jpg",
-    "description": "4-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71467527/",
-    "city": "Bristol",
-    "monthly_rent": 600,
-    "annual_rent": 7200,
-    "gross_yield": 1.15
-  },
-  {
     "address": "3 bed terraced house for sale Packers Way, Greenbank BS5",
     "postcode": null,
     "price": 635000,
@@ -152,20 +138,6 @@
     "monthly_rent": 450,
     "annual_rent": 5400,
     "gross_yield": 0.85
-  },
-  {
-    "address": "4 bed town house for sale Ashley Grove Road, St Werburghs BS2",
-    "postcode": null,
-    "price": 600000,
-    "bedrooms": 4,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/8c58951879b62f6ae6def13d435013ca1a0381b6.jpg",
-    "description": "4-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71387369/",
-    "city": "Bristol",
-    "monthly_rent": 600,
-    "annual_rent": 7200,
-    "gross_yield": 1.2
   },
   {
     "address": "3 bed terraced house for sale Thingwall Park, Fishponds BS16",
@@ -182,18 +154,32 @@
     "gross_yield": 0.9
   },
   {
-    "address": "4 bed semi-detached house for sale Morley Avenue, Mangotsfield BS16",
+    "address": "4 bed town house for sale Ashley Grove Road, St Werburghs BS2",
     "postcode": null,
     "price": 600000,
     "bedrooms": 4,
-    "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/1453f2464ec63607db32ae9abe6962bb8bfbd7f3.jpg",
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/8c58951879b62f6ae6def13d435013ca1a0381b6.jpg",
     "description": "4-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70472672/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71387369/",
     "city": "Bristol",
     "monthly_rent": 600,
     "annual_rent": 7200,
     "gross_yield": 1.2
+  },
+  {
+    "address": "4 bed detached house for sale Westover Drive, Westbury On Trym BS9",
+    "postcode": null,
+    "price": 625000,
+    "bedrooms": 4,
+    "bathrooms": 4,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/5959ee8b6003b95e3717bf23b9578ee409e69796.jpg",
+    "description": "4-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71467527/",
+    "city": "Bristol",
+    "monthly_rent": 600,
+    "annual_rent": 7200,
+    "gross_yield": 1.15
   },
   {
     "address": "5 bed terraced house for sale Harrowdene Road, Knowle BS4",
@@ -210,14 +196,14 @@
     "gross_yield": 1.44
   },
   {
-    "address": "4 bed detached house for sale Rowan Drive, Emersons Green BS16",
+    "address": "4 bed semi-detached house for sale Morley Avenue, Mangotsfield BS16",
     "postcode": null,
     "price": 600000,
     "bedrooms": 4,
     "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/6337b97279b2d7df91a62aee9bd4f88f2b6501f9.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/1453f2464ec63607db32ae9abe6962bb8bfbd7f3.jpg",
     "description": "4-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69580815/",
+    "property_url": "https://www.primelocation.com/for-sale/details/70472672/",
     "city": "Bristol",
     "monthly_rent": 600,
     "annual_rent": 7200,
@@ -238,46 +224,18 @@
     "gross_yield": 1.42
   },
   {
-    "address": "3 bed semi-detached house for sale High Street, Staple Hill BS16",
+    "address": "4 bed detached house for sale Rowan Drive, Emersons Green BS16",
     "postcode": null,
-    "price": 550000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/3a0678ed82c6d032b75a48d6374f9f4bb17b61c9.jpg",
-    "description": "3-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70490012/",
+    "price": 600000,
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/6337b97279b2d7df91a62aee9bd4f88f2b6501f9.jpg",
+    "description": "4-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/69580815/",
     "city": "Bristol",
-    "monthly_rent": 450,
-    "annual_rent": 5400,
-    "gross_yield": 0.98
-  },
-  {
-    "address": "2 bed terraced house for sale Seymour Avenue, Bishopston BS7",
-    "postcode": null,
-    "price": 595000,
-    "bedrooms": 2,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/65fc0552c9b0bfb16eeb4fa0c05160b98025a084.jpg",
-    "description": "2-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71330389/",
-    "city": "Bristol",
-    "monthly_rent": 300,
-    "annual_rent": 3600,
-    "gross_yield": 0.61
-  },
-  {
-    "address": "3 bed terraced house for sale Rudthorpe Road, Horfield BS7",
-    "postcode": null,
-    "price": 550000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/a71d20c34e2236621e1c58b45ce66336701d9dd1.jpg",
-    "description": "3-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71334623/",
-    "city": "Bristol",
-    "monthly_rent": 450,
-    "annual_rent": 5400,
-    "gross_yield": 0.98
+    "monthly_rent": 600,
+    "annual_rent": 7200,
+    "gross_yield": 1.2
   },
   {
     "address": "3 bed terraced house for sale Richmond Road, Montpelier BS6",
@@ -294,32 +252,18 @@
     "gross_yield": 0.94
   },
   {
-    "address": "4 bed semi-detached house for sale Talgarth Road, Ashley Down BS7",
+    "address": "2 bed terraced house for sale Seymour Avenue, Bishopston BS7",
     "postcode": null,
-    "price": 550000,
-    "bedrooms": 4,
+    "price": 595000,
+    "bedrooms": 2,
     "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/46f187095843890820160ed653696ae9328f4d62.jpg",
-    "description": "4-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71167256/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/65fc0552c9b0bfb16eeb4fa0c05160b98025a084.jpg",
+    "description": "2-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71330389/",
     "city": "Bristol",
-    "monthly_rent": 600,
-    "annual_rent": 7200,
-    "gross_yield": 1.31
-  },
-  {
-    "address": "3 bed semi-detached house for sale Westbury Lane, Coombe Dingle BS9",
-    "postcode": null,
-    "price": 585000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/7c26032874d40b512c348b67cc82be4d45c7e73b.jpg",
-    "description": "3-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71008566/",
-    "city": "Bristol",
-    "monthly_rent": 450,
-    "annual_rent": 5400,
-    "gross_yield": 0.92
+    "monthly_rent": 300,
+    "annual_rent": 3600,
+    "gross_yield": 0.61
   },
   {
     "address": "3 bed terraced house for sale Shaftesbury Avenue, Montpelier BS6",
@@ -336,6 +280,48 @@
     "gross_yield": 0.96
   },
   {
+    "address": "3 bed terraced house for sale Rudthorpe Road, Horfield BS7",
+    "postcode": null,
+    "price": 550000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/a71d20c34e2236621e1c58b45ce66336701d9dd1.jpg",
+    "description": "3-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71334623/",
+    "city": "Bristol",
+    "monthly_rent": 450,
+    "annual_rent": 5400,
+    "gross_yield": 0.98
+  },
+  {
+    "address": "3 bed semi-detached house for sale Westbury Lane, Coombe Dingle BS9",
+    "postcode": null,
+    "price": 585000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/7c26032874d40b512c348b67cc82be4d45c7e73b.jpg",
+    "description": "3-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71008566/",
+    "city": "Bristol",
+    "monthly_rent": 450,
+    "annual_rent": 5400,
+    "gross_yield": 0.92
+  },
+  {
+    "address": "4 bed semi-detached house for sale Talgarth Road, Ashley Down BS7",
+    "postcode": null,
+    "price": 550000,
+    "bedrooms": 4,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/46f187095843890820160ed653696ae9328f4d62.jpg",
+    "description": "4-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71167256/",
+    "city": "Bristol",
+    "monthly_rent": 600,
+    "annual_rent": 7200,
+    "gross_yield": 1.31
+  },
+  {
     "address": "5 bed terraced house for sale Elmgrove Road, Fishponds BS16",
     "postcode": null,
     "price": 575000,
@@ -348,20 +334,6 @@
     "monthly_rent": 750,
     "annual_rent": 9000,
     "gross_yield": 1.57
-  },
-  {
-    "address": "4 bed semi-detached house for sale Westerleigh Road, Downend BS16",
-    "postcode": null,
-    "price": 550000,
-    "bedrooms": 4,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/24b60a998bc8cd6d47b11efaac711c76f88bce75.jpg",
-    "description": "4-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70141875/",
-    "city": "Bristol",
-    "monthly_rent": 600,
-    "annual_rent": 7200,
-    "gross_yield": 1.31
   },
   {
     "address": "4 bed end terrace house for sale Mayflower Close, Coombe Dingle BS9",
@@ -378,20 +350,6 @@
     "gross_yield": 1.28
   },
   {
-    "address": "3 bed detached house for sale Crescent Road, Downend BS16",
-    "postcode": null,
-    "price": 500000,
-    "bedrooms": 3,
-    "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/6ca36c0231a59caaa4c61ba5d3600ac8ff3bfb90.jpg",
-    "description": "3-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71337736/",
-    "city": "Bristol",
-    "monthly_rent": 450,
-    "annual_rent": 5400,
-    "gross_yield": 1.08
-  },
-  {
     "address": "3 bed semi-detached house for sale Bedminster Road, Bedminster BS3",
     "postcode": null,
     "price": 500000,
@@ -406,18 +364,18 @@
     "gross_yield": 1.08
   },
   {
-    "address": "4 bed semi-detached house for sale Mustoe Road, Frenchay BS16",
+    "address": "4 bed semi-detached house for sale Westerleigh Road, Downend BS16",
     "postcode": null,
-    "price": 515000,
+    "price": 550000,
     "bedrooms": 4,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/d8e899d02ebfdfc804c6f07bb9a9c7299a91e476.jpg",
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/24b60a998bc8cd6d47b11efaac711c76f88bce75.jpg",
     "description": "4-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71561720/",
+    "property_url": "https://www.primelocation.com/for-sale/details/70141875/",
     "city": "Bristol",
     "monthly_rent": 600,
     "annual_rent": 7200,
-    "gross_yield": 1.4
+    "gross_yield": 1.31
   },
   {
     "address": "3 bed semi-detached house for sale Marigold Walk, Ashton BS3",
@@ -434,18 +392,18 @@
     "gross_yield": 1.03
   },
   {
-    "address": "2 bed semi-detached house for sale Canada Way, Spike Island BS1",
+    "address": "4 bed semi-detached house for sale Mustoe Road, Frenchay BS16",
     "postcode": null,
-    "price": 500000,
-    "bedrooms": 2,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/65886a853798c975f7d665f79921525bb5034178.jpg",
-    "description": "2-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71518005/",
+    "price": 515000,
+    "bedrooms": 4,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/d8e899d02ebfdfc804c6f07bb9a9c7299a91e476.jpg",
+    "description": "4-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71561720/",
     "city": "Bristol",
-    "monthly_rent": 300,
-    "annual_rent": 3600,
-    "gross_yield": 0.72
+    "monthly_rent": 600,
+    "annual_rent": 7200,
+    "gross_yield": 1.4
   },
   {
     "address": "4 bed terraced house for sale Roman Way, Hanham BS15",
@@ -462,46 +420,18 @@
     "gross_yield": 1.44
   },
   {
-    "address": "3 bed detached house for sale Henry Street, Totterdown BS3",
+    "address": "2 bed semi-detached house for sale Canada Way, Spike Island BS1",
     "postcode": null,
     "price": 500000,
-    "bedrooms": 3,
-    "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/566fcde56a900fa15cd995bc66e40297c6713f4d.jpg",
-    "description": "3-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70284389/",
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/65886a853798c975f7d665f79921525bb5034178.jpg",
+    "description": "2-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71518005/",
     "city": "Bristol",
-    "monthly_rent": 450,
-    "annual_rent": 5400,
-    "gross_yield": 1.08
-  },
-  {
-    "address": "3 bed semi-detached house for sale Gores Marsh Road, Ashton BS3",
-    "postcode": null,
-    "price": 525000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/c34a4f119061fbb4300952e0d951073ad339f434.jpg",
-    "description": "3-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71377717/",
-    "city": "Bristol",
-    "monthly_rent": 450,
-    "annual_rent": 5400,
-    "gross_yield": 1.03
-  },
-  {
-    "address": "4 bed detached house for sale Danby Street, Cheswick Village BS16",
-    "postcode": null,
-    "price": 515000,
-    "bedrooms": 4,
-    "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/2d75b709dc171cc35387a0607b38c0226c3974a1.jpg",
-    "description": "4-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71404845/",
-    "city": "Bristol",
-    "monthly_rent": 600,
-    "annual_rent": 7200,
-    "gross_yield": 1.4
+    "monthly_rent": 300,
+    "annual_rent": 3600,
+    "gross_yield": 0.72
   },
   {
     "address": "4 bed semi-detached house for sale Northcote Road, Downend, Downend BS16",
@@ -518,32 +448,18 @@
     "gross_yield": 1.35
   },
   {
-    "address": "3 bed terraced house for sale Pitch & Pay Park, Sneyd Park BS9",
+    "address": "3 bed semi-detached house for sale Gores Marsh Road, Ashton BS3",
     "postcode": null,
     "price": 525000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/38bc721afd25b10795f9907e678d193b162e11a7.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/c34a4f119061fbb4300952e0d951073ad339f434.jpg",
     "description": "3-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71343186/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71377717/",
     "city": "Bristol",
     "monthly_rent": 450,
     "annual_rent": 5400,
     "gross_yield": 1.03
-  },
-  {
-    "address": "3 bed semi-detached house for sale Oakdale Close, Downend BS16",
-    "postcode": null,
-    "price": 500000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/91e7740d2cc902b5779da7d4a1edafc8c22ff526.jpg",
-    "description": "3-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71262776/",
-    "city": "Bristol",
-    "monthly_rent": 450,
-    "annual_rent": 5400,
-    "gross_yield": 1.08
   },
   {
     "address": "3 bed terraced house for sale St. Lukes Crescent, Victoria Park BS3",
@@ -554,6 +470,20 @@
     "image_url": "https://lid.zoocdn.com/u/1024/768/c2833bd664258709857aa32668e6b2eaf6776b99.jpg",
     "description": "3-bed property in Bristol.",
     "property_url": "https://www.primelocation.com/for-sale/details/71223037/",
+    "city": "Bristol",
+    "monthly_rent": 450,
+    "annual_rent": 5400,
+    "gross_yield": 1.03
+  },
+  {
+    "address": "3 bed terraced house for sale Pitch & Pay Park, Sneyd Park BS9",
+    "postcode": null,
+    "price": 525000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/38bc721afd25b10795f9907e678d193b162e11a7.jpg",
+    "description": "3-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71343186/",
     "city": "Bristol",
     "monthly_rent": 450,
     "annual_rent": 5400,
@@ -574,6 +504,20 @@
     "gross_yield": 1.08
   },
   {
+    "address": "3 bed detached house for sale Henry Street, Totterdown BS3",
+    "postcode": null,
+    "price": 500000,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/566fcde56a900fa15cd995bc66e40297c6713f4d.jpg",
+    "description": "3-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70284389/",
+    "city": "Bristol",
+    "monthly_rent": 450,
+    "annual_rent": 5400,
+    "gross_yield": 1.08
+  },
+  {
     "address": "4 bed terraced house for sale Aylesbury Road, Bedminster BS3",
     "postcode": null,
     "price": 525000,
@@ -586,6 +530,48 @@
     "monthly_rent": 600,
     "annual_rent": 7200,
     "gross_yield": 1.37
+  },
+  {
+    "address": "3 bed semi-detached house for sale Oakdale Close, Downend BS16",
+    "postcode": null,
+    "price": 500000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/91e7740d2cc902b5779da7d4a1edafc8c22ff526.jpg",
+    "description": "3-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71262776/",
+    "city": "Bristol",
+    "monthly_rent": 450,
+    "annual_rent": 5400,
+    "gross_yield": 1.08
+  },
+  {
+    "address": "4 bed detached house for sale Danby Street, Cheswick Village BS16",
+    "postcode": null,
+    "price": 515000,
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/2d75b709dc171cc35387a0607b38c0226c3974a1.jpg",
+    "description": "4-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71404845/",
+    "city": "Bristol",
+    "monthly_rent": 600,
+    "annual_rent": 7200,
+    "gross_yield": 1.4
+  },
+  {
+    "address": "3 bed detached house for sale Crescent Road, Downend BS16",
+    "postcode": null,
+    "price": 500000,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/6ca36c0231a59caaa4c61ba5d3600ac8ff3bfb90.jpg",
+    "description": "3-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71337736/",
+    "city": "Bristol",
+    "monthly_rent": 450,
+    "annual_rent": 5400,
+    "gross_yield": 1.08
   },
   {
     "address": "4 bed town house for sale Great Clover Leaze, Stoke Gifford BS16",
@@ -616,32 +602,32 @@
     "gross_yield": 1.2
   },
   {
-    "address": "3 bed semi-detached house for sale Redhill Drive, Fishponds BS16",
+    "address": "3 bed end terrace house for sale Malago Drive, Bedminster BS3",
     "postcode": null,
     "price": 475000,
     "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/084687a6eb7ba95f24c89f557c8b2b6b4457ebc1.jpg",
+    "bathrooms": 3,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/a4b9657c6baf6480dc90c4d379f31a82de7b3125.jpg",
     "description": "3-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71636277/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71611003/",
     "city": "Bristol",
     "monthly_rent": 450,
     "annual_rent": 5400,
     "gross_yield": 1.14
   },
   {
-    "address": "3 bed semi-detached house for sale Wells Road, Whitchurch BS14",
+    "address": "3 bed semi-detached house for sale Grove Road, Fishponds BS16",
     "postcode": null,
-    "price": 475000,
+    "price": 450000,
     "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/8356fb447c74a420e887d2b2b2b6fc4efc4eaf76.jpg",
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/5355ad4b38d8c04ddd009b489b15a65ffcbbe21f.jpg",
     "description": "3-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71592190/",
+    "property_url": "https://www.primelocation.com/for-sale/details/70232337/",
     "city": "Bristol",
     "monthly_rent": 450,
     "annual_rent": 5400,
-    "gross_yield": 1.14
+    "gross_yield": 1.2
   },
   {
     "address": "3 bed terraced house for sale Park Mews, Victoria Park BS3",
@@ -672,34 +658,6 @@
     "gross_yield": 1.14
   },
   {
-    "address": "3 bed end terrace house for sale Malago Drive, Bedminster BS3",
-    "postcode": null,
-    "price": 475000,
-    "bedrooms": 3,
-    "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/a4b9657c6baf6480dc90c4d379f31a82de7b3125.jpg",
-    "description": "3-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71611003/",
-    "city": "Bristol",
-    "monthly_rent": 450,
-    "annual_rent": 5400,
-    "gross_yield": 1.14
-  },
-  {
-    "address": "3 bed semi-detached house for sale Grove Road, Fishponds BS16",
-    "postcode": null,
-    "price": 450000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/5355ad4b38d8c04ddd009b489b15a65ffcbbe21f.jpg",
-    "description": "3-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70232337/",
-    "city": "Bristol",
-    "monthly_rent": 450,
-    "annual_rent": 5400,
-    "gross_yield": 1.2
-  },
-  {
     "address": "3 bed terraced house for sale Sandringham Road, Brislington BS4",
     "postcode": null,
     "price": 450000,
@@ -712,6 +670,20 @@
     "monthly_rent": 450,
     "annual_rent": 5400,
     "gross_yield": 1.2
+  },
+  {
+    "address": "3 bed semi-detached house for sale Wells Road, Whitchurch BS14",
+    "postcode": null,
+    "price": 475000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/8356fb447c74a420e887d2b2b2b6fc4efc4eaf76.jpg",
+    "description": "3-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71592190/",
+    "city": "Bristol",
+    "monthly_rent": 450,
+    "annual_rent": 5400,
+    "gross_yield": 1.14
   },
   {
     "address": "3 bed terraced house for sale William Street, Totterdown BS3",
@@ -768,6 +740,34 @@
     "monthly_rent": 450,
     "annual_rent": 5400,
     "gross_yield": 1.2
+  },
+  {
+    "address": "3 bed terraced house for sale Downend Road, Downend BS16",
+    "postcode": null,
+    "price": 450000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/69547e467416236534b89be05c2356245e716e78.jpg",
+    "description": "3-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70685878/",
+    "city": "Bristol",
+    "monthly_rent": 450,
+    "annual_rent": 5400,
+    "gross_yield": 1.2
+  },
+  {
+    "address": "3 bed semi-detached house for sale Redhill Drive, Fishponds BS16",
+    "postcode": null,
+    "price": 475000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/084687a6eb7ba95f24c89f557c8b2b6b4457ebc1.jpg",
+    "description": "3-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71636277/",
+    "city": "Bristol",
+    "monthly_rent": 450,
+    "annual_rent": 5400,
+    "gross_yield": 1.14
   },
   {
     "address": "2 bed terraced house for sale William Street, Totterdown BS3",
@@ -840,34 +840,6 @@
     "gross_yield": 0.8
   },
   {
-    "address": "4 bed detached house for sale Cheers Drive, Speedwell BS5",
-    "postcode": null,
-    "price": 450000,
-    "bedrooms": 4,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/e560a184345df06ea5a0790d370dde4c4923cb65.jpg",
-    "description": "4-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70561925/",
-    "city": "Bristol",
-    "monthly_rent": 600,
-    "annual_rent": 7200,
-    "gross_yield": 1.6
-  },
-  {
-    "address": "3 bed semi-detached house for sale Cleeve Hill, Downend BS16",
-    "postcode": null,
-    "price": 475000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/57f48b3d583c462d356d3b519705e6221836afe6.jpg",
-    "description": "3-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70872675/",
-    "city": "Bristol",
-    "monthly_rent": 450,
-    "annual_rent": 5400,
-    "gross_yield": 1.14
-  },
-  {
     "address": "6 bed terraced house for sale Summer Hill, Totterdown BS4",
     "postcode": null,
     "price": 450000,
@@ -896,18 +868,18 @@
     "gross_yield": 1.2
   },
   {
-    "address": "3 bed terraced house for sale Downend Road, Downend BS16",
+    "address": "3 bed semi-detached house for sale Cleeve Hill, Downend BS16",
     "postcode": null,
-    "price": 450000,
+    "price": 475000,
     "bedrooms": 3,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/69547e467416236534b89be05c2356245e716e78.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/57f48b3d583c462d356d3b519705e6221836afe6.jpg",
     "description": "3-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70685878/",
+    "property_url": "https://www.primelocation.com/for-sale/details/70872675/",
     "city": "Bristol",
     "monthly_rent": 450,
     "annual_rent": 5400,
-    "gross_yield": 1.2
+    "gross_yield": 1.14
   },
   {
     "address": "3 bed terraced house for sale Vale Street, Totterdown BS4",
@@ -922,6 +894,20 @@
     "monthly_rent": 450,
     "annual_rent": 5400,
     "gross_yield": 1.16
+  },
+  {
+    "address": "4 bed detached house for sale Cheers Drive, Speedwell BS5",
+    "postcode": null,
+    "price": 450000,
+    "bedrooms": 4,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/e560a184345df06ea5a0790d370dde4c4923cb65.jpg",
+    "description": "4-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70561925/",
+    "city": "Bristol",
+    "monthly_rent": 600,
+    "annual_rent": 7200,
+    "gross_yield": 1.6
   },
   {
     "address": "3 bed detached house for sale Highridge Road, Bishopsworth BS13",
@@ -980,20 +966,6 @@
     "gross_yield": 1.48
   },
   {
-    "address": "3 bed detached house for sale Bye Mead, Emersons Green BS16",
-    "postcode": null,
-    "price": 425000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/37e4d1f1fa8006146c6f6bf30abd244425d159f1.jpg",
-    "description": "3-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70781037/",
-    "city": "Bristol",
-    "monthly_rent": 450,
-    "annual_rent": 5400,
-    "gross_yield": 1.27
-  },
-  {
     "address": "4 bed terraced house for sale Aspen Drive, Cribbs Causeway BS10",
     "postcode": null,
     "price": 425000,
@@ -1022,20 +994,6 @@
     "gross_yield": 0.85
   },
   {
-    "address": "3 bed terraced house for sale Clyde Road, Totterdown BS4",
-    "postcode": null,
-    "price": 440000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/2eba4362d8af0da2d8254b985a892c60371d874a.jpg",
-    "description": "3-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71034050/",
-    "city": "Bristol",
-    "monthly_rent": 450,
-    "annual_rent": 5400,
-    "gross_yield": 1.23
-  },
-  {
     "address": "2 bed terraced house for sale Milverton Gardens, St Werburghs BS6",
     "postcode": null,
     "price": 425000,
@@ -1048,20 +1006,6 @@
     "monthly_rent": 300,
     "annual_rent": 3600,
     "gross_yield": 0.85
-  },
-  {
-    "address": "2 bed semi-detached house for sale Conway Road, Brislington BS4",
-    "postcode": null,
-    "price": 435000,
-    "bedrooms": 2,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/e5b19684bff5e66d65abce486582e72f075fab12.jpg",
-    "description": "2-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71578852/",
-    "city": "Bristol",
-    "monthly_rent": 300,
-    "annual_rent": 3600,
-    "gross_yield": 0.83
   },
   {
     "address": "3 bed end terrace house for sale Hereford Road, St Werburghs BS2",
@@ -1078,6 +1022,34 @@
     "gross_yield": 1.27
   },
   {
+    "address": "3 bed end terrace house for sale Tunbridge Way, Emersons Green BS16",
+    "postcode": null,
+    "price": 400000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/6e0258fa1fd33431c09fed69e3fe0e503ee69e60.jpg",
+    "description": "3-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71505282/",
+    "city": "Bristol",
+    "monthly_rent": 450,
+    "annual_rent": 5400,
+    "gross_yield": 1.35
+  },
+  {
+    "address": "3 bed terraced house for sale Clyde Road, Totterdown BS4",
+    "postcode": null,
+    "price": 440000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/2eba4362d8af0da2d8254b985a892c60371d874a.jpg",
+    "description": "3-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71034050/",
+    "city": "Bristol",
+    "monthly_rent": 450,
+    "annual_rent": 5400,
+    "gross_yield": 1.23
+  },
+  {
     "address": "3 bed semi-detached house for sale Westbourne Road, Downend BS16",
     "postcode": null,
     "price": 425000,
@@ -1090,6 +1062,20 @@
     "monthly_rent": 450,
     "annual_rent": 5400,
     "gross_yield": 1.27
+  },
+  {
+    "address": "2 bed semi-detached house for sale Conway Road, Brislington BS4",
+    "postcode": null,
+    "price": 435000,
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/e5b19684bff5e66d65abce486582e72f075fab12.jpg",
+    "description": "2-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71578852/",
+    "city": "Bristol",
+    "monthly_rent": 300,
+    "annual_rent": 3600,
+    "gross_yield": 0.83
   },
   {
     "address": "2 bed terraced house for sale Church Lane, Bedminster BS3",
@@ -1106,20 +1092,6 @@
     "gross_yield": 0.88
   },
   {
-    "address": "3 bed detached house for sale Narcissus Way, Lyde Green BS16",
-    "postcode": null,
-    "price": 425000,
-    "bedrooms": 3,
-    "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/5247ffc57b809e662e0a829e0f57e92ba00c7381.jpg",
-    "description": "3-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71467916/",
-    "city": "Bristol",
-    "monthly_rent": 450,
-    "annual_rent": 5400,
-    "gross_yield": 1.27
-  },
-  {
     "address": "3 bed semi-detached house for sale Richmond Avenue, Stoke Gifford BS34",
     "postcode": null,
     "price": 435000,
@@ -1132,20 +1104,6 @@
     "monthly_rent": 450,
     "annual_rent": 5400,
     "gross_yield": 1.24
-  },
-  {
-    "address": "2 bed terraced house for sale Grove Park Avenue, Brislington BS4",
-    "postcode": null,
-    "price": 400000,
-    "bedrooms": 2,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/b805c33d1b4bc56aefb5ea5cd86bda92262213f7.jpg",
-    "description": "2-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71519638/",
-    "city": "Bristol",
-    "monthly_rent": 300,
-    "annual_rent": 3600,
-    "gross_yield": 0.9
   },
   {
     "address": "3 bed terraced house for sale Britannia Road, Easton BS5",
@@ -1162,32 +1120,18 @@
     "gross_yield": 1.35
   },
   {
-    "address": "3 bed end terrace house for sale Tunbridge Way, Emersons Green BS16",
+    "address": "2 bed terraced house for sale Grove Park Avenue, Brislington BS4",
     "postcode": null,
     "price": 400000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/6e0258fa1fd33431c09fed69e3fe0e503ee69e60.jpg",
-    "description": "3-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71505282/",
-    "city": "Bristol",
-    "monthly_rent": 450,
-    "annual_rent": 5400,
-    "gross_yield": 1.35
-  },
-  {
-    "address": "2 bed property for sale Stevens Crescent, Totterdown BS3",
-    "postcode": null,
-    "price": 415000,
     "bedrooms": 2,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/6c19714173af9e71b6cdd4c60e9ae09d191403a8.jpg",
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/b805c33d1b4bc56aefb5ea5cd86bda92262213f7.jpg",
     "description": "2-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71459039/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71519638/",
     "city": "Bristol",
     "monthly_rent": 300,
     "annual_rent": 3600,
-    "gross_yield": 0.87
+    "gross_yield": 0.9
   },
   {
     "address": "2 bed semi-detached house for sale Fitzroy Street, Totterdown BS4",
@@ -1204,6 +1148,20 @@
     "gross_yield": 0.83
   },
   {
+    "address": "2 bed property for sale Stevens Crescent, Totterdown BS3",
+    "postcode": null,
+    "price": 415000,
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/6c19714173af9e71b6cdd4c60e9ae09d191403a8.jpg",
+    "description": "2-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71459039/",
+    "city": "Bristol",
+    "monthly_rent": 300,
+    "annual_rent": 3600,
+    "gross_yield": 0.87
+  },
+  {
     "address": "3 bed end terrace house for sale Lambourn Close, Windmill Hill BS3",
     "postcode": null,
     "price": 410000,
@@ -1218,14 +1176,14 @@
     "gross_yield": 1.32
   },
   {
-    "address": "3 bed terraced house for sale Highridge Road, Bedminster BS3",
+    "address": "3 bed detached house for sale Narcissus Way, Lyde Green BS16",
     "postcode": null,
     "price": 425000,
     "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/742c9774ad9734e7440c86372075aece499a96a8.jpg",
+    "bathrooms": 3,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/5247ffc57b809e662e0a829e0f57e92ba00c7381.jpg",
     "description": "3-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71400233/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71467916/",
     "city": "Bristol",
     "monthly_rent": 450,
     "annual_rent": 5400,
@@ -1260,6 +1218,20 @@
     "gross_yield": 1.27
   },
   {
+    "address": "3 bed terraced house for sale Highridge Road, Bedminster BS3",
+    "postcode": null,
+    "price": 425000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/742c9774ad9734e7440c86372075aece499a96a8.jpg",
+    "description": "3-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71400233/",
+    "city": "Bristol",
+    "monthly_rent": 450,
+    "annual_rent": 5400,
+    "gross_yield": 1.27
+  },
+  {
     "address": "4 bed semi-detached house for sale First Field Way, Patchway BS34",
     "postcode": null,
     "price": 410000,
@@ -1272,6 +1244,34 @@
     "monthly_rent": 600,
     "annual_rent": 7200,
     "gross_yield": 1.76
+  },
+  {
+    "address": "3 bed terraced house for sale Charborough Road, Filton BS34",
+    "postcode": null,
+    "price": 400000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/a51a866ae67c90bc190aad679c5bbdac3197d03b.jpg",
+    "description": "3-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70038118/",
+    "city": "Bristol",
+    "monthly_rent": 450,
+    "annual_rent": 5400,
+    "gross_yield": 1.35
+  },
+  {
+    "address": "3 bed terraced house for sale Stafford Road, St Werburghs BS2",
+    "postcode": null,
+    "price": 400000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/dc91f16757338bc6079a788a4f8dd5f641af5f5f.jpg",
+    "description": "3-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71301061/",
+    "city": "Bristol",
+    "monthly_rent": 450,
+    "annual_rent": 5400,
+    "gross_yield": 1.35
   },
   {
     "address": "3 bed terraced house for sale Park Road, Shirehampton BS11",
@@ -1302,34 +1302,6 @@
     "gross_yield": 1.69
   },
   {
-    "address": "3 bed terraced house for sale Stafford Road, St Werburghs BS2",
-    "postcode": null,
-    "price": 400000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/dc91f16757338bc6079a788a4f8dd5f641af5f5f.jpg",
-    "description": "3-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71301061/",
-    "city": "Bristol",
-    "monthly_rent": 450,
-    "annual_rent": 5400,
-    "gross_yield": 1.35
-  },
-  {
-    "address": "3 bed terraced house for sale Charborough Road, Filton BS34",
-    "postcode": null,
-    "price": 400000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/a51a866ae67c90bc190aad679c5bbdac3197d03b.jpg",
-    "description": "3-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70038118/",
-    "city": "Bristol",
-    "monthly_rent": 450,
-    "annual_rent": 5400,
-    "gross_yield": 1.35
-  },
-  {
     "address": "2 bed terraced house for sale Park Street, Totterdown BS4",
     "postcode": null,
     "price": 400000,
@@ -1352,6 +1324,20 @@
     "image_url": "https://lid.zoocdn.com/u/1024/768/1d63ce43d19da8b7e79f8ff4259a275c0685cee0.jpg",
     "description": "2-bed property in Bristol.",
     "property_url": "https://www.primelocation.com/for-sale/details/71233621/",
+    "city": "Bristol",
+    "monthly_rent": 300,
+    "annual_rent": 3600,
+    "gross_yield": 0.9
+  },
+  {
+    "address": "2 bed terraced house for sale Repton Road, Brislington BS4",
+    "postcode": null,
+    "price": 400000,
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/42531fbd9946099c6f373de00e722d04f3b5fd21.jpg",
+    "description": "2-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71207139/",
     "city": "Bristol",
     "monthly_rent": 300,
     "annual_rent": 3600,
@@ -1384,20 +1370,6 @@
     "monthly_rent": 300,
     "annual_rent": 3600,
     "gross_yield": 0.83
-  },
-  {
-    "address": "2 bed terraced house for sale Repton Road, Brislington BS4",
-    "postcode": null,
-    "price": 400000,
-    "bedrooms": 2,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/42531fbd9946099c6f373de00e722d04f3b5fd21.jpg",
-    "description": "2-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71207139/",
-    "city": "Bristol",
-    "monthly_rent": 300,
-    "annual_rent": 3600,
-    "gross_yield": 0.9
   },
   {
     "address": "2 bed terraced house for sale Church Road, Westbury-On-Trym BS9",
@@ -1442,6 +1414,20 @@
     "gross_yield": 1.24
   },
   {
+    "address": "3 bed detached house for sale Bye Mead, Emersons Green BS16",
+    "postcode": null,
+    "price": 425000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/37e4d1f1fa8006146c6f6bf30abd244425d159f1.jpg",
+    "description": "3-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70781037/",
+    "city": "Bristol",
+    "monthly_rent": 450,
+    "annual_rent": 5400,
+    "gross_yield": 1.27
+  },
+  {
     "address": "4 bed semi-detached house for sale Dyrham Parade, Stoke Lodge BS34",
     "postcode": null,
     "price": 420000,
@@ -1470,6 +1456,20 @@
     "gross_yield": 1.27
   },
   {
+    "address": "2 bed terraced house for sale Church Lane, Bedminster BS3",
+    "postcode": null,
+    "price": 425000,
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/bf9267e62942c4c8e20dd6573154207a8864c79e.jpg",
+    "description": "2-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70325682/",
+    "city": "Bristol",
+    "monthly_rent": 300,
+    "annual_rent": 3600,
+    "gross_yield": 0.85
+  },
+  {
     "address": "3 bed detached house for sale Allison Road, Brislington BS4",
     "postcode": null,
     "price": 440000,
@@ -1482,20 +1482,6 @@
     "monthly_rent": 450,
     "annual_rent": 5400,
     "gross_yield": 1.23
-  },
-  {
-    "address": "4 bed terraced house for sale St. Bernards Road, Shirehampton BS11",
-    "postcode": null,
-    "price": 425000,
-    "bedrooms": 4,
-    "bathrooms": 3,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/7fb349fa90df5a381920899428eda74d55feb651.jpg",
-    "description": "4-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70640724/",
-    "city": "Bristol",
-    "monthly_rent": 600,
-    "annual_rent": 7200,
-    "gross_yield": 1.69
   },
   {
     "address": "3 bed semi-detached house for sale Park Road, Staple Hill BS16",
@@ -1512,18 +1498,18 @@
     "gross_yield": 1.23
   },
   {
-    "address": "2 bed terraced house for sale Church Lane, Bedminster BS3",
+    "address": "2 bed terraced house for sale Agate Street, Bedminster BS3",
     "postcode": null,
-    "price": 425000,
+    "price": 415000,
     "bedrooms": 2,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/bf9267e62942c4c8e20dd6573154207a8864c79e.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/82a9890af61eb5aa0923df2077cf869e60edbb71.jpg",
     "description": "2-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70325682/",
+    "property_url": "https://www.primelocation.com/for-sale/details/69566748/",
     "city": "Bristol",
     "monthly_rent": 300,
     "annual_rent": 3600,
-    "gross_yield": 0.85
+    "gross_yield": 0.87
   },
   {
     "address": "3 bed semi-detached house for sale Imperial Walk, Knowle BS14",
@@ -1540,20 +1526,6 @@
     "gross_yield": 1.35
   },
   {
-    "address": "2 bed terraced house for sale Agate Street, Bedminster BS3",
-    "postcode": null,
-    "price": 415000,
-    "bedrooms": 2,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/82a9890af61eb5aa0923df2077cf869e60edbb71.jpg",
-    "description": "2-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69566748/",
-    "city": "Bristol",
-    "monthly_rent": 300,
-    "annual_rent": 3600,
-    "gross_yield": 0.87
-  },
-  {
     "address": "2 bed terraced house for sale Kensal Avenue, Windmill Hill BS3",
     "postcode": null,
     "price": 425000,
@@ -1568,6 +1540,20 @@
     "gross_yield": 0.85
   },
   {
+    "address": "2 bed terraced house for sale Royate Hill, Eastville BS5",
+    "postcode": null,
+    "price": 375000,
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/95cfb149286531b47833b68fb1399b1ce202947c.jpg",
+    "description": "2-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71527922/",
+    "city": "Bristol",
+    "monthly_rent": 300,
+    "annual_rent": 3600,
+    "gross_yield": 0.96
+  },
+  {
     "address": "3 bed detached house for sale Jarnail Close, Bishopsworth BS13",
     "postcode": null,
     "price": 400000,
@@ -1580,6 +1566,20 @@
     "monthly_rent": 450,
     "annual_rent": 5400,
     "gross_yield": 1.35
+  },
+  {
+    "address": "4 bed terraced house for sale St. Bernards Road, Shirehampton BS11",
+    "postcode": null,
+    "price": 425000,
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/7fb349fa90df5a381920899428eda74d55feb651.jpg",
+    "description": "4-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70640724/",
+    "city": "Bristol",
+    "monthly_rent": 600,
+    "annual_rent": 7200,
+    "gross_yield": 1.69
   },
   {
     "address": "3 bed terraced house for sale Downend Road, Downend BS16",
@@ -1624,18 +1624,18 @@
     "gross_yield": 1.48
   },
   {
-    "address": "2 bed end terrace house for sale Highworth Road, St Annes BS4",
+    "address": "2 bed terraced house for sale Saxon Road, St Werburghs BS2",
     "postcode": null,
-    "price": 365000,
+    "price": 395000,
     "bedrooms": 2,
     "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/31f0731fd994a225391ba502e6210a302940a1f8.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/7950d8cda75ef2764acfbe53a18877370a7cf133.jpg",
     "description": "2-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71537741/",
+    "property_url": "https://www.primelocation.com/for-sale/details/69863527/",
     "city": "Bristol",
     "monthly_rent": 300,
     "annual_rent": 3600,
-    "gross_yield": 0.99
+    "gross_yield": 0.91
   },
   {
     "address": "3 bed end terrace house for sale Long Close, Bradley Stoke BS32",
@@ -1652,32 +1652,18 @@
     "gross_yield": 1.42
   },
   {
-    "address": "3 bed end terrace house for sale Valerian Street, Lyde Green BS16",
+    "address": "4 bed end terrace house for sale Walnut Lane, Kingswood BS15",
     "postcode": null,
     "price": 375000,
-    "bedrooms": 3,
+    "bedrooms": 4,
     "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/72c02870b11532aff00e8cc5b7c5ba1ee6a70783.jpg",
-    "description": "3-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71346091/",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/99e9364f9351952fc37476b59056589d59418eb5.jpg",
+    "description": "4-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70776406/",
     "city": "Bristol",
-    "monthly_rent": 450,
-    "annual_rent": 5400,
-    "gross_yield": 1.44
-  },
-  {
-    "address": "3 bed end terrace house for sale Willowherb Road, Lyde Green BS16",
-    "postcode": null,
-    "price": 360000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/6eca2e045f7aaf58ddebfafac6cf30458c8cbcfa.jpg",
-    "description": "3-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71562470/",
-    "city": "Bristol",
-    "monthly_rent": 450,
-    "annual_rent": 5400,
-    "gross_yield": 1.5
+    "monthly_rent": 600,
+    "annual_rent": 7200,
+    "gross_yield": 1.92
   },
   {
     "address": "3 bed semi-detached house for sale Berkeleys Mead, Bradley Stoke BS32",
@@ -1694,14 +1680,56 @@
     "gross_yield": 1.48
   },
   {
-    "address": "2 bed terraced house for sale Royate Hill, Eastville BS5",
+    "address": "2 bed end terrace house for sale Highworth Road, St Annes BS4",
+    "postcode": null,
+    "price": 365000,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/31f0731fd994a225391ba502e6210a302940a1f8.jpg",
+    "description": "2-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71537741/",
+    "city": "Bristol",
+    "monthly_rent": 300,
+    "annual_rent": 3600,
+    "gross_yield": 0.99
+  },
+  {
+    "address": "3 bed end terrace house for sale Willowherb Road, Lyde Green BS16",
+    "postcode": null,
+    "price": 360000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/6eca2e045f7aaf58ddebfafac6cf30458c8cbcfa.jpg",
+    "description": "3-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71562470/",
+    "city": "Bristol",
+    "monthly_rent": 450,
+    "annual_rent": 5400,
+    "gross_yield": 1.5
+  },
+  {
+    "address": "3 bed end terrace house for sale Station Road, Kingswood BS15",
+    "postcode": null,
+    "price": 350000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/c332c91d6c701cf9d9e68ab856750e6d455c8800.jpg",
+    "description": "3-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71127115/",
+    "city": "Bristol",
+    "monthly_rent": 450,
+    "annual_rent": 5400,
+    "gross_yield": 1.54
+  },
+  {
+    "address": "2 bed terraced house for sale Felix Road, Easton BS5",
     "postcode": null,
     "price": 375000,
     "bedrooms": 2,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/95cfb149286531b47833b68fb1399b1ce202947c.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/e2a70de7afd31364996e89da37c32db75e537aac.jpg",
     "description": "2-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71527922/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71509997/",
     "city": "Bristol",
     "monthly_rent": 300,
     "annual_rent": 3600,
@@ -1720,20 +1748,6 @@
     "monthly_rent": 450,
     "annual_rent": 5400,
     "gross_yield": 1.48
-  },
-  {
-    "address": "2 bed terraced house for sale Felix Road, Easton BS5",
-    "postcode": null,
-    "price": 375000,
-    "bedrooms": 2,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/e2a70de7afd31364996e89da37c32db75e537aac.jpg",
-    "description": "2-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71509997/",
-    "city": "Bristol",
-    "monthly_rent": 300,
-    "annual_rent": 3600,
-    "gross_yield": 0.96
   },
   {
     "address": "3 bed semi-detached house for sale Church Leaze, Shirehampton BS11",
@@ -1764,20 +1778,6 @@
     "gross_yield": 0.99
   },
   {
-    "address": "3 bed link detached house for sale Charlton Mead Drive, Brentry BS10",
-    "postcode": null,
-    "price": 375000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/826c5b3d48bfea8c3bef4da66759eb3fa1ad7aad.jpg",
-    "description": "3-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71452504/",
-    "city": "Bristol",
-    "monthly_rent": 450,
-    "annual_rent": 5400,
-    "gross_yield": 1.44
-  },
-  {
     "address": "5 bed semi-detached house for sale Bishport Close, Withywood BS13",
     "postcode": null,
     "price": 385000,
@@ -1792,88 +1792,18 @@
     "gross_yield": 2.34
   },
   {
-    "address": "4 bed end terrace house for sale Walnut Lane, Kingswood BS15",
+    "address": "3 bed link detached house for sale Charlton Mead Drive, Brentry BS10",
     "postcode": null,
     "price": 375000,
-    "bedrooms": 4,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/99e9364f9351952fc37476b59056589d59418eb5.jpg",
-    "description": "4-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70776406/",
-    "city": "Bristol",
-    "monthly_rent": 600,
-    "annual_rent": 7200,
-    "gross_yield": 1.92
-  },
-  {
-    "address": "3 bed semi-detached house for sale Burdock Road, Lyde Green BS16",
-    "postcode": null,
-    "price": 350000,
     "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/48b50a0c8884be2f4f00bf03a66e26934912b14c.jpg",
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/826c5b3d48bfea8c3bef4da66759eb3fa1ad7aad.jpg",
     "description": "3-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71126322/",
+    "property_url": "https://www.primelocation.com/for-sale/details/71452504/",
     "city": "Bristol",
     "monthly_rent": 450,
     "annual_rent": 5400,
-    "gross_yield": 1.54
-  },
-  {
-    "address": "2 bed terraced house for sale Arlington Road, St Annes BS4",
-    "postcode": null,
-    "price": 395000,
-    "bedrooms": 2,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/7c3f238dcb59d007322a631e0df04d43a6b41497.jpg",
-    "description": "2-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71313649/",
-    "city": "Bristol",
-    "monthly_rent": 300,
-    "annual_rent": 3600,
-    "gross_yield": 0.91
-  },
-  {
-    "address": "2 bed end terrace house for sale Grove Park Terrace, Fishponds BS16",
-    "postcode": null,
-    "price": 357000,
-    "bedrooms": 2,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/5fae700793f247c2190bc186d5bc6086c5e7618b.jpg",
-    "description": "2-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70655034/",
-    "city": "Bristol",
-    "monthly_rent": 300,
-    "annual_rent": 3600,
-    "gross_yield": 1.01
-  },
-  {
-    "address": "4 bed semi-detached house for sale Dundridge Lane, Troopers Hill BS5",
-    "postcode": null,
-    "price": 365000,
-    "bedrooms": 4,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/36ea152f3e464db0ea1e5eb4259f9d6bbae9f064.jpg",
-    "description": "4-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71060946/",
-    "city": "Bristol",
-    "monthly_rent": 600,
-    "annual_rent": 7200,
-    "gross_yield": 1.97
-  },
-  {
-    "address": "3 bed end terrace house for sale Guernsey Avenue, Brislington BS4",
-    "postcode": null,
-    "price": 385000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/45b8f03a1268e458ad22f6f604cc443a1bbf9d71.jpg",
-    "description": "3-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71206349/",
-    "city": "Bristol",
-    "monthly_rent": 450,
-    "annual_rent": 5400,
-    "gross_yield": 1.4
+    "gross_yield": 1.44
   },
   {
     "address": "3 bed semi-detached house for sale Maple Street, Hengrove BS14",
@@ -1890,42 +1820,14 @@
     "gross_yield": 1.44
   },
   {
-    "address": "4 bed detached house for sale Dram Lane, St George BS5",
-    "postcode": null,
-    "price": 375000,
-    "bedrooms": 4,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/aa4424906b9ba3c7708ba1656d7d780b9013604f.jpg",
-    "description": "4-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70205278/",
-    "city": "Bristol",
-    "monthly_rent": 600,
-    "annual_rent": 7200,
-    "gross_yield": 1.92
-  },
-  {
-    "address": "3 bed semi-detached house for sale Station Court, Kingswood, South Gloucestershire BS15",
-    "postcode": null,
-    "price": 385000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/8e94efe069262afe7d670e2dcec13715c1daeb63.jpg",
-    "description": "3-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71124786/",
-    "city": "Bristol",
-    "monthly_rent": 450,
-    "annual_rent": 5400,
-    "gross_yield": 1.4
-  },
-  {
-    "address": "3 bed end terrace house for sale Station Road, Kingswood BS15",
+    "address": "3 bed end terrace house for sale Downend Park Road, Downend BS16",
     "postcode": null,
     "price": 350000,
     "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/c332c91d6c701cf9d9e68ab856750e6d455c8800.jpg",
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/f0ee1763fc72234f601e8d143a82f2e5a5d89ecf.jpg",
     "description": "3-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71127115/",
+    "property_url": "https://www.primelocation.com/for-sale/details/69859893/",
     "city": "Bristol",
     "monthly_rent": 450,
     "annual_rent": 5400,
@@ -1946,6 +1848,104 @@
     "gross_yield": 1.44
   },
   {
+    "address": "3 bed end terrace house for sale Valerian Street, Lyde Green BS16",
+    "postcode": null,
+    "price": 375000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/72c02870b11532aff00e8cc5b7c5ba1ee6a70783.jpg",
+    "description": "3-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71346091/",
+    "city": "Bristol",
+    "monthly_rent": 450,
+    "annual_rent": 5400,
+    "gross_yield": 1.44
+  },
+  {
+    "address": "2 bed terraced house for sale Arlington Road, St Annes BS4",
+    "postcode": null,
+    "price": 395000,
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/7c3f238dcb59d007322a631e0df04d43a6b41497.jpg",
+    "description": "2-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71313649/",
+    "city": "Bristol",
+    "monthly_rent": 300,
+    "annual_rent": 3600,
+    "gross_yield": 0.91
+  },
+  {
+    "address": "3 bed end terrace house for sale Guernsey Avenue, Brislington BS4",
+    "postcode": null,
+    "price": 385000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/45b8f03a1268e458ad22f6f604cc443a1bbf9d71.jpg",
+    "description": "3-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71206349/",
+    "city": "Bristol",
+    "monthly_rent": 450,
+    "annual_rent": 5400,
+    "gross_yield": 1.4
+  },
+  {
+    "address": "3 bed semi-detached house for sale Burdock Road, Lyde Green BS16",
+    "postcode": null,
+    "price": 350000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/48b50a0c8884be2f4f00bf03a66e26934912b14c.jpg",
+    "description": "3-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71126322/",
+    "city": "Bristol",
+    "monthly_rent": 450,
+    "annual_rent": 5400,
+    "gross_yield": 1.54
+  },
+  {
+    "address": "3 bed semi-detached house for sale Station Court, Kingswood, South Gloucestershire BS15",
+    "postcode": null,
+    "price": 385000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/8e94efe069262afe7d670e2dcec13715c1daeb63.jpg",
+    "description": "3-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71124786/",
+    "city": "Bristol",
+    "monthly_rent": 450,
+    "annual_rent": 5400,
+    "gross_yield": 1.4
+  },
+  {
+    "address": "2 bed terraced house for sale Redfield Hill, Oldland Common BS30",
+    "postcode": null,
+    "price": 350000,
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/4b55e2f42ff3d4d09e7d339d81e1e73b9ce17d25.jpg",
+    "description": "2-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71060316/",
+    "city": "Bristol",
+    "monthly_rent": 300,
+    "annual_rent": 3600,
+    "gross_yield": 1.03
+  },
+  {
+    "address": "4 bed semi-detached house for sale Dundridge Lane, Troopers Hill BS5",
+    "postcode": null,
+    "price": 365000,
+    "bedrooms": 4,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/36ea152f3e464db0ea1e5eb4259f9d6bbae9f064.jpg",
+    "description": "4-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71060946/",
+    "city": "Bristol",
+    "monthly_rent": 600,
+    "annual_rent": 7200,
+    "gross_yield": 1.97
+  },
+  {
     "address": "3 bed semi-detached house for sale Bedminster Road, Bedminster BS3",
     "postcode": null,
     "price": 365000,
@@ -1954,20 +1954,6 @@
     "image_url": "https://lid.zoocdn.com/u/1024/768/88c77674e532a5fe9b44fb6c4860e5522044b611.jpg",
     "description": "3-bed property in Bristol.",
     "property_url": "https://www.primelocation.com/for-sale/details/70032844/",
-    "city": "Bristol",
-    "monthly_rent": 450,
-    "annual_rent": 5400,
-    "gross_yield": 1.48
-  },
-  {
-    "address": "3 bed terraced house for sale Chester Street, Easton BS5",
-    "postcode": null,
-    "price": 365000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/ff41d179b2e65e8b9ee4753df20e19bbd9dbce06.jpg",
-    "description": "3-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70894361/",
     "city": "Bristol",
     "monthly_rent": 450,
     "annual_rent": 5400,
@@ -1986,6 +1972,20 @@
     "monthly_rent": 450,
     "annual_rent": 5400,
     "gross_yield": 1.4
+  },
+  {
+    "address": "3 bed terraced house for sale Chester Street, Easton BS5",
+    "postcode": null,
+    "price": 365000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/ff41d179b2e65e8b9ee4753df20e19bbd9dbce06.jpg",
+    "description": "3-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70894361/",
+    "city": "Bristol",
+    "monthly_rent": 450,
+    "annual_rent": 5400,
+    "gross_yield": 1.48
   },
   {
     "address": "3 bed terraced house for sale Pound Drive, Fishponds BS16",
@@ -2030,20 +2030,6 @@
     "gross_yield": 1.03
   },
   {
-    "address": "2 bed terraced house for sale Weston Avenue, St George BS5",
-    "postcode": null,
-    "price": 365000,
-    "bedrooms": 2,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/e50490258554be245bb1644373b18c7eb3698692.jpg",
-    "description": "2-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70682292/",
-    "city": "Bristol",
-    "monthly_rent": 300,
-    "annual_rent": 3600,
-    "gross_yield": 0.99
-  },
-  {
     "address": "3 bed semi-detached house for sale Lily Road, Lyde Green BS16",
     "postcode": null,
     "price": 375000,
@@ -2056,34 +2042,6 @@
     "monthly_rent": 450,
     "annual_rent": 5400,
     "gross_yield": 1.44
-  },
-  {
-    "address": "3 bed end terrace house for sale Downend Park Road, Downend BS16",
-    "postcode": null,
-    "price": 350000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/f0ee1763fc72234f601e8d143a82f2e5a5d89ecf.jpg",
-    "description": "3-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69859893/",
-    "city": "Bristol",
-    "monthly_rent": 450,
-    "annual_rent": 5400,
-    "gross_yield": 1.54
-  },
-  {
-    "address": "3 bed semi-detached house for sale Albany Gate, Stoke Gifford BS34",
-    "postcode": null,
-    "price": 365000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/3a83109650a3df3420742e32a6e13e5e6a11474b.jpg",
-    "description": "3-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70448883/",
-    "city": "Bristol",
-    "monthly_rent": 450,
-    "annual_rent": 5400,
-    "gross_yield": 1.48
   },
   {
     "address": "3 bed terraced house for sale Muller Road, Horfield BS7",
@@ -2100,18 +2058,46 @@
     "gross_yield": 1.44
   },
   {
-    "address": "2 bed terraced house for sale Saxon Road, St Werburghs BS2",
+    "address": "2 bed terraced house for sale Weston Avenue, St George BS5",
     "postcode": null,
-    "price": 395000,
+    "price": 365000,
     "bedrooms": 2,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/7950d8cda75ef2764acfbe53a18877370a7cf133.jpg",
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/e50490258554be245bb1644373b18c7eb3698692.jpg",
     "description": "2-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/69863527/",
+    "property_url": "https://www.primelocation.com/for-sale/details/70682292/",
     "city": "Bristol",
     "monthly_rent": 300,
     "annual_rent": 3600,
-    "gross_yield": 0.91
+    "gross_yield": 0.99
+  },
+  {
+    "address": "3 bed semi-detached house for sale Albany Gate, Stoke Gifford BS34",
+    "postcode": null,
+    "price": 365000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/3a83109650a3df3420742e32a6e13e5e6a11474b.jpg",
+    "description": "3-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70448883/",
+    "city": "Bristol",
+    "monthly_rent": 450,
+    "annual_rent": 5400,
+    "gross_yield": 1.48
+  },
+  {
+    "address": "4 bed detached house for sale Dram Lane, St George BS5",
+    "postcode": null,
+    "price": 375000,
+    "bedrooms": 4,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/aa4424906b9ba3c7708ba1656d7d780b9013604f.jpg",
+    "description": "4-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70205278/",
+    "city": "Bristol",
+    "monthly_rent": 600,
+    "annual_rent": 7200,
+    "gross_yield": 1.92
   },
   {
     "address": "3 bed end terrace house for sale Manworthy Road, Brislington BS4",
@@ -2156,20 +2142,6 @@
     "gross_yield": 1.71
   },
   {
-    "address": "3 bed semi-detached house for sale Dodisham Walk, Fishponds BS16",
-    "postcode": null,
-    "price": 335000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/dd3481103f88a7c20dd367f005cfecdbae17f996.jpg",
-    "description": "3-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71176512/",
-    "city": "Bristol",
-    "monthly_rent": 450,
-    "annual_rent": 5400,
-    "gross_yield": 1.61
-  },
-  {
     "address": "2 bed semi-detached house for sale Mansfield Street, Bedminster BS3",
     "postcode": null,
     "price": 335000,
@@ -2184,18 +2156,18 @@
     "gross_yield": 1.07
   },
   {
-    "address": "2 bed terraced house for sale Berkeley Way, Emersons Green BS16",
+    "address": "3 bed semi-detached house for sale Exmouth Road, Knowle BS4",
     "postcode": null,
-    "price": 300000,
-    "bedrooms": 2,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/adc65707a0f71107f8f8cb0a5efbb0bd245277a0.jpg",
-    "description": "2-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/67786994/",
+    "price": 325000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/326a12dda7bc4b30792db64fb9892df27b5dac01.jpg",
+    "description": "3-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71528174/",
     "city": "Bristol",
-    "monthly_rent": 300,
-    "annual_rent": 3600,
-    "gross_yield": 1.2
+    "monthly_rent": 450,
+    "annual_rent": 5400,
+    "gross_yield": 1.66
   },
   {
     "address": "2 bed terraced house for sale Dunkirk Road, Fishponds BS16",
@@ -2210,20 +2182,6 @@
     "monthly_rent": 300,
     "annual_rent": 3600,
     "gross_yield": 1.2
-  },
-  {
-    "address": "3 bed semi-detached house for sale Exmouth Road, Knowle BS4",
-    "postcode": null,
-    "price": 325000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/326a12dda7bc4b30792db64fb9892df27b5dac01.jpg",
-    "description": "3-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71528174/",
-    "city": "Bristol",
-    "monthly_rent": 450,
-    "annual_rent": 5400,
-    "gross_yield": 1.66
   },
   {
     "address": "2 bed terraced house for sale High Street, Hanham BS15",
@@ -2282,20 +2240,6 @@
     "gross_yield": 1.66
   },
   {
-    "address": "3 bed semi-detached house for sale Sheppard Road, Fishponds BS16",
-    "postcode": null,
-    "price": 340000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/37c4d0def754374a6c7a0afbf0bbce3d05c01321.jpg",
-    "description": "3-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71408514/",
-    "city": "Bristol",
-    "monthly_rent": 450,
-    "annual_rent": 5400,
-    "gross_yield": 1.59
-  },
-  {
     "address": "2 bed terraced house for sale Superbly Located Home Southmead Road, Filton Park BS10",
     "postcode": null,
     "price": 325000,
@@ -2308,6 +2252,20 @@
     "monthly_rent": 300,
     "annual_rent": 3600,
     "gross_yield": 1.11
+  },
+  {
+    "address": "3 bed semi-detached house for sale Sheppard Road, Fishponds BS16",
+    "postcode": null,
+    "price": 340000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/37c4d0def754374a6c7a0afbf0bbce3d05c01321.jpg",
+    "description": "3-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71408514/",
+    "city": "Bristol",
+    "monthly_rent": 450,
+    "annual_rent": 5400,
+    "gross_yield": 1.59
   },
   {
     "address": "3 bed terraced house for sale Albert Road, Hanham BS15",
@@ -2394,6 +2352,20 @@
     "gross_yield": 1.16
   },
   {
+    "address": "3 bed semi-detached house for sale Dodisham Walk, Fishponds BS16",
+    "postcode": null,
+    "price": 335000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/dd3481103f88a7c20dd367f005cfecdbae17f996.jpg",
+    "description": "3-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71176512/",
+    "city": "Bristol",
+    "monthly_rent": 450,
+    "annual_rent": 5400,
+    "gross_yield": 1.61
+  },
+  {
     "address": "3 bed end terrace house for sale Cheviot Way, Oldland Common BS30",
     "postcode": null,
     "price": 308000,
@@ -2450,6 +2422,20 @@
     "gross_yield": 1.11
   },
   {
+    "address": "3 bed property for sale Whitwell Road, Whitchurch BS14",
+    "postcode": null,
+    "price": 340000,
+    "bedrooms": 3,
+    "bathrooms": null,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/0cba76371e79a24874801ae42f4171e0b34c8d7e.jpg",
+    "description": "3-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70600276/",
+    "city": "Bristol",
+    "monthly_rent": 450,
+    "annual_rent": 5400,
+    "gross_yield": 1.59
+  },
+  {
     "address": "3 bed town house for sale Fantastically Located Modern Townhouse Sevastopol Road, Horfield BS7",
     "postcode": null,
     "price": 327500,
@@ -2464,18 +2450,18 @@
     "gross_yield": 1.65
   },
   {
-    "address": "3 bed property for sale Whitwell Road, Whitchurch BS14",
+    "address": "2 bed terraced house for sale Berkeley Way, Emersons Green BS16",
     "postcode": null,
-    "price": 340000,
-    "bedrooms": 3,
-    "bathrooms": null,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/0cba76371e79a24874801ae42f4171e0b34c8d7e.jpg",
-    "description": "3-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70600276/",
+    "price": 300000,
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/adc65707a0f71107f8f8cb0a5efbb0bd245277a0.jpg",
+    "description": "2-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/67786994/",
     "city": "Bristol",
-    "monthly_rent": 450,
-    "annual_rent": 5400,
-    "gross_yield": 1.59
+    "monthly_rent": 300,
+    "annual_rent": 3600,
+    "gross_yield": 1.2
   },
   {
     "address": "4 bed town house for sale Blue Falcon Road, Kingswood BS15",
@@ -2506,20 +2492,6 @@
     "gross_yield": 1.66
   },
   {
-    "address": "2 bed terraced house for sale The Stepping Stones, St. Annes Park BS4",
-    "postcode": null,
-    "price": 250000,
-    "bedrooms": 2,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/14e497e4b94535096289f042f8bdc97304c62aa1.jpg",
-    "description": "2-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71624778/",
-    "city": "Bristol",
-    "monthly_rent": 300,
-    "annual_rent": 3600,
-    "gross_yield": 1.44
-  },
-  {
     "address": "3 bed semi-detached house for sale Chelwood Road, Shirehampton BS11",
     "postcode": null,
     "price": 289995,
@@ -2532,6 +2504,20 @@
     "monthly_rent": 450,
     "annual_rent": 5400,
     "gross_yield": 1.86
+  },
+  {
+    "address": "2 bed terraced house for sale The Stepping Stones, St. Annes Park BS4",
+    "postcode": null,
+    "price": 250000,
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/14e497e4b94535096289f042f8bdc97304c62aa1.jpg",
+    "description": "2-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71624778/",
+    "city": "Bristol",
+    "monthly_rent": 300,
+    "annual_rent": 3600,
+    "gross_yield": 1.44
   },
   {
     "address": "3 bed end terrace house for sale Superb Opportunity Holton Road, Horfield BS7",
@@ -2548,20 +2534,6 @@
     "gross_yield": 1.96
   },
   {
-    "address": "3 bed terraced house for sale Hencliffe Road, Stockwood BS14",
-    "postcode": null,
-    "price": 280000,
-    "bedrooms": 3,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/7b7040ddd9b5c1d4d11ff0f8efa4ba495ee53661.jpg",
-    "description": "3-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71559760/",
-    "city": "Bristol",
-    "monthly_rent": 450,
-    "annual_rent": 5400,
-    "gross_yield": 1.93
-  },
-  {
     "address": "3 bed terraced house for sale Kingsway, St. George BS5",
     "postcode": null,
     "price": 255000,
@@ -2574,6 +2546,20 @@
     "monthly_rent": 450,
     "annual_rent": 5400,
     "gross_yield": 2.12
+  },
+  {
+    "address": "3 bed terraced house for sale Hencliffe Road, Stockwood BS14",
+    "postcode": null,
+    "price": 280000,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/7b7040ddd9b5c1d4d11ff0f8efa4ba495ee53661.jpg",
+    "description": "3-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71559760/",
+    "city": "Bristol",
+    "monthly_rent": 450,
+    "annual_rent": 5400,
+    "gross_yield": 1.93
   },
   {
     "address": "3 bed semi-detached house for sale Barrowmead Drive, Lawrence Weston BS11",
@@ -2602,20 +2588,6 @@
     "monthly_rent": 300,
     "annual_rent": 3600,
     "gross_yield": 1.31
-  },
-  {
-    "address": "2 bed end terrace house for sale Holly Hill Road, Kingswood BS15",
-    "postcode": null,
-    "price": 290000,
-    "bedrooms": 2,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/78bce625665da580e9710177a3356620d64e55c4.jpg",
-    "description": "2-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70616522/",
-    "city": "Bristol",
-    "monthly_rent": 300,
-    "annual_rent": 3600,
-    "gross_yield": 1.24
   },
   {
     "address": "3 bed terraced house for sale Chiltern Close, Warmley BS30",
@@ -2674,20 +2646,6 @@
     "gross_yield": 1.41
   },
   {
-    "address": "2 bed semi-detached house for sale King Street, Avonmouth BS11",
-    "postcode": null,
-    "price": 274000,
-    "bedrooms": 2,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/61367fc60a8093af3a5cd6149b3128ebd62ef981.jpg",
-    "description": "2-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70040044/",
-    "city": "Bristol",
-    "monthly_rent": 300,
-    "annual_rent": 3600,
-    "gross_yield": 1.31
-  },
-  {
     "address": "2 bed end terrace house for sale Forest Road, Fishponds BS16",
     "postcode": null,
     "price": 290000,
@@ -2700,6 +2658,34 @@
     "monthly_rent": 300,
     "annual_rent": 3600,
     "gross_yield": 1.24
+  },
+  {
+    "address": "2 bed end terrace house for sale Holly Hill Road, Kingswood BS15",
+    "postcode": null,
+    "price": 290000,
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/78bce625665da580e9710177a3356620d64e55c4.jpg",
+    "description": "2-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70616522/",
+    "city": "Bristol",
+    "monthly_rent": 300,
+    "annual_rent": 3600,
+    "gross_yield": 1.24
+  },
+  {
+    "address": "2 bed semi-detached house for sale King Street, Avonmouth BS11",
+    "postcode": null,
+    "price": 274000,
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/61367fc60a8093af3a5cd6149b3128ebd62ef981.jpg",
+    "description": "2-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/70040044/",
+    "city": "Bristol",
+    "monthly_rent": 300,
+    "annual_rent": 3600,
+    "gross_yield": 1.31
   },
   {
     "address": "3 bed terraced house for sale Lewington Road, Fishponds BS16",
@@ -2744,20 +2730,6 @@
     "gross_yield": 2.2
   },
   {
-    "address": "2 bed terraced house for sale Meadow Street, Avonmouth BS11",
-    "postcode": null,
-    "price": 245000,
-    "bedrooms": 2,
-    "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/1e2784378984bb805aa38e6a203f44342d10675b.jpg",
-    "description": "2-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/70681836/",
-    "city": "Bristol",
-    "monthly_rent": 300,
-    "annual_rent": 3600,
-    "gross_yield": 1.47
-  },
-  {
     "address": "2 bed property for sale Rowan Street, Hengrove BS14",
     "postcode": null,
     "price": 130000,
@@ -2772,18 +2744,18 @@
     "gross_yield": 2.77
   },
   {
-    "address": "2 bed terraced house for sale Hambrook Lane, Stoke Gifford BS34",
+    "address": "2 bed terraced house for sale Meadow Street, Avonmouth BS11",
     "postcode": null,
-    "price": 76250,
+    "price": 245000,
     "bedrooms": 2,
     "bathrooms": 1,
-    "image_url": "https://lid.zoocdn.com/u/1024/768/5bed4273a7acd8441b134f43650e5819b9e04723.jpg",
+    "image_url": "https://lid.zoocdn.com/u/1024/768/1e2784378984bb805aa38e6a203f44342d10675b.jpg",
     "description": "2-bed property in Bristol.",
-    "property_url": "https://www.primelocation.com/for-sale/details/71579599/",
+    "property_url": "https://www.primelocation.com/for-sale/details/70681836/",
     "city": "Bristol",
     "monthly_rent": 300,
     "annual_rent": 3600,
-    "gross_yield": 4.72
+    "gross_yield": 1.47
   },
   {
     "address": "4 bed semi-detached house for sale Merryweather Avenue, Bonnington Walk, Lockleaze BS7",
@@ -2798,5 +2770,19 @@
     "monthly_rent": 600,
     "annual_rent": 7200,
     "gross_yield": 5.94
+  },
+  {
+    "address": "2 bed terraced house for sale Hambrook Lane, Stoke Gifford BS34",
+    "postcode": null,
+    "price": 76250,
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "image_url": "https://lid.zoocdn.com/u/1024/768/5bed4273a7acd8441b134f43650e5819b9e04723.jpg",
+    "description": "2-bed property in Bristol.",
+    "property_url": "https://www.primelocation.com/for-sale/details/71579599/",
+    "city": "Bristol",
+    "monthly_rent": 300,
+    "annual_rent": 3600,
+    "gross_yield": 4.72
   }
 ]
