@@ -58,12 +58,17 @@ export class Article4MapsApiService {
     try {
       const cleanPostcode = postcode.replace(/\s/g, '').toUpperCase();
       
-      // Article4Maps API uses GET request with postcode as query parameter
-      const response = await fetch(`${this.apiBaseUrl}?postcode=${encodeURIComponent(cleanPostcode)}`, {
-        method: 'GET',
+      // Article4Maps API uses POST /text endpoint with JSON body
+      const response = await fetch(`${this.apiBaseUrl}/text`, {
+        method: 'POST',
         headers: {
           'Authorization': this.apiKey!,
-        }
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          search: cleanPostcode,
+          type: 'all'
+        })
       });
 
       if (!response.ok) {
@@ -157,6 +162,33 @@ export class Article4MapsApiService {
    * Transform API response to our internal format
    */
   private transformApiResponse(data: any, postcode: string): Article4MapsApiResponse {
+    // Handle array response from /text endpoint
+    if (Array.isArray(data)) {
+      const currentArticle4 = data.find(item => item.type === 'current' && item.status === 'active');
+      const upcomingArticle4 = data.find(item => item.type === 'upcoming');
+      
+      const inArticle4 = !!currentArticle4;
+      const areas: Array<{ name: string; council: string; reference: string }> = [];
+      
+      if (currentArticle4) {
+        areas.push({
+          name: currentArticle4.resolvedaddress || 'Article 4 Direction Area',
+          council: currentArticle4.council || 'Unknown Council',
+          reference: currentArticle4.reference || 'Current Article 4'
+        });
+      }
+      
+      return {
+        inArticle4,
+        status: currentArticle4 ? 'Active' : (upcomingArticle4 ? 'Upcoming' : 'Not in Article 4'),
+        areas,
+        confidence: 0.999,
+        source: 'article4maps-api',
+        postcode
+      };
+    }
+    
+    // Fallback for old format (single object response)
     const inArticle4 = data.article4_applies === true || 
                        data.in_article4 === true ||
                        (data.status && data.status.toLowerCase() === 'active');
