@@ -1,0 +1,282 @@
+[
+  {
+    "postcode": "M1",
+    "hasArticle4Current": true,
+    "hasArticle4Upcoming": false,
+    "currentStatus": "active",
+    "resolvedAddress": "M1, Manchester, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M2",
+    "hasArticle4Current": true,
+    "hasArticle4Upcoming": false,
+    "currentStatus": "active",
+    "resolvedAddress": "M22, Wythenshawe, Manchester, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M3",
+    "hasArticle4Current": true,
+    "hasArticle4Upcoming": false,
+    "currentStatus": "active",
+    "resolvedAddress": "M3, Salford, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M4",
+    "hasArticle4Current": true,
+    "hasArticle4Upcoming": false,
+    "currentStatus": "active",
+    "resolvedAddress": "M4, Manchester, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M5",
+    "hasArticle4Current": true,
+    "hasArticle4Upcoming": false,
+    "currentStatus": "active",
+    "resolvedAddress": "M5, Salford, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M6",
+    "hasArticle4Current": true,
+    "hasArticle4Upcoming": false,
+    "currentStatus": "active",
+    "resolvedAddress": "M6, Salford, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M7",
+    "hasArticle4Current": true,
+    "hasArticle4Upcoming": false,
+    "currentStatus": "active",
+    "resolvedAddress": "M7, Salford, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M8",
+    "hasArticle4Current": true,
+    "hasArticle4Upcoming": false,
+    "currentStatus": "active",
+    "resolvedAddress": "M8, Manchester, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M9",
+    "hasArticle4Current": true,
+    "hasArticle4Upcoming": false,
+    "currentStatus": "active",
+    "resolvedAddress": "M90, Manchester, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M11",
+    "hasArticle4Current": true,
+    "hasArticle4Upcoming": false,
+    "currentStatus": "active",
+    "resolvedAddress": "M11, Manchester, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M12",
+    "hasArticle4Current": true,
+    "hasArticle4Upcoming": false,
+    "currentStatus": "active",
+    "resolvedAddress": "M12, Manchester, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M13",
+    "hasArticle4Current": true,
+    "hasArticle4Upcoming": false,
+    "currentStatus": "active",
+    "resolvedAddress": "M13, Manchester, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M14",
+    "hasArticle4Current": true,
+    "hasArticle4Upcoming": false,
+    "currentStatus": "active",
+    "resolvedAddress": "M14, Manchester, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M15",
+    "hasArticle4Current": true,
+    "hasArticle4Upcoming": false,
+    "currentStatus": "active",
+    "resolvedAddress": "M15, Manchester, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M16",
+    "hasArticle4Current": true,
+    "hasArticle4Upcoming": false,
+    "currentStatus": "active",
+    "resolvedAddress": "M16, Old Trafford, Manchester, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M17",
+    "hasArticle4Current": true,
+    "hasArticle4Upcoming": false,
+    "currentStatus": "active",
+    "resolvedAddress": "M17, Trafford Park, Manchester, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M18",
+    "hasArticle4Current": true,
+    "hasArticle4Upcoming": false,
+    "currentStatus": "active",
+    "resolvedAddress": "M18, Manchester, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M19",
+    "hasArticle4Current": true,
+    "hasArticle4Upcoming": false,
+    "currentStatus": "active",
+    "resolvedAddress": "M19, Manchester, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M20",
+    "hasArticle4Current": true,
+    "hasArticle4Upcoming": false,
+    "currentStatus": "active",
+    "resolvedAddress": "M20, Manchester, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M21",
+    "hasArticle4Current": true,
+    "hasArticle4Upcoming": false,
+    "currentStatus": "active",
+    "resolvedAddress": "M21, Manchester, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M22",
+    "hasArticle4Current": true,
+    "hasArticle4Upcoming": false,
+    "currentStatus": "active",
+    "resolvedAddress": "M22, Wythenshawe, Manchester, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M23",
+    "hasArticle4Current": true,
+    "hasArticle4Upcoming": false,
+    "currentStatus": "active",
+    "resolvedAddress": "M23, Wythenshawe, Manchester, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M24",
+    "hasArticle4Current": false,
+    "hasArticle4Upcoming": false,
+    "resolvedAddress": "M24, Middleton, Manchester, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M25",
+    "hasArticle4Current": false,
+    "hasArticle4Upcoming": false,
+    "resolvedAddress": "M25, Prestwich, Manchester, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M26",
+    "hasArticle4Current": false,
+    "hasArticle4Upcoming": false,
+    "resolvedAddress": "M26, Radcliffe, Manchester, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M27",
+    "hasArticle4Current": true,
+    "hasArticle4Upcoming": false,
+    "currentStatus": "active",
+    "resolvedAddress": "M27, Pendlebury, Manchester, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M28",
+    "hasArticle4Current": false,
+    "hasArticle4Upcoming": false,
+    "resolvedAddress": "M28, Worsley, Manchester, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M29",
+    "hasArticle4Current": true,
+    "hasArticle4Upcoming": false,
+    "currentStatus": "active",
+    "resolvedAddress": "M29, Astley, Manchester, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M30",
+    "hasArticle4Current": false,
+    "hasArticle4Upcoming": false,
+    "resolvedAddress": "M30, Eccles, Manchester, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M31",
+    "hasArticle4Current": true,
+    "hasArticle4Upcoming": false,
+    "currentStatus": "active",
+    "resolvedAddress": "M31, Carrington, Manchester, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M32",
+    "hasArticle4Current": true,
+    "hasArticle4Upcoming": false,
+    "currentStatus": "active",
+    "resolvedAddress": "M32, Stretford, Manchester, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M34",
+    "hasArticle4Current": true,
+    "hasArticle4Upcoming": false,
+    "currentStatus": "active",
+    "resolvedAddress": "M34, Denton, Manchester, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M35",
+    "hasArticle4Current": false,
+    "hasArticle4Upcoming": true,
+    "upcomingStatus": "2026-01-01",
+    "resolvedAddress": "M35, Failsworth, Manchester, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M38",
+    "hasArticle4Current": true,
+    "hasArticle4Upcoming": false,
+    "currentStatus": "active",
+    "resolvedAddress": "M38, Little Hulton, Manchester, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M40",
+    "hasArticle4Current": true,
+    "hasArticle4Upcoming": false,
+    "currentStatus": "active",
+    "resolvedAddress": "M40, Manchester, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M41",
+    "hasArticle4Current": true,
+    "hasArticle4Upcoming": false,
+    "currentStatus": "active",
+    "resolvedAddress": "M41, Urmston, Manchester, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M43",
+    "hasArticle4Current": true,
+    "hasArticle4Upcoming": false,
+    "currentStatus": "active",
+    "resolvedAddress": "M43, Droylsden, Manchester, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M44",
+    "hasArticle4Current": false,
+    "hasArticle4Upcoming": false,
+    "resolvedAddress": "M44, Manchester, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M45",
+    "hasArticle4Current": false,
+    "hasArticle4Upcoming": false,
+    "resolvedAddress": "M45, Whitefield, Manchester, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M46",
+    "hasArticle4Current": true,
+    "hasArticle4Upcoming": false,
+    "currentStatus": "active",
+    "resolvedAddress": "M46, Atherton, Manchester, Greater Manchester, England, United Kingdom"
+  },
+  {
+    "postcode": "M50",
+    "hasArticle4Current": true,
+    "hasArticle4Upcoming": false,
+    "currentStatus": "active",
+    "resolvedAddress": "M50, Salford, Greater Manchester, England, United Kingdom"
+  }
+]
