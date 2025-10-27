@@ -12,6 +12,7 @@ import { enhancedArticle4Service } from "./services/enhanced-article4-service";
 import { PostcodeGeocoder } from "./services/postcode-geocoder";
 import { article4CacheService } from "./services/article4-cache";
 import { article4CronService } from "./services/article4-cron";
+import { article4MapsApiService } from "./services/article4maps-api-service";
 import { searchFiltersSchema } from "@shared/schema";
 import { z } from "zod";
 
@@ -195,9 +196,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/article4-cache/stats", async (req, res) => {
     try {
       const stats = await article4CacheService.getStats();
+      const apiConfigured = article4MapsApiService.isConfigured();
+      
       res.json({
         success: true,
-        ...stats
+        api_configured: apiConfigured,
+        api_status: apiConfigured ? "✅ API Key Active" : "❌ API Key Missing",
+        cache_stats: stats,
+        warning: apiConfigured ? null : "Add ARTICLE4MAPS_API_KEY to Deployment Secrets"
       });
     } catch (error) {
       console.error("❌ Failed to get cache stats:", error);
