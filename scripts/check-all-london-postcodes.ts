@@ -79,7 +79,7 @@ async function checkAllPostcodes() {
   console.log(`📊 Ukupno postkodova za proveru: ${allPostcodes.length}\n`);
   
   const results: Article4Result[] = [];
-  const delayBetweenCalls = 1500;
+  const delayBetweenCalls = 3000;
   
   for (let i = 0; i < allPostcodes.length; i++) {
     const postcode = allPostcodes[i];
@@ -173,20 +173,24 @@ function printSummary(results: Article4Result[]) {
   
   console.log('📊 STATISTIKA:');
   console.log(`   Ukupno postkodova: ${results.length}`);
-  console.log(`   ✅ Sa trenutnim Article 4: ${withCurrentArticle4.length}`);
+  console.log(`   🔴 Sa TRENUTNIM Article 4: ${withCurrentArticle4.length}`);
   console.log(`   ⏰ Sa nadolazećim Article 4: ${withUpcomingArticle4.length}`);
   console.log(`   ❌ Greške: ${withErrors.length}\n`);
   
   if (withCurrentArticle4.length > 0) {
-    console.log('🔴 POSTKODOVI SA TRENUTNIM ARTICLE 4:');
+    console.log('🔴 TRENUTNE ARTICLE 4 OBLASTI (VAŽNO!):');
     withCurrentArticle4.forEach(r => {
       console.log(`   ${r.postcode} (${r.area}): ${r.currentStatus}`);
     });
     console.log('');
+    
+    console.log('📋 KOMPAKTNA LISTA TRENUTNIH ARTICLE 4:');
+    const currentList = withCurrentArticle4.map(r => r.postcode).join(', ');
+    console.log(`   ${currentList}\n`);
   }
   
   if (withUpcomingArticle4.length > 0) {
-    console.log('🟡 POSTKODOVI SA NADOLAZEĆIM ARTICLE 4:');
+    console.log('🟡 NADOLAZEĆE ARTICLE 4 OBLASTI:');
     withUpcomingArticle4.forEach(r => {
       console.log(`   ${r.postcode} (${r.area}): ${r.upcomingStatus}`);
     });
