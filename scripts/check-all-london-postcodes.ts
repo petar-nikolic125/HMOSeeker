@@ -87,56 +87,76 @@ async function checkAllPostcodes() {
     
     console.log(`[${i + 1}/${allPostcodes.length}] (${progress}%) Proveravam ${postcode}...`);
     
-    try {
-      const apiResults = await checkPostcode(postcode, apiKey);
-      
-      if (!apiResults || apiResults.length === 0) {
-        results.push({
+    let retries = 0;
+    let success = false;
+    
+    while (!success && retries < 3) {
+      try {
+        const apiResults = await checkPostcode(postcode, apiKey);
+        
+        if (!apiResults || apiResults.length === 0) {
+          results.push({
+            postcode,
+            area: getArea(postcode),
+            hasArticle4Current: false,
+            hasArticle4Upcoming: false
+          });
+          success = true;
+          continue;
+        }
+        
+        const current = apiResults.find(r => r.type === 'current');
+        const upcoming = apiResults.find(r => r.type === 'upcoming');
+        
+        const result: Article4Result = {
           postcode,
           area: getArea(postcode),
-          hasArticle4Current: false,
-          hasArticle4Upcoming: false
-        });
-        continue;
+          hasArticle4Current: !!current,
+          hasArticle4Upcoming: !!upcoming,
+          currentStatus: current?.status,
+          upcomingStatus: upcoming?.status,
+          resolvedAddress: apiResults[0]?.resolvedaddress
+        };
+        
+        if (result.hasArticle4Current || result.hasArticle4Upcoming) {
+          console.log(`   🔴 Article 4 detektovan! Current: ${result.hasArticle4Current}, Upcoming: ${result.hasArticle4Upcoming}`);
+        }
+        
+        results.push(result);
+        success = true;
+        
+      } catch (error: any) {
+        if (error.message.includes('Rate limit')) {
+          retries++;
+          console.log(`   ⏸️ Rate limit - čekam 5 sekundi i pokušavam ponovo (pokušaj ${retries}/3)...`);
+          await new Promise(resolve => setTimeout(resolve, 5000));
+        } else {
+          console.error(`   ❌ Greška: ${error.message}`);
+          results.push({
+            postcode,
+            area: getArea(postcode),
+            hasArticle4Current: false,
+            hasArticle4Upcoming: false,
+            error: error.message
+          });
+          success = true;
+        }
       }
-      
-      const current = apiResults.find(r => r.type === 'current');
-      const upcoming = apiResults.find(r => r.type === 'upcoming');
-      
-      const result: Article4Result = {
-        postcode,
-        area: getArea(postcode),
-        hasArticle4Current: !!current,
-        hasArticle4Upcoming: !!upcoming,
-        currentStatus: current?.status,
-        upcomingStatus: upcoming?.status,
-        resolvedAddress: apiResults[0]?.resolvedaddress
-      };
-      
-      if (result.hasArticle4Current || result.hasArticle4Upcoming) {
-        console.log(`   🔴 Article 4 detektovan! Current: ${result.hasArticle4Current}, Upcoming: ${result.hasArticle4Upcoming}`);
-      }
-      
-      results.push(result);
-      
-      if (i < allPostcodes.length - 1) {
-        await new Promise(resolve => setTimeout(resolve, delayBetweenCalls));
-      }
-      
-    } catch (error: any) {
-      console.error(`   ❌ Greška: ${error.message}`);
+    }
+    
+    if (!success) {
+      console.error(`   ❌ Prekoračen broj pokušaja za ${postcode}`);
       results.push({
         postcode,
         area: getArea(postcode),
         hasArticle4Current: false,
         hasArticle4Upcoming: false,
-        error: error.message
+        error: 'Max retries exceeded'
       });
-      
-      if (error.message.includes('Rate limit')) {
-        console.log('   ⏸️ Čekam 5 sekundi zbog rate limita...');
-        await new Promise(resolve => setTimeout(resolve, 5000));
-      }
+    }
+    
+    if (i < allPostcodes.length - 1) {
+      await new Promise(resolve => setTimeout(resolve, delayBetweenCalls));
     }
   }
   
